@@ -3,17 +3,24 @@
 // Central HTTP dispatcher forwarding requests to backend microservices
 // =============================================================================
 
-export const GATEWAY_BASE = 'http://localhost:8080/api';
+const IS_LOCAL_DEV = typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
-const SERVICE_FALLBACK_MAP = {
-  '/topics': 'http://localhost:8081/api/topics',
-  '/tracks': 'http://localhost:8081/api/tracks',
-  '/system-design': 'http://localhost:8081/api/topics',
-  '/progress': 'http://localhost:8082/api/progress',
-  '/users': 'http://localhost:8082/api/users',
-  '/quizzes': 'http://localhost:8083/api/quizzes',
-  '/code': 'http://localhost:8084/api/code',
-};
+export const GATEWAY_BASE = IS_LOCAL_DEV
+  ? 'http://localhost:8080/api'
+  : '/api';
+
+const SERVICE_FALLBACK_MAP = IS_LOCAL_DEV
+  ? {
+      '/topics': 'http://localhost:8081/api/topics',
+      '/tracks': 'http://localhost:8081/api/tracks',
+      '/system-design': 'http://localhost:8081/api/topics',
+      '/progress': 'http://localhost:8082/api/progress',
+      '/users': 'http://localhost:8082/api/users',
+      '/quizzes': 'http://localhost:8083/api/quizzes',
+      '/code': 'http://localhost:8084/api/code',
+    }
+  : {};
 
 function getDirectServiceUrl(endpoint) {
   for (const [prefix, directBase] of Object.entries(SERVICE_FALLBACK_MAP)) {
