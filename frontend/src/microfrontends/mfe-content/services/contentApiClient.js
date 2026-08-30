@@ -105,11 +105,14 @@ export async function fetchTopicById(id) {
     return localTopic;
   }
 
-  // Tier 3: Fetch static markdown file from /curriculum/ (served by Vercel)
+  // Tier 3: Fetch static markdown file from curriculum/ (served by Vercel or GitHub Pages)
   const filePath = curriculumIndex[id];
   if (filePath) {
     try {
-      const res = await fetch(filePath);
+      const base = import.meta.env.BASE_URL || '/';
+      const cleanPath = filePath.replace(/^\//, '');
+      const finalUrl = base.endsWith('/') ? `${base}${cleanPath}` : `${base}/${cleanPath}`;
+      const res = await fetch(finalUrl);
       if (res.ok) {
         const raw = await res.text();
         const parsed = parseMarkdownFile(raw, id);

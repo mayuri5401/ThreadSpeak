@@ -1,4 +1,4 @@
-﻿# 🧵 ThreadSpeak — Java & System Design Learning Platform
+# 🧵 ThreadSpeak — Java & System Design Learning Platform
 
 <div align="center">
 
@@ -38,7 +38,8 @@ An interactive, enterprise-grade learning platform for **Core Java**, **Spring B
 
 | Resource | URL |
 |---|---|
-| **🌐 Production App** | [https://thread-speak.vercel.app](https://thread-speak.vercel.app) |
+| **🌐 Production App (Vercel)** | [https://thread-speak.vercel.app](https://thread-speak.vercel.app) |
+| **🌐 GitHub Pages Live App** | [https://mayuri5401.github.io/ThreadSpeak/](https://mayuri5401.github.io/ThreadSpeak/) |
 | **GitHub Repository** | [https://github.com/mayuri5401/ThreadSpeak](https://github.com/mayuri5401/ThreadSpeak) |
 | **Frontend (local dev)** | [http://localhost:5173](http://localhost:5173) |
 | **API Gateway (local)** | [http://localhost:8080](http://localhost:8080) |

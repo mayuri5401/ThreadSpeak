@@ -15,9 +15,13 @@ export function parseUrlState() {
   let subSection = searchParams.get('sub') || 'all';
   let tab = searchParams.get('tab') || 'notes';
 
-  // Support path-based URLs (e.g. /topic/java-intro-features-of-java or /quiz)
+  // Support path-based URLs (e.g. /topic/java-intro-features-of-java or /quiz or /ThreadSpeak/quiz)
   if (pathname && pathname !== '/') {
-    const pathParts = pathname.split('/').filter(Boolean);
+    let pathParts = pathname.split('/').filter(Boolean);
+    // If hosted under subfolder (e.g. /ThreadSpeak/), skip repository name
+    if (pathParts.length > 0 && pathParts[0].toLowerCase() === 'threadspeak') {
+      pathParts = pathParts.slice(1);
+    }
     if (pathParts.length > 0) {
       const first = pathParts[0].toLowerCase();
       if (['progress', 'playground', 'profile', 'quiz'].includes(first)) {
@@ -51,7 +55,10 @@ export function parseUrlState() {
       if (hashParams.get('program')) program = Number(hashParams.get('program'));
     }
     if (hashPath) {
-      const hashParts = hashPath.split('/').filter(Boolean);
+      let hashParts = hashPath.split('/').filter(Boolean);
+      if (hashParts.length > 0 && hashParts[0].toLowerCase() === 'threadspeak') {
+        hashParts = hashParts.slice(1);
+      }
       if (hashParts[0] === 'topic' && hashParts[1]) {
         topicId = hashParts[1];
         view = 'topics';
@@ -98,8 +105,10 @@ export function buildUrl({ view = 'topics', trackId = 'core-java', topicId = nul
     }
   }
 
+  const isGitHubPages = typeof window !== 'undefined' && window.location.pathname.toLowerCase().startsWith('/threadspeak');
+  const basePath = isGitHubPages ? '/ThreadSpeak' : '';
   const queryString = params.toString();
-  return queryString ? `/?${queryString}` : '/';
+  return queryString ? `${basePath}/?${queryString}` : (basePath ? `${basePath}/` : '/');
 }
 
 export function updateBrowserUrl(updates, replace = false) {
