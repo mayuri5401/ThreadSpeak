@@ -2,8 +2,9 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-thread--speak.vercel.app-0070f3?style=for-the-badge)](https://thread-speak.vercel.app)
-[![Frontend](https://img.shields.io/badge/React_18-Vite_5-61DAFB?style=for-the-badge&logo=react)](https://thread-speak.vercel.app)
+[![GitHub Pages Demo](https://img.shields.io/badge/🌐_GitHub_Pages-Live_Demo-22c55e?style=for-the-badge&logo=github)](https://mayuri5401.github.io/ThreadSpeak/?track=core-java&topic=java-intro-features-of-java)
+[![Vercel Demo](https://img.shields.io/badge/🌐_Vercel_Demo-thread--speak.vercel.app-0070f3?style=for-the-badge)](https://thread-speak.vercel.app)
+[![Frontend](https://img.shields.io/badge/React_18-Vite_5-61DAFB?style=for-the-badge&logo=react)](https://mayuri5401.github.io/ThreadSpeak/)
 [![Backend](https://img.shields.io/badge/Spring_Boot_3-Microservices-6DB33F?style=for-the-badge&logo=springboot)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java_17-OpenJDK-ED8B00?style=for-the-badge&logo=openjdk)](https://openjdk.org/)
 
@@ -38,8 +39,8 @@ An interactive, enterprise-grade learning platform for **Core Java**, **Spring B
 
 | Resource | URL |
 |---|---|
+| **🌐 GitHub Pages Live App** | [https://mayuri5401.github.io/ThreadSpeak/?track=core-java&topic=java-intro-features-of-java](https://mayuri5401.github.io/ThreadSpeak/?track=core-java&topic=java-intro-features-of-java) |
 | **🌐 Production App (Vercel)** | [https://thread-speak.vercel.app](https://thread-speak.vercel.app) |
-| **🌐 GitHub Pages Live App** | [https://mayuri5401.github.io/ThreadSpeak/](https://mayuri5401.github.io/ThreadSpeak/) |
 | **GitHub Repository** | [https://github.com/mayuri5401/ThreadSpeak](https://github.com/mayuri5401/ThreadSpeak) |
 | **Frontend (local dev)** | [http://localhost:5173](http://localhost:5173) |
 | **API Gateway (local)** | [http://localhost:8080](http://localhost:8080) |
