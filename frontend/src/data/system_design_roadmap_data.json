@@ -1,0 +1,4517 @@
+[
+  {
+    "id": "lld",
+    "title": "01. low level design",
+    "icon": "Cpu",
+    "color": "from-cyan-500 to-blue-600",
+    "badgeColor": "bg-cyan-950 text-cyan-400 border-cyan-800",
+    "subtopicsCount": 18,
+    "totalTopicsCount": 172,
+    "subtopics": [
+      {
+        "id": "lld-01_welcome",
+        "number": 1,
+        "folderName": "01_Welcome",
+        "name": "Welcome",
+        "topicCount": 2,
+        "topics": [
+          {
+            "id": "lld-welcome-course-introduction",
+            "file": "01_Course_Introduction.html",
+            "rawPath": "01. low level design\\01_Welcome\\01_Course_Introduction.html",
+            "title": "Course Introduction",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Welcome"
+          },
+          {
+            "id": "lld-welcome-course-roadmap",
+            "file": "02_Course_Roadmap.html",
+            "rawPath": "01. low level design\\01_Welcome\\02_Course_Roadmap.html",
+            "title": "Course Roadmap",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Welcome"
+          }
+        ]
+      },
+      {
+        "id": "lld-02_lld_introduction",
+        "number": 2,
+        "folderName": "02_LLD_Introduction",
+        "name": "LLD Introduction",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "lld-lld-introduction-what-is-lld",
+            "file": "01_What_is_LLD.html",
+            "rawPath": "01. low level design\\02_LLD_Introduction\\01_What_is_LLD.html",
+            "title": "What is LLD",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "LLD Introduction"
+          },
+          {
+            "id": "lld-lld-introduction-lld-vs-hld",
+            "file": "02_LLD_vs_HLD.html",
+            "rawPath": "01. low level design\\02_LLD_Introduction\\02_LLD_vs_HLD.html",
+            "title": "LLD vs HLD",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "LLD Introduction"
+          },
+          {
+            "id": "lld-lld-introduction-types-of-lld-interviews",
+            "file": "03_Types_of_LLD_interviews.html",
+            "rawPath": "01. low level design\\02_LLD_Introduction\\03_Types_of_LLD_interviews.html",
+            "title": "Types of LLD interviews",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "LLD Introduction"
+          },
+          {
+            "id": "lld-lld-introduction-quiz-introduction",
+            "file": "04_Quiz_Introduction.html",
+            "rawPath": "01. low level design\\02_LLD_Introduction\\04_Quiz_Introduction.html",
+            "title": "Quiz Introduction",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "LLD Introduction"
+          }
+        ]
+      },
+      {
+        "id": "lld-03_oop_fundamentals",
+        "number": 3,
+        "folderName": "03_OOP_Fundamentals",
+        "name": "OOP Fundamentals",
+        "topicCount": 15,
+        "topics": [
+          {
+            "id": "lld-oop-fundamentals-classes-and-objects",
+            "file": "01_Classes_and_Objects.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\01_Classes_and_Objects.html",
+            "title": "Classes and Objects",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-exercise-classes-and-objects",
+            "file": "02_Exercise_Classes_and_Objects.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\02_Exercise_Classes_and_Objects.html",
+            "title": "Exercise Classes and Objects",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-enums",
+            "file": "03_Enums.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\03_Enums.html",
+            "title": "Enums",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-exercise-enums",
+            "file": "04_Exercise_Enums.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\04_Exercise_Enums.html",
+            "title": "Exercise Enums",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-interfaces",
+            "file": "05_Interfaces.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\05_Interfaces.html",
+            "title": "Interfaces",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-exercise-interfaces",
+            "file": "06_Exercise_Interfaces.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\06_Exercise_Interfaces.html",
+            "title": "Exercise Interfaces",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-encapsulation",
+            "file": "07_Encapsulation.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\07_Encapsulation.html",
+            "title": "Encapsulation",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-exercise-encapsulation",
+            "file": "08_Exercise_Encapsulation.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\08_Exercise_Encapsulation.html",
+            "title": "Exercise Encapsulation",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-abstraction",
+            "file": "09_Abstraction.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\09_Abstraction.html",
+            "title": "Abstraction",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-exercise-abstraction",
+            "file": "10_Exercise_Abstraction.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\10_Exercise_Abstraction.html",
+            "title": "Exercise Abstraction",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-inheritance",
+            "file": "11_Inheritance.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\11_Inheritance.html",
+            "title": "Inheritance",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-exercise-inheritance",
+            "file": "12_Exercise_Inheritance.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\12_Exercise_Inheritance.html",
+            "title": "Exercise Inheritance",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-polymorphism",
+            "file": "13_Polymorphism.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\13_Polymorphism.html",
+            "title": "Polymorphism",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-exercise-polymorphism",
+            "file": "14_Exercise_Polymorphism.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\14_Exercise_Polymorphism.html",
+            "title": "Exercise Polymorphism",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "OOP Fundamentals"
+          },
+          {
+            "id": "lld-oop-fundamentals-quiz-oop-fundamentals",
+            "file": "15_Quiz_OOP_Fundamentals.html",
+            "rawPath": "01. low level design\\03_OOP_Fundamentals\\15_Quiz_OOP_Fundamentals.html",
+            "title": "Quiz OOP Fundamentals",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "OOP Fundamentals"
+          }
+        ]
+      },
+      {
+        "id": "lld-04_class_relationships",
+        "number": 4,
+        "folderName": "04_Class_Relationships",
+        "name": "Class Relationships",
+        "topicCount": 11,
+        "topics": [
+          {
+            "id": "lld-class-relationships-association",
+            "file": "01_Association.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\01_Association.html",
+            "title": "Association",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-exercise-association",
+            "file": "02_Exercise_Association.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\02_Exercise_Association.html",
+            "title": "Exercise Association",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-aggregation",
+            "file": "03_Aggregation.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\03_Aggregation.html",
+            "title": "Aggregation",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-exercise-aggregation",
+            "file": "04_Exercise_Aggregation.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\04_Exercise_Aggregation.html",
+            "title": "Exercise Aggregation",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-composition",
+            "file": "05_Composition.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\05_Composition.html",
+            "title": "Composition",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-exercise-composition",
+            "file": "06_Exercise_Composition.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\06_Exercise_Composition.html",
+            "title": "Exercise Composition",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-dependency",
+            "file": "07_Dependency.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\07_Dependency.html",
+            "title": "Dependency",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-exercise-dependency",
+            "file": "08_Exercise_Dependency.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\08_Exercise_Dependency.html",
+            "title": "Exercise Dependency",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-realization",
+            "file": "09_Realization.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\09_Realization.html",
+            "title": "Realization",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-exercise-realization",
+            "file": "10_Exercise_Realization.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\10_Exercise_Realization.html",
+            "title": "Exercise Realization",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Class Relationships"
+          },
+          {
+            "id": "lld-class-relationships-quiz-class-relationships",
+            "file": "11_Quiz_Class_Relationships.html",
+            "rawPath": "01. low level design\\04_Class_Relationships\\11_Quiz_Class_Relationships.html",
+            "title": "Quiz Class Relationships",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Class Relationships"
+          }
+        ]
+      },
+      {
+        "id": "lld-05_design_principles",
+        "number": 5,
+        "folderName": "05_Design_Principles",
+        "name": "Design Principles",
+        "topicCount": 15,
+        "topics": [
+          {
+            "id": "lld-design-principles-dry-principle",
+            "file": "01_DRY_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\01_DRY_Principle.html",
+            "title": "DRY Principle",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-exercise-dry-principle",
+            "file": "02_Exercise_DRY_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\02_Exercise_DRY_Principle.html",
+            "title": "Exercise DRY Principle",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-kiss-principle",
+            "file": "03_KISS_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\03_KISS_Principle.html",
+            "title": "KISS Principle",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-exercise-kiss-principle",
+            "file": "04_Exercise_KISS_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\04_Exercise_KISS_Principle.html",
+            "title": "Exercise KISS Principle",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-yagni-principle",
+            "file": "05_YAGNI_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\05_YAGNI_Principle.html",
+            "title": "YAGNI Principle",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-exercise-yagni-principle",
+            "file": "06_Exercise_YAGNI_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\06_Exercise_YAGNI_Principle.html",
+            "title": "Exercise YAGNI Principle",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-law-of-demeter",
+            "file": "07_Law_of_Demeter.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\07_Law_of_Demeter.html",
+            "title": "Law of Demeter",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-exercise-law-of-demeter",
+            "file": "08_Exercise_Law_of_Demeter.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\08_Exercise_Law_of_Demeter.html",
+            "title": "Exercise Law of Demeter",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-separation-of-concerns",
+            "file": "09_Separation_of_Concerns.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\09_Separation_of_Concerns.html",
+            "title": "Separation of Concerns",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-exercise-separation-of-concerns",
+            "file": "10_Exercise_Separation_of_Concerns.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\10_Exercise_Separation_of_Concerns.html",
+            "title": "Exercise Separation of Concerns",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-coupling-and-cohesion",
+            "file": "11_Coupling_and_Cohesion.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\11_Coupling_and_Cohesion.html",
+            "title": "Coupling and Cohesion",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-exercise-coupling-and-cohesion",
+            "file": "12_Exercise_Coupling_and_Cohesion.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\12_Exercise_Coupling_and_Cohesion.html",
+            "title": "Exercise Coupling and Cohesion",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-composing-objects-principle",
+            "file": "13_Composing_Objects_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\13_Composing_Objects_Principle.html",
+            "title": "Composing Objects Principle",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-exercise-composing-objects-principle",
+            "file": "14_Exercise_Composing_Objects_Principle.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\14_Exercise_Composing_Objects_Principle.html",
+            "title": "Exercise Composing Objects Principle",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Design Principles"
+          },
+          {
+            "id": "lld-design-principles-quiz-design-principles",
+            "file": "15_Quiz_Design_Principles.html",
+            "rawPath": "01. low level design\\05_Design_Principles\\15_Quiz_Design_Principles.html",
+            "title": "Quiz Design Principles",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Design Principles"
+          }
+        ]
+      },
+      {
+        "id": "lld-06_solid_principles",
+        "number": 6,
+        "folderName": "06_SOLID_Principles",
+        "name": "SOLID Principles",
+        "topicCount": 11,
+        "topics": [
+          {
+            "id": "lld-solid-principles-single-responsibility-principle",
+            "file": "01_Single_Responsibility_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\01_Single_Responsibility_Principle.html",
+            "title": "Single Responsibility Principle",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-exercise-single-responsibility-principle",
+            "file": "02_Exercise_Single_Responsibility_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\02_Exercise_Single_Responsibility_Principle.html",
+            "title": "Exercise Single Responsibility Principle",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-open-closed-principle",
+            "file": "03_Open_Closed_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\03_Open_Closed_Principle.html",
+            "title": "Open Closed Principle",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-exercise-open-closed-principle",
+            "file": "04_Exercise_Open_Closed_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\04_Exercise_Open_Closed_Principle.html",
+            "title": "Exercise Open Closed Principle",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-liskov-substitution-principle",
+            "file": "05_Liskov_Substitution_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\05_Liskov_Substitution_Principle.html",
+            "title": "Liskov Substitution Principle",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-exercise-liskov-substitution-principle",
+            "file": "06_Exercise_Liskov_Substitution_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\06_Exercise_Liskov_Substitution_Principle.html",
+            "title": "Exercise Liskov Substitution Principle",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-interface-segregation-principle",
+            "file": "07_Interface_Segregation_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\07_Interface_Segregation_Principle.html",
+            "title": "Interface Segregation Principle",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-exercise-interface-segregation-principle",
+            "file": "08_Exercise_Interface_Segregation_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\08_Exercise_Interface_Segregation_Principle.html",
+            "title": "Exercise Interface Segregation Principle",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-dependency-inversion-principle",
+            "file": "09_Dependency_Inversion_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\09_Dependency_Inversion_Principle.html",
+            "title": "Dependency Inversion Principle",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-exercise-dependency-inversion-principle",
+            "file": "10_Exercise_Dependency_Inversion_Principle.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\10_Exercise_Dependency_Inversion_Principle.html",
+            "title": "Exercise Dependency Inversion Principle",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "SOLID Principles"
+          },
+          {
+            "id": "lld-solid-principles-quiz-solid-principles",
+            "file": "11_Quiz_SOLID_Principles.html",
+            "rawPath": "01. low level design\\06_SOLID_Principles\\11_Quiz_SOLID_Principles.html",
+            "title": "Quiz SOLID Principles",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "SOLID Principles"
+          }
+        ]
+      },
+      {
+        "id": "lld-07_uml",
+        "number": 7,
+        "folderName": "07_UML",
+        "name": "UML",
+        "topicCount": 6,
+        "topics": [
+          {
+            "id": "lld-uml-class-diagram",
+            "file": "01_Class_Diagram.html",
+            "rawPath": "01. low level design\\07_UML\\01_Class_Diagram.html",
+            "title": "Class Diagram",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "UML"
+          },
+          {
+            "id": "lld-uml-use-case-diagram",
+            "file": "02_Use_Case_Diagram.html",
+            "rawPath": "01. low level design\\07_UML\\02_Use_Case_Diagram.html",
+            "title": "Use Case Diagram",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "UML"
+          },
+          {
+            "id": "lld-uml-sequence-diagram",
+            "file": "03_Sequence_Diagram.html",
+            "rawPath": "01. low level design\\07_UML\\03_Sequence_Diagram.html",
+            "title": "Sequence Diagram",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "UML"
+          },
+          {
+            "id": "lld-uml-activity-diagram",
+            "file": "04_Activity_Diagram.html",
+            "rawPath": "01. low level design\\07_UML\\04_Activity_Diagram.html",
+            "title": "Activity Diagram",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "UML"
+          },
+          {
+            "id": "lld-uml-state-machine-diagram",
+            "file": "05_State_Machine_Diagram.html",
+            "rawPath": "01. low level design\\07_UML\\05_State_Machine_Diagram.html",
+            "title": "State Machine Diagram",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "UML"
+          },
+          {
+            "id": "lld-uml-quiz-uml",
+            "file": "06_Quiz_UML.html",
+            "rawPath": "01. low level design\\07_UML\\06_Quiz_UML.html",
+            "title": "Quiz UML",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "UML"
+          }
+        ]
+      },
+      {
+        "id": "lld-08_design_patterns",
+        "number": 8,
+        "folderName": "08_Design_Patterns",
+        "name": "Design Patterns",
+        "topicCount": 57,
+        "topics": [
+          {
+            "id": "lld-design-patterns-intro-to-design-patterns",
+            "file": "01_Intro_to_Design_Patterns.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\01_Intro_to_Design_Patterns.html",
+            "title": "Intro to Design Patterns",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-singleton",
+            "file": "02_Singleton.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\02_Singleton.html",
+            "title": "Singleton",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-singleton",
+            "file": "03_Exercise_Singleton.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\03_Exercise_Singleton.html",
+            "title": "Exercise Singleton",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-builder",
+            "file": "04_Builder.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\04_Builder.html",
+            "title": "Builder",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-builder",
+            "file": "05_Exercise_Builder.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\05_Exercise_Builder.html",
+            "title": "Exercise Builder",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-factory-method",
+            "file": "06_Factory_Method.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\06_Factory_Method.html",
+            "title": "Factory Method",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-factory-method",
+            "file": "07_Exercise_Factory_Method.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\07_Exercise_Factory_Method.html",
+            "title": "Exercise Factory Method",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-abstract-factory",
+            "file": "08_Abstract_Factory.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\08_Abstract_Factory.html",
+            "title": "Abstract Factory",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-abstract-factory",
+            "file": "09_Exercise_Abstract_Factory.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\09_Exercise_Abstract_Factory.html",
+            "title": "Exercise Abstract Factory",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-prototype",
+            "file": "10_Prototype.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\10_Prototype.html",
+            "title": "Prototype",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-prototype",
+            "file": "11_Exercise_Prototype.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\11_Exercise_Prototype.html",
+            "title": "Exercise Prototype",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-quiz-creational-design-pattern",
+            "file": "12_Quiz_Creational_Design_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\12_Quiz_Creational_Design_Pattern.html",
+            "title": "Quiz Creational Design Pattern",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-adapter",
+            "file": "13_Adapter.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\13_Adapter.html",
+            "title": "Adapter",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-adapter",
+            "file": "14_Exercise_Adapter.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\14_Exercise_Adapter.html",
+            "title": "Exercise Adapter",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-facade",
+            "file": "15_Facade.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\15_Facade.html",
+            "title": "Facade",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-facade",
+            "file": "16_Exercise_Facade.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\16_Exercise_Facade.html",
+            "title": "Exercise Facade",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-decorator",
+            "file": "17_Decorator.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\17_Decorator.html",
+            "title": "Decorator",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-decorator",
+            "file": "18_Exercise_Decorator.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\18_Exercise_Decorator.html",
+            "title": "Exercise Decorator",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-composite",
+            "file": "19_Composite.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\19_Composite.html",
+            "title": "Composite",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-composite",
+            "file": "20_Exercise_Composite.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\20_Exercise_Composite.html",
+            "title": "Exercise Composite",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-proxy",
+            "file": "21_Proxy.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\21_Proxy.html",
+            "title": "Proxy",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-proxy",
+            "file": "22_Exercise_Proxy.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\22_Exercise_Proxy.html",
+            "title": "Exercise Proxy",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-bridge",
+            "file": "23_Bridge.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\23_Bridge.html",
+            "title": "Bridge",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-bridge",
+            "file": "24_Exercise_Bridge.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\24_Exercise_Bridge.html",
+            "title": "Exercise Bridge",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-flyweight",
+            "file": "25_Flyweight.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\25_Flyweight.html",
+            "title": "Flyweight",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-flyweight",
+            "file": "26_Exercise_Flyweight.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\26_Exercise_Flyweight.html",
+            "title": "Exercise Flyweight",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-quiz-structural-design-pattern",
+            "file": "27_Quiz_Structural_Design_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\27_Quiz_Structural_Design_Pattern.html",
+            "title": "Quiz Structural Design Pattern",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-strategy",
+            "file": "28_Strategy.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\28_Strategy.html",
+            "title": "Strategy",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-strategy",
+            "file": "29_Exercise_Strategy.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\29_Exercise_Strategy.html",
+            "title": "Exercise Strategy",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-iterator",
+            "file": "30_Iterator.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\30_Iterator.html",
+            "title": "Iterator",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-iterator",
+            "file": "31_Exercise_Iterator.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\31_Exercise_Iterator.html",
+            "title": "Exercise Iterator",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-observer",
+            "file": "32_Observer.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\32_Observer.html",
+            "title": "Observer",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-observer",
+            "file": "33_Exercise_Observer.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\33_Exercise_Observer.html",
+            "title": "Exercise Observer",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-command",
+            "file": "34_Command.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\34_Command.html",
+            "title": "Command",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-command",
+            "file": "35_Exercise_Command.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\35_Exercise_Command.html",
+            "title": "Exercise Command",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-state",
+            "file": "36_State.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\36_State.html",
+            "title": "State",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-state",
+            "file": "37_Exercise_State.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\37_Exercise_State.html",
+            "title": "Exercise State",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-template-method",
+            "file": "38_Template_Method.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\38_Template_Method.html",
+            "title": "Template Method",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-template-method",
+            "file": "39_Exercise_Template_Method.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\39_Exercise_Template_Method.html",
+            "title": "Exercise Template Method",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-chain-of-responsibility",
+            "file": "40_Chain_of_Responsibility.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\40_Chain_of_Responsibility.html",
+            "title": "Chain of Responsibility",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-chain-of-responsibility",
+            "file": "41_Exercise_Chain_of_Responsibility.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\41_Exercise_Chain_of_Responsibility.html",
+            "title": "Exercise Chain of Responsibility",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-visitor",
+            "file": "42_Visitor.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\42_Visitor.html",
+            "title": "Visitor",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-visitor",
+            "file": "43_Exercise_Visitor.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\43_Exercise_Visitor.html",
+            "title": "Exercise Visitor",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-mediator",
+            "file": "44_Mediator.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\44_Mediator.html",
+            "title": "Mediator",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-mediator",
+            "file": "45_Exercise_Mediator.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\45_Exercise_Mediator.html",
+            "title": "Exercise Mediator",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-memento",
+            "file": "46_Memento.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\46_Memento.html",
+            "title": "Memento",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-exercise-memento",
+            "file": "47_Exercise_Memento.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\47_Exercise_Memento.html",
+            "title": "Exercise Memento",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-quiz-behavioral-design-pattern",
+            "file": "48_Quiz_Behavioral_Design_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\48_Quiz_Behavioral_Design_Pattern.html",
+            "title": "Quiz Behavioral Design Pattern",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-null-object-pattern",
+            "file": "49_Null_Object_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\49_Null_Object_Pattern.html",
+            "title": "Null Object Pattern",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-repository-pattern",
+            "file": "50_Repository_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\50_Repository_Pattern.html",
+            "title": "Repository Pattern",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-mvc-pattern",
+            "file": "51_MVC_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\51_MVC_Pattern.html",
+            "title": "MVC Pattern",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-dependency-injection-pattern",
+            "file": "52_Dependency_Injection_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\52_Dependency_Injection_Pattern.html",
+            "title": "Dependency Injection Pattern",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-specification-pattern",
+            "file": "53_Specification_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\53_Specification_Pattern.html",
+            "title": "Specification Pattern",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-game-loop-pattern",
+            "file": "54_Game_Loop_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\54_Game_Loop_Pattern.html",
+            "title": "Game Loop Pattern",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-thread-pool-pattern",
+            "file": "55_Thread_Pool_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\55_Thread_Pool_Pattern.html",
+            "title": "Thread Pool Pattern",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-producer-consumer-pattern",
+            "file": "56_Producer_Consumer_Pattern.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\56_Producer_Consumer_Pattern.html",
+            "title": "Producer Consumer Pattern",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Design Patterns"
+          },
+          {
+            "id": "lld-design-patterns-quiz-additional-patterns",
+            "file": "57_Quiz_Additional_Patterns.html",
+            "rawPath": "01. low level design\\08_Design_Patterns\\57_Quiz_Additional_Patterns.html",
+            "title": "Quiz Additional Patterns",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Design Patterns"
+          }
+        ]
+      },
+      {
+        "id": "lld-09_lld_interview_tips",
+        "number": 9,
+        "folderName": "09_LLD_Interview_Tips",
+        "name": "LLD Interview Tips",
+        "topicCount": 6,
+        "topics": [
+          {
+            "id": "lld-lld-interview-tips-how-to-approach-ood-interviews",
+            "file": "01_How_to_approach_OOD_Interviews.html",
+            "rawPath": "01. low level design\\09_LLD_Interview_Tips\\01_How_to_approach_OOD_Interviews.html",
+            "title": "How to approach OOD Interviews",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "LLD Interview Tips"
+          },
+          {
+            "id": "lld-lld-interview-tips-how-to-approach-maching-coding-interviews",
+            "file": "02_How_to_approach_Maching_Coding_Interviews.html",
+            "rawPath": "01. low level design\\09_LLD_Interview_Tips\\02_How_to_approach_Maching_Coding_Interviews.html",
+            "title": "How to approach Maching Coding Interviews",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "LLD Interview Tips"
+          },
+          {
+            "id": "lld-lld-interview-tips-how-to-identify-entities-and-model-relationships",
+            "file": "03_How_to_Identify_Entities_and_Model_Relationships.html",
+            "rawPath": "01. low level design\\09_LLD_Interview_Tips\\03_How_to_Identify_Entities_and_Model_Relationships.html",
+            "title": "How to Identify Entities and Model Relationships",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "LLD Interview Tips"
+          },
+          {
+            "id": "lld-lld-interview-tips-how-to-write-clean-code",
+            "file": "04_How_to_write_Clean_Code.html",
+            "rawPath": "01. low level design\\09_LLD_Interview_Tips\\04_How_to_write_Clean_Code.html",
+            "title": "How to write Clean Code",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "LLD Interview Tips"
+          },
+          {
+            "id": "lld-lld-interview-tips-how-to-choose-design-patterns",
+            "file": "05_How_to_choose_Design_Patterns.html",
+            "rawPath": "01. low level design\\09_LLD_Interview_Tips\\05_How_to_choose_Design_Patterns.html",
+            "title": "How to choose Design Patterns",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "LLD Interview Tips"
+          },
+          {
+            "id": "lld-lld-interview-tips-how-to-handle-concurrency-scenarios",
+            "file": "06_How_to_handle_Concurrency_Scenarios.html",
+            "rawPath": "01. low level design\\09_LLD_Interview_Tips\\06_How_to_handle_Concurrency_Scenarios.html",
+            "title": "How to handle Concurrency Scenarios",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "LLD Interview Tips"
+          }
+        ]
+      },
+      {
+        "id": "lld-10_games_puzzles",
+        "number": 10,
+        "folderName": "10_Games_Puzzles",
+        "name": "Games Puzzles",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "lld-games-puzzles-design-tic-tac-toe",
+            "file": "01_Design_Tic_Tac_Toe.html",
+            "rawPath": "01. low level design\\10_Games_Puzzles\\01_Design_Tic_Tac_Toe.html",
+            "title": "Design Tic Tac Toe",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Games Puzzles"
+          },
+          {
+            "id": "lld-games-puzzles-design-snake-and-ladder-game",
+            "file": "02_Design_Snake_and_Ladder_Game.html",
+            "rawPath": "01. low level design\\10_Games_Puzzles\\02_Design_Snake_and_Ladder_Game.html",
+            "title": "Design Snake and Ladder Game",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Games Puzzles"
+          },
+          {
+            "id": "lld-games-puzzles-design-minesweeper-game",
+            "file": "03_Design_Minesweeper_Game.html",
+            "rawPath": "01. low level design\\10_Games_Puzzles\\03_Design_Minesweeper_Game.html",
+            "title": "Design Minesweeper Game",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Games Puzzles"
+          },
+          {
+            "id": "lld-games-puzzles-design-chess-game",
+            "file": "04_Design_Chess_Game.html",
+            "rawPath": "01. low level design\\10_Games_Puzzles\\04_Design_Chess_Game.html",
+            "title": "Design Chess Game",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Games Puzzles"
+          }
+        ]
+      },
+      {
+        "id": "lld-11_data_structures_search",
+        "number": 11,
+        "folderName": "11_Data_Structures_Search",
+        "name": "Data Structures Search",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "lld-data-structures-search-design-lru-cache",
+            "file": "01_Design_LRU_Cache.html",
+            "rawPath": "01. low level design\\11_Data_Structures_Search\\01_Design_LRU_Cache.html",
+            "title": "Design LRU Cache",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Data Structures Search"
+          },
+          {
+            "id": "lld-data-structures-search-design-bloom-filter",
+            "file": "02_Design_Bloom_Filter.html",
+            "rawPath": "01. low level design\\11_Data_Structures_Search\\02_Design_Bloom_Filter.html",
+            "title": "Design Bloom Filter",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Data Structures Search"
+          },
+          {
+            "id": "lld-data-structures-search-design-search-autocomplete-system",
+            "file": "03_Design_Search_Autocomplete_System.html",
+            "rawPath": "01. low level design\\11_Data_Structures_Search\\03_Design_Search_Autocomplete_System.html",
+            "title": "Design Search Autocomplete System",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Data Structures Search"
+          },
+          {
+            "id": "lld-data-structures-search-design-simple-search-engine",
+            "file": "04_Design_Simple_Search_Engine.html",
+            "rawPath": "01. low level design\\11_Data_Structures_Search\\04_Design_Simple_Search_Engine.html",
+            "title": "Design Simple Search Engine",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Data Structures Search"
+          }
+        ]
+      },
+      {
+        "id": "lld-12_managing_states",
+        "number": 12,
+        "folderName": "12_Managing_States",
+        "name": "Managing States",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "lld-managing-states-design-atm",
+            "file": "01_Design_ATM.html",
+            "rawPath": "01. low level design\\12_Managing_States\\01_Design_ATM.html",
+            "title": "Design ATM",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Managing States"
+          },
+          {
+            "id": "lld-managing-states-design-vending-machine",
+            "file": "02_Design_Vending_Machine.html",
+            "rawPath": "01. low level design\\12_Managing_States\\02_Design_Vending_Machine.html",
+            "title": "Design Vending Machine",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Managing States"
+          },
+          {
+            "id": "lld-managing-states-design-elevator-system",
+            "file": "03_Design_Elevator_System.html",
+            "rawPath": "01. low level design\\12_Managing_States\\03_Design_Elevator_System.html",
+            "title": "Design Elevator System",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Managing States"
+          },
+          {
+            "id": "lld-managing-states-design-traffic-control-system",
+            "file": "04_Design_Traffic_Control_System.html",
+            "rawPath": "01. low level design\\12_Managing_States\\04_Design_Traffic_Control_System.html",
+            "title": "Design Traffic Control System",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Managing States"
+          },
+          {
+            "id": "lld-managing-states-design-coffee-vending-machine",
+            "file": "05_Design_Coffee_Vending_Machine.html",
+            "rawPath": "01. low level design\\12_Managing_States\\05_Design_Coffee_Vending_Machine.html",
+            "title": "Design Coffee Vending Machine",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Managing States"
+          }
+        ]
+      },
+      {
+        "id": "lld-13_management_systems",
+        "number": 13,
+        "folderName": "13_Management_Systems",
+        "name": "Management Systems",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "lld-management-systems-design-parking-lot",
+            "file": "01_Design_Parking_Lot.html",
+            "rawPath": "01. low level design\\13_Management_Systems\\01_Design_Parking_Lot.html",
+            "title": "Design Parking Lot",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Management Systems"
+          },
+          {
+            "id": "lld-management-systems-design-task-management-system",
+            "file": "02_Design_Task_Management_System.html",
+            "rawPath": "01. low level design\\13_Management_Systems\\02_Design_Task_Management_System.html",
+            "title": "Design Task Management System",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Management Systems"
+          },
+          {
+            "id": "lld-management-systems-design-inventory-management-system",
+            "file": "03_Design_Inventory_Management_System.html",
+            "rawPath": "01. low level design\\13_Management_Systems\\03_Design_Inventory_Management_System.html",
+            "title": "Design Inventory Management System",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Management Systems"
+          },
+          {
+            "id": "lld-management-systems-design-library-management-system",
+            "file": "04_Design_Library_Management_System.html",
+            "rawPath": "01. low level design\\13_Management_Systems\\04_Design_Library_Management_System.html",
+            "title": "Design Library Management System",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Management Systems"
+          },
+          {
+            "id": "lld-management-systems-design-restaurant-management-system",
+            "file": "05_Design_Restaurant_Management_System.html",
+            "rawPath": "01. low level design\\13_Management_Systems\\05_Design_Restaurant_Management_System.html",
+            "title": "Design Restaurant Management System",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Management Systems"
+          }
+        ]
+      },
+      {
+        "id": "lld-14_social_content_platforms",
+        "number": 14,
+        "folderName": "14_Social_Content_Platforms",
+        "name": "Social Content Platforms",
+        "topicCount": 6,
+        "topics": [
+          {
+            "id": "lld-social-content-platforms-design-stack-overflow",
+            "file": "01_Design_Stack_Overflow.html",
+            "rawPath": "01. low level design\\14_Social_Content_Platforms\\01_Design_Stack_Overflow.html",
+            "title": "Design Stack Overflow",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Social Content Platforms"
+          },
+          {
+            "id": "lld-social-content-platforms-design-a-social-network",
+            "file": "02_Design_a_Social_Network.html",
+            "rawPath": "01. low level design\\14_Social_Content_Platforms\\02_Design_a_Social_Network.html",
+            "title": "Design a Social Network",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Social Content Platforms"
+          },
+          {
+            "id": "lld-social-content-platforms-design-learning-platform",
+            "file": "03_Design_Learning_Platform.html",
+            "rawPath": "01. low level design\\14_Social_Content_Platforms\\03_Design_Learning_Platform.html",
+            "title": "Design Learning Platform",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Social Content Platforms"
+          },
+          {
+            "id": "lld-social-content-platforms-design-cricinfo",
+            "file": "04_Design_Cricinfo.html",
+            "rawPath": "01. low level design\\14_Social_Content_Platforms\\04_Design_Cricinfo.html",
+            "title": "Design Cricinfo",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Social Content Platforms"
+          },
+          {
+            "id": "lld-social-content-platforms-design-linkedin",
+            "file": "05_Design_LinkedIn.html",
+            "rawPath": "01. low level design\\14_Social_Content_Platforms\\05_Design_LinkedIn.html",
+            "title": "Design LinkedIn",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Social Content Platforms"
+          },
+          {
+            "id": "lld-social-content-platforms-design-spotify",
+            "file": "06_Design_Spotify.html",
+            "rawPath": "01. low level design\\14_Social_Content_Platforms\\06_Design_Spotify.html",
+            "title": "Design Spotify",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Social Content Platforms"
+          }
+        ]
+      },
+      {
+        "id": "lld-15_communication_messaging",
+        "number": 15,
+        "folderName": "15_Communication_Messaging",
+        "name": "Communication Messaging",
+        "topicCount": 3,
+        "topics": [
+          {
+            "id": "lld-communication-messaging-design-notification-system",
+            "file": "01_Design_Notification_System.html",
+            "rawPath": "01. low level design\\15_Communication_Messaging\\01_Design_Notification_System.html",
+            "title": "Design Notification System",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Communication Messaging"
+          },
+          {
+            "id": "lld-communication-messaging-design-pub-sub-system",
+            "file": "02_Design_Pub_Sub_System.html",
+            "rawPath": "01. low level design\\15_Communication_Messaging\\02_Design_Pub_Sub_System.html",
+            "title": "Design Pub Sub System",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Communication Messaging"
+          },
+          {
+            "id": "lld-communication-messaging-design-chat-application",
+            "file": "03_Design_Chat_Application.html",
+            "rawPath": "01. low level design\\15_Communication_Messaging\\03_Design_Chat_Application.html",
+            "title": "Design Chat Application",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Communication Messaging"
+          }
+        ]
+      },
+      {
+        "id": "lld-16_financial_payment_systems",
+        "number": 16,
+        "folderName": "16_Financial_Payment_Systems",
+        "name": "Financial Payment Systems",
+        "topicCount": 3,
+        "topics": [
+          {
+            "id": "lld-financial-payment-systems-design-splitwise",
+            "file": "01_Design_Splitwise.html",
+            "rawPath": "01. low level design\\16_Financial_Payment_Systems\\01_Design_Splitwise.html",
+            "title": "Design Splitwise",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Financial Payment Systems"
+          },
+          {
+            "id": "lld-financial-payment-systems-design-payment-gateway",
+            "file": "02_Design_Payment_Gateway.html",
+            "rawPath": "01. low level design\\16_Financial_Payment_Systems\\02_Design_Payment_Gateway.html",
+            "title": "Design Payment Gateway",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Financial Payment Systems"
+          },
+          {
+            "id": "lld-financial-payment-systems-design-online-stock-exchange",
+            "file": "03_Design_Online_Stock_Exchange.html",
+            "rawPath": "01. low level design\\16_Financial_Payment_Systems\\03_Design_Online_Stock_Exchange.html",
+            "title": "Design Online Stock Exchange",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Financial Payment Systems"
+          }
+        ]
+      },
+      {
+        "id": "lld-17_e_commerce_booking_systems",
+        "number": 17,
+        "folderName": "17_E_commerce_Booking_Systems",
+        "name": "E commerce Booking Systems",
+        "topicCount": 9,
+        "topics": [
+          {
+            "id": "lld-e-commerce-booking-systems-design-amazon-locker",
+            "file": "01_Design_Amazon_Locker.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\01_Design_Amazon_Locker.html",
+            "title": "Design Amazon Locker",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-shopping-cart",
+            "file": "02_Design_Shopping_Cart.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\02_Design_Shopping_Cart.html",
+            "title": "Design Shopping Cart",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-amazon",
+            "file": "03_Design_Amazon.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\03_Design_Amazon.html",
+            "title": "Design Amazon",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-movie-booking-system",
+            "file": "04_Design_Movie_Booking_System.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\04_Design_Movie_Booking_System.html",
+            "title": "Design Movie Booking System",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-car-rental-system",
+            "file": "05_Design_Car_Rental_System.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\05_Design_Car_Rental_System.html",
+            "title": "Design Car Rental System",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-meeting-scheduler",
+            "file": "06_Design_Meeting_Scheduler.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\06_Design_Meeting_Scheduler.html",
+            "title": "Design Meeting Scheduler",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-online-auction-system",
+            "file": "07_Design_Online_Auction_System.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\07_Design_Online_Auction_System.html",
+            "title": "Design Online Auction System",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-online-food-delivery-service",
+            "file": "08_Design_Online_Food_Delivery_Service.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\08_Design_Online_Food_Delivery_Service.html",
+            "title": "Design Online Food Delivery Service",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "E commerce Booking Systems"
+          },
+          {
+            "id": "lld-e-commerce-booking-systems-design-ride-hailing-service",
+            "file": "09_Design_Ride_Hailing_Service.html",
+            "rawPath": "01. low level design\\17_E_commerce_Booking_Systems\\09_Design_Ride_Hailing_Service.html",
+            "title": "Design Ride Hailing Service",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "E commerce Booking Systems"
+          }
+        ]
+      },
+      {
+        "id": "lld-18_developer_tools_infrastructure",
+        "number": 18,
+        "folderName": "18_Developer_Tools_Infrastructure",
+        "name": "Developer Tools Infrastructure",
+        "topicCount": 6,
+        "topics": [
+          {
+            "id": "lld-developer-tools-infrastructure-design-url-shortener",
+            "file": "01_Design_URL_Shortener.html",
+            "rawPath": "01. low level design\\18_Developer_Tools_Infrastructure\\01_Design_URL_Shortener.html",
+            "title": "Design URL Shortener",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Developer Tools Infrastructure"
+          },
+          {
+            "id": "lld-developer-tools-infrastructure-design-logging-framework",
+            "file": "02_Design_Logging_Framework.html",
+            "rawPath": "01. low level design\\18_Developer_Tools_Infrastructure\\02_Design_Logging_Framework.html",
+            "title": "Design Logging Framework",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Developer Tools Infrastructure"
+          },
+          {
+            "id": "lld-developer-tools-infrastructure-design-rate-limiter",
+            "file": "03_Design_Rate_Limiter.html",
+            "rawPath": "01. low level design\\18_Developer_Tools_Infrastructure\\03_Design_Rate_Limiter.html",
+            "title": "Design Rate Limiter",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Developer Tools Infrastructure"
+          },
+          {
+            "id": "lld-developer-tools-infrastructure-design-in-memory-file-system",
+            "file": "04_Design_In_Memory_File_System.html",
+            "rawPath": "01. low level design\\18_Developer_Tools_Infrastructure\\04_Design_In_Memory_File_System.html",
+            "title": "Design In Memory File System",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Developer Tools Infrastructure"
+          },
+          {
+            "id": "lld-developer-tools-infrastructure-design-version-control-system",
+            "file": "05_Design_Version_Control_System.html",
+            "rawPath": "01. low level design\\18_Developer_Tools_Infrastructure\\05_Design_Version_Control_System.html",
+            "title": "Design Version Control System",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Developer Tools Infrastructure"
+          },
+          {
+            "id": "lld-developer-tools-infrastructure-design-task-scheduler",
+            "file": "06_Design_Task_Scheduler.html",
+            "rawPath": "01. low level design\\18_Developer_Tools_Infrastructure\\06_Design_Task_Scheduler.html",
+            "title": "Design Task Scheduler",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Developer Tools Infrastructure"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hld",
+    "title": "02.High level Design",
+    "icon": "Network",
+    "color": "from-blue-500 to-indigo-600",
+    "badgeColor": "bg-blue-950 text-blue-400 border-blue-800",
+    "subtopicsCount": 19,
+    "totalTopicsCount": 158,
+    "subtopics": [
+      {
+        "id": "hld-01_welcome",
+        "number": 1,
+        "folderName": "01_Welcome",
+        "name": "Welcome",
+        "topicCount": 2,
+        "topics": [
+          {
+            "id": "hld-welcome-course-introduction",
+            "file": "01_Course_Introduction.html",
+            "rawPath": "02.High level Design\\01_Welcome\\01_Course_Introduction.html",
+            "title": "Course Introduction",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Welcome"
+          },
+          {
+            "id": "hld-welcome-course-roadmap",
+            "file": "02_Course_Roadmap.html",
+            "rawPath": "02.High level Design\\01_Welcome\\02_Course_Roadmap.html",
+            "title": "Course Roadmap",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Welcome"
+          }
+        ]
+      },
+      {
+        "id": "hld-02_introduction_to_system_design",
+        "number": 2,
+        "folderName": "02_Introduction_to_System_Design",
+        "name": "Introduction to System Design",
+        "topicCount": 2,
+        "topics": [
+          {
+            "id": "hld-introduction-to-system-design-what-is-system-design",
+            "file": "01_What_is_System_Design.html",
+            "rawPath": "02.High level Design\\02_Introduction_to_System_Design\\01_What_is_System_Design.html",
+            "title": "What is System Design",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Introduction to System Design"
+          },
+          {
+            "id": "hld-introduction-to-system-design-30-must-know-concepts",
+            "file": "02_30_Must_Know_Concepts.html",
+            "rawPath": "02.High level Design\\02_Introduction_to_System_Design\\02_30_Must_Know_Concepts.html",
+            "title": "30 Must Know Concepts",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Introduction to System Design"
+          }
+        ]
+      },
+      {
+        "id": "hld-03_core_concepts",
+        "number": 3,
+        "folderName": "03_Core_Concepts",
+        "name": "Core Concepts",
+        "topicCount": 8,
+        "topics": [
+          {
+            "id": "hld-core-concepts-scalability",
+            "file": "01_Scalability.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\01_Scalability.html",
+            "title": "Scalability",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Core Concepts"
+          },
+          {
+            "id": "hld-core-concepts-availability",
+            "file": "02_Availability.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\02_Availability.html",
+            "title": "Availability",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Core Concepts"
+          },
+          {
+            "id": "hld-core-concepts-reliability",
+            "file": "03_Reliability.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\03_Reliability.html",
+            "title": "Reliability",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Core Concepts"
+          },
+          {
+            "id": "hld-core-concepts-single-point-of-failure-spof",
+            "file": "04_Single_Point_of_Failure_SPOF.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\04_Single_Point_of_Failure_SPOF.html",
+            "title": "Single Point of Failure SPOF",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Core Concepts"
+          },
+          {
+            "id": "hld-core-concepts-latency-vs-throughput-vs-bandwidth",
+            "file": "05_Latency_vs_Throughput_vs_Bandwidth.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\05_Latency_vs_Throughput_vs_Bandwidth.html",
+            "title": "Latency vs Throughput vs Bandwidth",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Core Concepts"
+          },
+          {
+            "id": "hld-core-concepts-consistent-hashing",
+            "file": "06_Consistent_Hashing.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\06_Consistent_Hashing.html",
+            "title": "Consistent Hashing",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Core Concepts"
+          },
+          {
+            "id": "hld-core-concepts-cap-theorem",
+            "file": "07_CAP_Theorem.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\07_CAP_Theorem.html",
+            "title": "CAP Theorem",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Core Concepts"
+          },
+          {
+            "id": "hld-core-concepts-consistency-models",
+            "file": "08_Consistency_Models.html",
+            "rawPath": "02.High level Design\\03_Core_Concepts\\08_Consistency_Models.html",
+            "title": "Consistency Models",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Core Concepts"
+          }
+        ]
+      },
+      {
+        "id": "hld-04_networking",
+        "number": 4,
+        "folderName": "04_Networking",
+        "name": "Networking",
+        "topicCount": 7,
+        "topics": [
+          {
+            "id": "hld-networking-osi-model",
+            "file": "01_OSI_Model.html",
+            "rawPath": "02.High level Design\\04_Networking\\01_OSI_Model.html",
+            "title": "OSI Model",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Networking"
+          },
+          {
+            "id": "hld-networking-ip-address",
+            "file": "02_IP_Address.html",
+            "rawPath": "02.High level Design\\04_Networking\\02_IP_Address.html",
+            "title": "IP Address",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Networking"
+          },
+          {
+            "id": "hld-networking-tcp-vs-udp",
+            "file": "03_TCP_vs_UDP.html",
+            "rawPath": "02.High level Design\\04_Networking\\03_TCP_vs_UDP.html",
+            "title": "TCP vs UDP",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Networking"
+          },
+          {
+            "id": "hld-networking-http-https",
+            "file": "04_HTTP_HTTPS.html",
+            "rawPath": "02.High level Design\\04_Networking\\04_HTTP_HTTPS.html",
+            "title": "HTTP HTTPS",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Networking"
+          },
+          {
+            "id": "hld-networking-domain-name-system-dns",
+            "file": "05_Domain_Name_System_DNS.html",
+            "rawPath": "02.High level Design\\04_Networking\\05_Domain_Name_System_DNS.html",
+            "title": "Domain Name System DNS",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Networking"
+          },
+          {
+            "id": "hld-networking-checksums",
+            "file": "06_Checksums.html",
+            "rawPath": "02.High level Design\\04_Networking\\06_Checksums.html",
+            "title": "Checksums",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Networking"
+          },
+          {
+            "id": "hld-networking-proxy-vs-reverse-proxy",
+            "file": "07_Proxy_vs_Reverse_Proxy.html",
+            "rawPath": "02.High level Design\\04_Networking\\07_Proxy_vs_Reverse_Proxy.html",
+            "title": "Proxy vs Reverse Proxy",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Networking"
+          }
+        ]
+      },
+      {
+        "id": "hld-05_load_balancing",
+        "number": 5,
+        "folderName": "05_Load_Balancing",
+        "name": "Load Balancing",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "hld-load-balancing-what-are-load-balancers",
+            "file": "01_What_are_Load_Balancers.html",
+            "rawPath": "02.High level Design\\05_Load_Balancing\\01_What_are_Load_Balancers.html",
+            "title": "What are Load Balancers",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Load Balancing"
+          },
+          {
+            "id": "hld-load-balancing-load-balancing-algorithms",
+            "file": "02_Load_Balancing_Algorithms.html",
+            "rawPath": "02.High level Design\\05_Load_Balancing\\02_Load_Balancing_Algorithms.html",
+            "title": "Load Balancing Algorithms",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Load Balancing"
+          },
+          {
+            "id": "hld-load-balancing-dns-load-balancing",
+            "file": "03_DNS_Load_Balancing.html",
+            "rawPath": "02.High level Design\\05_Load_Balancing\\03_DNS_Load_Balancing.html",
+            "title": "DNS Load Balancing",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Load Balancing"
+          },
+          {
+            "id": "hld-load-balancing-anycast-routing",
+            "file": "04_Anycast_Routing.html",
+            "rawPath": "02.High level Design\\05_Load_Balancing\\04_Anycast_Routing.html",
+            "title": "Anycast Routing",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Load Balancing"
+          }
+        ]
+      },
+      {
+        "id": "hld-06_api_fundamentals",
+        "number": 6,
+        "folderName": "06_API_Fundamentals",
+        "name": "API Fundamentals",
+        "topicCount": 14,
+        "topics": [
+          {
+            "id": "hld-api-fundamentals-what-is-an-api",
+            "file": "01_What_is_an_API.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\01_What_is_an_API.html",
+            "title": "What is an API",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-idempotency",
+            "file": "02_Idempotency.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\02_Idempotency.html",
+            "title": "Idempotency",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-data-formats",
+            "file": "03_Data_Formats.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\03_Data_Formats.html",
+            "title": "Data Formats",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-api-architectural-styles",
+            "file": "04_API_Architectural_Styles.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\04_API_Architectural_Styles.html",
+            "title": "API Architectural Styles",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-rest-api-design",
+            "file": "05_REST_API_Design.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\05_REST_API_Design.html",
+            "title": "REST API Design",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-graphql-deep-dive",
+            "file": "06_GraphQL_Deep_Dive.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\06_GraphQL_Deep_Dive.html",
+            "title": "GraphQL Deep Dive",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-grpc-deep-dive",
+            "file": "07_gRPC_Deep_Dive.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\07_gRPC_Deep_Dive.html",
+            "title": "gRPC Deep Dive",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-api-gateways",
+            "file": "08_API_Gateways.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\08_API_Gateways.html",
+            "title": "API Gateways",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-rate-limiting",
+            "file": "09_Rate_Limiting.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\09_Rate_Limiting.html",
+            "title": "Rate Limiting",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-authentication-vs-authorization",
+            "file": "10_Authentication_vs_Authorization.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\10_Authentication_vs_Authorization.html",
+            "title": "Authentication vs Authorization",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-session-vs-token-based-auth",
+            "file": "11_Session_vs_Token_Based_Auth.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\11_Session_vs_Token_Based_Auth.html",
+            "title": "Session vs Token Based Auth",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-jwt",
+            "file": "12_JWT.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\12_JWT.html",
+            "title": "JWT",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-oauth-oauth2",
+            "file": "13_OAuth_OAuth2.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\13_OAuth_OAuth2.html",
+            "title": "OAuth OAuth2",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "API Fundamentals"
+          },
+          {
+            "id": "hld-api-fundamentals-single-sign-on-sso",
+            "file": "14_Single_Sign_On_SSO.html",
+            "rawPath": "02.High level Design\\06_API_Fundamentals\\14_Single_Sign_On_SSO.html",
+            "title": "Single Sign On SSO",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "API Fundamentals"
+          }
+        ]
+      },
+      {
+        "id": "hld-07_communication_patterns",
+        "number": 7,
+        "folderName": "07_Communication_Patterns",
+        "name": "Communication Patterns",
+        "topicCount": 11,
+        "topics": [
+          {
+            "id": "hld-communication-patterns-long-polling",
+            "file": "01_Long_Polling.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\01_Long_Polling.html",
+            "title": "Long Polling",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-websockets",
+            "file": "02_WebSockets.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\02_WebSockets.html",
+            "title": "WebSockets",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-server-sent-events-sse",
+            "file": "03_Server_Sent_Events_SSE.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\03_Server_Sent_Events_SSE.html",
+            "title": "Server Sent Events SSE",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-webhooks",
+            "file": "04_Webhooks.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\04_Webhooks.html",
+            "title": "Webhooks",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-webrtc",
+            "file": "05_WebRTC.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\05_WebRTC.html",
+            "title": "WebRTC",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-sync-vs-async-communication",
+            "file": "06_Sync_vs_Async_Communication.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\06_Sync_vs_Async_Communication.html",
+            "title": "Sync vs Async Communication",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-message-queues",
+            "file": "07_Message_Queues.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\07_Message_Queues.html",
+            "title": "Message Queues",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-pub-sub",
+            "file": "08_Pub_Sub.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\08_Pub_Sub.html",
+            "title": "Pub Sub",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-change-data-capture-cdc",
+            "file": "09_Change_Data_Capture_CDC.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\09_Change_Data_Capture_CDC.html",
+            "title": "Change Data Capture CDC",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-delivery-semantics",
+            "file": "10_Delivery_Semantics.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\10_Delivery_Semantics.html",
+            "title": "Delivery Semantics",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Communication Patterns"
+          },
+          {
+            "id": "hld-communication-patterns-dead-letter-queues",
+            "file": "11_Dead_Letter_Queues.html",
+            "rawPath": "02.High level Design\\07_Communication_Patterns\\11_Dead_Letter_Queues.html",
+            "title": "Dead Letter Queues",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Communication Patterns"
+          }
+        ]
+      },
+      {
+        "id": "hld-08_caching",
+        "number": 8,
+        "folderName": "08_Caching",
+        "name": "Caching",
+        "topicCount": 11,
+        "topics": [
+          {
+            "id": "hld-caching-what-is-caching",
+            "file": "01_What_is_Caching.html",
+            "rawPath": "02.High level Design\\08_Caching\\01_What_is_Caching.html",
+            "title": "What is Caching",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-cache-aside-pattern",
+            "file": "02_Cache_Aside_Pattern.html",
+            "rawPath": "02.High level Design\\08_Caching\\02_Cache_Aside_Pattern.html",
+            "title": "Cache Aside Pattern",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-read-through-vs-write-through",
+            "file": "03_Read_Through_vs_Write_Through.html",
+            "rawPath": "02.High level Design\\08_Caching\\03_Read_Through_vs_Write_Through.html",
+            "title": "Read Through vs Write Through",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-write-behind-cache",
+            "file": "04_Write_Behind_Cache.html",
+            "rawPath": "02.High level Design\\08_Caching\\04_Write_Behind_Cache.html",
+            "title": "Write Behind Cache",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-caching-strategies-summary",
+            "file": "05_Caching_Strategies_Summary.html",
+            "rawPath": "02.High level Design\\08_Caching\\05_Caching_Strategies_Summary.html",
+            "title": "Caching Strategies Summary",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-cache-eviction-policies",
+            "file": "06_Cache_Eviction_Policies.html",
+            "rawPath": "02.High level Design\\08_Caching\\06_Cache_Eviction_Policies.html",
+            "title": "Cache Eviction Policies",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-content-delivery-network-cdn",
+            "file": "07_Content_Delivery_Network_CDN.html",
+            "rawPath": "02.High level Design\\08_Caching\\07_Content_Delivery_Network_CDN.html",
+            "title": "Content Delivery Network CDN",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-distributed-cache-architecture",
+            "file": "08_Distributed_Cache_Architecture.html",
+            "rawPath": "02.High level Design\\08_Caching\\08_Distributed_Cache_Architecture.html",
+            "title": "Distributed Cache Architecture",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-cache-invalidation",
+            "file": "09_Cache_Invalidation.html",
+            "rawPath": "02.High level Design\\08_Caching\\09_Cache_Invalidation.html",
+            "title": "Cache Invalidation",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-cache-stampede",
+            "file": "10_Cache_Stampede.html",
+            "rawPath": "02.High level Design\\08_Caching\\10_Cache_Stampede.html",
+            "title": "Cache Stampede",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Caching"
+          },
+          {
+            "id": "hld-caching-cache-warming",
+            "file": "11_Cache_Warming.html",
+            "rawPath": "02.High level Design\\08_Caching\\11_Cache_Warming.html",
+            "title": "Cache Warming",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Caching"
+          }
+        ]
+      },
+      {
+        "id": "hld-09_databases",
+        "number": 9,
+        "folderName": "09_Databases",
+        "name": "Databases",
+        "topicCount": 14,
+        "topics": [
+          {
+            "id": "hld-databases-database-types",
+            "file": "01_Database_Types.html",
+            "rawPath": "02.High level Design\\09_Databases\\01_Database_Types.html",
+            "title": "Database Types",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-sql-vs-nosql",
+            "file": "02_SQL_vs_NoSQL.html",
+            "rawPath": "02.High level Design\\09_Databases\\02_SQL_vs_NoSQL.html",
+            "title": "SQL vs NoSQL",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-acid-transactions",
+            "file": "03_ACID_Transactions.html",
+            "rawPath": "02.High level Design\\09_Databases\\03_ACID_Transactions.html",
+            "title": "ACID Transactions",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-relational-databases",
+            "file": "04_Relational_Databases.html",
+            "rawPath": "02.High level Design\\09_Databases\\04_Relational_Databases.html",
+            "title": "Relational Databases",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-document-databases",
+            "file": "05_Document_Databases.html",
+            "rawPath": "02.High level Design\\09_Databases\\05_Document_Databases.html",
+            "title": "Document Databases",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-key-value-stores",
+            "file": "06_Key_Value_Stores.html",
+            "rawPath": "02.High level Design\\09_Databases\\06_Key_Value_Stores.html",
+            "title": "Key Value Stores",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-wide-column-databases",
+            "file": "07_Wide_Column_Databases.html",
+            "rawPath": "02.High level Design\\09_Databases\\07_Wide_Column_Databases.html",
+            "title": "Wide Column Databases",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-graph-databases",
+            "file": "08_Graph_Databases.html",
+            "rawPath": "02.High level Design\\09_Databases\\08_Graph_Databases.html",
+            "title": "Graph Databases",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-time-series-databases",
+            "file": "09_Time_Series_Databases.html",
+            "rawPath": "02.High level Design\\09_Databases\\09_Time_Series_Databases.html",
+            "title": "Time Series Databases",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-full-text-search-engines",
+            "file": "10_Full_Text_Search_Engines.html",
+            "rawPath": "02.High level Design\\09_Databases\\10_Full_Text_Search_Engines.html",
+            "title": "Full Text Search Engines",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-vector-databases",
+            "file": "11_Vector_Databases.html",
+            "rawPath": "02.High level Design\\09_Databases\\11_Vector_Databases.html",
+            "title": "Vector Databases",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-b-trees-and-b-trees",
+            "file": "12_B_Trees_and_B_Trees.html",
+            "rawPath": "02.High level Design\\09_Databases\\12_B_Trees_and_B_Trees.html",
+            "title": "B Trees and B Trees",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-lsm-trees",
+            "file": "13_LSM_Trees.html",
+            "rawPath": "02.High level Design\\09_Databases\\13_LSM_Trees.html",
+            "title": "LSM Trees",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Databases"
+          },
+          {
+            "id": "hld-databases-how-databases-guarantee-durability",
+            "file": "14_How_Databases_Guarantee_Durability.html",
+            "rawPath": "02.High level Design\\09_Databases\\14_How_Databases_Guarantee_Durability.html",
+            "title": "How Databases Guarantee Durability",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Databases"
+          }
+        ]
+      },
+      {
+        "id": "hld-10_database_scaling_techniques",
+        "number": 10,
+        "folderName": "10_Database_Scaling_Techniques",
+        "name": "Database Scaling Techniques",
+        "topicCount": 10,
+        "topics": [
+          {
+            "id": "hld-database-scaling-techniques-indexing",
+            "file": "01_Indexing.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\01_Indexing.html",
+            "title": "Indexing",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-vertical-partitioning",
+            "file": "02_Vertical_Partitioning.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\02_Vertical_Partitioning.html",
+            "title": "Vertical Partitioning",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-query-optimization",
+            "file": "03_Query_Optimization.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\03_Query_Optimization.html",
+            "title": "Query Optimization",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-read-replicas",
+            "file": "04_Read_Replicas.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\04_Read_Replicas.html",
+            "title": "Read Replicas",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-denormalization",
+            "file": "05_Denormalization.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\05_Denormalization.html",
+            "title": "Denormalization",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-materialized-views",
+            "file": "06_Materialized_Views.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\06_Materialized_Views.html",
+            "title": "Materialized Views",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-connection-pooling",
+            "file": "07_Connection_Pooling.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\07_Connection_Pooling.html",
+            "title": "Connection Pooling",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-sharding",
+            "file": "08_Sharding.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\08_Sharding.html",
+            "title": "Sharding",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-sharding-vs-partitioning",
+            "file": "09_Sharding_vs_Partitioning.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\09_Sharding_vs_Partitioning.html",
+            "title": "Sharding vs Partitioning",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Database Scaling Techniques"
+          },
+          {
+            "id": "hld-database-scaling-techniques-data-compression",
+            "file": "10_Data_Compression.html",
+            "rawPath": "02.High level Design\\10_Database_Scaling_Techniques\\10_Data_Compression.html",
+            "title": "Data Compression",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Database Scaling Techniques"
+          }
+        ]
+      },
+      {
+        "id": "hld-11_storage_systems",
+        "number": 11,
+        "folderName": "11_Storage_Systems",
+        "name": "Storage Systems",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "hld-storage-systems-block-vs-file-vs-object-storage",
+            "file": "01_Block_vs_File_vs_Object_Storage.html",
+            "rawPath": "02.High level Design\\11_Storage_Systems\\01_Block_vs_File_vs_Object_Storage.html",
+            "title": "Block vs File vs Object Storage",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Storage Systems"
+          },
+          {
+            "id": "hld-storage-systems-object-storage",
+            "file": "02_Object_Storage.html",
+            "rawPath": "02.High level Design\\11_Storage_Systems\\02_Object_Storage.html",
+            "title": "Object Storage",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Storage Systems"
+          },
+          {
+            "id": "hld-storage-systems-distributed-file-systems",
+            "file": "03_Distributed_File_Systems.html",
+            "rawPath": "02.High level Design\\11_Storage_Systems\\03_Distributed_File_Systems.html",
+            "title": "Distributed File Systems",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Storage Systems"
+          },
+          {
+            "id": "hld-storage-systems-erasure-coding",
+            "file": "04_Erasure_Coding.html",
+            "rawPath": "02.High level Design\\11_Storage_Systems\\04_Erasure_Coding.html",
+            "title": "Erasure Coding",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Storage Systems"
+          }
+        ]
+      },
+      {
+        "id": "hld-12_tradeoffs",
+        "number": 12,
+        "folderName": "12_Tradeoffs",
+        "name": "Tradeoffs",
+        "topicCount": 6,
+        "topics": [
+          {
+            "id": "hld-tradeoffs-vertical-vs-horizontal-scaling",
+            "file": "01_Vertical_vs_Horizontal_Scaling.html",
+            "rawPath": "02.High level Design\\12_Tradeoffs\\01_Vertical_vs_Horizontal_Scaling.html",
+            "title": "Vertical vs Horizontal Scaling",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Tradeoffs"
+          },
+          {
+            "id": "hld-tradeoffs-concurrency-vs-parallelism",
+            "file": "02_Concurrency_vs_Parallelism.html",
+            "rawPath": "02.High level Design\\12_Tradeoffs\\02_Concurrency_vs_Parallelism.html",
+            "title": "Concurrency vs Parallelism",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Tradeoffs"
+          },
+          {
+            "id": "hld-tradeoffs-push-vs-pull-architecture",
+            "file": "03_Push_vs_Pull_Architecture.html",
+            "rawPath": "02.High level Design\\12_Tradeoffs\\03_Push_vs_Pull_Architecture.html",
+            "title": "Push vs Pull Architecture",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Tradeoffs"
+          },
+          {
+            "id": "hld-tradeoffs-stateful-vs-stateless-architecture",
+            "file": "04_Stateful_vs_Stateless_Architecture.html",
+            "rawPath": "02.High level Design\\12_Tradeoffs\\04_Stateful_vs_Stateless_Architecture.html",
+            "title": "Stateful vs Stateless Architecture",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Tradeoffs"
+          },
+          {
+            "id": "hld-tradeoffs-long-polling-vs-websockets",
+            "file": "05_Long_Polling_vs_WebSockets.html",
+            "rawPath": "02.High level Design\\12_Tradeoffs\\05_Long_Polling_vs_WebSockets.html",
+            "title": "Long Polling vs WebSockets",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Tradeoffs"
+          },
+          {
+            "id": "hld-tradeoffs-strong-vs-eventual-consistency",
+            "file": "06_Strong_vs_Eventual_Consistency.html",
+            "rawPath": "02.High level Design\\12_Tradeoffs\\06_Strong_vs_Eventual_Consistency.html",
+            "title": "Strong vs Eventual Consistency",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Tradeoffs"
+          }
+        ]
+      },
+      {
+        "id": "hld-13_distributed_system_fundamentals",
+        "number": 13,
+        "folderName": "13_Distributed_System_Fundamentals",
+        "name": "Distributed System Fundamentals",
+        "topicCount": 17,
+        "topics": [
+          {
+            "id": "hld-distributed-system-fundamentals-challenges-of-distribution",
+            "file": "01_Challenges_of_Distribution.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\01_Challenges_of_Distribution.html",
+            "title": "Challenges of Distribution",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-network-partitions",
+            "file": "02_Network_Partitions.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\02_Network_Partitions.html",
+            "title": "Network Partitions",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-split-brain-problem",
+            "file": "03_Split_Brain_Problem.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\03_Split_Brain_Problem.html",
+            "title": "Split Brain Problem",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-heartbeats",
+            "file": "04_Heartbeats.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\04_Heartbeats.html",
+            "title": "Heartbeats",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-handling-failures-in-distributed-systems",
+            "file": "05_Handling_Failures_in_Distributed_Systems.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\05_Handling_Failures_in_Distributed_Systems.html",
+            "title": "Handling Failures in Distributed Systems",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-clock-synchronization-problem",
+            "file": "06_Clock_Synchronization_Problem.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\06_Clock_Synchronization_Problem.html",
+            "title": "Clock Synchronization Problem",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-logical-clocks",
+            "file": "07_Logical_Clocks.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\07_Logical_Clocks.html",
+            "title": "Logical Clocks",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-lamport-timestamps",
+            "file": "08_Lamport_Timestamps.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\08_Lamport_Timestamps.html",
+            "title": "Lamport Timestamps",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-vector-clocks",
+            "file": "09_Vector_Clocks.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\09_Vector_Clocks.html",
+            "title": "Vector Clocks",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-consensus-algorithms",
+            "file": "10_Consensus_Algorithms.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\10_Consensus_Algorithms.html",
+            "title": "Consensus Algorithms",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-paxos-algorithm",
+            "file": "11_Paxos_Algorithm.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\11_Paxos_Algorithm.html",
+            "title": "Paxos Algorithm",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-raft-algorithm",
+            "file": "12_Raft_Algorithm.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\12_Raft_Algorithm.html",
+            "title": "Raft Algorithm",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-leader-election",
+            "file": "13_Leader_Election.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\13_Leader_Election.html",
+            "title": "Leader Election",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-distributed-locks",
+            "file": "14_Distributed_Locks.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\14_Distributed_Locks.html",
+            "title": "Distributed Locks",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-gossip-protocol",
+            "file": "15_Gossip_Protocol.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\15_Gossip_Protocol.html",
+            "title": "Gossip Protocol",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-crdts",
+            "file": "16_CRDTs.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\16_CRDTs.html",
+            "title": "CRDTs",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Distributed System Fundamentals"
+          },
+          {
+            "id": "hld-distributed-system-fundamentals-operational-transformation",
+            "file": "17_Operational_Transformation.html",
+            "rawPath": "02.High level Design\\13_Distributed_System_Fundamentals\\17_Operational_Transformation.html",
+            "title": "Operational Transformation",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Distributed System Fundamentals"
+          }
+        ]
+      },
+      {
+        "id": "hld-14_distributed_transactions",
+        "number": 14,
+        "folderName": "14_Distributed_Transactions",
+        "name": "Distributed Transactions",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "hld-distributed-transactions-the-problem-with-distributed-transactions",
+            "file": "01_The_Problem_with_Distributed_Transactions.html",
+            "rawPath": "02.High level Design\\14_Distributed_Transactions\\01_The_Problem_with_Distributed_Transactions.html",
+            "title": "The Problem with Distributed Transactions",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Distributed Transactions"
+          },
+          {
+            "id": "hld-distributed-transactions-two-phase-commit-2pc",
+            "file": "02_Two_Phase_Commit_2PC.html",
+            "rawPath": "02.High level Design\\14_Distributed_Transactions\\02_Two_Phase_Commit_2PC.html",
+            "title": "Two Phase Commit 2PC",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Distributed Transactions"
+          },
+          {
+            "id": "hld-distributed-transactions-three-phase-commit-3pc",
+            "file": "03_Three_Phase_Commit_3PC.html",
+            "rawPath": "02.High level Design\\14_Distributed_Transactions\\03_Three_Phase_Commit_3PC.html",
+            "title": "Three Phase Commit 3PC",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Distributed Transactions"
+          },
+          {
+            "id": "hld-distributed-transactions-saga-pattern",
+            "file": "04_SAGA_Pattern.html",
+            "rawPath": "02.High level Design\\14_Distributed_Transactions\\04_SAGA_Pattern.html",
+            "title": "SAGA Pattern",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Distributed Transactions"
+          },
+          {
+            "id": "hld-distributed-transactions-outbox-pattern",
+            "file": "05_Outbox_Pattern.html",
+            "rawPath": "02.High level Design\\14_Distributed_Transactions\\05_Outbox_Pattern.html",
+            "title": "Outbox Pattern",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Distributed Transactions"
+          }
+        ]
+      },
+      {
+        "id": "hld-15_data_structures_for_scale",
+        "number": 15,
+        "folderName": "15_Data_Structures_for_Scale",
+        "name": "Data Structures for Scale",
+        "topicCount": 12,
+        "topics": [
+          {
+            "id": "hld-data-structures-for-scale-introduction",
+            "file": "01_Introduction.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\01_Introduction.html",
+            "title": "Introduction",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-geohash",
+            "file": "02_Geohash.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\02_Geohash.html",
+            "title": "Geohash",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-quad-trees",
+            "file": "03_Quad_Trees.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\03_Quad_Trees.html",
+            "title": "Quad Trees",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-r-trees",
+            "file": "04_R_Trees.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\04_R_Trees.html",
+            "title": "R Trees",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-s2-and-h3",
+            "file": "05_S2_and_H3.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\05_S2_and_H3.html",
+            "title": "S2 and H3",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-bloom-filters",
+            "file": "06_Bloom_Filters.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\06_Bloom_Filters.html",
+            "title": "Bloom Filters",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-cuckoo-filter",
+            "file": "07_Cuckoo_Filter.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\07_Cuckoo_Filter.html",
+            "title": "Cuckoo Filter",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-hyperloglog",
+            "file": "08_HyperLogLog.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\08_HyperLogLog.html",
+            "title": "HyperLogLog",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-count-min-sketch",
+            "file": "09_Count_Min_Sketch.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\09_Count_Min_Sketch.html",
+            "title": "Count Min Sketch",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-minhash",
+            "file": "10_MinHash.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\10_MinHash.html",
+            "title": "MinHash",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-skip-lists",
+            "file": "11_Skip_Lists.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\11_Skip_Lists.html",
+            "title": "Skip Lists",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Data Structures for Scale"
+          },
+          {
+            "id": "hld-data-structures-for-scale-merkle-trees",
+            "file": "12_Merkle_Trees.html",
+            "rawPath": "02.High level Design\\15_Data_Structures_for_Scale\\12_Merkle_Trees.html",
+            "title": "Merkle Trees",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Data Structures for Scale"
+          }
+        ]
+      },
+      {
+        "id": "hld-16_architectural_patterns",
+        "number": 16,
+        "folderName": "16_Architectural_Patterns",
+        "name": "Architectural Patterns",
+        "topicCount": 9,
+        "topics": [
+          {
+            "id": "hld-architectural-patterns-client-server-architecture",
+            "file": "01_Client_Server_Architecture.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\01_Client_Server_Architecture.html",
+            "title": "Client Server Architecture",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-monolithic-architecture",
+            "file": "02_Monolithic_Architecture.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\02_Monolithic_Architecture.html",
+            "title": "Monolithic Architecture",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-microservices-architecture",
+            "file": "03_Microservices_Architecture.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\03_Microservices_Architecture.html",
+            "title": "Microservices Architecture",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-serverless-architecture",
+            "file": "04_Serverless_Architecture.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\04_Serverless_Architecture.html",
+            "title": "Serverless Architecture",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-event-driven-architecture",
+            "file": "05_Event_Driven_Architecture.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\05_Event_Driven_Architecture.html",
+            "title": "Event Driven Architecture",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-peer-to-peer-p2p",
+            "file": "06_Peer_to_Peer_P2P.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\06_Peer_to_Peer_P2P.html",
+            "title": "Peer to Peer P2P",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-hexagonal-architecture",
+            "file": "07_Hexagonal_Architecture.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\07_Hexagonal_Architecture.html",
+            "title": "Hexagonal Architecture",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-cqrs",
+            "file": "08_CQRS.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\08_CQRS.html",
+            "title": "CQRS",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Architectural Patterns"
+          },
+          {
+            "id": "hld-architectural-patterns-event-sourcing",
+            "file": "09_Event_Sourcing.html",
+            "rawPath": "02.High level Design\\16_Architectural_Patterns\\09_Event_Sourcing.html",
+            "title": "Event Sourcing",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Architectural Patterns"
+          }
+        ]
+      },
+      {
+        "id": "hld-17_microservices_patterns",
+        "number": 17,
+        "folderName": "17_Microservices_Patterns",
+        "name": "Microservices Patterns",
+        "topicCount": 8,
+        "topics": [
+          {
+            "id": "hld-microservices-patterns-service-discovery",
+            "file": "01_Service_Discovery.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\01_Service_Discovery.html",
+            "title": "Service Discovery",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Microservices Patterns"
+          },
+          {
+            "id": "hld-microservices-patterns-api-gateway-pattern",
+            "file": "02_API_Gateway_Pattern.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\02_API_Gateway_Pattern.html",
+            "title": "API Gateway Pattern",
+            "estimatedMinutes": 8,
+            "difficulty": "Medium",
+            "category": "Microservices Patterns"
+          },
+          {
+            "id": "hld-microservices-patterns-backend-for-frontend-bff",
+            "file": "03_Backend_for_Frontend_BFF.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\03_Backend_for_Frontend_BFF.html",
+            "title": "Backend for Frontend BFF",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Microservices Patterns"
+          },
+          {
+            "id": "hld-microservices-patterns-sidecar-pattern",
+            "file": "04_Sidecar_Pattern.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\04_Sidecar_Pattern.html",
+            "title": "Sidecar Pattern",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Microservices Patterns"
+          },
+          {
+            "id": "hld-microservices-patterns-circuit-breaker-pattern",
+            "file": "05_Circuit_Breaker_Pattern.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\05_Circuit_Breaker_Pattern.html",
+            "title": "Circuit Breaker Pattern",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Microservices Patterns"
+          },
+          {
+            "id": "hld-microservices-patterns-bulkhead-pattern",
+            "file": "06_Bulkhead_Pattern.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\06_Bulkhead_Pattern.html",
+            "title": "Bulkhead Pattern",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Microservices Patterns"
+          },
+          {
+            "id": "hld-microservices-patterns-strangler-fig-pattern",
+            "file": "07_Strangler_Fig_Pattern.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\07_Strangler_Fig_Pattern.html",
+            "title": "Strangler Fig Pattern",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Microservices Patterns"
+          },
+          {
+            "id": "hld-microservices-patterns-service-mesh",
+            "file": "08_Service_Mesh.html",
+            "rawPath": "02.High level Design\\17_Microservices_Patterns\\08_Service_Mesh.html",
+            "title": "Service Mesh",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Microservices Patterns"
+          }
+        ]
+      },
+      {
+        "id": "hld-19_deployment_patterns",
+        "number": 18,
+        "folderName": "19_Deployment_Patterns",
+        "name": "Deployment Patterns",
+        "topicCount": 9,
+        "topics": [
+          {
+            "id": "hld-deployment-patterns-deployment-strategies-overview",
+            "file": "01_Deployment_Strategies_Overview.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\01_Deployment_Strategies_Overview.html",
+            "title": "Deployment Strategies Overview",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-ci-cd-pipelines",
+            "file": "02_CI_CD_Pipelines.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\02_CI_CD_Pipelines.html",
+            "title": "CI CD Pipelines",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-rolling-deployments",
+            "file": "03_Rolling_Deployments.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\03_Rolling_Deployments.html",
+            "title": "Rolling Deployments",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-blue-green-deployments",
+            "file": "04_Blue_Green_Deployments.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\04_Blue_Green_Deployments.html",
+            "title": "Blue Green Deployments",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-canary-releases",
+            "file": "05_Canary_Releases.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\05_Canary_Releases.html",
+            "title": "Canary Releases",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-feature-flags",
+            "file": "06_Feature_Flags.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\06_Feature_Flags.html",
+            "title": "Feature Flags",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-a-b-testing-infrastructure",
+            "file": "07_A_B_Testing_Infrastructure.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\07_A_B_Testing_Infrastructure.html",
+            "title": "A B Testing Infrastructure",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-schema-migrations",
+            "file": "08_Schema_Migrations.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\08_Schema_Migrations.html",
+            "title": "Schema Migrations",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Deployment Patterns"
+          },
+          {
+            "id": "hld-deployment-patterns-rollbacks-immutable-infrastructure",
+            "file": "09_Rollbacks_Immutable_Infrastructure.html",
+            "rawPath": "02.High level Design\\19_Deployment_Patterns\\09_Rollbacks_Immutable_Infrastructure.html",
+            "title": "Rollbacks Immutable Infrastructure",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Deployment Patterns"
+          }
+        ]
+      },
+      {
+        "id": "hld-20_observability",
+        "number": 19,
+        "folderName": "20_Observability",
+        "name": "Observability",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "hld-observability-three-pillars-of-observability",
+            "file": "01_Three_Pillars_of_Observability.html",
+            "rawPath": "02.High level Design\\20_Observability\\01_Three_Pillars_of_Observability.html",
+            "title": "Three Pillars of Observability",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Observability"
+          },
+          {
+            "id": "hld-observability-logging-best-practices",
+            "file": "02_Logging_Best_Practices.html",
+            "rawPath": "02.High level Design\\20_Observability\\02_Logging_Best_Practices.html",
+            "title": "Logging Best Practices",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Observability"
+          },
+          {
+            "id": "hld-observability-alert-monitoring",
+            "file": "06_Alert_Monitoring.html",
+            "rawPath": "02.High level Design\\20_Observability\\06_Alert_Monitoring.html",
+            "title": "Alert Monitoring",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Observability"
+          },
+          {
+            "id": "hld-observability-dashboards-runbooks",
+            "file": "07_Dashboards_Runbooks.html",
+            "rawPath": "02.High level Design\\20_Observability\\07_Dashboards_Runbooks.html",
+            "title": "Dashboards Runbooks",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Observability"
+          },
+          {
+            "id": "hld-observability-distributed-tracing",
+            "file": "08_Distributed_Tracing.html",
+            "rawPath": "02.High level Design\\20_Observability\\08_Distributed_Tracing.html",
+            "title": "Distributed Tracing",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Observability"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hld-interview",
+    "title": "03. HLD-Interview",
+    "icon": "MessageSquareCode",
+    "color": "from-purple-500 to-pink-600",
+    "badgeColor": "bg-purple-950 text-purple-400 border-purple-800",
+    "subtopicsCount": 19,
+    "totalTopicsCount": 112,
+    "subtopics": [
+      {
+        "id": "hld-interview-01_welcome",
+        "number": 1,
+        "folderName": "01_Welcome",
+        "name": "Welcome",
+        "topicCount": 1,
+        "topics": [
+          {
+            "id": "hld-interview-welcome-course-roadmap",
+            "file": "01_Course_Roadmap.html",
+            "rawPath": "03. HLD-Interview\\01_Welcome\\01_Course_Roadmap.html",
+            "title": "Course Roadmap",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Welcome"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-02_introduction",
+        "number": 2,
+        "folderName": "02_Introduction",
+        "name": "Introduction",
+        "topicCount": 3,
+        "topics": [
+          {
+            "id": "hld-interview-introduction-what-are-system-design-interviews",
+            "file": "01_What_are_System_Design_Interviews.html",
+            "rawPath": "03. HLD-Interview\\02_Introduction\\01_What_are_System_Design_Interviews.html",
+            "title": "What are System Design Interviews",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Introduction"
+          },
+          {
+            "id": "hld-interview-introduction-types-of-system-design-questions",
+            "file": "02_Types_of_System_Design_Questions.html",
+            "rawPath": "03. HLD-Interview\\02_Introduction\\02_Types_of_System_Design_Questions.html",
+            "title": "Types of System Design Questions",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Introduction"
+          },
+          {
+            "id": "hld-interview-introduction-expectations-by-level-yoe",
+            "file": "03_Expectations_by_Level_YoE.html",
+            "rawPath": "03. HLD-Interview\\02_Introduction\\03_Expectations_by_Level_YoE.html",
+            "title": "Expectations by Level YoE",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Introduction"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-03_must_know_topics",
+        "number": 3,
+        "folderName": "03_Must_Know_Topics",
+        "name": "Must Know Topics",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "hld-interview-must-know-topics-concepts",
+            "file": "01_Concepts.html",
+            "rawPath": "03. HLD-Interview\\03_Must_Know_Topics\\01_Concepts.html",
+            "title": "Concepts",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Must Know Topics"
+          },
+          {
+            "id": "hld-interview-must-know-topics-technologies",
+            "file": "02_Technologies.html",
+            "rawPath": "03. HLD-Interview\\03_Must_Know_Topics\\02_Technologies.html",
+            "title": "Technologies",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "Must Know Topics"
+          },
+          {
+            "id": "hld-interview-must-know-topics-tradeoffs",
+            "file": "03_Tradeoffs.html",
+            "rawPath": "03. HLD-Interview\\03_Must_Know_Topics\\03_Tradeoffs.html",
+            "title": "Tradeoffs",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Must Know Topics"
+          },
+          {
+            "id": "hld-interview-must-know-topics-data-structures",
+            "file": "04_Data_Structures.html",
+            "rawPath": "03. HLD-Interview\\03_Must_Know_Topics\\04_Data_Structures.html",
+            "title": "Data Structures",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Must Know Topics"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-04_concept_deep_dives",
+        "number": 4,
+        "folderName": "04_Concept_Deep_Dives",
+        "name": "Concept Deep Dives",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "hld-interview-concept-deep-dives-networking",
+            "file": "01_Networking.html",
+            "rawPath": "03. HLD-Interview\\04_Concept_Deep_Dives\\01_Networking.html",
+            "title": "Networking",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Concept Deep Dives"
+          },
+          {
+            "id": "hld-interview-concept-deep-dives-caching",
+            "file": "02_Caching.html",
+            "rawPath": "03. HLD-Interview\\04_Concept_Deep_Dives\\02_Caching.html",
+            "title": "Caching",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Concept Deep Dives"
+          },
+          {
+            "id": "hld-interview-concept-deep-dives-api-design",
+            "file": "03_API_Design.html",
+            "rawPath": "03. HLD-Interview\\04_Concept_Deep_Dives\\03_API_Design.html",
+            "title": "API Design",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Concept Deep Dives"
+          },
+          {
+            "id": "hld-interview-concept-deep-dives-database-design",
+            "file": "04_Database_Design.html",
+            "rawPath": "03. HLD-Interview\\04_Concept_Deep_Dives\\04_Database_Design.html",
+            "title": "Database Design",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Concept Deep Dives"
+          },
+          {
+            "id": "hld-interview-concept-deep-dives-distributed-systems",
+            "file": "05_Distributed_Systems.html",
+            "rawPath": "03. HLD-Interview\\04_Concept_Deep_Dives\\05_Distributed_Systems.html",
+            "title": "Distributed Systems",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Concept Deep Dives"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-05_technology_deep_dives",
+        "number": 5,
+        "folderName": "05_Technology_Deep_Dives",
+        "name": "Technology Deep Dives",
+        "topicCount": 20,
+        "topics": [
+          {
+            "id": "hld-interview-technology-deep-dives-postgresql",
+            "file": "01_PostgreSQL.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\01_PostgreSQL.html",
+            "title": "PostgreSQL",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-mysql",
+            "file": "02_MySQL.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\02_MySQL.html",
+            "title": "MySQL",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-mongodb",
+            "file": "03_MongoDB.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\03_MongoDB.html",
+            "title": "MongoDB",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-redis",
+            "file": "04_Redis.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\04_Redis.html",
+            "title": "Redis",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-memcached",
+            "file": "05_Memcached.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\05_Memcached.html",
+            "title": "Memcached",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-dynamodb",
+            "file": "06_DynamoDB.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\06_DynamoDB.html",
+            "title": "DynamoDB",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-cassandra",
+            "file": "07_Cassandra.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\07_Cassandra.html",
+            "title": "Cassandra",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-elasticsearch",
+            "file": "08_Elasticsearch.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\08_Elasticsearch.html",
+            "title": "Elasticsearch",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-kafka",
+            "file": "09_Kafka.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\09_Kafka.html",
+            "title": "Kafka",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-rabbitmq",
+            "file": "10_RabbitMQ.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\10_RabbitMQ.html",
+            "title": "RabbitMQ",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-sqs",
+            "file": "11_SQS.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\11_SQS.html",
+            "title": "SQS",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-flink",
+            "file": "12_Flink.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\12_Flink.html",
+            "title": "Flink",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-spark",
+            "file": "13_Spark.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\13_Spark.html",
+            "title": "Spark",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-s3",
+            "file": "14_S3.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\14_S3.html",
+            "title": "S3",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-aws-lambda",
+            "file": "15_AWS_Lambda.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\15_AWS_Lambda.html",
+            "title": "AWS Lambda",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-nginx",
+            "file": "16_Nginx.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\16_Nginx.html",
+            "title": "Nginx",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-zookeeper",
+            "file": "17_Zookeeper.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\17_Zookeeper.html",
+            "title": "Zookeeper",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-docker",
+            "file": "18_Docker.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\18_Docker.html",
+            "title": "Docker",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-kubernetes",
+            "file": "19_Kubernetes.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\19_Kubernetes.html",
+            "title": "Kubernetes",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Technology Deep Dives"
+          },
+          {
+            "id": "hld-interview-technology-deep-dives-prometheus",
+            "file": "20_Prometheus.html",
+            "rawPath": "03. HLD-Interview\\05_Technology_Deep_Dives\\20_Prometheus.html",
+            "title": "Prometheus",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Technology Deep Dives"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-06_interview_patterns",
+        "number": 6,
+        "folderName": "06_Interview_Patterns",
+        "name": "Interview Patterns",
+        "topicCount": 20,
+        "topics": [
+          {
+            "id": "hld-interview-interview-patterns-realtime-updates",
+            "file": "01_Realtime_Updates.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\01_Realtime_Updates.html",
+            "title": "Realtime Updates",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-fanout-pattern",
+            "file": "02_Fanout_Pattern.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\02_Fanout_Pattern.html",
+            "title": "Fanout Pattern",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-high-read-traffic",
+            "file": "03_High_Read_Traffic.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\03_High_Read_Traffic.html",
+            "title": "High Read Traffic",
+            "estimatedMinutes": 10,
+            "difficulty": "Hard",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-high-write-traffic",
+            "file": "04_High_Write_Traffic.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\04_High_Write_Traffic.html",
+            "title": "High Write Traffic",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-handling-hot-keys",
+            "file": "05_Handling_Hot_Keys.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\05_Handling_Hot_Keys.html",
+            "title": "Handling Hot Keys",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-handling-traffic-spikes",
+            "file": "06_Handling_Traffic_Spikes.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\06_Handling_Traffic_Spikes.html",
+            "title": "Handling Traffic Spikes",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-handling-large-files",
+            "file": "07_Handling_Large_Files.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\07_Handling_Large_Files.html",
+            "title": "Handling Large Files",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-media-streaming",
+            "file": "08_Media_Streaming.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\08_Media_Streaming.html",
+            "title": "Media Streaming",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-handling-location-data",
+            "file": "09_Handling_Location_Data.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\09_Handling_Location_Data.html",
+            "title": "Handling Location Data",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-generating-unique-ids",
+            "file": "10_Generating_Unique_IDs.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\10_Generating_Unique_IDs.html",
+            "title": "Generating Unique IDs",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-distributed-counting",
+            "file": "11_Distributed_Counting.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\11_Distributed_Counting.html",
+            "title": "Distributed Counting",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-leader-election",
+            "file": "12_Leader_Election.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\12_Leader_Election.html",
+            "title": "Leader Election",
+            "estimatedMinutes": 12,
+            "difficulty": "Hard",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-failure-detection",
+            "file": "13_Failure_Detection.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\13_Failure_Detection.html",
+            "title": "Failure Detection",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-handling-failures",
+            "file": "14_Handling_Failures.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\14_Handling_Failures.html",
+            "title": "Handling Failures",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-recommendations",
+            "file": "15_Recommendations.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\15_Recommendations.html",
+            "title": "Recommendations",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-multi-tenancy",
+            "file": "16_Multi_Tenancy.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\16_Multi_Tenancy.html",
+            "title": "Multi Tenancy",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-multi-region-architecture",
+            "file": "17_Multi_Region_Architecture.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\17_Multi_Region_Architecture.html",
+            "title": "Multi Region Architecture",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-deduplicating-data",
+            "file": "18_Deduplicating_Data.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\18_Deduplicating_Data.html",
+            "title": "Deduplicating Data",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-distributed-transactions",
+            "file": "19_Distributed_Transactions.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\19_Distributed_Transactions.html",
+            "title": "Distributed Transactions",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Interview Patterns"
+          },
+          {
+            "id": "hld-interview-interview-patterns-removing-single-points-of-failure",
+            "file": "20_Removing_Single_Points_of_Failure.html",
+            "rawPath": "03. HLD-Interview\\06_Interview_Patterns\\20_Removing_Single_Points_of_Failure.html",
+            "title": "Removing Single Points of Failure",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Interview Patterns"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-07_interview_tips",
+        "number": 7,
+        "folderName": "07_Interview_Tips",
+        "name": "Interview Tips",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "hld-interview-interview-tips-answering-framework",
+            "file": "01_Answering_Framework.html",
+            "rawPath": "03. HLD-Interview\\07_Interview_Tips\\01_Answering_Framework.html",
+            "title": "Answering Framework",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Interview Tips"
+          },
+          {
+            "id": "hld-interview-interview-tips-estimation-cheatsheet",
+            "file": "02_Estimation_Cheatsheet.html",
+            "rawPath": "03. HLD-Interview\\07_Interview_Tips\\02_Estimation_Cheatsheet.html",
+            "title": "Estimation Cheatsheet",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Interview Tips"
+          },
+          {
+            "id": "hld-interview-interview-tips-diagramming-tips",
+            "file": "03_Diagramming_Tips.html",
+            "rawPath": "03. HLD-Interview\\07_Interview_Tips\\03_Diagramming_Tips.html",
+            "title": "Diagramming Tips",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Interview Tips"
+          },
+          {
+            "id": "hld-interview-interview-tips-choosing-the-right-database",
+            "file": "04_Choosing_the_Right_Database.html",
+            "rawPath": "03. HLD-Interview\\07_Interview_Tips\\04_Choosing_the_Right_Database.html",
+            "title": "Choosing the Right Database",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Interview Tips"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-08_basic_questions",
+        "number": 8,
+        "folderName": "08_Basic_Questions",
+        "name": "Basic Questions",
+        "topicCount": 2,
+        "topics": [
+          {
+            "id": "hld-interview-basic-questions-design-url-shortener",
+            "file": "01_Design_URL_Shortener.html",
+            "rawPath": "03. HLD-Interview\\08_Basic_Questions\\01_Design_URL_Shortener.html",
+            "title": "Design URL Shortener",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Basic Questions"
+          },
+          {
+            "id": "hld-interview-basic-questions-design-pastebin",
+            "file": "02_Design_Pastebin.html",
+            "rawPath": "03. HLD-Interview\\08_Basic_Questions\\02_Design_Pastebin.html",
+            "title": "Design Pastebin",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Basic Questions"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-09_real_time_communication",
+        "number": 9,
+        "folderName": "09_Real_Time_Communication",
+        "name": "Real Time Communication",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "hld-interview-real-time-communication-design-whatsapp",
+            "file": "01_Design_WhatsApp.html",
+            "rawPath": "03. HLD-Interview\\09_Real_Time_Communication\\01_Design_WhatsApp.html",
+            "title": "Design WhatsApp",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Real Time Communication"
+          },
+          {
+            "id": "hld-interview-real-time-communication-design-slack",
+            "file": "02_Design_Slack.html",
+            "rawPath": "03. HLD-Interview\\09_Real_Time_Communication\\02_Design_Slack.html",
+            "title": "Design Slack",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Real Time Communication"
+          },
+          {
+            "id": "hld-interview-real-time-communication-design-live-comments",
+            "file": "03_Design_Live_Comments.html",
+            "rawPath": "03. HLD-Interview\\09_Real_Time_Communication\\03_Design_Live_Comments.html",
+            "title": "Design Live Comments",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Real Time Communication"
+          },
+          {
+            "id": "hld-interview-real-time-communication-design-google-docs",
+            "file": "04_Design_Google_Docs.html",
+            "rawPath": "03. HLD-Interview\\09_Real_Time_Communication\\04_Design_Google_Docs.html",
+            "title": "Design Google Docs",
+            "estimatedMinutes": 10,
+            "difficulty": "Easy",
+            "category": "Real Time Communication"
+          },
+          {
+            "id": "hld-interview-real-time-communication-design-zoom",
+            "file": "05_Design_Zoom.html",
+            "rawPath": "03. HLD-Interview\\09_Real_Time_Communication\\05_Design_Zoom.html",
+            "title": "Design Zoom",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Real Time Communication"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-10_social_media_systems",
+        "number": 10,
+        "folderName": "10_Social_Media_Systems",
+        "name": "Social Media Systems",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "hld-interview-social-media-systems-design-instagram",
+            "file": "01_Design_Instagram.html",
+            "rawPath": "03. HLD-Interview\\10_Social_Media_Systems\\01_Design_Instagram.html",
+            "title": "Design Instagram",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Social Media Systems"
+          },
+          {
+            "id": "hld-interview-social-media-systems-design-fb-news-feed",
+            "file": "02_Design_FB_News_Feed.html",
+            "rawPath": "03. HLD-Interview\\10_Social_Media_Systems\\02_Design_FB_News_Feed.html",
+            "title": "Design FB News Feed",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Social Media Systems"
+          },
+          {
+            "id": "hld-interview-social-media-systems-design-tiktok",
+            "file": "03_Design_TikTok.html",
+            "rawPath": "03. HLD-Interview\\10_Social_Media_Systems\\03_Design_TikTok.html",
+            "title": "Design TikTok",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Social Media Systems"
+          },
+          {
+            "id": "hld-interview-social-media-systems-design-reddit",
+            "file": "04_Design_Reddit.html",
+            "rawPath": "03. HLD-Interview\\10_Social_Media_Systems\\04_Design_Reddit.html",
+            "title": "Design Reddit",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Social Media Systems"
+          },
+          {
+            "id": "hld-interview-social-media-systems-design-tinder",
+            "file": "05_Design_Tinder.html",
+            "rawPath": "03. HLD-Interview\\10_Social_Media_Systems\\05_Design_Tinder.html",
+            "title": "Design Tinder",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Social Media Systems"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-11_media_streaming_delivery",
+        "number": 11,
+        "folderName": "11_Media_Streaming_Delivery",
+        "name": "Media Streaming Delivery",
+        "topicCount": 6,
+        "topics": [
+          {
+            "id": "hld-interview-media-streaming-delivery-design-spotify",
+            "file": "01_Design_Spotify.html",
+            "rawPath": "03. HLD-Interview\\11_Media_Streaming_Delivery\\01_Design_Spotify.html",
+            "title": "Design Spotify",
+            "estimatedMinutes": 8,
+            "difficulty": "Easy",
+            "category": "Media Streaming Delivery"
+          },
+          {
+            "id": "hld-interview-media-streaming-delivery-design-youtube",
+            "file": "02_Design_YouTube.html",
+            "rawPath": "03. HLD-Interview\\11_Media_Streaming_Delivery\\02_Design_YouTube.html",
+            "title": "Design YouTube",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Media Streaming Delivery"
+          },
+          {
+            "id": "hld-interview-media-streaming-delivery-design-netflix",
+            "file": "03_Design_Netflix.html",
+            "rawPath": "03. HLD-Interview\\11_Media_Streaming_Delivery\\03_Design_Netflix.html",
+            "title": "Design Netflix",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Media Streaming Delivery"
+          },
+          {
+            "id": "hld-interview-media-streaming-delivery-design-google-drive",
+            "file": "04_Design_Google_Drive.html",
+            "rawPath": "03. HLD-Interview\\11_Media_Streaming_Delivery\\04_Design_Google_Drive.html",
+            "title": "Design Google Drive",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Media Streaming Delivery"
+          },
+          {
+            "id": "hld-interview-media-streaming-delivery-design-gmail",
+            "file": "05_Design_Gmail.html",
+            "rawPath": "03. HLD-Interview\\11_Media_Streaming_Delivery\\05_Design_Gmail.html",
+            "title": "Design Gmail",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Media Streaming Delivery"
+          },
+          {
+            "id": "hld-interview-media-streaming-delivery-design-twitch",
+            "file": "06_Design_Twitch.html",
+            "rawPath": "03. HLD-Interview\\11_Media_Streaming_Delivery\\06_Design_Twitch.html",
+            "title": "Design Twitch",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Media Streaming Delivery"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-12_location_based_services",
+        "number": 12,
+        "folderName": "12_Location_Based_Services",
+        "name": "Location Based Services",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "hld-interview-location-based-services-design-airbnb",
+            "file": "01_Design_Airbnb.html",
+            "rawPath": "03. HLD-Interview\\12_Location_Based_Services\\01_Design_Airbnb.html",
+            "title": "Design Airbnb",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Location Based Services"
+          },
+          {
+            "id": "hld-interview-location-based-services-design-food-delivery-service",
+            "file": "02_Design_Food_Delivery_Service.html",
+            "rawPath": "03. HLD-Interview\\12_Location_Based_Services\\02_Design_Food_Delivery_Service.html",
+            "title": "Design Food Delivery Service",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Location Based Services"
+          },
+          {
+            "id": "hld-interview-location-based-services-design-uber",
+            "file": "03_Design_Uber.html",
+            "rawPath": "03. HLD-Interview\\12_Location_Based_Services\\03_Design_Uber.html",
+            "title": "Design Uber",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Location Based Services"
+          },
+          {
+            "id": "hld-interview-location-based-services-design-google-maps",
+            "file": "04_Design_Google_Maps.html",
+            "rawPath": "03. HLD-Interview\\12_Location_Based_Services\\04_Design_Google_Maps.html",
+            "title": "Design Google Maps",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Location Based Services"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-13_search_aggregation_systems",
+        "number": 13,
+        "folderName": "13_Search_Aggregation_Systems",
+        "name": "Search Aggregation Systems",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "hld-interview-search-aggregation-systems-design-search-autocomplete-system",
+            "file": "01_Design_Search_Autocomplete_System.html",
+            "rawPath": "03. HLD-Interview\\13_Search_Aggregation_Systems\\01_Design_Search_Autocomplete_System.html",
+            "title": "Design Search Autocomplete System",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Search Aggregation Systems"
+          },
+          {
+            "id": "hld-interview-search-aggregation-systems-design-news-aggregator",
+            "file": "02_Design_News_Aggregator.html",
+            "rawPath": "03. HLD-Interview\\13_Search_Aggregation_Systems\\02_Design_News_Aggregator.html",
+            "title": "Design News Aggregator",
+            "estimatedMinutes": 11,
+            "difficulty": "Medium",
+            "category": "Search Aggregation Systems"
+          },
+          {
+            "id": "hld-interview-search-aggregation-systems-design-web-crawler",
+            "file": "03_Design_Web_Crawler.html",
+            "rawPath": "03. HLD-Interview\\13_Search_Aggregation_Systems\\03_Design_Web_Crawler.html",
+            "title": "Design Web Crawler",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Search Aggregation Systems"
+          },
+          {
+            "id": "hld-interview-search-aggregation-systems-design-google-search",
+            "file": "04_Design_Google_Search.html",
+            "rawPath": "03. HLD-Interview\\13_Search_Aggregation_Systems\\04_Design_Google_Search.html",
+            "title": "Design Google Search",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Search Aggregation Systems"
+          },
+          {
+            "id": "hld-interview-search-aggregation-systems-design-ad-click-aggregator",
+            "file": "05_Design_Ad_Click_Aggregator.html",
+            "rawPath": "03. HLD-Interview\\13_Search_Aggregation_Systems\\05_Design_Ad_Click_Aggregator.html",
+            "title": "Design Ad Click Aggregator",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Search Aggregation Systems"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-14_e_commerce_marketplace",
+        "number": 14,
+        "folderName": "14_E_commerce_Marketplace",
+        "name": "E commerce Marketplace",
+        "topicCount": 5,
+        "topics": [
+          {
+            "id": "hld-interview-e-commerce-marketplace-design-amazon",
+            "file": "01_Design_Amazon.html",
+            "rawPath": "03. HLD-Interview\\14_E_commerce_Marketplace\\01_Design_Amazon.html",
+            "title": "Design Amazon",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "E commerce Marketplace"
+          },
+          {
+            "id": "hld-interview-e-commerce-marketplace-design-shopify",
+            "file": "02_Design_Shopify.html",
+            "rawPath": "03. HLD-Interview\\14_E_commerce_Marketplace\\02_Design_Shopify.html",
+            "title": "Design Shopify",
+            "estimatedMinutes": 5,
+            "difficulty": "Medium",
+            "category": "E commerce Marketplace"
+          },
+          {
+            "id": "hld-interview-e-commerce-marketplace-design-flash-sale",
+            "file": "03_Design_Flash_Sale.html",
+            "rawPath": "03. HLD-Interview\\14_E_commerce_Marketplace\\03_Design_Flash_Sale.html",
+            "title": "Design Flash Sale",
+            "estimatedMinutes": 7,
+            "difficulty": "Hard",
+            "category": "E commerce Marketplace"
+          },
+          {
+            "id": "hld-interview-e-commerce-marketplace-design-online-auction-system",
+            "file": "04_Design_Online_Auction_System.html",
+            "rawPath": "03. HLD-Interview\\14_E_commerce_Marketplace\\04_Design_Online_Auction_System.html",
+            "title": "Design Online Auction System",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "E commerce Marketplace"
+          },
+          {
+            "id": "hld-interview-e-commerce-marketplace-design-movie-booking-system",
+            "file": "05_Design_Movie_Booking_System.html",
+            "rawPath": "03. HLD-Interview\\14_E_commerce_Marketplace\\05_Design_Movie_Booking_System.html",
+            "title": "Design Movie Booking System",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "E commerce Marketplace"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-15_payment_financial_systems",
+        "number": 15,
+        "folderName": "15_Payment_Financial_Systems",
+        "name": "Payment Financial Systems",
+        "topicCount": 3,
+        "topics": [
+          {
+            "id": "hld-interview-payment-financial-systems-design-payment-system",
+            "file": "01_Design_Payment_System.html",
+            "rawPath": "03. HLD-Interview\\15_Payment_Financial_Systems\\01_Design_Payment_System.html",
+            "title": "Design Payment System",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Payment Financial Systems"
+          },
+          {
+            "id": "hld-interview-payment-financial-systems-design-digital-wallet",
+            "file": "02_Design_Digital_Wallet.html",
+            "rawPath": "03. HLD-Interview\\15_Payment_Financial_Systems\\02_Design_Digital_Wallet.html",
+            "title": "Design Digital Wallet",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Payment Financial Systems"
+          },
+          {
+            "id": "hld-interview-payment-financial-systems-design-stock-exchange",
+            "file": "03_Design_Stock_Exchange.html",
+            "rawPath": "03. HLD-Interview\\15_Payment_Financial_Systems\\03_Design_Stock_Exchange.html",
+            "title": "Design Stock Exchange",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Payment Financial Systems"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-16_distributed_infrastructure",
+        "number": 16,
+        "folderName": "16_Distributed_Infrastructure",
+        "name": "Distributed Infrastructure",
+        "topicCount": 10,
+        "topics": [
+          {
+            "id": "hld-interview-distributed-infrastructure-design-load-balancer",
+            "file": "01_Design_Load_Balancer.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\01_Design_Load_Balancer.html",
+            "title": "Design Load Balancer",
+            "estimatedMinutes": 6,
+            "difficulty": "Easy",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-api-gateway",
+            "file": "02_Design_API_Gateway.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\02_Design_API_Gateway.html",
+            "title": "Design API Gateway",
+            "estimatedMinutes": 9,
+            "difficulty": "Medium",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-rate-limiter",
+            "file": "03_Design_Rate_Limiter.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\03_Design_Rate_Limiter.html",
+            "title": "Design Rate Limiter",
+            "estimatedMinutes": 5,
+            "difficulty": "Hard",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-key-value-store",
+            "file": "04_Design_Key_Value_Store.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\04_Design_Key_Value_Store.html",
+            "title": "Design Key Value Store",
+            "estimatedMinutes": 12,
+            "difficulty": "Easy",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-distributed-cache",
+            "file": "05_Design_Distributed_Cache.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\05_Design_Distributed_Cache.html",
+            "title": "Design Distributed Cache",
+            "estimatedMinutes": 6,
+            "difficulty": "Medium",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-cdn",
+            "file": "06_Design_CDN.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\06_Design_CDN.html",
+            "title": "Design CDN",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-object-storage-like-s3",
+            "file": "07_Design_Object_Storage_like_S3.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\07_Design_Object_Storage_like_S3.html",
+            "title": "Design Object Storage like S3",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-messaging-queue",
+            "file": "08_Design_Messaging_Queue.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\08_Design_Messaging_Queue.html",
+            "title": "Design Messaging Queue",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-time-series-database",
+            "file": "09_Design_Time_Series_Database.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\09_Design_Time_Series_Database.html",
+            "title": "Design Time Series Database",
+            "estimatedMinutes": 11,
+            "difficulty": "Hard",
+            "category": "Distributed Infrastructure"
+          },
+          {
+            "id": "hld-interview-distributed-infrastructure-design-locking-service",
+            "file": "10_Design_Locking_Service.html",
+            "rawPath": "03. HLD-Interview\\16_Distributed_Infrastructure\\10_Design_Locking_Service.html",
+            "title": "Design Locking Service",
+            "estimatedMinutes": 9,
+            "difficulty": "Easy",
+            "category": "Distributed Infrastructure"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-17_counting_ranking_systems",
+        "number": 17,
+        "folderName": "17_Counting_Ranking_Systems",
+        "name": "Counting Ranking Systems",
+        "topicCount": 3,
+        "topics": [
+          {
+            "id": "hld-interview-counting-ranking-systems-design-likes-counting-system",
+            "file": "01_Design_Likes_Counting_System.html",
+            "rawPath": "03. HLD-Interview\\17_Counting_Ranking_Systems\\01_Design_Likes_Counting_System.html",
+            "title": "Design Likes Counting System",
+            "estimatedMinutes": 11,
+            "difficulty": "Easy",
+            "category": "Counting Ranking Systems"
+          },
+          {
+            "id": "hld-interview-counting-ranking-systems-design-real-time-leaderboard",
+            "file": "02_Design_Real_Time_Leaderboard.html",
+            "rawPath": "03. HLD-Interview\\17_Counting_Ranking_Systems\\02_Design_Real_Time_Leaderboard.html",
+            "title": "Design Real Time Leaderboard",
+            "estimatedMinutes": 10,
+            "difficulty": "Medium",
+            "category": "Counting Ranking Systems"
+          },
+          {
+            "id": "hld-interview-counting-ranking-systems-design-top-k",
+            "file": "03_Design_Top_K.html",
+            "rawPath": "03. HLD-Interview\\17_Counting_Ranking_Systems\\03_Design_Top_K.html",
+            "title": "Design Top K",
+            "estimatedMinutes": 6,
+            "difficulty": "Hard",
+            "category": "Counting Ranking Systems"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-18_asynchronous_systems",
+        "number": 18,
+        "folderName": "18_Asynchronous_Systems",
+        "name": "Asynchronous Systems",
+        "topicCount": 4,
+        "topics": [
+          {
+            "id": "hld-interview-asynchronous-systems-design-notification-service",
+            "file": "01_Design_Notification_Service.html",
+            "rawPath": "03. HLD-Interview\\18_Asynchronous_Systems\\01_Design_Notification_Service.html",
+            "title": "Design Notification Service",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Asynchronous Systems"
+          },
+          {
+            "id": "hld-interview-asynchronous-systems-design-job-scheduler",
+            "file": "02_Design_Job_Scheduler.html",
+            "rawPath": "03. HLD-Interview\\18_Asynchronous_Systems\\02_Design_Job_Scheduler.html",
+            "title": "Design Job Scheduler",
+            "estimatedMinutes": 7,
+            "difficulty": "Medium",
+            "category": "Asynchronous Systems"
+          },
+          {
+            "id": "hld-interview-asynchronous-systems-design-ci-cd-pipeline",
+            "file": "03_Design_CI_CD_Pipeline.html",
+            "rawPath": "03. HLD-Interview\\18_Asynchronous_Systems\\03_Design_CI_CD_Pipeline.html",
+            "title": "Design CI CD Pipeline",
+            "estimatedMinutes": 9,
+            "difficulty": "Hard",
+            "category": "Asynchronous Systems"
+          },
+          {
+            "id": "hld-interview-asynchronous-systems-design-monitoring-and-alerting-system",
+            "file": "04_Design_Monitoring_and_Alerting_System.html",
+            "rawPath": "03. HLD-Interview\\18_Asynchronous_Systems\\04_Design_Monitoring_and_Alerting_System.html",
+            "title": "Design Monitoring and Alerting System",
+            "estimatedMinutes": 5,
+            "difficulty": "Easy",
+            "category": "Asynchronous Systems"
+          }
+        ]
+      },
+      {
+        "id": "hld-interview-19_specialized_systems",
+        "number": 19,
+        "folderName": "19_Specialized_Systems",
+        "name": "Specialized Systems",
+        "topicCount": 3,
+        "topics": [
+          {
+            "id": "hld-interview-specialized-systems-design-leetcode",
+            "file": "01_Design_LeetCode.html",
+            "rawPath": "03. HLD-Interview\\19_Specialized_Systems\\01_Design_LeetCode.html",
+            "title": "Design LeetCode",
+            "estimatedMinutes": 7,
+            "difficulty": "Easy",
+            "category": "Specialized Systems"
+          },
+          {
+            "id": "hld-interview-specialized-systems-design-calendar-system",
+            "file": "02_Design_Calendar_System.html",
+            "rawPath": "03. HLD-Interview\\19_Specialized_Systems\\02_Design_Calendar_System.html",
+            "title": "Design Calendar System",
+            "estimatedMinutes": 12,
+            "difficulty": "Medium",
+            "category": "Specialized Systems"
+          },
+          {
+            "id": "hld-interview-specialized-systems-design-online-chess",
+            "file": "03_Design_Online_Chess.html",
+            "rawPath": "03. HLD-Interview\\19_Specialized_Systems\\03_Design_Online_Chess.html",
+            "title": "Design Online Chess",
+            "estimatedMinutes": 8,
+            "difficulty": "Hard",
+            "category": "Specialized Systems"
+          }
+        ]
+      }
+    ]
+  }
+]

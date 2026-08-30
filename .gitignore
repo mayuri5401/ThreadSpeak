@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production Build
+dist/
+build/
+
+# Java / Maven Builds
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Environment & Local Configuration
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE Files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# OS Files
+.DS_Store
+Thumbs.db
+backend/data/quiz_db.mv.db
+backend/data/user_db.mv.db

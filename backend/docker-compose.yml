@@ -1,0 +1,130 @@
+version: '3.8'
+
+services:
+  # =========================================================================
+  # 1. Netflix Eureka Discovery Server
+  # =========================================================================
+  eureka-server:
+    image: openjdk:17-slim
+    container_name: threadspeak-eureka
+    working_dir: /app
+    volumes:
+      - ./eureka-server/target/eureka-server-1.0.0.jar:/app/app.jar
+    command: ["java", "-jar", "app.jar"]
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - threadspeak-net
+
+  # =========================================================================
+  # 2. Spring Cloud API Gateway
+  # =========================================================================
+  api-gateway:
+    image: openjdk:17-slim
+    container_name: threadspeak-gateway
+    working_dir: /app
+    volumes:
+      - ./api-gateway/target/api-gateway-1.0.0.jar:/app/app.jar
+    command: ["java", "-jar", "app.jar"]
+    ports:
+      - "8080:8080"
+    depends_on:
+      eureka-server:
+        condition: service_started
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    networks:
+      - threadspeak-net
+
+  # =========================================================================
+  # 3. Content & Topic Microservice
+  # =========================================================================
+  content-service:
+    image: openjdk:17-slim
+    container_name: threadspeak-content-service
+    working_dir: /app
+    volumes:
+      - ./content-service/target/content-service-1.0.0.jar:/app/app.jar
+    command: ["java", "-jar", "app.jar"]
+    ports:
+      - "8081:8081"
+    depends_on:
+      eureka-server:
+        condition: service_started
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    networks:
+      - threadspeak-net
+
+  # =========================================================================
+  # 4. User Profile & Progress Microservice
+  # =========================================================================
+  user-service:
+    image: openjdk:17-slim
+    container_name: threadspeak-user-service
+    working_dir: /app
+    volumes:
+      - ./user-service/target/user-service-1.0.0.jar:/app/app.jar
+    command: ["java", "-jar", "app.jar"]
+    ports:
+      - "8082:8082"
+    depends_on:
+      eureka-server:
+        condition: service_started
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    networks:
+      - threadspeak-net
+
+  # =========================================================================
+  # 5. Quiz & Assessment Microservice
+  # =========================================================================
+  quiz-service:
+    image: openjdk:17-slim
+    container_name: threadspeak-quiz-service
+    working_dir: /app
+    volumes:
+      - ./quiz-service/target/quiz-service-1.0.0.jar:/app/app.jar
+    command: ["java", "-jar", "app.jar"]
+    ports:
+      - "8083:8083"
+    depends_on:
+      eureka-server:
+        condition: service_started
+      user-service:
+        condition: service_started
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    networks:
+      - threadspeak-net
+
+  # =========================================================================
+  # 6. Sandboxed Code Execution & Simulator Microservice
+  # =========================================================================
+  code-runner-service:
+    image: openjdk:17-slim
+    container_name: threadspeak-code-runner-service
+    working_dir: /app
+    volumes:
+      - ./code-runner-service/target/code-runner-service-1.0.0.jar:/app/app.jar
+    command: ["java", "-jar", "app.jar"]
+    ports:
+      - "8084:8084"
+    depends_on:
+      eureka-server:
+        condition: service_started
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    networks:
+      - threadspeak-net
+
+networks:
+  threadspeak-net:
+    driver: bridge

@@ -1,0 +1,121 @@
+[
+  {
+    "id": "q-jvm-1",
+    "trackId": "core-java",
+    "topicId": "jvm-architecture",
+    "category": "JVM & Memory",
+    "question": "Where do object instances and their non-static instance fields reside in the JVM runtime data areas?",
+    "codeSnippet": "User user = new User(\"Alice\");",
+    "options": [
+      "On the thread's JVM Stack frame",
+      "In the JVM Heap memory",
+      "Inside Metaspace / Method Area",
+      "Inside the PC Register"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "In Java, all instantiated objects and their instance fields reside on the Heap. The reference variable ('user') lives on the Stack frame, pointing to the heap memory address.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-jvm-2",
+    "trackId": "core-java",
+    "topicId": "memory-and-gc",
+    "category": "JVM & Memory",
+    "question": "What triggers an object in the Young Generation Survivor space to be promoted to the Old / Tenured Generation?",
+    "codeSnippet": "-XX:MaxTenuringThreshold=15",
+    "options": [
+      "When it survives a configured number of Minor GC cycles (default up to 15)",
+      "Immediately upon creation if it is larger than 1 KB",
+      "When the Stack frame pops",
+      "Whenever a thread context switch happens"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The object header tracks an age counter that increments with each Minor GC survival. Once it reaches MaxTenuringThreshold (default 15 in HotSpot), it is promoted to Old Gen.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-threads-1",
+    "trackId": "core-java",
+    "topicId": "concurrency-multithreading",
+    "category": "Concurrency & Threads",
+    "question": "Why is `private volatile int counter = 0; counter++;` NOT thread-safe across concurrent threads?",
+    "codeSnippet": "public void increment() {\n    counter++;\n}",
+    "options": [
+      "volatile prevents the compiler from reading the value",
+      "counter++ is a compound 3-step operation (read, modify, write) that is not atomic",
+      "volatile variables can only be read by one thread at a time",
+      "It causes an immediate Deadlock"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "volatile guarantees memory visibility across CPU caches, but NOT atomicity. counter++ translates to getfield, iadd, and putfield instructions. Use AtomicInteger or locks for atomic increments.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-collections-1",
+    "trackId": "core-java",
+    "topicId": "collections-hashmap",
+    "category": "Collections Deep-Dive",
+    "question": "What data structure transition happens in Java 8+ HashMap when a single bucket exceeds 8 entries (and total capacity >= 64)?",
+    "codeSnippet": "Map<String, String> map = new HashMap<>();",
+    "options": [
+      "Singly Linked List is converted to a balanced Red-Black Tree (TreeNode)",
+      "Singly Linked List is converted to an AVL Tree",
+      "The entire HashMap is converted to ConcurrentSkipListMap",
+      "All conflicting entries are discarded with an exception"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Java 8+ converts high-collision buckets from a Singly Linked List (O(N) lookup) to a balanced Red-Black Tree (O(log N) lookup) to protect against hash collision Denial-of-Service attacks.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-spring-1",
+    "trackId": "spring-boot",
+    "topicId": "spring-core-ioc-di",
+    "category": "Spring Core",
+    "question": "What is the primary difference between BeanFactory and ApplicationContext in Spring?",
+    "codeSnippet": "ApplicationContext context = new AnnotationConfigApplicationContext(...);",
+    "options": [
+      "ApplicationContext does not support Dependency Injection",
+      "BeanFactory pre-instantiates singletons eagerly while ApplicationContext is lazy",
+      "ApplicationContext is a superset of BeanFactory that provides eager singleton pre-instantiation, AOP integration, MessageSource i18n, and Event Publication",
+      "BeanFactory is only for web applications"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "ApplicationContext extends BeanFactory with enterprise features: eager singleton startup validation, BeanPostProcessors auto-registration, ApplicationEventPublisher, and MessageSource.",
+    "difficulty": "Easy"
+  },
+  {
+    "id": "q-spring-2",
+    "trackId": "spring-boot",
+    "topicId": "spring-web-dispatcherservlet",
+    "category": "Spring Web MVC",
+    "question": "In Spring MVC, what component determines which Controller method handles an incoming HTTP request?",
+    "codeSnippet": "@GetMapping(\"/api/orders/{id}\")",
+    "options": [
+      "ViewResolver",
+      "HandlerMapping (e.g. RequestMappingHandlerMapping)",
+      "HttpMessageConverter",
+      "ServletConfig"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "DispatcherServlet consults HandlerMapping implementations (specifically RequestMappingHandlerMapping) to map the incoming request URL and HTTP method to the target HandlerMethod.",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "q-dsa-1",
+    "trackId": "dsa",
+    "topicId": "dsa-two-pointers-sliding-window",
+    "category": "Arrays & Algorithms",
+    "question": "What is the time complexity of finding two numbers that add up to target in a SORTED array of size N using Two Pointers?",
+    "codeSnippet": "while (left < right) { ... }",
+    "options": [
+      "O(N^2) Time, O(1) Space",
+      "O(N log N) Time, O(N) Space",
+      "O(N) Time, O(1) Space",
+      "O(1) Time, O(N) Space"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Because the array is already sorted, the two pointers move monotonically inward, visiting each element at most once: O(N) time and O(1) auxiliary space.",
+    "difficulty": "Easy"
+  }
+]
