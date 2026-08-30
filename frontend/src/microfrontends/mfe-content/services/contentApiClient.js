@@ -4,6 +4,7 @@
 // =============================================================================
 
 import { gatewayFetch } from '../../../shared/api/gatewayClient';
+import curriculumIndex from '../../../shared/api/curriculumIndex.json';
 
 const topicsCache = new Map();
 const topicDetailCache = new Map();
@@ -44,6 +45,43 @@ export async function fetchTopics(trackId = null, query = null) {
   }
 }
 
+// Parse YAML frontmatter + body from a raw markdown string
+function parseMarkdownFile(raw, id) {
+  const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!fmMatch) return { id, deepDive: raw };
+
+  const frontmatter = fmMatch[1];
+  const body = fmMatch[2].trim();
+
+  const get = (key) => {
+    const m = frontmatter.match(new RegExp(`^${key}:\\s*"?([^"\\n]+)"?`, 'm'));
+    return m ? m[1].trim() : undefined;
+  };
+
+  const tagsMatch = frontmatter.match(/^tags:\s*\[([^\]]+)\]/m);
+  const tags = tagsMatch ? tagsMatch[1].split(',').map(t => t.trim().replace(/['"]/g, '')) : [];
+
+  return {
+    id: get('id') || id,
+    trackId: get('trackId'),
+    trackTitle: get('trackTitle'),
+    category: get('category'),
+    title: get('title'),
+    slug: get('slug'),
+    level: get('difficulty') || get('level'),
+    difficulty: get('difficulty'),
+    estimatedMinutes: parseInt(get('estimatedMinutes')) || 10,
+    readTime: `${get('estimatedMinutes') || 10} min`,
+    summary: get('summary'),
+    eli10: get('eli10'),
+    mentalModel: get('mentalModel'),
+    animationType: get('animationType'),
+    tags,
+    // Use the markdown body as deepDive (the rich notes content)
+    deepDive: body || get('deepDive'),
+  };
+}
+
 export async function fetchTopicById(id) {
   if (topicDetailCache.has(id)) {
     const cached = topicDetailCache.get(id);
@@ -56,10 +94,38 @@ export async function fetchTopicById(id) {
     topicDetailCache.set(id, data);
     return data;
   } catch (err) {
-    console.warn('[MFE-Content] Fallback topic by id used:', err.message);
-    const all = getLocalTopicsFallback();
-    return all.find(t => t.id === id) || null;
+    console.warn('[MFE-Content] API unavailable, trying local fallback:', err.message);
   }
+
+  // Tier 2: Local hardcoded fallback (has full deepDive for some topics)
+  const all = getLocalTopicsFallback();
+  const localTopic = all.find(t => t.id === id);
+  if (localTopic && localTopic.deepDive && localTopic.deepDive.length > 100) {
+    topicDetailCache.set(id, localTopic);
+    return localTopic;
+  }
+
+  // Tier 3: Fetch static markdown file from /curriculum/ (served by Vercel)
+  const filePath = curriculumIndex[id];
+  if (filePath) {
+    try {
+      const res = await fetch(filePath);
+      if (res.ok) {
+        const raw = await res.text();
+        const parsed = parseMarkdownFile(raw, id);
+        // Merge with any local metadata we have
+        const merged = { ...(localTopic || {}), ...parsed };
+        topicDetailCache.set(id, merged);
+        console.info(`[MFE-Content] Loaded static markdown for: ${id}`);
+        return merged;
+      }
+    } catch (staticErr) {
+      console.warn('[MFE-Content] Static markdown fetch failed:', staticErr.message);
+    }
+  }
+
+  // Final fallback: return whatever metadata we have
+  return localTopic || null;
 }
 
 function getLocalTracksFallback() {
