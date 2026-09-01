@@ -108,6 +108,13 @@ export default function AiVoiceReader({
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [sentences, setSentences] = useState([]);
   const [voices, setVoices] = useState([]);
+  const [voiceGender, setVoiceGender] = useState(() => {
+    try {
+      return localStorage.getItem('threadspeak_voice_gender') || 'female';
+    } catch {
+      return 'female';
+    }
+  });
   const [selectedVoice, setSelectedVoice] = useState(null);
   const [rate, setRate] = useState(1.0);
   const [pitch, setPitch] = useState(1.0);
@@ -126,17 +133,38 @@ export default function AiVoiceReader({
   const volumeRef = useRef(1.0);
   const isMutedRef = useRef(false);
   const selectedVoiceRef = useRef(null);
+  const voiceGenderRef = useRef(voiceGender);
   const activeUtteranceRef = useRef(null);
   const speakTimeoutRef = useRef(null);
 
+  // Helper to pick the best voice for selected gender
+  const pickVoiceForGender = (availableVoices, gender) => {
+    if (!availableVoices || availableVoices.length === 0) return null;
+
+    const enVoices = availableVoices.filter(v => v.lang && v.lang.startsWith('en'));
+    const pool = enVoices.length > 0 ? enVoices : availableVoices;
+
+    const femaleKeywords = ['female', 'zira', 'jenny', 'samantha', 'victoria', 'karen', 'ava', 'susan', 'hazel', 'catherine', 'nora', 'helena', 'alice', 'fiona', 'moira', 'tessa', 'veena', 'heera', 'natural'];
+    const maleKeywords = ['male', 'david', 'guy', 'mark', 'george', 'alex', 'daniel', 'oliver', 'james', 'tom', 'arthur', 'rishi', 'aaron'];
+
+    if (gender === 'female') {
+      const match = pool.find(v => femaleKeywords.some(kw => v.name.toLowerCase().includes(kw))) || pool[0];
+      return match;
+    } else {
+      const match = pool.find(v => maleKeywords.some(kw => v.name.toLowerCase().includes(kw))) || pool.find(v => !femaleKeywords.some(kw => v.name.toLowerCase().includes(kw))) || pool[0];
+      return match;
+    }
+  };
+
   useEffect(() => {
     rateRef.current = rate;
-    pitchRef.current = pitch;
+    pitchRef.current = voiceGender === 'female' ? 1.1 : 0.92;
     volumeRef.current = volume;
     isMutedRef.current = isMuted;
     selectedVoiceRef.current = selectedVoice;
+    voiceGenderRef.current = voiceGender;
     currentSentenceIndexRef.current = currentSentenceIndex;
-  }, [rate, pitch, volume, isMuted, selectedVoice, currentSentenceIndex]);
+  }, [rate, pitch, volume, isMuted, selectedVoice, voiceGender, currentSentenceIndex]);
 
   useEffect(() => {
     if (!('speechSynthesis' in window)) {
@@ -148,13 +176,9 @@ export default function AiVoiceReader({
       const available = window.speechSynthesis.getVoices();
       if (available && available.length > 0) {
         setVoices(available);
-        const naturalVoice = available.find(v => 
-          (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Neural') || v.name.includes('Online')) &&
-          (v.lang.startsWith('en'))
-        ) || available.find(v => v.lang.startsWith('en')) || available[0];
-        
-        setSelectedVoice(naturalVoice);
-        selectedVoiceRef.current = naturalVoice;
+        const best = pickVoiceForGender(available, voiceGenderRef.current);
+        setSelectedVoice(best);
+        selectedVoiceRef.current = best;
       }
     };
 
@@ -167,6 +191,22 @@ export default function AiVoiceReader({
       }
     };
   }, []);
+
+  const handleGenderChange = (newGender) => {
+    setVoiceGender(newGender);
+    voiceGenderRef.current = newGender;
+    try {
+      localStorage.setItem('threadspeak_voice_gender', newGender);
+    } catch {}
+
+    const best = pickVoiceForGender(voices, newGender);
+    setSelectedVoice(best);
+    selectedVoiceRef.current = best;
+
+    if (isPlaying) {
+      speakSentence(currentSentenceIndex, true);
+    }
+  };
 
   useEffect(() => {
     const rawContent = customText || deepDive || '';
@@ -361,8 +401,38 @@ export default function AiVoiceReader({
             )}
           </div>
 
-          {/* Right: Controls & Speed */}
+          {/* Right: Controls, Voice Gender & Speed */}
           <div className="flex items-center gap-1.5 shrink-0">
+            {/* Voice Gender Toggle (Female / Male) */}
+            <div className="flex items-center gap-0.5 bg-white dark:bg-slate-900 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
+              <button
+                type="button"
+                onClick={() => handleGenderChange('female')}
+                className={`px-1.5 py-0.5 rounded text-[10px] font-medium transition flex items-center gap-1 ${
+                  voiceGender === 'female'
+                    ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+                title="Female Voice"
+              >
+                <span>👩</span>
+                <span className="hidden xs:inline sm:inline text-[10px]">Female</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleGenderChange('male')}
+                className={`px-1.5 py-0.5 rounded text-[10px] font-medium transition flex items-center gap-1 ${
+                  voiceGender === 'male'
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+                title="Male Voice"
+              >
+                <span>👨</span>
+                <span className="hidden xs:inline sm:inline text-[10px]">Male</span>
+              </button>
+            </div>
+
             {/* Speed Pills */}
             <div className="flex items-center gap-0.5 bg-white dark:bg-slate-900 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
               {[1.0, 1.25, 1.5, 2.0].map((s) => (
