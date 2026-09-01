@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Sparkles, Lightbulb, ShieldAlert, Cpu, Briefcase, 
-  Volume2, VolumeX, Play, Pause, RotateCcw, Copy, Check, ChevronDown, ChevronUp, Bot, X
+  Volume2, VolumeX, Play, Pause, RotateCcw, Copy, Check, ChevronDown, ChevronUp, Bot, X,
+  Rewind, FastForward, Square
 } from 'lucide-react';
 
 export default function TopicAiTutorBar({ 
@@ -35,19 +36,28 @@ export default function TopicAiTutorBar({
   const sentencesRef = useRef([]);
   const activeUtteranceRef = useRef(null);
 
-  // Pick best voice for gender
+  // Intelligent Male vs Female voice picker
   const pickVoiceForGender = (availableVoices, gender) => {
     if (!availableVoices || availableVoices.length === 0) return null;
-    const enVoices = availableVoices.filter(v => v.lang && v.lang.startsWith('en'));
+    const enVoices = availableVoices.filter(v => v.lang && (v.lang.startsWith('en') || v.lang.includes('en')));
     const pool = enVoices.length > 0 ? enVoices : availableVoices;
 
-    const femaleKeywords = ['female', 'zira', 'jenny', 'samantha', 'victoria', 'karen', 'ava', 'susan', 'hazel', 'catherine', 'nora', 'helena', 'alice', 'fiona', 'moira', 'tessa', 'veena', 'heera', 'natural'];
-    const maleKeywords = ['male', 'david', 'guy', 'mark', 'george', 'alex', 'daniel', 'oliver', 'james', 'tom', 'arthur', 'rishi', 'aaron'];
+    const femaleKeywords = ['female', 'zira', 'jenny', 'samantha', 'victoria', 'karen', 'ava', 'susan', 'hazel', 'catherine', 'nora', 'helena', 'alice', 'fiona', 'moira', 'tessa', 'veena', 'heera', 'aria', 'natural', 'eva'];
+    const maleKeywords = ['male', 'david', 'guy', 'mark', 'george', 'alex', 'daniel', 'oliver', 'james', 'tom', 'arthur', 'rishi', 'aaron', 'richard', 'fred', 'ryan', 'christopher', 'microsoft david', 'microsoft mark'];
 
-    if (gender === 'female') {
-      return pool.find(v => femaleKeywords.some(kw => v.name.toLowerCase().includes(kw))) || pool[0];
+    if (gender === 'male') {
+      // 1. Explicit Male name match
+      const maleMatch = pool.find(v => maleKeywords.some(kw => v.name.toLowerCase().includes(kw)));
+      if (maleMatch) return maleMatch;
+      // 2. Non-female named voice
+      const nonFemale = pool.find(v => !femaleKeywords.some(kw => v.name.toLowerCase().includes(kw)));
+      if (nonFemale) return nonFemale;
+      return pool[0];
     } else {
-      return pool.find(v => maleKeywords.some(kw => v.name.toLowerCase().includes(kw))) || pool.find(v => !femaleKeywords.some(kw => v.name.toLowerCase().includes(kw))) || pool[0];
+      // 1. Explicit Female name match
+      const femaleMatch = pool.find(v => femaleKeywords.some(kw => v.name.toLowerCase().includes(kw)));
+      if (femaleMatch) return femaleMatch;
+      return pool[0];
     }
   };
 
@@ -124,15 +134,22 @@ export default function TopicAiTutorBar({
       utterance.lang = matchedVoice.lang || 'en-US';
     }
 
-    utterance.pitch = genderRef.current === 'female' ? 1.15 : 0.90;
-    utterance.rate = speedRef.current;
+    // High distinctiveness: deep resonant baritone for male (0.65), bright clear soprano for female (1.35)
+    utterance.pitch = genderRef.current === 'male' ? 0.65 : 1.35;
+    utterance.rate = genderRef.current === 'male' ? speedRef.current * 0.92 : speedRef.current * 1.02;
 
     utterance.onend = () => {
       if (isPlayingRef.current) {
         const nextIdx = index + 1;
-        setCurrentSentenceIdx(nextIdx);
-        sentenceIdxRef.current = nextIdx;
-        speakSentenceAtIndex(nextIdx);
+        if (nextIdx < list.length) {
+          setCurrentSentenceIdx(nextIdx);
+          sentenceIdxRef.current = nextIdx;
+          speakSentenceAtIndex(nextIdx);
+        } else {
+          setIsPlayingAudio(false);
+          setIsPausedAudio(false);
+          isPlayingRef.current = false;
+        }
       }
     };
 
@@ -185,6 +202,32 @@ export default function TopicAiTutorBar({
     isPlayingRef.current = false;
     setCurrentSentenceIdx(0);
     sentenceIdxRef.current = 0;
+  };
+
+  const handlePrevSentence = () => {
+    const prev = Math.max(0, currentSentenceIdx - 1);
+    setCurrentSentenceIdx(prev);
+    sentenceIdxRef.current = prev;
+    if (isPlayingAudio) {
+      speakSentenceAtIndex(prev);
+    }
+  };
+
+  const handleNextSentence = () => {
+    const next = Math.min(sentencesRef.current.length - 1, currentSentenceIdx + 1);
+    setCurrentSentenceIdx(next);
+    sentenceIdxRef.current = next;
+    if (isPlayingAudio) {
+      speakSentenceAtIndex(next);
+    }
+  };
+
+  const handleRestartAudio = () => {
+    setCurrentSentenceIdx(0);
+    sentenceIdxRef.current = 0;
+    if (isPlayingAudio) {
+      speakSentenceAtIndex(0);
+    }
   };
 
   const handleSpeedChange = (speed) => {
@@ -330,18 +373,44 @@ export default function TopicAiTutorBar({
           })}
         </div>
 
-        {/* Right: Audio Narration Player with Female / Male Voice Selection & Equalizer */}
-        <div className="flex items-center gap-1.5 bg-slate-900/90 light:bg-white px-2.5 py-1.5 rounded-xl border border-slate-800 light:border-slate-200 shadow-sm">
+        {/* Right: Audio Narration Player Suite with Female / Male Voice Selection */}
+        <div className="flex items-center gap-1.5 bg-slate-900/90 light:bg-white px-2.5 py-1.5 rounded-xl border border-slate-800 light:border-slate-200 shadow-sm flex-wrap sm:flex-nowrap">
+          
+          {/* Restart Button */}
+          {isPlayingAudio && (
+            <button
+              type="button"
+              onClick={handleRestartAudio}
+              className="p-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 transition"
+              title="Restart from Beginning"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
+          )}
+
+          {/* Prev / Rewind Sentence Button */}
+          {isPlayingAudio && (
+            <button
+              type="button"
+              onClick={handlePrevSentence}
+              disabled={currentSentenceIdx === 0}
+              className="p-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 transition disabled:opacity-30"
+              title="Previous Sentence (Rewind)"
+            >
+              <Rewind className="w-3.5 h-3.5" />
+            </button>
+          )}
+
           {/* Main Play / Pause / Resume Button */}
           <button
             type="button"
             onClick={handleToggleAudio}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition ${
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition shadow-sm ${
               isPlayingAudio && !isPausedAudio
-                ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-sm'
+                ? 'bg-amber-500 hover:bg-amber-400 text-slate-950'
                 : isPausedAudio
-                ? 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-sm'
-                : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm'
+                ? 'bg-cyan-500 hover:bg-cyan-400 text-slate-950'
+                : 'bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white'
             }`}
             title={isPlayingAudio && !isPausedAudio ? 'Pause Narration' : isPausedAudio ? 'Resume Narration' : 'Listen with AI Audio'}
           >
@@ -363,24 +432,37 @@ export default function TopicAiTutorBar({
             )}
           </button>
 
-          {/* Soundwave Equalizer when playing */}
+          {/* Next / Fast-Forward Sentence Button */}
+          {isPlayingAudio && (
+            <button
+              type="button"
+              onClick={handleNextSentence}
+              disabled={currentSentenceIdx >= sentencesList.length - 1}
+              className="p-1 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 transition disabled:opacity-30"
+              title="Next Sentence (Fast Forward)"
+            >
+              <FastForward className="w-3.5 h-3.5" />
+            </button>
+          )}
+
+          {/* Soundwave Equalizer */}
           {isPlayingAudio && !isPausedAudio && (
-            <div className="flex items-end gap-0.5 h-3.5 px-1 bg-emerald-950/80 rounded border border-emerald-800/60">
+            <div className="flex items-end gap-0.5 h-3.5 px-1.5 py-0.5 bg-emerald-950/80 rounded border border-emerald-800/60">
               <span className="w-0.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0ms] h-2" />
-              <span className="w-0.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:150ms] h-3" />
+              <span className="w-0.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:150ms] h-3.5" />
               <span className="w-0.5 bg-emerald-300 rounded-full animate-bounce [animation-delay:75ms] h-2.5" />
             </div>
           )}
 
-          {/* Stop Button when active */}
+          {/* Stop Button */}
           {isPlayingAudio && (
             <button
               type="button"
               onClick={handleStopAudio}
-              className="p-1 rounded-lg bg-slate-800 hover:bg-rose-950 text-slate-400 hover:text-rose-400 border border-slate-700 transition"
+              className="p-1 rounded-lg bg-slate-800/80 hover:bg-rose-950 text-slate-400 hover:text-rose-300 border border-slate-700 transition"
               title="Stop Narration"
             >
-              <VolumeX className="w-3.5 h-3.5" />
+              <Square className="w-3.5 h-3.5 fill-current text-rose-400" />
             </button>
           )}
 
@@ -391,10 +473,10 @@ export default function TopicAiTutorBar({
               onClick={() => handleGenderChange('female')}
               className={`px-2 py-0.5 rounded-lg text-[10px] font-medium transition flex items-center gap-1 ${
                 voiceGender === 'female'
-                  ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold shadow-md shadow-pink-500/20 ring-1 ring-pink-400/40'
+                  ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold shadow-md shadow-pink-500/20 ring-1 ring-pink-400/50'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
-              title="Female Voice"
+              title="Switch to Female Voice"
             >
               <span>👩</span>
               <span className="inline text-[10px]">Female</span>
@@ -404,10 +486,10 @@ export default function TopicAiTutorBar({
               onClick={() => handleGenderChange('male')}
               className={`px-2 py-0.5 rounded-lg text-[10px] font-medium transition flex items-center gap-1 ${
                 voiceGender === 'male'
-                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold shadow-md shadow-cyan-500/20 ring-1 ring-cyan-400/40'
+                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold shadow-md shadow-cyan-500/20 ring-1 ring-cyan-400/50'
                   : 'bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
-              title="Male Voice"
+              title="Switch to Male Voice"
             >
               <span>👨</span>
               <span className="inline text-[10px]">Male</span>
@@ -434,6 +516,47 @@ export default function TopicAiTutorBar({
         </div>
 
       </div>
+
+      {/* Live Active Audio Subtitle & Progress Scrubber */}
+      {isPlayingAudio && sentencesList.length > 0 && (
+        <div className="px-4 py-2.5 bg-[#050A14] border-b border-slate-800/80 space-y-1.5 animate-in fade-in duration-200">
+          <div className="flex items-center justify-between gap-3 text-[11px] font-mono">
+            <span className="text-cyan-400 font-semibold flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+              <span>Sentence {currentSentenceIdx + 1} of {sentencesList.length}</span>
+            </span>
+            <span className="text-slate-400">
+              {Math.round(((currentSentenceIdx + 1) / sentencesList.length) * 100)}%
+            </span>
+          </div>
+
+          {/* Clickable Timeline Scrubber */}
+          <div 
+            className="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden cursor-pointer hover:h-2 transition-all"
+            onClick={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const ratio = (e.clientX - rect.left) / rect.width;
+              const targetIdx = Math.min(sentencesList.length - 1, Math.max(0, Math.floor(ratio * sentencesList.length)));
+              setCurrentSentenceIdx(targetIdx);
+              sentenceIdxRef.current = targetIdx;
+              if (isPlayingAudio) speakSentenceAtIndex(targetIdx);
+            }}
+            title="Click to seek"
+          >
+            <div 
+              className="h-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-500 rounded-full transition-all duration-300"
+              style={{ width: `${Math.round(((currentSentenceIdx + 1) / sentencesList.length) * 100)}%` }}
+            />
+          </div>
+
+          {/* Current Sentence Subtitle Text */}
+          {sentencesList[currentSentenceIdx] && (
+            <p className="text-xs text-slate-200 font-sans italic line-clamp-2 pt-0.5">
+              "{sentencesList[currentSentenceIdx]}"
+            </p>
+          )}
+        </div>
+      )}
 
       {/* Expanded Insight Drawer */}
       {currentInsightData && (

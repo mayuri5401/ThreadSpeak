@@ -158,7 +158,7 @@ export default function AiVoiceReader({
 
   useEffect(() => {
     rateRef.current = rate;
-    pitchRef.current = voiceGender === 'female' ? 1.1 : 0.92;
+    pitchRef.current = voiceGender === 'female' ? 1.35 : 0.65;
     volumeRef.current = volume;
     isMutedRef.current = isMuted;
     selectedVoiceRef.current = selectedVoice;
