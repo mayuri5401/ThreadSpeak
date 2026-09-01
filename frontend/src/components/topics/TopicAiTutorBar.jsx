@@ -15,6 +15,7 @@ export default function TopicAiTutorBar({
 
   // Text-To-Speech Audio Narration State
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [isPausedAudio, setIsPausedAudio] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [voiceGender, setVoiceGender] = useState(() => {
     try {
@@ -24,8 +25,15 @@ export default function TopicAiTutorBar({
     }
   });
   const [voices, setVoices] = useState([]);
-  const synthRef = useRef(typeof window !== 'undefined' ? window.speechSynthesis : null);
-  const utteranceRef = useRef(null);
+  const [currentSentenceIdx, setCurrentSentenceIdx] = useState(0);
+  const [sentencesList, setSentencesList] = useState([]);
+
+  const isPlayingRef = useRef(false);
+  const speedRef = useRef(playbackSpeed);
+  const genderRef = useRef(voiceGender);
+  const sentenceIdxRef = useRef(0);
+  const sentencesRef = useRef([]);
+  const activeUtteranceRef = useRef(null);
 
   // Pick best voice for gender
   const pickVoiceForGender = (availableVoices, gender) => {
@@ -43,77 +51,158 @@ export default function TopicAiTutorBar({
     }
   };
 
+  // Load voices
   useEffect(() => {
-    if (!synthRef.current) return;
-    const loadVoices = () => {
-      const avail = synthRef.current.getVoices();
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    const updateVoices = () => {
+      const avail = window.speechSynthesis.getVoices();
       if (avail && avail.length > 0) setVoices(avail);
     };
-    loadVoices();
-    synthRef.current.onvoiceschanged = loadVoices;
+    updateVoices();
+    window.speechSynthesis.onvoiceschanged = updateVoices;
   }, []);
+
+  // Prepare sentence queue from content
+  useEffect(() => {
+    const raw = `${topicTitle}. ${topicContent || ''}`;
+    // Strip markdown formatting & emojis
+    const clean = raw
+      .replace(/```[\s\S]*?```/g, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/!\[([^\]]*)\]\([^)]*\)/g, '')
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      .replace(/[#*_\-><=~|]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    const chunks = clean.split(/(?<=[.?!])\s+/).filter(s => s.trim().length > 3);
+    const result = chunks.length > 0 ? chunks : [clean.slice(0, 500)];
+    setSentencesList(result);
+    sentencesRef.current = result;
+    setCurrentSentenceIdx(0);
+    sentenceIdxRef.current = 0;
+  }, [topicTitle, topicContent]);
+
+  // Sync refs
+  useEffect(() => {
+    speedRef.current = playbackSpeed;
+    genderRef.current = voiceGender;
+    isPlayingRef.current = isPlayingAudio;
+    sentenceIdxRef.current = currentSentenceIdx;
+  }, [playbackSpeed, voiceGender, isPlayingAudio, currentSentenceIdx]);
 
   // Stop audio on unmount or topic change
   useEffect(() => {
     return () => {
-      if (synthRef.current) {
-        synthRef.current.cancel();
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
       }
+      isPlayingRef.current = false;
     };
   }, [topicTitle]);
 
-  const speakCurrent = (speed = playbackSpeed, gender = voiceGender) => {
-    if (!synthRef.current) return;
-    synthRef.current.cancel();
-    
-    // Clean markdown tags for clear speech
-    const cleanText = `${topicTitle}. ${topicContent.replace(/[#*`_\[\]()]/g, '').slice(0, 3000)}`;
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    
-    const matchedVoice = pickVoiceForGender(voices.length > 0 ? voices : synthRef.current.getVoices(), gender);
+  const speakSentenceAtIndex = (index) => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    const list = sentencesRef.current;
+    if (!list || index >= list.length || !isPlayingRef.current) {
+      setIsPlayingAudio(false);
+      setIsPausedAudio(false);
+      isPlayingRef.current = false;
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.resume();
+
+    const textToSpeak = list[index];
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    activeUtteranceRef.current = utterance;
+
+    const matchedVoice = pickVoiceForGender(voices.length > 0 ? voices : window.speechSynthesis.getVoices(), genderRef.current);
     if (matchedVoice) {
       utterance.voice = matchedVoice;
       utterance.lang = matchedVoice.lang || 'en-US';
     }
-    
-    utterance.pitch = gender === 'female' ? 1.1 : 0.92;
-    utterance.rate = speed;
-    utterance.onend = () => setIsPlayingAudio(false);
-    utterance.onerror = () => setIsPlayingAudio(false);
-    
-    utteranceRef.current = utterance;
-    synthRef.current.speak(utterance);
-    setIsPlayingAudio(true);
+
+    utterance.pitch = genderRef.current === 'female' ? 1.15 : 0.90;
+    utterance.rate = speedRef.current;
+
+    utterance.onend = () => {
+      if (isPlayingRef.current) {
+        const nextIdx = index + 1;
+        setCurrentSentenceIdx(nextIdx);
+        sentenceIdxRef.current = nextIdx;
+        speakSentenceAtIndex(nextIdx);
+      }
+    };
+
+    utterance.onerror = (e) => {
+      console.warn('SpeechSynthesis error:', e);
+      if (isPlayingRef.current && index + 1 < list.length) {
+        speakSentenceAtIndex(index + 1);
+      } else {
+        setIsPlayingAudio(false);
+        setIsPausedAudio(false);
+        isPlayingRef.current = false;
+      }
+    };
+
+    window.speechSynthesis.speak(utterance);
   };
 
   const handleToggleAudio = () => {
-    if (!synthRef.current) {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
       alert('Speech synthesis is not supported in your browser.');
       return;
     }
 
-    if (isPlayingAudio) {
-      synthRef.current.cancel();
-      setIsPlayingAudio(false);
+    if (isPlayingAudio && !isPausedAudio) {
+      // Pause
+      window.speechSynthesis.pause();
+      setIsPausedAudio(true);
+    } else if (isPausedAudio) {
+      // Resume
+      window.speechSynthesis.resume();
+      setIsPausedAudio(false);
     } else {
-      speakCurrent(playbackSpeed, voiceGender);
+      // Start fresh
+      window.speechSynthesis.cancel();
+      setIsPlayingAudio(true);
+      setIsPausedAudio(false);
+      isPlayingRef.current = true;
+      setCurrentSentenceIdx(0);
+      sentenceIdxRef.current = 0;
+      speakSentenceAtIndex(0);
     }
+  };
+
+  const handleStopAudio = () => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlayingAudio(false);
+    setIsPausedAudio(false);
+    isPlayingRef.current = false;
+    setCurrentSentenceIdx(0);
+    sentenceIdxRef.current = 0;
   };
 
   const handleSpeedChange = (speed) => {
     setPlaybackSpeed(speed);
-    if (isPlayingAudio) {
-      speakCurrent(speed, voiceGender);
+    speedRef.current = speed;
+    if (isPlayingAudio && !isPausedAudio) {
+      speakSentenceAtIndex(sentenceIdxRef.current);
     }
   };
 
   const handleGenderChange = (newGender) => {
     setVoiceGender(newGender);
+    genderRef.current = newGender;
     try {
       localStorage.setItem('threadspeak_voice_gender', newGender);
     } catch {}
-    if (isPlayingAudio) {
-      speakCurrent(playbackSpeed, newGender);
+    if (isPlayingAudio && !isPausedAudio) {
+      speakSentenceAtIndex(sentenceIdxRef.current);
     }
   };
 
@@ -241,46 +330,87 @@ export default function TopicAiTutorBar({
           })}
         </div>
 
-        {/* Right: Audio Narration Player with Female / Male Voice Selection */}
-        <div className="flex items-center gap-1.5 bg-slate-900/90 light:bg-white px-2.5 py-1 rounded-xl border border-slate-800 light:border-slate-200">
+        {/* Right: Audio Narration Player with Female / Male Voice Selection & Equalizer */}
+        <div className="flex items-center gap-1.5 bg-slate-900/90 light:bg-white px-2.5 py-1.5 rounded-xl border border-slate-800 light:border-slate-200 shadow-sm">
+          {/* Main Play / Pause / Resume Button */}
           <button
+            type="button"
             onClick={handleToggleAudio}
-            className={`flex items-center gap-1.5 text-xs font-bold transition ${
-              isPlayingAudio ? 'text-emerald-400 animate-pulse' : 'text-slate-300 light:text-slate-700 hover:text-white'
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition ${
+              isPlayingAudio && !isPausedAudio
+                ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-sm'
+                : isPausedAudio
+                ? 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-sm'
+                : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm'
             }`}
-            title={isPlayingAudio ? 'Stop Narration' : 'Listen with AI Audio'}
+            title={isPlayingAudio && !isPausedAudio ? 'Pause Narration' : isPausedAudio ? 'Resume Narration' : 'Listen with AI Audio'}
           >
-            {isPlayingAudio ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 fill-current" />}
-            <span className="text-[11px] font-mono">{isPlayingAudio ? 'Playing' : 'Listen'}</span>
+            {isPlayingAudio && !isPausedAudio ? (
+              <>
+                <Pause className="w-3.5 h-3.5 fill-current" />
+                <span>Pause</span>
+              </>
+            ) : isPausedAudio ? (
+              <>
+                <Play className="w-3.5 h-3.5 fill-current" />
+                <span>Resume</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3.5 h-3.5 fill-current" />
+                <span>Listen</span>
+              </>
+            )}
           </button>
+
+          {/* Soundwave Equalizer when playing */}
+          {isPlayingAudio && !isPausedAudio && (
+            <div className="flex items-end gap-0.5 h-3.5 px-1 bg-emerald-950/80 rounded border border-emerald-800/60">
+              <span className="w-0.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:0ms] h-2" />
+              <span className="w-0.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:150ms] h-3" />
+              <span className="w-0.5 bg-emerald-300 rounded-full animate-bounce [animation-delay:75ms] h-2.5" />
+            </div>
+          )}
+
+          {/* Stop Button when active */}
+          {isPlayingAudio && (
+            <button
+              type="button"
+              onClick={handleStopAudio}
+              className="p-1 rounded-lg bg-slate-800 hover:bg-rose-950 text-slate-400 hover:text-rose-400 border border-slate-700 transition"
+              title="Stop Narration"
+            >
+              <VolumeX className="w-3.5 h-3.5" />
+            </button>
+          )}
 
           {/* Voice Gender Toggle: Female / Male */}
           <div className="flex items-center gap-0.5 pl-1.5 border-l border-slate-800 light:border-slate-200">
             <button
               type="button"
               onClick={() => handleGenderChange('female')}
-              className={`px-1.5 py-0.5 rounded text-[10px] font-medium transition flex items-center gap-0.5 ${
+              className={`px-2 py-0.5 rounded-lg text-[10px] font-medium transition flex items-center gap-1 ${
                 voiceGender === 'female'
-                  ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold shadow-sm'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold shadow-md shadow-pink-500/20 ring-1 ring-pink-400/40'
+                  : 'bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
               title="Female Voice"
             >
               <span>👩</span>
-              <span className="hidden sm:inline">Female</span>
+              <span className="inline text-[10px]">Female</span>
             </button>
             <button
               type="button"
               onClick={() => handleGenderChange('male')}
-              className={`px-1.5 py-0.5 rounded text-[10px] font-medium transition flex items-center gap-0.5 ${
+              className={`px-2 py-0.5 rounded-lg text-[10px] font-medium transition flex items-center gap-1 ${
                 voiceGender === 'male'
-                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold shadow-sm'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold shadow-md shadow-cyan-500/20 ring-1 ring-cyan-400/40'
+                  : 'bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-800'
               }`}
               title="Male Voice"
             >
               <span>👨</span>
-              <span className="hidden sm:inline">Male</span>
+              <span className="inline text-[10px]">Male</span>
             </button>
           </div>
 
@@ -289,11 +419,12 @@ export default function TopicAiTutorBar({
             {[1, 1.25, 1.5].map(s => (
               <button
                 key={s}
+                type="button"
                 onClick={() => handleSpeedChange(s)}
-                className={`text-[10px] font-mono px-1 py-0.5 rounded ${
+                className={`text-[10px] font-mono px-1.5 py-0.5 rounded-md transition ${
                   playbackSpeed === s
                     ? 'bg-emerald-500 text-slate-950 font-bold'
-                    : 'text-slate-400 hover:text-white'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
               >
                 {s}x
