@@ -35,6 +35,7 @@ export default function TopicAiTutorBar({
   const sentenceIdxRef = useRef(0);
   const sentencesRef = useRef([]);
   const activeUtteranceRef = useRef(null);
+  const speechIdRef = useRef(0);
 
   // Intelligent Male vs Female voice picker
   const pickVoiceForGender = (availableVoices, gender) => {
@@ -46,15 +47,12 @@ export default function TopicAiTutorBar({
     const maleKeywords = ['male', 'david', 'guy', 'mark', 'george', 'alex', 'daniel', 'oliver', 'james', 'tom', 'arthur', 'rishi', 'aaron', 'richard', 'fred', 'ryan', 'christopher', 'microsoft david', 'microsoft mark'];
 
     if (gender === 'male') {
-      // 1. Explicit Male name match
       const maleMatch = pool.find(v => maleKeywords.some(kw => v.name.toLowerCase().includes(kw)));
       if (maleMatch) return maleMatch;
-      // 2. Non-female named voice
       const nonFemale = pool.find(v => !femaleKeywords.some(kw => v.name.toLowerCase().includes(kw)));
       if (nonFemale) return nonFemale;
       return pool[0];
     } else {
-      // 1. Explicit Female name match
       const femaleMatch = pool.find(v => femaleKeywords.some(kw => v.name.toLowerCase().includes(kw)));
       if (femaleMatch) return femaleMatch;
       return pool[0];
@@ -104,6 +102,7 @@ export default function TopicAiTutorBar({
   // Stop audio on unmount or topic change
   useEffect(() => {
     return () => {
+      speechIdRef.current++;
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
@@ -120,6 +119,8 @@ export default function TopicAiTutorBar({
       isPlayingRef.current = false;
       return;
     }
+
+    const currentSpeechId = ++speechIdRef.current;
 
     window.speechSynthesis.cancel();
     window.speechSynthesis.resume();
@@ -139,23 +140,23 @@ export default function TopicAiTutorBar({
     utterance.rate = genderRef.current === 'male' ? speedRef.current * 0.92 : speedRef.current * 1.02;
 
     utterance.onend = () => {
-      if (isPlayingRef.current) {
-        const nextIdx = index + 1;
-        if (nextIdx < list.length) {
-          setCurrentSentenceIdx(nextIdx);
-          sentenceIdxRef.current = nextIdx;
-          speakSentenceAtIndex(nextIdx);
-        } else {
-          setIsPlayingAudio(false);
-          setIsPausedAudio(false);
-          isPlayingRef.current = false;
-        }
+      if (speechIdRef.current !== currentSpeechId || !isPlayingRef.current) return;
+      const nextIdx = index + 1;
+      if (nextIdx < list.length) {
+        setCurrentSentenceIdx(nextIdx);
+        sentenceIdxRef.current = nextIdx;
+        speakSentenceAtIndex(nextIdx);
+      } else {
+        setIsPlayingAudio(false);
+        setIsPausedAudio(false);
+        isPlayingRef.current = false;
       }
     };
 
     utterance.onerror = (e) => {
+      if (speechIdRef.current !== currentSpeechId || !isPlayingRef.current) return;
       console.warn('SpeechSynthesis error:', e);
-      if (isPlayingRef.current && index + 1 < list.length) {
+      if (index + 1 < list.length) {
         speakSentenceAtIndex(index + 1);
       } else {
         setIsPlayingAudio(false);
@@ -183,6 +184,7 @@ export default function TopicAiTutorBar({
       setIsPausedAudio(false);
     } else {
       // Start fresh
+      speechIdRef.current++;
       window.speechSynthesis.cancel();
       setIsPlayingAudio(true);
       setIsPausedAudio(false);
@@ -194,6 +196,7 @@ export default function TopicAiTutorBar({
   };
 
   const handleStopAudio = () => {
+    speechIdRef.current++;
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
