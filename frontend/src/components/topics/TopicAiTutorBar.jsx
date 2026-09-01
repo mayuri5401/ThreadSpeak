@@ -70,15 +70,34 @@ export default function TopicAiTutorBar({
     window.speechSynthesis.onvoiceschanged = updateVoices;
   }, []);
 
-  // Prepare sentence queue from content
+  // Prepare sentence queue from content by stripping all emojis, icons, and markdown tokens
   useEffect(() => {
     const raw = `${topicTitle}. ${topicContent || ''}`;
-    // Strip markdown formatting & emojis
+    
+    // Comprehensive cleaner that strips ALL emojis, pictographs, callout tags, code fences, and symbols
     const clean = raw
+      // Remove code blocks
       .replace(/```[\s\S]*?```/g, '')
+      // Remove inline code backticks, keep code text
       .replace(/`([^`]+)`/g, '$1')
+      // Remove images
       .replace(/!\[([^\]]*)\]\([^)]*\)/g, '')
+      // Remove links, keep readable text
       .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      // Convert keycap emojis (1️⃣, 2️⃣) into numbers
+      .replace(/(\d)[\uFE0F\u20E3\uFE0E]+/gu, '$1. ')
+      .replace(/(\d)\u20E3/gu, '$1. ')
+      // Remove markdown headers, blockquotes, and callouts
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/^>\s*\[![A-Z]+\]\s*/gim, '')
+      .replace(/^>\s+/gm, '')
+      // Remove all Unicode emojis and extended pictographic characters
+      .replace(/\p{Extended_Pictographic}/gu, '')
+      .replace(/[\u{1F300}-\u{1FAFF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E6}-\u{1F1FF}\u{2B50}\u{2300}-\u{23FF}\u{2934}-\u{2935}\u{25A0}-\u{25FF}\u{2190}-\u{21FF}\u{FE0F}\u{FE0E}\u{200D}]/gu, '')
+      // Remove decorative bullet points, checkmarks, arrows, and table borders
+      .replace(/[•◆◇■□★☆✓✔✕✖❌⭕]/g, ' ')
+      .replace(/[=\-_~*#|]{2,}/g, ' ')
+      .replace(/[-=]>{1,2}|<[-=]{1,2}|<->/g, ' ')
       .replace(/[#*_\-><=~|]/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
