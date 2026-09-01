@@ -261,7 +261,7 @@ export default function AppShell() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#070B14] text-slate-100 font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen flex flex-col bg-[var(--bg-app)] text-[var(--text-main)] font-sans selection:bg-cyan-500/30 selection:text-cyan-400 transition-colors duration-300">
       {/* Shell Navbar */}
       <Navbar
         currentTrack={currentTrackId}
@@ -273,6 +273,7 @@ export default function AppShell() {
         onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
         currentSubSection={systemDesignSubSection}
         onSelectSubSection={handleSelectSubSection}
+        onOpenPlayground={handleOpenPlaygroundWithCode}
       />
       {/* Main Shell Viewport / Microfrontend Stage */}
       <div className="flex-1 w-full">
@@ -320,9 +321,11 @@ export default function AppShell() {
               bookmarkedTopicIds={bookmarkedTopicIds}
               onSelectTopic={handleSelectTopicFromOtherView}
               onOpenPlayground={handleOpenPlaygroundWithCode}
+              onSelectView={setCurrentView}
             />
           </div>
         )}
+
 
         {/* MFE: Java Code Runner & Execution Sandbox */}
         {currentView === 'playground' && (

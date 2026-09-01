@@ -96,26 +96,24 @@ function parseMarkdownFile(raw, id) {
 }
 
 export async function fetchTopicById(id) {
+  if (!id) return null;
+
   if (topicDetailCache.has(id)) {
     const cached = topicDetailCache.get(id);
     if (cached && (cached.deepDive || cached.eli10)) {
       return cached;
     }
   }
-  try {
-    const data = await gatewayFetch(`/topics/${id}`);
-    if (data && (data.deepDive || data.eli10)) {
-      topicDetailCache.set(id, data);
-      return data;
-    }
-  } catch (err) {
-    // Normal fallback for static hosting
+
+  // Tier 1: Check pre-compiled topics catalog (instant 0ms memory access)
+  const catalogEntry = topicsCatalog.find(t => t.id === id);
+  if (catalogEntry && (catalogEntry.deepDive || catalogEntry.eli10)) {
+    topicDetailCache.set(id, catalogEntry);
+    return catalogEntry;
   }
 
-  // Tier 2: Fetch static markdown file from /curriculum/ (served by Vercel or GitHub Pages)
-  const filePath = curriculumIndex[id];
-  const catalogEntry = topicsCatalog.find(t => t.id === id);
-
+  // Tier 2: Static markdown file fetch from public/curriculum
+  const filePath = curriculumIndex[id] || catalogEntry?.filePath;
   if (filePath) {
     try {
       const base = import.meta.env.BASE_URL || '/';
@@ -125,17 +123,26 @@ export async function fetchTopicById(id) {
       if (res.ok) {
         const raw = await res.text();
         const parsed = parseMarkdownFile(raw, id);
-        // Merge with catalog metadata
         const merged = { ...(catalogEntry || {}), ...parsed };
         topicDetailCache.set(id, merged);
         return merged;
       }
     } catch (staticErr) {
-      console.warn('[MFE-Content] Static markdown fetch failed:', staticErr.message);
+      // static fetch failed
     }
   }
 
-  // Final fallback: return catalog entry
+  // Tier 3: Optional live gateway fetch
+  try {
+    const data = await gatewayFetch(`/topics/${id}`);
+    if (data && (data.deepDive || data.eli10)) {
+      topicDetailCache.set(id, data);
+      return data;
+    }
+  } catch (err) {
+    // ignore
+  }
+
   return catalogEntry || null;
 }
 

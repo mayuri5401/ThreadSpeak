@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   User, Mail, Award, Flame, CheckCircle2, Bookmark, Terminal, 
   Code2, ExternalLink, Trash2, Copy, Check, Eye, Edit3, Shield, 
   Sparkles, Layers, Coffee, Leaf, BarChart3, Clock, Play, ArrowRight,
-  TrendingUp, Star, Lock, LogIn
+  TrendingUp, Star, Lock, LogIn, Moon, Sun, Palette, Settings,
+  Camera, Upload, Loader2
 } from 'lucide-react';
+import { 
+  getUserProfile, 
+  saveUserProfile, 
+  processAndCompressImage, 
+  CURATED_AVATARS 
+} from '../../shared/services/avatarService';
 
 const AVATAR_OPTIONS = [
   { id: 'avatar-1', label: 'Tech Lead', bg: 'from-cyan-500 to-blue-600', emoji: '👨‍💻' },
@@ -21,20 +28,34 @@ export default function UserProfileView({
   completedTopicIds = new Set(),
   bookmarkedTopicIds = new Set(),
   onSelectTopic,
-  onOpenPlayground
+  onOpenPlayground,
+  onSelectView
 }) {
+  const fileInputRef = useRef(null);
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+
   // User profile state stored in localStorage
   const [profile, setProfile] = useState(() => {
+    const native = getUserProfile();
     try {
       const saved = localStorage.getItem('threadspeak_user_profile');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          ...parsed,
+          name: native.userName || parsed.name || 'Mayuri',
+          title: native.role || parsed.title || 'Senior Software Engineer / System Architect',
+          avatarUrl: native.avatarUrl || parsed.avatarUrl || ''
+        };
+      }
     } catch (_) {}
     return {
-      name: 'Mayuri',
+      name: native.userName || 'Mayuri',
       email: 'mayuri@threadspeak.dev',
-      title: 'Senior Software Engineer / System Architect',
+      title: native.role || 'Senior Software Engineer / System Architect',
       targetCompany: 'FAANG / Tier-1 Enterprise',
       bio: 'Mastering Java 21, Spring Boot 3, and Distributed System Design for Staff Level Engineering.',
+      avatarUrl: native.avatarUrl || '',
       avatarId: 'avatar-1',
       joinedDate: 'August 2026',
       streakDays: 7
@@ -126,6 +147,11 @@ public class VirtualThreadsDemo {
     e.preventDefault();
     setProfile(editForm);
     localStorage.setItem('threadspeak_user_profile', JSON.stringify(editForm));
+    saveUserProfile({
+      userName: editForm.name,
+      role: editForm.title,
+      avatarUrl: editForm.avatarUrl
+    });
     setIsEditModalOpen(false);
   };
 
@@ -162,8 +188,93 @@ public class VirtualThreadsDemo {
     return (sol.category || '').toLowerCase() === solutionFilter.toLowerCase();
   });
 
+  // Theme state (read + write, same key as Navbar)
+  const [currentThemeId, setCurrentThemeId] = useState(() => {
+    try { return localStorage.getItem('threadspeak_theme_id') || 'midnight'; } catch { return 'midnight'; }
+  });
+
+  const applyTheme = (themeId) => {
+    setCurrentThemeId(themeId);
+    try {
+      localStorage.setItem('threadspeak_theme_id', themeId);
+      document.documentElement.setAttribute('data-theme', themeId);
+      document.documentElement.classList.toggle('light', themeId === 'light');
+      document.documentElement.classList.toggle('dark', themeId !== 'light');
+    } catch (e) { console.warn(e); }
+  };
+
+  useEffect(() => { applyTheme(currentThemeId); }, []);
+
+  const THEMES = [
+    { id: 'midnight', label: 'Midnight', desc: 'Deep blue-black', swatch: 'from-slate-900 to-[#070B14]' },
+    { id: 'obsidian', label: 'Obsidian', desc: 'Pure black', swatch: 'from-black to-zinc-900' },
+    { id: 'emerald',  label: 'Emerald',  desc: 'Dark green tones', swatch: 'from-emerald-950 to-[#020F09]' },
+    { id: 'nebula',   label: 'Nebula',   desc: 'Deep purple', swatch: 'from-purple-950 to-[#090514]' },
+    { id: 'light',    label: 'Light',    desc: 'Clean white', swatch: 'from-slate-100 to-white', isLight: true },
+  ];
+
+  // Streak state
+  const [streakCount] = useState(() => {
+    try { return Number(localStorage.getItem('threadspeak_streak')) || profile.streakDays || 5; } catch { return 5; }
+  });
+
   return (
     <div className="space-y-8 animate-in fade-in duration-300 pb-12">
+
+      {/* ── Quick Navigation Hub ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {[
+          {
+            id: 'playground',
+            label: 'Code Playground',
+            desc: 'Run & test Java 21 code live',
+            icon: Terminal,
+            gradient: 'from-cyan-600 to-blue-700',
+            glow: 'shadow-cyan-500/20',
+            textColor: 'text-cyan-300',
+            border: 'border-cyan-500/30 hover:border-cyan-400/60',
+          },
+          {
+            id: 'progress',
+            label: 'My Progress',
+            desc: `${completedCount} of ${totalTopics} topics mastered · ${progressPct}%`,
+            icon: BarChart3,
+            gradient: 'from-emerald-600 to-teal-700',
+            glow: 'shadow-emerald-500/20',
+            textColor: 'text-emerald-300',
+            border: 'border-emerald-500/30 hover:border-emerald-400/60',
+          },
+          {
+            id: 'quiz',
+            label: 'Quiz & Assessments',
+            desc: 'Test your Java & DSA knowledge',
+            icon: Sparkles,
+            gradient: 'from-purple-600 to-fuchsia-700',
+            glow: 'shadow-purple-500/20',
+            textColor: 'text-purple-300',
+            border: 'border-purple-500/30 hover:border-purple-400/60',
+          },
+        ].map(item => {
+          const Icon = item.icon;
+          return (
+            <button
+              key={item.id}
+              onClick={() => onSelectView?.(item.id)}
+              className={`group flex items-center gap-4 p-4 rounded-2xl bg-slate-900/60 border ${item.border} hover:bg-slate-800/70 transition-all duration-200 active:scale-95 text-left shadow-lg ${item.glow} w-full`}
+            >
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
+                <Icon className="w-5 h-5 text-white" />
+              </div>
+              <div className="min-w-0">
+                <div className={`text-sm font-bold ${item.textColor} group-hover:text-white transition-colors`}>{item.label}</div>
+                <div className="text-[11px] text-slate-500 mt-0.5 truncate">{item.desc}</div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-slate-300 ml-auto flex-shrink-0 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          );
+        })}
+      </div>
+
       {/* 1. Profile Header Hero Card */}
       <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 bg-gradient-to-r from-[#0B1222]/90 via-[#0d1629]/90 to-[#0B1222]/90 shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -172,16 +283,23 @@ public class VirtualThreadsDemo {
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           {/* Avatar & User Details */}
           <div className="flex items-center gap-5">
-            <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br ${selectedAvatar.bg} p-1 shadow-2xl shadow-indigo-500/20 shrink-0 relative group`}>
-              <div className="w-full h-full bg-[#080D18] rounded-[22px] flex items-center justify-center text-3xl sm:text-4xl">
-                {selectedAvatar.emoji}
-              </div>
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl overflow-hidden ring-4 ring-emerald-500/30 shadow-2xl shadow-emerald-500/20 shrink-0 relative group bg-gradient-to-br from-emerald-500 to-teal-600">
+              {profile.avatarUrl ? (
+                <img src={profile.avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+              ) : (
+                <div className={`w-full h-full bg-gradient-to-br ${selectedAvatar.bg} flex items-center justify-center text-3xl sm:text-4xl text-white font-black`}>
+                  {profile.name?.charAt(0) || 'M'}
+                </div>
+              )}
               <button
-                onClick={() => setIsEditModalOpen(true)}
-                className="absolute -bottom-1 -right-1 p-1.5 rounded-full bg-cyan-500 text-slate-950 shadow-md hover:scale-110 transition"
+                onClick={() => {
+                  setEditForm({ ...profile });
+                  setIsEditModalOpen(true);
+                }}
+                className="absolute -bottom-1 -right-1 p-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-md hover:scale-110 transition"
                 title="Edit Avatar & Details"
               >
-                <Edit3 className="w-3.5 h-3.5" />
+                <Camera className="w-3.5 h-3.5" />
               </button>
             </div>
 
@@ -536,24 +654,62 @@ public class VirtualThreadsDemo {
             </div>
 
             <form onSubmit={handleSaveProfile} className="space-y-4">
-              {/* Select Avatar */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-slate-300 font-mono uppercase">Choose Avatar</label>
+              {/* Select Avatar / Upload Photo */}
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold text-slate-300 font-mono uppercase">Profile Photo &amp; Avatar</label>
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isUploadingPhoto}
+                    className="text-xs text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5 bg-emerald-950/60 px-2.5 py-1 rounded-lg border border-emerald-800"
+                  >
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>{isUploadingPhoto ? 'Compressing...' : 'Upload Custom Photo'}</span>
+                  </button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      setIsUploadingPhoto(true);
+                      try {
+                        const compressedUrl = await processAndCompressImage(file, 256);
+                        setEditForm(prev => ({ ...prev, avatarUrl: compressedUrl }));
+                      } catch (err) {
+                        alert(err.message || 'Failed to process image');
+                      } finally {
+                        setIsUploadingPhoto(false);
+                      }
+                    }}
+                    className="hidden"
+                  />
+                </div>
+
+                {/* 1-Click Curated Avatars */}
                 <div className="grid grid-cols-6 gap-2">
-                  {AVATAR_OPTIONS.map(av => (
-                    <button
-                      key={av.id}
-                      type="button"
-                      onClick={() => setEditForm(prev => ({ ...prev, avatarId: av.id }))}
-                      className={`p-2.5 rounded-2xl border text-xl flex items-center justify-center transition ${
-                        editForm.avatarId === av.id
-                          ? 'border-cyan-400 bg-cyan-950/80 ring-2 ring-cyan-400/50 scale-105'
-                          : 'border-slate-800 bg-slate-900 hover:border-slate-700'
-                      }`}
-                    >
-                      {av.emoji}
-                    </button>
-                  ))}
+                  {CURATED_AVATARS.map(av => {
+                    const isSelected = editForm.avatarUrl === av.url;
+                    return (
+                      <button
+                        key={av.id}
+                        type="button"
+                        onClick={() => setEditForm(prev => ({ ...prev, avatarUrl: av.url }))}
+                        className={`p-1 rounded-2xl border transition relative overflow-hidden flex flex-col items-center gap-1 ${
+                          isSelected
+                            ? 'border-emerald-400 bg-emerald-950/80 ring-2 ring-emerald-400/50 scale-105 shadow-md'
+                            : 'border-slate-800 bg-slate-900 hover:border-slate-700'
+                        }`}
+                        title={av.label}
+                      >
+                        <div className="w-10 h-10 rounded-xl overflow-hidden">
+                          <img src={av.url} alt={av.label} className="w-full h-full object-cover" />
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -564,7 +720,7 @@ public class VirtualThreadsDemo {
                   type="text"
                   value={editForm.name}
                   onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500 font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-emerald-500 font-medium"
                   required
                 />
               </div>
@@ -576,7 +732,7 @@ public class VirtualThreadsDemo {
                   type="email"
                   value={editForm.email}
                   onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500 font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-emerald-500 font-medium"
                   required
                 />
               </div>
@@ -588,7 +744,7 @@ public class VirtualThreadsDemo {
                   type="text"
                   value={editForm.title}
                   onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500 font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-emerald-500 font-medium"
                 />
               </div>
 
@@ -599,7 +755,7 @@ public class VirtualThreadsDemo {
                   type="text"
                   value={editForm.targetCompany}
                   onChange={(e) => setEditForm({ ...editForm, targetCompany: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500 font-medium"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-emerald-500 font-medium"
                 />
               </div>
 
@@ -613,7 +769,7 @@ public class VirtualThreadsDemo {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-600/30"
+                  className="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/30"
                 >
                   Save Profile
                 </button>

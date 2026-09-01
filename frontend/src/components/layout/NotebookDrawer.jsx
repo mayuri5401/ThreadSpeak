@@ -103,23 +103,23 @@ export default function NotebookDrawer({
       />
 
       {/* Drawer Panel */}
-      <div className="relative w-full max-w-md bg-[#090D17] border-l border-slate-800 shadow-2xl h-full flex flex-col z-10 animate-in slide-in-from-right duration-300">
+      <div className="relative w-full max-w-md bg-[#090D17] light:bg-white border-l border-slate-800 light:border-slate-200 shadow-2xl h-full flex flex-col z-10 animate-in slide-in-from-right duration-300">
         
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 flex items-start justify-between gap-3">
+        <div className="p-5 border-b border-slate-800 light:border-slate-200 flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-lg font-extrabold text-white flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-cyan-400" />
+            <h3 className="text-lg font-extrabold text-white light:text-slate-900 flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-cyan-400 light:text-cyan-600" />
               <span>Notebook</span>
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Your notes and highlights in <span className="text-slate-200 font-semibold">{trackTitle}</span>.
+            <p className="text-xs text-slate-400 light:text-slate-500 mt-0.5">
+              Your notes and highlights in <span className="text-slate-200 light:text-slate-800 font-semibold">{trackTitle}</span>.
             </p>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition"
+            className="p-2 rounded-xl bg-slate-900 light:bg-slate-100 hover:bg-slate-800 light:hover:bg-slate-200 text-slate-400 light:text-slate-600 hover:text-white light:hover:text-slate-900 border border-slate-800 light:border-slate-200 transition shadow-sm"
           >
             <X className="w-4 h-4" />
           </button>
@@ -127,21 +127,21 @@ export default function NotebookDrawer({
 
         {/* Current Topic Indicator */}
         {currentTopic && (
-          <div className="px-5 py-2.5 bg-slate-950/80 border-b border-slate-800/80 flex items-center justify-between text-xs font-mono">
-            <span className="text-slate-400 truncate">
-              Topic: <strong className="text-cyan-300">{currentTopic.title}</strong>
+          <div className="px-5 py-2.5 bg-slate-950/80 light:bg-slate-50 border-b border-slate-800/80 light:border-slate-200 flex items-center justify-between text-xs font-mono">
+            <span className="text-slate-400 light:text-slate-500 truncate">
+              Topic: <strong className="text-cyan-300 light:text-cyan-700 font-semibold">{currentTopic.title}</strong>
             </span>
           </div>
         )}
 
         {/* Subheader Tabs */}
-        <div className="p-3 bg-slate-950 border-b border-slate-800 flex gap-2">
+        <div className="p-3 bg-slate-950 light:bg-slate-100 border-b border-slate-800 light:border-slate-200 flex gap-2">
           <button
             onClick={() => setActiveTab('highlights')}
             className={`flex-1 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 ${
               activeTab === 'highlights'
                 ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30'
-                : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                : 'text-slate-400 light:text-slate-600 hover:text-white light:hover:text-slate-900 hover:bg-slate-900 light:hover:bg-slate-200'
             }`}
           >
             <Highlighter className="w-3.5 h-3.5" />
@@ -153,7 +153,7 @@ export default function NotebookDrawer({
             className={`flex-1 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 ${
               activeTab === 'notes'
                 ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30'
-                : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                : 'text-slate-400 light:text-slate-600 hover:text-white light:hover:text-slate-900 hover:bg-slate-900 light:hover:bg-slate-200'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -169,15 +169,15 @@ export default function NotebookDrawer({
             <div className="space-y-4">
               
               {/* Note Creator Input */}
-              <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 shadow-inner">
+              <div className="p-3 rounded-2xl bg-slate-950 light:bg-slate-50 border border-slate-800 light:border-slate-200 space-y-2 shadow-inner">
                 <textarea
                   value={noteText}
                   onChange={(e) => setNoteText(e.target.value)}
                   placeholder={`Write your thoughts or key takeaway for ${currentTopic?.title || 'this topic'}...`}
                   rows={3}
-                  className="w-full bg-transparent text-xs text-slate-200 placeholder-slate-500 focus:outline-none resize-none"
+                  className="w-full bg-transparent text-xs text-slate-200 light:text-slate-900 placeholder-slate-500 light:placeholder-slate-400 focus:outline-none resize-none"
                 />
-                <div className="flex items-center justify-between pt-2 border-t border-slate-850">
+                <div className="flex items-center justify-between pt-2 border-t border-slate-800 light:border-slate-250">
                   <span className="text-[10px] text-slate-500 font-mono">Markdown supported</span>
                   <button
                     onClick={handleAddNote}
@@ -193,8 +193,8 @@ export default function NotebookDrawer({
               {/* Notes List */}
               {notes.length === 0 ? (
                 <div className="text-center py-12 space-y-2">
-                  <FileText className="w-8 h-8 text-slate-600 mx-auto" />
-                  <p className="text-xs text-slate-400 font-medium">
+                  <FileText className="w-8 h-8 text-slate-600 light:text-slate-400 mx-auto" />
+                  <p className="text-xs text-slate-400 light:text-slate-500 font-medium">
                     No notes yet for this topic.
                   </p>
                   <p className="text-[11px] text-slate-500">
@@ -204,8 +204,8 @@ export default function NotebookDrawer({
               ) : (
                 <div className="space-y-2.5">
                   {notes.map(n => (
-                    <div key={n.id} className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2 group hover:border-slate-700 transition">
-                      <div className="flex items-center justify-between text-[10.5px] text-slate-400 font-mono">
+                    <div key={n.id} className="p-3.5 rounded-2xl bg-slate-900/80 light:bg-white border border-slate-800 light:border-slate-200 space-y-2 group hover:border-slate-700 light:hover:border-slate-300 shadow-sm transition">
+                      <div className="flex items-center justify-between text-[10.5px] text-slate-400 light:text-slate-500 font-mono">
                         <span>{n.timestamp}</span>
                         <button
                           onClick={() => handleDeleteNote(n.id)}
@@ -215,7 +215,7 @@ export default function NotebookDrawer({
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
-                      <p className="text-xs text-slate-200 whitespace-pre-wrap leading-relaxed">
+                      <p className="text-xs text-slate-200 light:text-slate-800 whitespace-pre-wrap leading-relaxed">
                         {n.text}
                       </p>
                     </div>
@@ -231,17 +231,17 @@ export default function NotebookDrawer({
               
               {/* Quick Save Card */}
               {(currentTopic?.mentalModel || currentTopic?.eli10) && (
-                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-cyan-950/50 to-indigo-950/50 border border-cyan-500/30 space-y-2">
-                  <span className="text-[11px] text-cyan-300 font-mono font-bold flex items-center gap-1.5">
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-cyan-950/50 to-indigo-950/50 light:from-cyan-50 light:to-indigo-50 border border-cyan-500/30 light:border-cyan-200 space-y-2 shadow-sm">
+                  <span className="text-[11px] text-cyan-300 light:text-cyan-700 font-mono font-bold flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>Quick Highlight from Lesson:</span>
                   </span>
-                  <p className="text-xs text-slate-300 italic line-clamp-3">
+                  <p className="text-xs text-slate-300 light:text-slate-700 italic line-clamp-3">
                     "{currentTopic?.mentalModel || currentTopic?.eli10}"
                   </p>
                   <button
                     onClick={handleSaveTakeawayAsHighlight}
-                    className="w-full py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-cyan-300 border border-cyan-800 transition flex items-center justify-center gap-1.5"
+                    className="w-full py-1.5 rounded-xl bg-slate-900 light:bg-white hover:bg-slate-800 light:hover:bg-slate-50 text-xs font-semibold text-cyan-300 light:text-cyan-700 border border-cyan-800 light:border-cyan-300 transition flex items-center justify-center gap-1.5 shadow-sm"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Save Takeaway to Highlights</span>
@@ -251,8 +251,8 @@ export default function NotebookDrawer({
 
               {highlights.length === 0 ? (
                 <div className="text-center py-12 space-y-2">
-                  <Highlighter className="w-8 h-8 text-slate-600 mx-auto" />
-                  <p className="text-xs text-slate-400 font-medium">
+                  <Highlighter className="w-8 h-8 text-slate-600 light:text-slate-400 mx-auto" />
+                  <p className="text-xs text-slate-400 light:text-slate-500 font-medium">
                     No highlights yet.
                   </p>
                   <p className="text-[11px] text-slate-500">
@@ -262,12 +262,12 @@ export default function NotebookDrawer({
               ) : (
                 <div className="space-y-2.5">
                   {highlights.map(h => (
-                    <div key={h.id} className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1.5">
-                      <div className="flex items-center justify-between text-[10.5px] text-slate-400 font-mono">
-                        <span className="text-cyan-400 font-bold">{h.topicTitle}</span>
+                    <div key={h.id} className="p-3.5 rounded-2xl bg-slate-900/80 light:bg-white border border-slate-800 light:border-slate-200 space-y-1.5 shadow-sm">
+                      <div className="flex items-center justify-between text-[10.5px] text-slate-400 light:text-slate-500 font-mono">
+                        <span className="text-cyan-400 light:text-cyan-600 font-bold">{h.topicTitle}</span>
                         <span>{h.timestamp}</span>
                       </div>
-                      <p className="text-xs text-slate-200 italic leading-relaxed border-l-2 border-cyan-400 pl-2.5">
+                      <p className="text-xs text-slate-200 light:text-slate-800 italic leading-relaxed border-l-2 border-cyan-400 light:border-cyan-500 pl-2.5">
                         "{h.text}"
                       </p>
                     </div>

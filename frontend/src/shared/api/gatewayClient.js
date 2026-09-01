@@ -41,17 +41,25 @@ export async function gatewayFetch(endpoint, options = {}) {
     ...(options.headers || {})
   };
 
+  const createSignal = () => {
+    if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) {
+      return AbortSignal.timeout(400);
+    }
+    return undefined;
+  };
+
   try {
     const response = await fetch(gatewayUrl, {
       ...options,
-      headers
+      headers,
+      signal: options.signal || createSignal()
     });
 
     if (response.ok) {
       return await response.json();
     }
   } catch (gatewayErr) {
-    console.warn(`[Gateway Client] Gateway error on ${gatewayUrl}:`, gatewayErr.message);
+    // Fail fast
   }
 
   // Resilient Direct Service Fallback
@@ -60,13 +68,14 @@ export async function gatewayFetch(endpoint, options = {}) {
     try {
       const directResponse = await fetch(directUrl, {
         ...options,
-        headers
+        headers,
+        signal: options.signal || createSignal()
       });
       if (directResponse.ok) {
         return await directResponse.json();
       }
     } catch (directErr) {
-      console.warn(`[Gateway Client] Direct service fallback failed on ${directUrl}:`, directErr.message);
+      // Fail fast
     }
   }
 

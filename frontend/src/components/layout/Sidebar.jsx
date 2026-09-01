@@ -137,13 +137,13 @@ export default function Sidebar({
   };
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-[#070B14] border-r border-slate-800/80 select-none relative">
+    <div className="flex flex-col h-full bg-white dark:bg-[#070B14] border-r border-slate-200 dark:border-slate-800/80 select-none relative">
       
       {/* Desktop Floating Circular Collapse Trigger (‹) on the right border */}
       {onToggleCollapse && (
         <button
           onClick={onToggleCollapse}
-          className="hidden lg:flex items-center justify-center absolute -right-3.5 top-8 w-7 h-7 rounded-full bg-[#0B1120] border border-slate-700/80 text-slate-300 hover:text-white shadow-xl hover:scale-110 transition z-30 group"
+          className="hidden lg:flex items-center justify-center absolute -right-3.5 top-8 w-7 h-7 rounded-full bg-white dark:bg-[#0B1120] border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white shadow-md dark:shadow-xl hover:scale-110 transition z-30 group"
           title="Collapse sidebar for wide reading"
         >
           <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
@@ -153,7 +153,7 @@ export default function Sidebar({
       {/* =================================================================== */}
       {/* 1. SIDEBAR HEADER: BACK TO HOME, TITLE, PROGRESS, SEARCH            */}
       {/* =================================================================== */}
-      <div className="p-4 border-b border-slate-800/80 space-y-3 bg-[#070B14] shrink-0">
+      <div className="p-4 border-b border-slate-200 dark:border-slate-800/80 space-y-3 bg-white dark:bg-[#070B14] shrink-0">
         
         <div className="flex items-center justify-between">
           <button
@@ -161,7 +161,7 @@ export default function Sidebar({
               setSearchQuery('');
               setActiveFilter('all');
             }}
-            className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition font-medium group"
+            className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition font-medium group"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
             <span>Back to Home</span>
@@ -171,7 +171,7 @@ export default function Sidebar({
           {onClose && (
             <button
               onClick={onClose}
-              className="lg:hidden p-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition"
+              className="lg:hidden p-1 rounded-lg bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 transition"
             >
               <X className="w-4 h-4" />
             </button>
@@ -180,7 +180,7 @@ export default function Sidebar({
 
         {/* Course Track Title */}
         <div>
-          <h2 className="text-base sm:text-lg font-bold text-white tracking-tight leading-tight">
+          <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
             {track?.title || 'System Design Fundamentals'}
           </h2>
         </div>
@@ -189,26 +189,26 @@ export default function Sidebar({
         <div className="space-y-1.5 pt-1">
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-baseline gap-0.5">
-              <span className="text-xl font-black text-white">{progressPercent}</span>
-              <span className="text-xs font-bold text-slate-400">%</span>
+              <span className="text-xl font-black text-slate-900 dark:text-white">{progressPercent}</span>
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400">%</span>
             </div>
 
-            <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+            <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs">
               <div className="flex items-center gap-1 font-semibold">
                 {isCertificateUnlocked ? (
-                  <Trophy className="w-3 h-3 text-amber-400" />
+                  <Trophy className="w-3 h-3 text-amber-500 dark:text-amber-400" />
                 ) : (
-                  <Lock className="w-3 h-3 text-slate-500" />
+                  <Lock className="w-3 h-3 text-slate-400 dark:text-slate-500" />
                 )}
                 <span>Certificate</span>
               </div>
-              <span className="text-slate-600">•</span>
-              <span className="font-mono text-slate-400">{completedCount}/{totalCount}</span>
+              <span className="text-slate-300 dark:text-slate-600">•</span>
+              <span className="font-mono text-slate-500 dark:text-slate-400">{completedCount}/{totalCount}</span>
             </div>
           </div>
 
           {/* Progress Bar Line */}
-          <div className="w-full h-1 rounded-full bg-slate-800 overflow-hidden">
+          <div className="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
               style={{ width: `${Math.max(progressPercent, 1)}%` }}
@@ -219,18 +219,18 @@ export default function Sidebar({
         {/* Search & Filter Bar */}
         <div className="flex items-center gap-1.5 pt-1">
           <div className="relative flex-1">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search chapters..."
-              className="w-full bg-[#0B101D] border border-slate-800 rounded-xl pl-8 pr-7 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition"
+              className="w-full bg-slate-100 dark:bg-[#0B101D] border border-slate-200 dark:border-slate-800 rounded-xl pl-8 pr-7 py-2 text-xs text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/60 focus:ring-1 focus:ring-cyan-500/30 transition shadow-inner"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 text-xs"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 text-xs"
               >
                 ✕
               </button>
@@ -241,10 +241,10 @@ export default function Sidebar({
           <div className="relative">
             <button
               onClick={() => setShowFilterMenu(!showFilterMenu)}
-              className={`p-2 rounded-xl border transition ${
+              className={`p-2 rounded-xl border transition shadow-sm ${
                 activeFilter !== 'all'
-                  ? 'bg-emerald-950 border-emerald-500 text-emerald-400 shadow-sm shadow-emerald-950'
-                  : 'bg-[#0B101D] border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                  ? 'bg-emerald-50 dark:bg-emerald-950 border-emerald-300 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 shadow-sm shadow-emerald-950/20'
+                  : 'bg-slate-100 dark:bg-[#0B101D] border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700'
               }`}
               title="Filter chapters"
             >
@@ -252,8 +252,8 @@ export default function Sidebar({
             </button>
 
             {showFilterMenu && (
-              <div className="absolute right-0 top-full mt-2 w-44 p-1.5 rounded-xl bg-[#0C1222] border border-slate-800 shadow-2xl z-30 space-y-0.5 animate-in fade-in zoom-in-95">
-                <span className="text-[9.5px] text-slate-400 font-mono block px-2 py-0.5">Filter Topics</span>
+              <div className="absolute right-0 top-full mt-2 w-44 p-1.5 rounded-xl bg-white dark:bg-[#0C1222] border border-slate-200 dark:border-slate-800 shadow-2xl z-30 space-y-0.5 animate-in fade-in zoom-in-95">
+                <span className="text-[9.5px] text-slate-500 dark:text-slate-400 font-mono block px-2 py-0.5">Filter Topics</span>
                 {[
                   { id: 'all', label: 'All Chapters' },
                   { id: 'incomplete', label: 'Incomplete' },
@@ -268,12 +268,12 @@ export default function Sidebar({
                     }}
                     className={`w-full text-left px-2 py-1.5 rounded-lg text-xs flex items-center justify-between transition ${
                       activeFilter === opt.id
-                        ? 'bg-emerald-950 text-emerald-300 font-bold'
-                        : 'text-slate-300 hover:bg-slate-800'
+                        ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold'
+                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                     }`}
                   >
                     <span>{opt.label}</span>
-                    {activeFilter === opt.id && <Check className="w-3 h-3 text-emerald-400" />}
+                    {activeFilter === opt.id && <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />}
                   </button>
                 ))}
               </div>
@@ -286,14 +286,14 @@ export default function Sidebar({
       {/* =================================================================== */}
       {/* 2. ACCORDION CATEGORIES & SUBTOPICS LIST (END-TO-END SCROLLING)     */}
       {/* =================================================================== */}
-      <div className="flex-1 min-h-0 overflow-y-auto px-3 py-3 space-y-1.5 font-sans scrollbar-thin scrollbar-thumb-slate-800 hover:scrollbar-thumb-slate-700 pb-16">
+      <div className="flex-1 min-h-0 overflow-y-auto px-3 py-3 space-y-1.5 font-sans scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800 pb-16">
         {categoryGroups.length === 0 ? (
           <div className="text-center py-12 px-4 space-y-2">
-            <BookOpen className="w-8 h-8 text-slate-600 mx-auto" />
-            <p className="text-xs text-slate-400 font-medium">No chapters match your query.</p>
+            <BookOpen className="w-8 h-8 text-slate-400 dark:text-slate-600 mx-auto" />
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">No chapters match your query.</p>
             <button
               onClick={() => { setSearchQuery(''); setActiveFilter('all'); }}
-              className="text-xs text-emerald-400 hover:underline font-semibold"
+              className="text-xs text-emerald-600 dark:text-emerald-400 hover:underline font-semibold"
             >
               Reset search & filter
             </button>
@@ -311,24 +311,24 @@ export default function Sidebar({
                 {/* Category Accordion Header */}
                 <button
                   onClick={() => toggleCategory(group.category)}
-                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-900/80 transition text-left group"
+                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900/80 transition text-left group"
                 >
                   <div className="flex items-center gap-2.5 min-w-0 pr-2">
                     <span className="text-base shrink-0 select-none">{categoryIcon}</span>
-                    <span className="text-xs sm:text-sm font-bold text-white group-hover:text-slate-100 truncate">
+                    <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-slate-950 dark:group-hover:text-slate-100 truncate">
                       {group.category}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0">
-                    <div className="flex items-center gap-1 text-[11px] text-slate-400 font-mono">
-                      <span className={`w-2 h-2 rounded-full ${group.isAllCompleted ? 'bg-emerald-400' : 'border border-slate-600'}`} />
+                    <div className="flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                      <span className={`w-2 h-2 rounded-full ${group.isAllCompleted ? 'bg-emerald-500 dark:bg-emerald-400' : 'border border-slate-300 dark:border-slate-600'}`} />
                       <span>{group.completedCount}/{group.totalCount}</span>
                     </div>
 
                     <ChevronDown 
-                      className={`w-3.5 h-3.5 text-slate-500 transition-transform duration-200 ${
-                        isExpanded ? 'rotate-180 text-slate-300' : ''
+                      className={`w-3.5 h-3.5 text-slate-400 dark:text-slate-500 transition-transform duration-200 ${
+                        isExpanded ? 'rotate-180 text-slate-700 dark:text-slate-300' : ''
                       }`}
                     />
                   </div>
@@ -352,16 +352,16 @@ export default function Sidebar({
                           }}
                           className={`w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl text-left transition-all duration-150 relative group ${
                             isSelected
-                              ? 'bg-[#0B1728] text-white border-l-2 border-emerald-400 shadow-sm'
-                              : 'text-slate-300 hover:text-white hover:bg-slate-900/60'
+                              ? 'bg-cyan-50 dark:bg-[#0B1728] text-cyan-950 dark:text-white border-l-4 border-cyan-500 dark:border-emerald-400 shadow-sm font-semibold'
+                              : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900/60'
                           }`}
                         >
                           <div className="flex items-center gap-2.5 min-w-0 flex-1">
                             <FileText className={`w-3.5 h-3.5 shrink-0 ${
-                              isSelected ? 'text-emerald-400' : isDone ? 'text-emerald-500' : 'text-slate-500 group-hover:text-slate-400'
+                              isSelected ? 'text-cyan-600 dark:text-emerald-400' : isDone ? 'text-emerald-600 dark:text-emerald-500' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-400'
                             }`} />
                             <span className={`text-xs truncate ${
-                              isSelected ? 'font-bold text-white' : 'font-normal text-slate-300 group-hover:text-white'
+                              isSelected ? 'font-bold text-slate-900 dark:text-white' : 'font-normal text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white'
                             }`}>
                               {topic.title}
                             </span>
@@ -369,12 +369,12 @@ export default function Sidebar({
 
                           <div className="flex items-center gap-1.5 shrink-0">
                             {/* Difficulty Badge */}
-                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900/90 border border-slate-800 text-slate-400">
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                               {difficulty}
                             </span>
 
                             {isDone && (
-                              <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400 shrink-0" />
                             )}
                             {isSaved && (
                               <Star className="w-3 h-3 fill-amber-400 text-amber-400 shrink-0" />

@@ -2,21 +2,48 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Coffee, Leaf, Layers, Code, Terminal, 
   Sparkles, CheckCircle2, Menu, X, BarChart3,
-  Moon, Sun, Flame, Award, Zap, Calendar, TrendingUp
+  Moon, Sun, Flame, Award, Zap, Calendar, TrendingUp,
+  ChevronDown, BookOpen, Cpu, Database, Server, Star,
+  Bot, FileText, Map, Video, Briefcase, Github, Shield, Trophy
 } from 'lucide-react';
+import InterviewModal from '../modals/InterviewModal';
+import ResourcesModal from '../modals/ResourcesModal';
+import { getUserProfile } from '../../shared/services/avatarService';
 
 export default function Navbar({ 
-  currentTrack, 
+  currentTrack = 'core-java', 
   onSelectTrack, 
   currentView, 
   onSelectView, 
-  completedCount = 0,
-  totalTopics = 509,
-  onToggleSidebar
+  completedCount = 0, 
+  totalTopics = 540,
+  onToggleSidebar,
+  onOpenPlayground,
+  currentSubSection,
+  onSelectSubSection
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'learn' | 'practice' | 'interview' | 'resources' | null
+  const [isInterviewModalOpen, setIsInterviewModalOpen] = useState(false);
+  const [isResourcesModalOpen, setIsResourcesModalOpen] = useState(false);
 
-  // THEME STATE (Dark Mode vs Clean White Shade Light Mode)
+  const [userAvatarUrl, setUserAvatarUrl] = useState(() => getUserProfile().avatarUrl);
+  const [userProfileName, setUserProfileName] = useState(() => getUserProfile().userName);
+
+  const navRef = useRef(null);
+
+  // Auto-dismiss dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setActiveDropdown(null);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // THEME STATE
   const [currentThemeId, setCurrentThemeId] = useState(() => {
     try {
       return localStorage.getItem('threadspeak_theme_id') || 'midnight';
@@ -42,7 +69,6 @@ export default function Navbar({
     }
   };
 
-  // Direct 1-Click Dark/White Shade Toggle
   const handleQuickToggleTheme = () => {
     if (currentThemeId === 'light') {
       applyTheme('midnight');
@@ -55,382 +81,529 @@ export default function Navbar({
     applyTheme(currentThemeId);
   }, []);
 
-  // STREAK STATE
-  const [showStreakModal, setShowStreakModal] = useState(false);
-  const streakRef = useRef(null);
-  const [streakCount, setStreakCount] = useState(() => {
+  // Streak state
+  const [streakCount] = useState(() => {
     try {
-      return Number(localStorage.getItem('threadspeak_streak')) || 5;
+      return Number(localStorage.getItem('threadspeak_streak')) || 7;
     } catch {
-      return 5;
+      return 7;
     }
   });
 
-  const tracks = [
-    { id: 'core-java', label: 'Core Java', icon: Coffee, color: 'text-amber-400', glow: 'from-amber-500/20 to-orange-500/20', border: 'border-amber-500/50' },
-    { id: 'spring-boot', label: 'Spring Boot', icon: Leaf, color: 'text-emerald-400', glow: 'from-emerald-500/20 to-teal-500/20', border: 'border-emerald-500/50' },
-    { id: 'system-design', label: 'System Design', icon: Layers, color: 'text-indigo-400', glow: 'from-indigo-500/20 to-purple-500/20', border: 'border-indigo-500/50' },
-    { id: 'dsa', label: 'DSA', icon: Code, color: 'text-cyan-400', glow: 'from-cyan-500/20 to-blue-500/20', border: 'border-cyan-500/50' },
-  ];
-
-  const views = [
-    { id: 'playground', label: 'Playground', icon: Terminal, color: 'text-cyan-400', activeClass: 'text-cyan-300' },
-    { id: 'progress', label: 'Progress', icon: BarChart3, color: 'text-emerald-400', activeClass: 'text-emerald-300', extra: true },
-    { id: 'quiz', label: 'Quiz', icon: Sparkles, color: 'text-purple-400', activeClass: 'text-purple-300' },
-    { id: 'profile', label: 'Profile', icon: null, color: 'text-indigo-400', activeClass: 'text-indigo-300', isProfile: true },
-  ];
-
-  const percentage = Math.min(100, Math.round((completedCount / (totalTopics || 1)) * 100));
-
-  // Close streak modal on Click Outside
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (streakRef.current && !streakRef.current.contains(e.target)) {
-        setShowStreakModal(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // Sliding Bubble Pill Indicator for Tracks
-  const trackContainerRef = useRef(null);
-  const [trackBubble, setTrackBubble] = useState({ left: 0, width: 0, opacity: 0 });
-
-  useEffect(() => {
-    if (!trackContainerRef.current) return;
-    const isTopicsView = currentView === 'topics';
-    if (!isTopicsView) {
-      setTrackBubble(prev => ({ ...prev, opacity: 0 }));
-      return;
-    }
-
-    const activeIndex = tracks.findIndex(t => t.id === currentTrack);
-    const buttons = trackContainerRef.current.querySelectorAll('.track-tab-btn');
-    if (buttons && buttons[activeIndex]) {
-      const el = buttons[activeIndex];
-      setTrackBubble({
-        left: el.offsetLeft,
-        width: el.offsetWidth,
-        opacity: 1
-      });
-    }
-  }, [currentTrack, currentView]);
-
-  // Sliding Bubble Pill Indicator for Views
-  const viewContainerRef = useRef(null);
-  const [viewBubble, setViewBubble] = useState({ left: 0, width: 0, opacity: 0 });
-
-  useEffect(() => {
-    if (!viewContainerRef.current) return;
-    const isTopicTrackView = currentView === 'topics';
-    if (isTopicTrackView) {
-      setViewBubble(prev => ({ ...prev, opacity: 0 }));
-      return;
-    }
-
-    const activeIndex = views.findIndex(v => v.id === currentView);
-    const buttons = viewContainerRef.current.querySelectorAll('.view-tab-btn');
-    if (buttons && buttons[activeIndex]) {
-      const el = buttons[activeIndex];
-      setViewBubble({
-        left: el.offsetLeft,
-        width: el.offsetWidth,
-        opacity: 1
-      });
-    }
-  }, [currentView]);
-
   const isLight = currentThemeId === 'light';
 
+  const handleSelectMenuCourse = (trackId, subSection = null) => {
+    onSelectTrack?.(trackId);
+    if (subSection && onSelectSubSection) {
+      onSelectSubSection(subSection);
+    }
+    onSelectView?.('topics');
+    setActiveDropdown(null);
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleSelectPracticeScenario = (type) => {
+    setActiveDropdown(null);
+    setIsMobileMenuOpen(false);
+    if (type === 'dsa') {
+      onSelectTrack?.('dsa');
+      onSelectView?.('playground');
+    } else if (type === 'system-design') {
+      onSelectTrack?.('system-design');
+      onSelectView?.('topics');
+    } else if (type === 'concurrency') {
+      onOpenPlayground?.(`// Java 21 Concurrency & Virtual Threads Benchmark\nimport java.util.concurrent.*;\n\npublic class ConcurrencyBenchmark {\n    public static void main(String[] args) throws Exception {\n        System.out.println("Running High-Throughput Virtual Thread Benchmark...");\n        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n            for (int i = 0; i < 500; i++) {\n                final int id = i;\n                executor.submit(() -> {\n                    Thread.sleep(10);\n                    return id;\n                });\n            }\n        }\n        System.out.println("✓ 500 Virtual Threads completed with zero OS thread overhead!");\n    }\n}`);
+      onSelectView?.('playground');
+    } else if (type === 'lld') {
+      onSelectTrack?.('system-design');
+      onSelectView?.('topics');
+    } else if (type === 'company-wise') {
+      onSelectView?.('quiz');
+    }
+  };
+
+  // Sliding Bubble Pill Indicator for the 4 Top Menus
+  const navContainerRef = useRef(null);
+  const [hoveredMenu, setHoveredMenu] = useState(null);
+  const [menuBubble, setMenuBubble] = useState({ left: 0, width: 0, opacity: 0, colorClass: 'border-emerald-500/50 bg-emerald-500/20' });
+
+  const activeTarget = hoveredMenu || activeDropdown || (currentView === 'playground' ? 'practice' : currentView === 'topics' ? 'learn' : null);
+
+  const updateBubblePosition = () => {
+    if (!navContainerRef.current) return;
+    if (!activeTarget) {
+      setMenuBubble(prev => ({ ...prev, opacity: 0 }));
+      return;
+    }
+
+    const menuIds = ['learn', 'practice', 'interview', 'resources'];
+    const activeIndex = menuIds.indexOf(activeTarget);
+    const buttons = navContainerRef.current.querySelectorAll('.nav-menu-btn');
+    
+    if (buttons && buttons[activeIndex]) {
+      const el = buttons[activeIndex];
+      const containerRect = navContainerRef.current.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+
+      const colorMap = {
+        learn: 'border-emerald-500/50 bg-emerald-500/20 shadow-emerald-500/20',
+        practice: 'border-cyan-500/50 bg-cyan-500/20 shadow-cyan-500/20',
+        interview: 'border-purple-500/50 bg-purple-500/20 shadow-purple-500/20',
+        resources: 'border-amber-500/50 bg-amber-500/20 shadow-amber-500/20',
+      };
+
+      setMenuBubble({
+        left: elRect.left - containerRect.left,
+        width: elRect.width,
+        opacity: 1,
+        colorClass: colorMap[activeTarget] || 'border-emerald-500/50 bg-emerald-500/20'
+      });
+    }
+  };
+
+  useEffect(() => {
+    updateBubblePosition();
+    window.addEventListener('resize', updateBubblePosition);
+    return () => window.removeEventListener('resize', updateBubblePosition);
+  }, [activeTarget, activeDropdown, currentView]);
+
   return (
-    <header className="sticky top-0 z-40 bg-[#070B14]/90 backdrop-blur-xl border-b border-slate-800/80 shadow-2xl shadow-black/50 transition-colors duration-300">
+    <header ref={navRef} className="sticky top-0 z-50 bg-[#070B14]/95 light:bg-white/95 backdrop-blur-xl border-b border-slate-800/80 light:border-slate-200 shadow-lg shadow-black/20 light:shadow-sm transition-colors duration-300">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           
-          {/* Left: Logo & Sidebar Toggle */}
+          {/* Left: Brand Logo & Mobile Toggle */}
           <div className="flex items-center gap-3">
             <button
               onClick={onToggleSidebar}
-              className="lg:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+              className="lg:hidden p-2 rounded-xl bg-slate-900 light:bg-slate-100 border border-slate-800 light:border-slate-200 text-slate-300 light:text-slate-700 hover:text-white"
               aria-label="Toggle Topic Sidebar"
             >
               <Menu className="w-5 h-5" />
             </button>
 
             <button
-              onClick={() => { onSelectView('topics'); onSelectTrack('core-java'); }}
-              className="flex items-center gap-2.5 text-left group"
+              onClick={() => { onSelectView?.('topics'); onSelectTrack?.('core-java'); }}
+              className="flex items-center gap-2.5 text-left group shrink-0"
             >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 via-indigo-600 to-purple-600 p-0.5 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
-                <div className="w-full h-full bg-[#070B14] rounded-[10px] flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-cyan-400 group-hover:rotate-12 transition-transform duration-300" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-full h-full bg-[#070B14] light:bg-white rounded-[10px] flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-emerald-400 group-hover:rotate-12 transition-transform duration-300" />
                 </div>
               </div>
               <div>
-                <span className="text-lg font-extrabold tracking-tight text-white flex items-center gap-1">
-                  Thread<span className="text-cyan-400">Speak</span>
+                <span className="text-lg font-extrabold tracking-tight text-white light:text-slate-900 flex items-center gap-0.5">
+                  Thread<span className="text-emerald-400">Speak</span>
                 </span>
-                <span className="text-[10px] font-mono text-slate-400 block -mt-1">
-                  Java &amp; System Design Academy
+                <span className="text-[10px] font-mono text-slate-400 light:text-slate-500 block -mt-1 font-medium">
+                  Academy &amp; System Design
                 </span>
               </div>
             </button>
           </div>
 
-          {/* Center: The 4 Core Tracks with Animated Sliding Bubble Pill */}
+          {/* ── 4 Main Top-Level Navigation Dropdowns with Animated Sliding Bubble ── */}
           <nav 
-            ref={trackContainerRef}
-            className="hidden md:flex items-center gap-1 p-1 rounded-2xl bg-[#090E1A] border border-slate-800/90 relative shadow-inner"
+            ref={navContainerRef}
+            onMouseLeave={() => setHoveredMenu(null)}
+            className="hidden lg:flex items-center gap-1 p-1 rounded-2xl bg-slate-900/80 light:bg-slate-100/90 border border-slate-800/90 light:border-slate-200/90 relative shadow-inner"
           >
             {/* Sliding Bubble Background Indicator */}
             <div 
-              className="absolute top-1 bottom-1 rounded-xl bg-gradient-to-r from-slate-800 via-slate-800/90 to-slate-800 border border-cyan-500/40 shadow-lg shadow-cyan-950/40 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
+              className={`absolute top-1 bottom-1 rounded-xl transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none border shadow-md ${
+                isLight
+                  ? 'bg-white border-slate-300 shadow-slate-300/40'
+                  : menuBubble.colorClass
+              }`}
               style={{
-                left: `${trackBubble.left}px`,
-                width: `${trackBubble.width}px`,
-                opacity: trackBubble.opacity
+                left: `${menuBubble.left}px`,
+                width: `${menuBubble.width}px`,
+                opacity: menuBubble.opacity
               }}
             />
-
-            {tracks.map(t => {
-              const Icon = t.icon;
-              const isSelected = currentTrack === t.id && currentView === 'topics';
-
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => { onSelectTrack(t.id); onSelectView('topics'); }}
-                  className={`track-tab-btn relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors duration-200 ${
-                    isSelected
-                      ? 'text-white'
-                      : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  <Icon className={`w-3.5 h-3.5 ${t.color}`} />
-                  <span>{t.label}</span>
-                </button>
-              );
-            })}
-          </nav>
-
-          {/* Right: Views + 1-Click Dark/White Toggle + Palette Button + Flame Streak Button */}
-          <div className="flex items-center gap-2">
             
-            {/* Main Views Tabs */}
-            <div 
-              ref={viewContainerRef}
-              className="hidden sm:flex items-center gap-1 p-1 rounded-2xl bg-[#090E1A] border border-slate-800/90 relative shadow-inner"
-            >
-              {/* Sliding Bubble Background Indicator for Views */}
-              <div 
-                className="absolute top-1 bottom-1 rounded-xl bg-gradient-to-r from-cyan-950/80 via-slate-800/90 to-indigo-950/80 border border-cyan-400/40 shadow-lg shadow-cyan-950/50 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
-                style={{
-                  left: `${viewBubble.left}px`,
-                  width: `${viewBubble.width}px`,
-                  opacity: viewBubble.opacity
-                }}
-              />
-
-              {/* 1. Playground */}
+            {/* 1. 🎓 Learn ⌵ (Mega Dropdown) */}
+            <div className="relative">
               <button
-                onClick={() => onSelectView('playground')}
-                className={`view-tab-btn relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors duration-200 ${
-                  currentView === 'playground' ? 'text-cyan-300' : 'text-slate-400 hover:text-slate-200'
+                onClick={() => setActiveDropdown(activeDropdown === 'learn' ? null : 'learn')}
+                onMouseEnter={() => setHoveredMenu('learn')}
+                className={`nav-menu-btn relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+                  activeDropdown === 'learn' || currentView === 'topics'
+                    ? (isLight ? 'text-slate-900 font-extrabold' : 'text-emerald-300 font-extrabold')
+                    : (isLight ? 'text-slate-600 hover:text-slate-900' : 'text-slate-300 hover:text-white')
                 }`}
-                title="Open Java 21 Virtual Engine Playground"
               >
-                <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Playground</span>
+                <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Learn</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'learn' ? 'rotate-180 text-emerald-400' : 'text-slate-400'}`} />
               </button>
 
-              {/* 2. Progress */}
-              <button
-                onClick={() => onSelectView('progress')}
-                className={`view-tab-btn relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors duration-200 ${
-                  currentView === 'progress' ? 'text-emerald-300' : 'text-slate-400 hover:text-slate-200'
-                }`}
-                title="View your learning progress"
-              >
-                <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Progress</span>
-                <span className="px-1.5 py-0.2 rounded-md bg-emerald-950/80 border border-emerald-800/80 text-emerald-300 text-[10px] font-mono">
-                  {percentage}%
-                </span>
-              </button>
+              {/* Mega Menu Dropdown Box */}
+              {activeDropdown === 'learn' && (
+                <div className="absolute left-0 top-full mt-2 w-[580px] rounded-2xl bg-[#090E1A] light:bg-white border border-slate-800 light:border-slate-200 shadow-2xl p-4 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="grid grid-cols-2 gap-4">
+                    
+                    {/* Left Column: Core Tracks */}
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 light:text-slate-400 block px-2 mb-1">
+                        Core Tracks
+                      </span>
 
-              {/* 3. Quiz */}
-              <button
-                onClick={() => onSelectView('quiz')}
-                className={`view-tab-btn relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors duration-200 ${
-                  currentView === 'quiz' ? 'text-purple-300' : 'text-slate-400 hover:text-slate-200'
-                }`}
-                title="Interactive Assessments & Quizzes"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                <span>Quiz</span>
-              </button>
+                      {[
+                        { id: 'core-java', title: 'Core Java', tag: '21 LTS', desc: 'JVM, OOP & Virtual Threads', icon: Coffee, color: 'text-amber-400', bg: 'bg-amber-500/10' },
+                        { id: 'spring-boot', title: 'Spring Boot 3', tag: 'Cloud', desc: 'Microservices, REST & Security', icon: Leaf, color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+                        { id: 'dsa', title: 'DSA Patterns', tag: '75+ Code', desc: 'Graphs, DP, Trees & Arrays', icon: Code, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+                      ].map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => handleSelectMenuCourse(item.id)}
+                            className="w-full text-left p-2 rounded-xl hover:bg-slate-800/60 light:hover:bg-slate-100 flex items-center justify-between transition group"
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div className={`p-2 rounded-lg ${item.bg} ${item.color} shrink-0 group-hover:scale-110 transition-transform`}>
+                                <Icon className="w-4 h-4" />
+                              </div>
+                              <div className="min-w-0">
+                                <div className="text-xs font-bold text-slate-200 light:text-slate-800 group-hover:text-emerald-400 transition truncate">
+                                  {item.title}
+                                </div>
+                                <div className="text-[10.5px] text-slate-400 truncate">{item.desc}</div>
+                              </div>
+                            </div>
+                            <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-800/80 light:bg-slate-200 text-slate-300 light:text-slate-600 shrink-0">
+                              {item.tag}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
 
-              {/* 4. Profile */}
-              <button
-                onClick={() => onSelectView('profile')}
-                className={`view-tab-btn relative z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors duration-200 ${
-                  currentView === 'profile' ? 'text-indigo-300' : 'text-slate-400 hover:text-slate-200'
-                }`}
-                title="View your profile, solved challenges, and saved solutions"
-              >
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[10px] text-white">
-                  👤
+                    {/* Right Column: System Design */}
+                    <div className="space-y-1 border-l border-slate-800/80 light:border-slate-200 pl-4">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-400 block px-2 mb-1">
+                        System Design
+                      </span>
+
+                      {[
+                        { id: 'system-design', sub: 'lld', title: 'Low-Level Design (LLD)', tag: '18 Topics', desc: 'SOLID, UML & 23 GoF Patterns', icon: Cpu, color: 'text-purple-400', bg: 'bg-purple-500/10' },
+                        { id: 'system-design', sub: 'hld', title: 'High-Level Design (HLD)', tag: '20 Topics', desc: 'Distributed Systems & Scaling', icon: Server, color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
+                        { id: 'system-design', sub: 'hld-interview', title: 'Interview Case Studies', tag: '19 Systems', desc: 'Netflix, Uber, WhatsApp, Stripe', icon: Zap, color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+                      ].map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => handleSelectMenuCourse(item.id, item.sub)}
+                            className="w-full text-left p-2 rounded-xl hover:bg-slate-800/60 light:hover:bg-slate-100 flex items-center justify-between transition group"
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div className={`p-2 rounded-lg ${item.bg} ${item.color} shrink-0 group-hover:scale-110 transition-transform`}>
+                                <Icon className="w-4 h-4" />
+                              </div>
+                              <div className="min-w-0">
+                                <div className="text-xs font-bold text-slate-200 light:text-slate-800 group-hover:text-cyan-400 transition truncate">
+                                  {item.title}
+                                </div>
+                                <div className="text-[10.5px] text-slate-400 truncate">{item.desc}</div>
+                              </div>
+                            </div>
+                            <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-800/80 light:bg-slate-200 text-slate-300 light:text-slate-600 shrink-0">
+                              {item.tag}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                  </div>
+
+                  {/* Bottom Footer CTA */}
+                  <div className="mt-3 pt-2.5 border-t border-slate-800 light:border-slate-200 flex items-center justify-between px-1">
+                    <span className="text-[11px] text-slate-400 font-mono">540+ Interactive curriculum chapters</span>
+                    <button
+                      onClick={() => handleSelectMenuCourse('core-java')}
+                      className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 group"
+                    >
+                      <span>Explore all courses</span>
+                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                    </button>
+                  </div>
                 </div>
-                <span>Profile</span>
-              </button>
+              )}
             </div>
 
-            {/* 🌙 / ☀️ DIRECT 1-CLICK DARK / WHITE SHADE TOGGLE BUTTON */}
+            {/* 2. 🎯 Practice ⌵ */}
+            <div className="relative">
+              <button
+                onClick={() => setActiveDropdown(activeDropdown === 'practice' ? null : 'practice')}
+                onMouseEnter={() => setHoveredMenu('practice')}
+                className={`nav-menu-btn relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+                  activeDropdown === 'practice' || currentView === 'playground'
+                    ? (isLight ? 'text-slate-900 font-extrabold' : 'text-cyan-300 font-extrabold')
+                    : (isLight ? 'text-slate-600 hover:text-slate-900' : 'text-slate-300 hover:text-white')
+                }`}
+              >
+                <Terminal className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Practice</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'practice' ? 'rotate-180 text-cyan-400' : 'text-slate-400'}`} />
+              </button>
+
+              {activeDropdown === 'practice' && (
+                <div className="absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#090E1A] light:bg-white border border-slate-800 light:border-slate-200 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150 space-y-1">
+                  {[
+                    { type: 'dsa', title: 'DSA Patterns', desc: '75+ Code templates', icon: Code, color: 'text-cyan-400' },
+                    { type: 'system-design', title: 'System Design', desc: 'Traffic & cache simulator', icon: Layers, color: 'text-indigo-400', isNew: true },
+                    { type: 'concurrency', title: 'Concurrency', desc: 'Virtual threads & deadlocks', icon: Zap, color: 'text-amber-400', isNew: true },
+                    { type: 'lld', title: 'Low-Level Design', desc: 'OOP pattern simulators', icon: Cpu, color: 'text-emerald-400', isNew: true },
+                    { type: 'company-wise', title: 'Company-Wise Problems', desc: 'Google, Meta, Amazon tests', icon: Briefcase, color: 'text-purple-400' },
+                  ].map((p, i) => {
+                    const Icon = p.icon;
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => handleSelectPracticeScenario(p.type)}
+                        className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800/60 light:hover:bg-slate-100 flex items-center justify-between transition group"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <Icon className={`w-4 h-4 ${p.color}`} />
+                          <div>
+                            <div className="text-xs font-bold text-slate-200 light:text-slate-800 group-hover:text-cyan-400 transition">{p.title}</div>
+                            <div className="text-[10px] text-slate-400">{p.desc}</div>
+                          </div>
+                        </div>
+                        {p.isNew && (
+                          <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
+                            New
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* 3. 💬 Interview ⌵ */}
+            <div className="relative">
+              <button
+                onClick={() => setActiveDropdown(activeDropdown === 'interview' ? null : 'interview')}
+                onMouseEnter={() => setHoveredMenu('interview')}
+                className={`nav-menu-btn relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+                  activeDropdown === 'interview'
+                    ? (isLight ? 'text-slate-900 font-extrabold' : 'text-purple-300 font-extrabold')
+                    : (isLight ? 'text-slate-600 hover:text-slate-900' : 'text-slate-300 hover:text-white')
+                }`}
+              >
+                <Bot className="w-3.5 h-3.5 text-purple-400" />
+                <span>Interview</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'interview' ? 'rotate-180 text-purple-400' : 'text-slate-400'}`} />
+              </button>
+
+              {activeDropdown === 'interview' && (
+                <div className="absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#090E1A] light:bg-white border border-slate-800 light:border-slate-200 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150 space-y-1">
+                  {[
+                    { title: 'Coding Interview', desc: 'AI mock with complexity grading', icon: Code, color: 'text-emerald-400' },
+                    { title: 'System Design Interview', desc: 'Distributed whiteboard simulation', icon: Layers, color: 'text-indigo-400' },
+                    { title: 'Low-Level Design Interview', desc: 'OOP & class diagram challenges', icon: Cpu, color: 'text-cyan-400' },
+                  ].map((item, i) => {
+                    const Icon = item.icon;
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          setIsInterviewModalOpen(true);
+                          setActiveDropdown(null);
+                        }}
+                        className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800/60 light:hover:bg-slate-100 flex items-center gap-2.5 transition group"
+                      >
+                        <Icon className={`w-4 h-4 ${item.color}`} />
+                        <div>
+                          <div className="text-xs font-bold text-slate-200 light:text-slate-800 group-hover:text-purple-400 transition">{item.title}</div>
+                          <div className="text-[10px] text-slate-400">{item.desc}</div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* 4. 📁 Resources ⌵ */}
+            <div className="relative">
+              <button
+                onClick={() => setActiveDropdown(activeDropdown === 'resources' ? null : 'resources')}
+                onMouseEnter={() => setHoveredMenu('resources')}
+                className={`nav-menu-btn relative z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 ${
+                  activeDropdown === 'resources'
+                    ? (isLight ? 'text-slate-900 font-extrabold' : 'text-amber-300 font-extrabold')
+                    : (isLight ? 'text-slate-600 hover:text-slate-900' : 'text-slate-300 hover:text-white')
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>Resources</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'resources' ? 'rotate-180 text-amber-400' : 'text-slate-400'}`} />
+              </button>
+
+              {activeDropdown === 'resources' && (
+                <div className="absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#090E1A] light:bg-white border border-slate-800 light:border-slate-200 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150 space-y-1">
+                  {[
+                    { title: 'Animations & Visualizers', desc: '600+ 3D interactive models', icon: Video, color: 'text-cyan-400' },
+                    { title: 'ATS Resume Builder', desc: 'FAANG developer templates', icon: FileText, color: 'text-emerald-400' },
+                    { title: 'Engineering Roadmaps', desc: '0 to Staff Architect tracks', icon: Map, color: 'text-indigo-400' },
+                    { title: 'Learn Low-Level Design', desc: 'UML and design patterns', icon: Cpu, color: 'text-purple-400' },
+                    { title: 'Curated Engineering Blogs', desc: 'Netflix, Uber, Discord studies', icon: BookOpen, color: 'text-amber-400' },
+                    { title: 'Upcoming Courses', desc: 'AI Agents & Kafka Streaming', icon: Sparkles, color: 'text-pink-400' },
+                  ].map((res, i) => {
+                    const Icon = res.icon;
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          setIsResourcesModalOpen(true);
+                          setActiveDropdown(null);
+                        }}
+                        className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800/60 light:hover:bg-slate-100 flex items-center gap-2.5 transition group"
+                      >
+                        <Icon className={`w-4 h-4 ${res.color}`} />
+                        <div>
+                          <div className="text-xs font-bold text-slate-200 light:text-slate-800 group-hover:text-amber-400 transition">{res.title}</div>
+                          <div className="text-[10px] text-slate-400">{res.desc}</div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+          </nav>
+
+          {/* Right: Theme toggle + Profile */}
+          <div className="flex items-center gap-2.5">
+            
+            {/* 🌙 / ☀️ Theme Toggle */}
             <button
               type="button"
               onClick={handleQuickToggleTheme}
-              className={`p-2 rounded-xl border transition shadow-sm cursor-pointer active:scale-95 flex items-center justify-center ${
-                isLight 
-                  ? 'bg-amber-100 hover:bg-amber-200 border-amber-300 text-amber-600' 
-                  : 'bg-slate-900/90 hover:bg-slate-800 border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white'
+              className={`p-2 rounded-xl border transition-all duration-200 active:scale-95 shadow-sm ${
+                isLight
+                  ? 'bg-amber-50 hover:bg-amber-100 border-amber-200 text-amber-600'
+                  : 'bg-slate-900/80 hover:bg-slate-800 border-slate-800 hover:border-slate-600 text-slate-400 hover:text-white'
               }`}
-              title={isLight ? "Switch to Dark Mode" : "Switch to White Shade (Light Mode)"}
-              aria-label="Toggle Dark / Light Mode"
+              title={isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+              aria-label="Toggle theme"
             >
-              {isLight ? (
-                <Sun className="w-4 h-4 text-amber-500 animate-spin-slow" />
-              ) : (
-                <Moon className="w-4 h-4 text-slate-200" />
-              )}
+              {isLight
+                ? <Sun className="w-4 h-4 text-amber-500" />
+                : <Moon className="w-4 h-4" />
+              }
             </button>
 
-            {/* 🔥 FLAME / LEARNING STREAK BUTTON */}
-            <div className="relative" ref={streakRef}>
-              <button
-                type="button"
-                onClick={() => setShowStreakModal(!showStreakModal)}
-                className="p-2 rounded-xl bg-amber-950/40 hover:bg-amber-950/60 border border-amber-500/50 hover:border-amber-400 text-amber-400 hover:text-amber-300 transition shadow-md shadow-amber-500/10 flex items-center gap-1.5 cursor-pointer active:scale-95 group"
-                title="Daily Learning Streak"
-                aria-label="Daily Streak"
-              >
-                <Flame className="w-4 h-4 text-amber-400 fill-amber-500/20 group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-xs font-mono font-bold text-amber-300 hidden md:inline">
-                  {streakCount}
-                </span>
-              </button>
+            {/* Profile Avatar Button */}
+            <button
+              onClick={() => onSelectView?.('profile')}
+              className={`flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all duration-200 active:scale-95 shadow-sm ${
+                currentView === 'profile'
+                  ? (isLight ? 'bg-emerald-50 border-emerald-300 text-emerald-700 font-bold' : 'bg-emerald-950/80 border-emerald-500/60 text-emerald-200 shadow-md')
+                  : (isLight ? 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50' : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:text-white hover:border-slate-700')
+              }`}
+              title="Open Student Profile"
+            >
+              <div className="w-6 h-6 rounded-full overflow-hidden bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-[11px] font-extrabold shadow-sm flex-shrink-0">
+                {userAvatarUrl ? (
+                  <img src={userAvatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <span>{userProfileName.charAt(0).toUpperCase() || 'M'}</span>
+                )}
+              </div>
+              <span className="hidden sm:inline font-medium">{userProfileName || 'My Profile'}</span>
+            </button>
+          </div>
 
-              {/* STREAK POPOVER MODAL */}
-              {showStreakModal && (
-                <div className="absolute right-0 mt-3 w-72 p-4 rounded-2xl bg-[#090E1A] border border-amber-500/40 shadow-2xl shadow-amber-950/40 z-50 animate-in fade-in zoom-in-95 duration-200 text-white font-sans">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                    <div className="flex items-center gap-2">
-                      <div className="p-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400">
-                        <Flame className="w-4 h-4 fill-amber-500/30" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white">Daily Streak Active</div>
-                        <div className="text-[10px] text-amber-400/90 font-mono font-semibold">
-                          {streakCount} Days in a row 🔥
-                        </div>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-950/80 border border-amber-500/40 text-amber-300">
-                      Level 3
-                    </span>
-                  </div>
-
-                  <div className="mt-3 space-y-2 text-xs text-slate-300">
-                    <p className="text-[11px] text-slate-400 leading-relaxed">
-                      You have practiced Java &amp; Reflection for <b className="text-amber-300">{streakCount} consecutive days</b>. Complete today's topic to maintain your multiplier!
-                    </p>
-
-                    <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-between text-[11px] font-mono">
-                      <span className="text-slate-400 flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-                        <span>Today's Target</span>
-                      </span>
-                      <span className="text-emerald-400 font-bold flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3" />
-                        <span>Active</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle */}
+          <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300"
+              className="p-2 rounded-xl bg-slate-900 light:bg-slate-100 border border-slate-800 light:border-slate-200 text-slate-300 light:text-slate-700"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
+
         </div>
-
-        {/* Mobile Dropdown Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-slate-800 space-y-3">
-            {/* Mobile Tracks */}
-            <div className="grid grid-cols-2 gap-2">
-              {tracks.map(t => (
-                <button
-                  key={t.id}
-                  onClick={() => { onSelectTrack(t.id); onSelectView('topics'); setIsMobileMenuOpen(false); }}
-                  className={`p-2.5 rounded-xl text-xs font-semibold border flex items-center gap-2 ${
-                    currentTrack === t.id && currentView === 'topics'
-                      ? 'bg-slate-800 border-cyan-500 text-white'
-                      : 'bg-slate-900/60 border-slate-800 text-slate-400'
-                  }`}
-                >
-                  <t.icon className={`w-4 h-4 ${t.color}`} />
-                  <span>{t.label}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile Views */}
-            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800/60">
-              {views.map(v => {
-                const Icon = v.icon;
-                const isSelected = currentView === v.id;
-
-                return (
-                  <button
-                    key={v.id}
-                    onClick={() => { onSelectView(v.id); setIsMobileMenuOpen(false); }}
-                    className={`p-2.5 rounded-xl text-xs font-semibold border flex items-center justify-between ${
-                      isSelected
-                        ? 'bg-slate-800 border-cyan-500 text-cyan-300'
-                        : 'bg-slate-900/60 border-slate-800 text-slate-400'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      {Icon ? (
-                        <Icon className={`w-4 h-4 ${v.color}`} />
-                      ) : (
-                        <div className="w-4 h-4 rounded-full bg-indigo-500 flex items-center justify-center text-[9px] text-white">
-                          👤
-                        </div>
-                      )}
-                      <span>{v.label}</span>
-                    </div>
-                    {v.extra && (
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-400">
-                        {percentage}%
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Drawer */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden border-t border-slate-800 bg-[#070B14] p-4 space-y-4">
+          <div className="space-y-1">
+            <span className="text-xs font-mono uppercase text-slate-400">Curriculum Tracks</span>
+            {[
+              { id: 'core-java', label: 'Core Java', icon: Coffee, color: 'text-amber-400' },
+              { id: 'spring-boot', label: 'Spring Boot', icon: Leaf, color: 'text-emerald-400' },
+              { id: 'system-design', label: 'System Design', icon: Layers, color: 'text-indigo-400' },
+              { id: 'dsa', label: 'DSA & Algorithms', icon: Code, color: 'text-cyan-400' },
+            ].map(t => (
+              <button
+                key={t.id}
+                onClick={() => {
+                  onSelectTrack(t.id);
+                  onSelectView('topics');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-bold flex items-center gap-2"
+              >
+                <t.icon className={`w-4 h-4 ${t.color}`} />
+                <span>{t.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-1 pt-2 border-t border-slate-800">
+            <span className="text-xs font-mono uppercase text-slate-400">Interview &amp; Practice</span>
+            <button
+              onClick={() => {
+                setIsInterviewModalOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-bold flex items-center gap-2"
+            >
+              <Bot className="w-4 h-4 text-purple-400" />
+              <span>AI Mock Interview</span>
+            </button>
+            <button
+              onClick={() => {
+                setIsResourcesModalOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs font-bold flex items-center gap-2"
+            >
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <span>600+ Visualizers &amp; Roadmaps</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Interactive Modals */}
+      <InterviewModal
+        isOpen={isInterviewModalOpen}
+        onClose={() => setIsInterviewModalOpen(false)}
+        onOpenPlayground={(code) => {
+          onOpenPlayground?.(code);
+          onSelectView?.('playground');
+        }}
+      />
+
+      <ResourcesModal
+        isOpen={isResourcesModalOpen}
+        onClose={() => setIsResourcesModalOpen(false)}
+        onSelectTrack={onSelectTrack}
+        onSelectView={onSelectView}
+        onOpenPlayground={onOpenPlayground}
+      />
     </header>
   );
 }

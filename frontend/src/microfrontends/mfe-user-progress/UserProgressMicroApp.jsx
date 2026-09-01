@@ -11,7 +11,8 @@ export default function UserProgressMicroApp({
   bookmarkedTopicIds = new Set(),
   onSelectTopic,
   onToggleComplete,
-  onOpenPlayground
+  onOpenPlayground,
+  onSelectView
 }) {
   const handleSelectTopic = (topicId) => {
     mfeEventBus.emit(MfeEvents.SELECT_TOPIC, { topicId });
@@ -34,6 +35,7 @@ export default function UserProgressMicroApp({
         bookmarkedTopicIds={bookmarkedTopicIds}
         onSelectTopic={handleSelectTopic}
         onOpenPlayground={handleOpenPlayground}
+        onSelectView={onSelectView}
       />
     );
   }

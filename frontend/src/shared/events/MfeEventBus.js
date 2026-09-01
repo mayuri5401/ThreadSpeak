@@ -13,6 +13,7 @@ export const MfeEvents = {
   // Action Events
   OPEN_PLAYGROUND: 'MFE_OPEN_PLAYGROUND',      // payload: { code: string, topicId?: string }
   OPEN_QUIZ: 'MFE_OPEN_QUIZ',                  // payload: { topicId?: string, trackId?: string }
+  OPEN_AI_CHAT: 'MFE_OPEN_AI_CHAT',            // payload: { prompt: string, visualPreview?: object }
   
   // Progress & Gamification Events
   TOPIC_COMPLETED: 'MFE_TOPIC_COMPLETED',      // payload: { topicId: string }

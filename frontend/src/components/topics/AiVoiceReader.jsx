@@ -316,8 +316,8 @@ export default function AiVoiceReader({
       {/* Sleek, Space-Optimized Audio Bar */}
       <div className={`transition-all duration-300 rounded-xl border ${
         isPlaying
-          ? 'bg-[#0B1528] border-cyan-500/40 shadow-lg shadow-cyan-950/40 p-2 sm:p-2.5'
-          : 'bg-[#080E1C]/80 hover:bg-[#0A1224] border-slate-800/80 p-1.5 sm:p-2'
+          ? 'bg-cyan-50/90 dark:bg-[#0B1528] border-cyan-300 dark:border-cyan-500/40 shadow-md dark:shadow-lg dark:shadow-cyan-950/40 p-2 sm:p-2.5'
+          : 'bg-slate-100/90 dark:bg-[#080E1C]/80 hover:bg-slate-200/70 dark:hover:bg-[#0A1224] border-slate-200 dark:border-slate-800/80 p-1.5 sm:p-2 shadow-sm'
       }`}>
         <div className="flex items-center justify-between gap-2.5">
           {/* Left: Play/Pause trigger & Status */}
@@ -333,7 +333,7 @@ export default function AiVoiceReader({
             ) : (
               <button
                 onClick={handlePlay}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-cyan-600/20 transition hover:scale-[1.02] shrink-0"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-cyan-600/20 transition hover:scale-[1.02] shrink-0"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
                 <span>{isPaused ? 'Resume Voice' : 'Listen with AI'}</span>
@@ -343,19 +343,19 @@ export default function AiVoiceReader({
             {/* Equalizer animation when playing */}
             {isPlaying ? (
               <div className="flex items-center gap-2 min-w-0">
-                <div className="flex items-end gap-0.5 h-4 px-1.5 py-0.5 bg-cyan-950/80 rounded border border-cyan-800/60 shrink-0">
-                  <span className="w-0.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0ms] h-2" />
-                  <span className="w-0.5 bg-cyan-300 rounded-full animate-bounce [animation-delay:150ms] h-3.5" />
-                  <span className="w-0.5 bg-indigo-400 rounded-full animate-bounce [animation-delay:300ms] h-2.5" />
-                  <span className="w-0.5 bg-purple-400 rounded-full animate-bounce [animation-delay:75ms] h-4" />
+                <div className="flex items-end gap-0.5 h-4 px-1.5 py-0.5 bg-cyan-100 dark:bg-cyan-950/80 rounded border border-cyan-300 dark:border-cyan-800/60 shrink-0">
+                  <span className="w-0.5 bg-cyan-600 dark:bg-cyan-400 rounded-full animate-bounce [animation-delay:0ms] h-2" />
+                  <span className="w-0.5 bg-cyan-500 dark:bg-cyan-300 rounded-full animate-bounce [animation-delay:150ms] h-3.5" />
+                  <span className="w-0.5 bg-indigo-500 dark:bg-indigo-400 rounded-full animate-bounce [animation-delay:300ms] h-2.5" />
+                  <span className="w-0.5 bg-purple-500 dark:bg-purple-400 rounded-full animate-bounce [animation-delay:75ms] h-4" />
                 </div>
-                <span className="text-[11px] text-cyan-300 font-mono truncate hidden sm:inline">
+                <span className="text-[11px] text-cyan-800 dark:text-cyan-300 font-mono font-semibold truncate hidden sm:inline">
                   Part {currentSentenceIndex + 1}/{sentences.length} ({progressPercent}%)
                 </span>
               </div>
             ) : (
-              <span className="text-[11px] text-slate-400 font-mono flex items-center gap-1.5 truncate">
-                <Headphones className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <span className="text-[11px] text-slate-600 dark:text-slate-400 font-mono font-medium flex items-center gap-1.5 truncate">
+                <Headphones className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" />
                 <span>~{estimatedMinutes}m audio narration</span>
               </span>
             )}
@@ -364,7 +364,7 @@ export default function AiVoiceReader({
           {/* Right: Controls & Speed */}
           <div className="flex items-center gap-1.5 shrink-0">
             {/* Speed Pills */}
-            <div className="flex items-center gap-0.5 bg-slate-900 p-0.5 rounded-lg border border-slate-800">
+            <div className="flex items-center gap-0.5 bg-white dark:bg-slate-900 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
               {[1.0, 1.25, 1.5, 2.0].map((s) => (
                 <button
                   key={s}
@@ -372,7 +372,7 @@ export default function AiVoiceReader({
                   className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold transition ${
                     rate === s
                       ? 'bg-cyan-500 text-slate-950 font-bold'
-                      : 'text-slate-400 hover:text-white'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   {s}x
@@ -386,7 +386,7 @@ export default function AiVoiceReader({
                 <button
                   onClick={handleSkipPrev}
                   disabled={currentSentenceIndex === 0}
-                  className="p-1.5 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-800 disabled:opacity-30 transition"
+                  className="p-1.5 rounded-lg bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-200 dark:border-slate-800 disabled:opacity-30 transition shadow-sm"
                   title="Previous Section"
                 >
                   <Rewind className="w-3 h-3" />
@@ -394,14 +394,14 @@ export default function AiVoiceReader({
                 <button
                   onClick={handleSkipNext}
                   disabled={currentSentenceIndex >= sentences.length - 1}
-                  className="p-1.5 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-800 disabled:opacity-30 transition"
+                  className="p-1.5 rounded-lg bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-200 dark:border-slate-800 disabled:opacity-30 transition shadow-sm"
                   title="Next Section"
                 >
                   <FastForward className="w-3 h-3" />
                 </button>
                 <button
                   onClick={handleStop}
-                  className="p-1.5 rounded-lg bg-slate-900 hover:bg-rose-950 text-slate-400 hover:text-rose-300 border border-slate-800 transition"
+                  className="p-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-rose-50 dark:hover:bg-rose-950 text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-300 border border-slate-200 dark:border-slate-800 transition shadow-sm"
                   title="Stop"
                 >
                   <Square className="w-3 h-3" />
@@ -417,10 +417,10 @@ export default function AiVoiceReader({
                 isMutedRef.current = nextMuted;
                 if (isPlaying) speakSentence(currentSentenceIndex, true);
               }}
-              className={`p-1.5 rounded-lg border transition ${
+              className={`p-1.5 rounded-lg border transition shadow-sm ${
                 isMuted 
-                  ? 'bg-rose-950/80 border-rose-800 text-rose-400' 
-                  : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border-slate-800'
+                  ? 'bg-rose-50 dark:bg-rose-950/80 border-rose-200 dark:border-rose-800 text-rose-600 dark:text-rose-400' 
+                  : 'bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-slate-200 dark:border-slate-800'
               }`}
               title={isMuted ? "Unmute" : "Mute"}
             >
@@ -430,10 +430,10 @@ export default function AiVoiceReader({
             {/* Toggle Full Details */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className={`p-1.5 rounded-lg border transition ${
+              className={`p-1.5 rounded-lg border transition shadow-sm ${
                 isExpanded 
-                  ? 'bg-cyan-950 border-cyan-700 text-cyan-300' 
-                  : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border-slate-800'
+                  ? 'bg-cyan-50 dark:bg-cyan-950 border-cyan-300 dark:border-cyan-700 text-cyan-700 dark:text-cyan-300' 
+                  : 'bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-slate-200 dark:border-slate-800'
               }`}
               title={isExpanded ? "Collapse Details" : "Expand Script & Progress"}
             >
@@ -444,8 +444,8 @@ export default function AiVoiceReader({
 
         {/* Live Active Subtitle Line */}
         {isPlaying && activeSubtitle && (
-          <div className="mt-1.5 pt-1.5 border-t border-cyan-500/20 text-xs text-cyan-100 flex items-center gap-1.5 animate-in fade-in">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping shrink-0" />
+          <div className="mt-1.5 pt-1.5 border-t border-cyan-200 dark:border-cyan-500/20 text-xs text-cyan-900 dark:text-cyan-100 flex items-center gap-1.5 animate-in fade-in">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-ping shrink-0" />
             <span className="truncate font-sans font-medium">{activeSubtitle}</span>
           </div>
         )}

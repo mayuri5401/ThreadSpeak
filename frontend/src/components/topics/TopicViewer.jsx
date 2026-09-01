@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { 
   BookOpen, Layers, Code, CheckCircle, 
   Bookmark, Clock, Sparkles, AlertTriangle, Lightbulb, ShieldCheck, Terminal, Play, Zap,
-  ExternalLink, Github, FileText, Bot, Globe, Cpu, Server, Database, ArrowRight, Loader2
+  ExternalLink, Github, FileText, Bot, Globe, Cpu, Server, Database, ArrowRight, Loader2, Flame
 } from 'lucide-react';
 import MarkdownRenderer from './MarkdownRenderer';
 import CodeSnippet from './CodeSnippet';
@@ -17,6 +17,9 @@ import {
 } from './CourseIntroFeatures';
 import CourseRoadmapViewer from './CourseRoadmapViewer';
 import AiVoiceReader from './AiVoiceReader';
+import TopicAiTutorBar from './TopicAiTutorBar';
+import ActiveRecallQuiz from './ActiveRecallQuiz';
+import { mfeEventBus, MfeEvents } from '../../shared/events/MfeEventBus';
 
 // Lazy-Loaded Micro-Visualizers (Loaded on-demand when topic is opened)
 const JvmMemoryVisualizer = lazy(() => import('../visualizers/JvmMemoryVisualizer'));
@@ -117,6 +120,7 @@ export default function TopicViewer({
   // Speech Synthesis Status for Active Text Karaoke Highlight
   const [spokenStatus, setSpokenStatus] = useState({ text: '', index: 0, isPlaying: false });
 
+  // Reset spoken status when topic changes
   useEffect(() => {
     setSpokenStatus({ text: '', index: 0, isPlaying: false });
   }, [topic?.id]);
@@ -125,20 +129,34 @@ export default function TopicViewer({
   const topicTabContainerRef = useRef(null);
   const [topicTabBubble, setTopicTabBubble] = useState({ left: 0, width: 0, opacity: 0 });
 
-  useEffect(() => {
+  const updateTopicTabBubble = () => {
     if (!topicTabContainerRef.current) return;
     const tabsList = ['notes', 'architecture', 'code'];
-    const activeIndex = tabsList.indexOf(activeTab);
+    const currentTabId = activeTab || 'notes';
+    const activeIndex = tabsList.indexOf(currentTabId);
     const buttons = topicTabContainerRef.current.querySelectorAll('.topic-tab-btn');
-    if (buttons && buttons[activeIndex]) {
-      const el = buttons[activeIndex];
+    const targetBtn = buttons && buttons[activeIndex !== -1 ? activeIndex : 0];
+    
+    if (targetBtn) {
+      const containerRect = topicTabContainerRef.current.getBoundingClientRect();
+      const elRect = targetBtn.getBoundingClientRect();
       setTopicTabBubble({
-        left: el.offsetLeft,
-        width: el.offsetWidth,
+        left: elRect.left - containerRect.left,
+        width: elRect.width,
         opacity: 1
       });
     }
-  }, [activeTab]);
+  };
+
+  useEffect(() => {
+    updateTopicTabBubble();
+    const timer = setTimeout(updateTopicTabBubble, 60);
+    window.addEventListener('resize', updateTopicTabBubble);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', updateTopicTabBubble);
+    };
+  }, [activeTab, topic?.id]);
 
   if (!topic) {
     return (
@@ -349,6 +367,9 @@ export default function TopicViewer({
     if (topic.id === 'java-strings-class' || topic.animationType === 'string-class' || topic.id === '02-string-class' || (topic.category === 'Strings' && topic.title?.toLowerCase().includes('string class'))) {
       return <JavaStringClassVisualizer onOpenPlayground={onOpenPlayground} activeTab={activeTab} />;
     }
+    if (topic.id === 'spring-web-dispatcherservlet' || topic.id?.includes('dispatcherservlet') || topic.id?.includes('spring-web') || topic.animationType === 'spring-request-flow' || topic.animationType === 'spring-pipeline') {
+      return <SpringRequestFlowVisualizer />;
+    }
     if (topic.id === 'dsa-two-pointers') {
       return <TwoPointersVisualizer />;
     }
@@ -360,6 +381,7 @@ export default function TopicViewer({
       case 'multithreading':
         return <ThreadConcurrencyVisualizer />;
       case 'spring-pipeline':
+      case 'spring-request-flow':
         return <SpringRequestFlowVisualizer />;
       case 'lru-cache':
         return <LruCacheVisualizer />;
@@ -989,15 +1011,50 @@ public class TicTacToeDemo {
   };
 
   return (
-    <div className="space-y-3.5">
+    <div className="space-y-0">
+      {/* ── AlgoMaster-Style Page Header ── */}
+      <div className="pb-5 pt-1">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-3">
+          {topic.title}
+        </h1>
+        <div className="flex items-center flex-wrap gap-2">
+          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-400 text-xs font-medium">
+            <Clock className="w-3.5 h-3.5 text-slate-500" />
+            {topic.estimatedMinutes || 6} min read
+          </span>
+
+          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-700/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold font-mono">
+            <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+            FAANG Tested
+          </span>
+
+          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-700/40 text-cyan-700 dark:text-cyan-300 text-xs font-bold font-mono">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            AI Super-Tutor
+          </span>
+
+          {topic.difficulty && (
+            <span className={`px-3 py-1 rounded-full border text-xs font-semibold ${
+              topic.difficulty === 'Beginner'     ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-700/40 text-emerald-700 dark:text-emerald-400' :
+              topic.difficulty === 'Intermediate' ? 'bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-700/40 text-amber-800 dark:text-amber-400' :
+                                                    'bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-700/40 text-rose-700 dark:text-rose-400'
+            }`}>
+              {topic.difficulty}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="h-px bg-slate-200 dark:bg-white/[0.06] mb-4" />
+
       {/* Clean 3 Tabs Navigation with Animated Sliding Bubble Indicator */}
-      <div 
+      <div
         ref={topicTabContainerRef}
-        className="flex items-center justify-between gap-1.5 p-1 rounded-2xl bg-[#090E1D] border border-slate-800/90 relative shadow-inner overflow-x-auto"
+        className="flex items-center justify-between gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-[#090E1D] border border-slate-200 dark:border-slate-800/90 relative shadow-inner overflow-x-auto"
       >
         {/* Sliding Bubble Background Indicator */}
         <div 
-          className="absolute top-1 bottom-1 rounded-xl bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 shadow-lg shadow-cyan-600/30 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
+          className="absolute top-1 bottom-1 rounded-xl bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 shadow-md dark:shadow-lg dark:shadow-cyan-600/30 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
           style={{
             left: `${topicTabBubble.left}px`,
             width: `${topicTabBubble.width}px`,
@@ -1020,7 +1077,7 @@ public class TicTacToeDemo {
                 className={`topic-tab-btn relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-colors duration-200 whitespace-nowrap ${
                   isCurrent
                     ? 'text-white'
-                    : 'text-slate-400 hover:text-slate-200'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -1030,20 +1087,16 @@ public class TicTacToeDemo {
           })}
         </div>
 
-        {(isCourseIntro || topic.driveLink) && (
+        {topic.driveLink && (
           <a
-            href={isCourseIntro ? "https://algomaster.io/learn/lld/course-introduction" : topic.driveLink}
+            href={topic.driveLink}
             target="_blank"
             rel="noreferrer"
             className="relative z-10 mr-1 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white shadow-sm shadow-indigo-500/25 border border-indigo-400/30 transition group shrink-0"
-            title={isCourseIntro ? "Open on AlgoMaster.io" : "Open Notes & PDF on Google Drive"}
+            title="Open Notes & PDF on Google Drive"
           >
-            {isCourseIntro ? (
-              <Globe className="w-3.5 h-3.5 text-cyan-200 group-hover:scale-110 transition" />
-            ) : (
-              <Code className="w-3.5 h-3.5 text-cyan-200 group-hover:scale-110 transition" />
-            )}
-            <span>{isCourseIntro ? "AlgoMaster" : "Drive Notes"}</span>
+            <Code className="w-3.5 h-3.5 text-cyan-200 group-hover:scale-110 transition" />
+            <span>Drive Notes</span>
             <ExternalLink className="w-3 h-3 text-cyan-200" />
           </a>
         )}
@@ -1060,16 +1113,13 @@ public class TicTacToeDemo {
             onSelectTopic={onSelectTopic} 
           />
         ) : (
-          <div className="space-y-3.5 animate-in fade-in duration-300">
-            {/* AI Voice Assistant Audio Companion */}
-            <AiVoiceReader
-              title={topic.title}
-              summary={topic.summary}
-              deepDive={topic.deepDive}
-              eli10={topic.eli10}
-              mentalModel={topic.mentalModel}
-              interviewTraps={topic.interviewTraps}
-              onSpeechStatusChange={setSpokenStatus}
+          <div className="space-y-4 animate-in fade-in duration-300">
+            
+            {/* 1-Click AI Super-Tutor Action Bar */}
+            <TopicAiTutorBar
+              topicTitle={topic.title}
+              topicContent={topic.deepDive || topic.summary || ''}
+              trackId={topic.trackId || 'core-java'}
             />
 
             {/* Main Comprehensive Study Notes Canvas or Programs List Suite */}
@@ -1079,7 +1129,7 @@ public class TicTacToeDemo {
               </div>
             ) : (
               topic.deepDive && (
-                <div className="glass-panel p-6 sm:p-9 rounded-2xl border border-slate-800/80 bg-[#0B1120]/90 shadow-2xl relative overflow-hidden">
+                <div className="p-6 sm:p-9 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0B1120]/90 shadow-sm dark:shadow-2xl relative overflow-hidden">
                   {/* Subtle Ambient Accent Glow */}
                   <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
                   <MarkdownRenderer 
@@ -1089,6 +1139,13 @@ public class TicTacToeDemo {
                 </div>
               )
             )}
+
+            {/* Active Recall & Spaced Repetition Flashcards at End of Chapter */}
+            <ActiveRecallQuiz
+              topicTitle={topic.title}
+              onMarkComplete={onToggleComplete}
+              isCompleted={isCompleted}
+            />
           </div>
         )
       )}
@@ -1114,7 +1171,29 @@ public class TicTacToeDemo {
                   <Zap className="w-4 h-4 text-cyan-400 animate-pulse" />
                   <span>Interactive Architecture Simulation Theater</span>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400">Live JVM &amp; OOP Engine</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      mfeEventBus.emit(MfeEvents.OPEN_AI_CHAT, {
+                        prompt: `Explain this ${topic.title}:`,
+                        topicTitle: topic.title,
+                        topic: topic,
+                        visualPreview: {
+                          title: `${topic.title} Visualization`,
+                          type: 'animation',
+                          description: topic.summary || topic.deepDive?.slice(0, 200)
+                        }
+                      });
+                    }}
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-purple-950/80 hover:bg-purple-900 text-purple-300 hover:text-white border border-purple-500/40 shadow-md shadow-purple-950/30 text-xs font-bold transition hover:scale-105 cursor-pointer"
+                    title="Explain this visualization with AI"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                    <span>Explain with AI</span>
+                  </button>
+                  <span className="text-[11px] font-mono text-slate-400 hidden sm:inline">Live Engine</span>
+                </div>
               </div>
               {visualizerComponent}
             </div>
@@ -1129,23 +1208,23 @@ public class TicTacToeDemo {
           )}
 
           {/* Comprehensive Technical Architectural Blueprint & System Internals Card */}
-          <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-cyan-500/30 bg-gradient-to-b from-[#091122] via-[#070D1A] to-[#040812] space-y-6 shadow-2xl">
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+          <div className="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-cyan-500/30 bg-white dark:bg-gradient-to-b dark:from-[#091122] dark:via-[#070D1A] dark:to-[#040812] space-y-6 shadow-sm dark:shadow-2xl">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
               <div className="flex items-center gap-2.5">
-                <span className="p-2 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-800/60 shadow-md shadow-cyan-950/40">
+                <span className="p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-800/60 shadow-sm dark:shadow-cyan-950/40">
                   <Layers className="w-4 h-4" />
                 </span>
                 <div>
-                  <h4 className="text-base sm:text-lg font-extrabold text-white">
+                  <h4 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">
                     Architectural Blueprint &amp; System Internals
                   </h4>
-                  <p className="text-xs text-slate-400">
-                    Deep technical breakdown of JVM memory, execution lifecycles, and enterprise patterns for {topic.title}.
+                  <p className="text-xs text-slate-600 dark:text-slate-400">
+                    Deep technical breakdown of runtime memory, execution lifecycles, and enterprise patterns for {topic.title}.
                   </p>
                 </div>
               </div>
 
-              <span className="text-[10.5px] font-mono font-bold px-3 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800">
+              <span className="text-[10.5px] font-mono font-bold px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/80 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800">
                 JVM Spec v21
               </span>
             </div>
@@ -1154,12 +1233,12 @@ public class TicTacToeDemo {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               
               {/* Pillar 1: Memory & State Model */}
-              <div className="p-4 rounded-2xl bg-[#060B16] border border-blue-500/30 space-y-2.5 shadow-inner">
-                <span className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider block border-b border-slate-800 pb-1 flex items-center gap-1.5">
+              <div className="p-4 rounded-2xl bg-blue-50/50 dark:bg-[#060B16] border border-blue-200 dark:border-blue-500/30 space-y-2.5 shadow-sm">
+                <span className="text-xs font-mono font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider block border-b border-blue-200 dark:border-slate-800 pb-1 flex items-center gap-1.5">
                   <Cpu className="w-3.5 h-3.5" />
                   <span>1. Memory &amp; State Model</span>
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                   {topic.category?.includes("OOP") 
                     ? "Objects reside on the Garbage-Collected Heap. Class metadata, bytecode definitions, and static members reside in Metaspace (Native RAM). Method invocations push lightweight stack frames containing Local Variable Arrays (LVA) and Operand Stacks."
                     : "Primitive variables and method execution frames reside directly in the Thread Call Stack with zero GC overhead. Reference pointers traverse the 64-bit address space to access Heap objects."
@@ -1168,12 +1247,12 @@ public class TicTacToeDemo {
               </div>
 
               {/* Pillar 2: Compiler & Dispatch Mechanics */}
-              <div className="p-4 rounded-2xl bg-[#060B16] border border-emerald-500/30 space-y-2.5 shadow-inner">
-                <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider block border-b border-slate-800 pb-1 flex items-center gap-1.5">
+              <div className="p-4 rounded-2xl bg-emerald-50/50 dark:bg-[#060B16] border border-emerald-200 dark:border-emerald-500/30 space-y-2.5 shadow-sm">
+                <span className="text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block border-b border-emerald-200 dark:border-slate-800 pb-1 flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5" />
                   <span>2. Execution &amp; Dispatch</span>
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                   {topic.category?.includes("OOP")
                     ? "Static methods and private calls resolve at compile time via 'invokestatic' and 'invokespecial'. Virtual method calls resolve dynamically at runtime via 'invokevirtual' (vtable) and 'invokeinterface' (itable), optimized by HotSpot JIT C1/C2 inlining."
                     : "Bytecode is verified by the Bytecode Verifier to ensure type safety before tiered JIT compilation converts hot loops into direct native assembly instructions."
@@ -1182,12 +1261,12 @@ public class TicTacToeDemo {
               </div>
 
               {/* Pillar 3: Enterprise Integration */}
-              <div className="p-4 rounded-2xl bg-[#060B16] border border-purple-500/30 space-y-2.5 shadow-inner">
-                <span className="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider block border-b border-slate-800 pb-1 flex items-center gap-1.5">
+              <div className="p-4 rounded-2xl bg-purple-50/50 dark:bg-[#060B16] border border-purple-200 dark:border-purple-500/30 space-y-2.5 shadow-sm">
+                <span className="text-xs font-mono font-bold text-purple-700 dark:text-purple-400 uppercase tracking-wider block border-b border-purple-200 dark:border-slate-800 pb-1 flex items-center gap-1.5">
                   <Server className="w-3.5 h-3.5" />
                   <span>3. Enterprise Design</span>
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
                   {topic.category?.includes("OOP")
                     ? "Serves as the foundation for Spring Framework Dependency Injection (IoC Container), Hibernate JPA Entity Lifecycle management, and microservice Domain-Driven Design (DDD) aggregate roots."
                     : "Ensures low-latency high-throughput data pipelines, zero memory leaks, thread-safe concurrent transactions, and horizontal scalability across containerized cloud pods."
@@ -1198,12 +1277,12 @@ public class TicTacToeDemo {
 
             {/* Technical Mental Model & System Invariant Callout */}
             {(topic.mentalModel || topic.eli10) && (
-              <div className="p-4 sm:p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
-                <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wide flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2 shadow-inner">
+                <span className="text-xs font-mono font-bold text-cyan-700 dark:text-cyan-300 uppercase tracking-wide flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                   <span>Architectural Invariant &amp; Mental Model</span>
                 </span>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
                   {topic.mentalModel || topic.eli10}
                 </p>
               </div>

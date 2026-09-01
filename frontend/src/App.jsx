@@ -1,6 +1,11 @@
 import React from 'react';
 import AppShell from './shell/AppShell';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 export default function App() {
-  return <AppShell />;
+  return (
+    <ErrorBoundary>
+      <AppShell />
+    </ErrorBoundary>
+  );
 }

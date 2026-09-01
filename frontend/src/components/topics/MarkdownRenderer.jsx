@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
 import mermaid from 'mermaid';
+import { mfeEventBus, MfeEvents } from '../../shared/events/MfeEventBus';
 
 // Initialize mermaid with rich dark theme and suppressed error rendering
 mermaid.initialize({
@@ -37,8 +38,8 @@ marked.use({
 
       if (depth === 1) {
         return `
-          <div class="topic-header-banner mt-1 mb-5 pb-3 border-b border-slate-800/80">
-            <h1 class="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-blue-300 tracking-tight flex items-center gap-3">
+          <div class="topic-header-banner mt-1 mb-5 pb-3 border-b border-slate-800/80 light:border-slate-200">
+            <h1 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:via-cyan-200 dark:to-blue-300 tracking-tight flex items-center gap-3">
               ${text}
             </h1>
           </div>
@@ -47,8 +48,8 @@ marked.use({
       if (depth === 2) {
         return `
           <div class="section-heading-wrapper mt-6 mb-3">
-            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
-              <span class="w-2.5 h-5 rounded-full bg-gradient-to-b from-cyan-400 to-blue-600 inline-block shadow-md shadow-cyan-500/30"></span>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
+              <span class="w-2.5 h-5 rounded-full bg-gradient-to-b from-cyan-500 to-blue-600 inline-block shadow-md shadow-cyan-500/30"></span>
               <span>${text}</span>
             </h2>
           </div>
@@ -56,20 +57,20 @@ marked.use({
       }
       if (depth === 3) {
         return `
-          <h3 class="text-base sm:text-lg font-bold text-cyan-300 mt-4 mb-2 flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+          <h3 class="text-base sm:text-lg font-bold text-cyan-600 dark:text-cyan-300 mt-4 mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>
             <span>${text}</span>
           </h3>
         `;
       }
       if (depth === 4) {
         return `
-          <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mt-3 mb-1.5">
+          <h4 class="text-sm font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mt-3 mb-1.5">
             ${text}
           </h4>
         `;
       }
-      return `<h${depth} class="font-bold text-white mt-3 mb-1.5">${text}</h${depth}>`;
+      return `<h${depth} class="font-bold text-slate-900 dark:text-white mt-3 mb-1.5">${text}</h${depth}>`;
     },
 
     // 2. TABLES: High-contrast glassmorphic card tables for Marked v18+
@@ -81,17 +82,17 @@ marked.use({
         // Marked v14+ / v18+ token structure
         const headerCells = token.header.map(cell => {
           const content = cell.tokens && this.parser ? this.parser.parseInline(cell.tokens) : (cell.text || '');
-          return `<th class="px-4 py-3 bg-gradient-to-r from-[#0C1427] via-slate-900 to-[#0C1427] text-cyan-300 font-bold uppercase tracking-wider text-xs border-b border-slate-700/80">${content}</th>`;
+          return `<th class="px-4 py-3 bg-slate-100 dark:bg-gradient-to-r dark:from-[#0C1427] dark:via-slate-900 dark:to-[#0C1427] text-cyan-800 dark:text-cyan-300 font-bold uppercase tracking-wider text-xs border-b border-slate-200 dark:border-slate-700/80">${content}</th>`;
         }).join('');
-        headerHtml = `<tr class="border-b border-slate-700/80">${headerCells}</tr>`;
+        headerHtml = `<tr class="border-b border-slate-200 dark:border-slate-700/80">${headerCells}</tr>`;
 
         if (Array.isArray(token.rows)) {
           bodyHtml = token.rows.map(row => {
             const rowCells = row.map(cell => {
               const content = cell.tokens && this.parser ? this.parser.parseInline(cell.tokens) : (cell.text || '');
-              return `<td class="px-4 py-3 text-xs sm:text-sm text-slate-200 hover:bg-cyan-950/20 transition">${content}</td>`;
+              return `<td class="px-4 py-3 text-xs sm:text-sm text-slate-700 dark:text-slate-200 hover:bg-cyan-50/50 dark:hover:bg-cyan-950/20 transition">${content}</td>`;
             }).join('');
-            return `<tr class="hover:bg-slate-900/40">${rowCells}</tr>`;
+            return `<tr class="hover:bg-slate-50 dark:hover:bg-slate-900/40">${rowCells}</tr>`;
           }).join('');
         }
       } else if (typeof token === 'object' && token.header && typeof token.header === 'string') {
@@ -100,11 +101,11 @@ marked.use({
       }
 
       return `
-        <div class="my-4 rounded-2xl overflow-hidden border border-slate-700/80 bg-[#0B101D] shadow-xl shadow-cyan-950/20">
+        <div class="my-4 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/80 bg-white dark:bg-[#0B101D] shadow-md dark:shadow-xl shadow-slate-200/50 dark:shadow-cyan-950/20">
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
               <thead>${headerHtml}</thead>
-              <tbody class="divide-y divide-slate-800/80">${bodyHtml}</tbody>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80">${bodyHtml}</tbody>
             </table>
           </div>
         </div>
@@ -115,13 +116,13 @@ marked.use({
     blockquote(token) {
       const text = token.tokens && this.parser ? this.parser.parse(token.tokens) : (token.text || '');
       return `
-        <div class="my-4 p-4 rounded-2xl bg-gradient-to-r from-blue-950/40 via-slate-900/60 to-cyan-950/30 border border-cyan-500/40 shadow-lg shadow-cyan-950/20 relative overflow-hidden">
+        <div class="my-4 p-4 rounded-2xl bg-cyan-50/90 dark:bg-gradient-to-r dark:from-blue-950/40 dark:via-slate-900/60 dark:to-cyan-950/30 border border-cyan-200 dark:border-cyan-500/40 shadow-sm dark:shadow-lg dark:shadow-cyan-950/20 relative overflow-hidden">
           <div class="absolute -top-6 -right-6 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
           <div class="flex items-start gap-3 relative z-10">
-            <div class="p-1.5 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 shrink-0 mt-0.5 shadow-sm">
+            <div class="p-1.5 rounded-xl bg-cyan-100 dark:bg-cyan-500/20 border border-cyan-300 dark:border-cyan-400/40 text-cyan-700 dark:text-cyan-300 shrink-0 mt-0.5 shadow-sm">
               💡
             </div>
-            <div class="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium space-y-1.5">
+            <div class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium space-y-1.5">
               ${text}
             </div>
           </div>
@@ -133,24 +134,50 @@ marked.use({
     hr() {
       return `
         <div class="my-6 flex items-center justify-center">
-          <div class="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
         </div>
       `;
     },
 
-    // 5. PARAGRAPHS: Generous letter-spacing (character spacing) & line height
+    // 5. PARAGRAPHS: Generous letter-spacing & line height
     paragraph(token) {
       const text = token.tokens && this.parser ? this.parser.parseInline(token.tokens) : (token.text || '');
-      return `<p class="text-slate-200 text-[14.5px] sm:text-[15px] leading-[1.85] tracking-[0.025em] my-3.5">${text}</p>`;
+      return `<p class="text-slate-700 dark:text-slate-200 text-[14.5px] sm:text-[15px] leading-[1.85] tracking-[0.015em] my-3.5">${text}</p>`;
     },
 
-    // 6. LIST ITEMS: Comfortable vertical breathing room & character spacing
+    // 6. LIST ITEMS: Comfortable vertical breathing room
     listitem(token) {
       const text = token.tokens && this.parser ? this.parser.parse(token.tokens) : (token.text || '');
-      return `<li class="text-slate-200 text-[14px] sm:text-[14.5px] leading-[1.8] tracking-[0.025em] my-2">${text}</li>`;
+      return `<li class="text-slate-700 dark:text-slate-200 text-[14px] sm:text-[14.5px] leading-[1.8] tracking-[0.015em] my-2">${text}</li>`;
     },
 
-    // 5. MERMAID & CODE BLOCKS
+    // 7. IMAGES WITH AI EXPLAIN BUTTON OVERLAY
+    image(token) {
+      const href = token.href || '';
+      const title = token.title || token.text || 'Architecture Visualization';
+      const text = token.text || '';
+      return `
+        <div class="visual-media-wrapper group relative my-6 rounded-2xl overflow-hidden border border-slate-700/60 dark:border-slate-800 bg-[#0B101D] shadow-xl">
+          <div class="absolute top-3 right-3 z-20 flex items-center gap-2">
+            <button 
+              type="button" 
+              class="explain-ai-btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#090E1D]/90 hover:bg-purple-900/90 text-purple-300 hover:text-white border border-purple-500/50 shadow-lg shadow-purple-950/50 text-xs font-bold backdrop-blur-md transition-all hover:scale-105 cursor-pointer"
+              data-title="${encodeURIComponent(title)}"
+              data-src="${encodeURIComponent(href)}"
+              data-type="image"
+              title="Explain this image with AI"
+            >
+              <span class="text-purple-400">✨</span>
+              <span>Explain</span>
+            </button>
+          </div>
+          <img src="${href}" alt="${text}" class="w-full h-auto object-contain max-h-[520px] rounded-xl mx-auto block" loading="lazy" />
+          ${text ? `<div class="p-2.5 text-center text-xs text-slate-400 font-mono border-t border-slate-800/80 bg-slate-950/60">${text}</div>` : ''}
+        </div>
+      `;
+    },
+
+    // 8. MERMAID & CODE BLOCKS
     code(token) {
       const text = token.text || '';
       const lang = token.lang || '';
@@ -168,13 +195,26 @@ marked.use({
                   <span>📐</span> ARCHITECTURE DIAGRAM
                 </span>
               </div>
-              <button 
-                type="button" 
-                class="copy-code-btn text-[11px] font-mono text-slate-400 hover:text-white px-2.5 py-1 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 transition flex items-center gap-1.5 cursor-pointer"
-                data-code="${encodeURIComponent(text)}"
-              >
-                <span>📋 Copy Diagram</span>
-              </button>
+              <div class="flex items-center gap-2">
+                <button 
+                  type="button" 
+                  class="explain-ai-btn text-[11px] font-mono font-bold text-purple-300 hover:text-white px-2.5 py-1 rounded-lg bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 transition flex items-center gap-1.5 cursor-pointer shadow-sm hover:scale-105"
+                  data-title="Architecture Diagram"
+                  data-code="${encodeURIComponent(text)}"
+                  data-type="diagram"
+                  title="Explain this diagram with AI"
+                >
+                  <span class="text-purple-400">✨</span>
+                  <span>Explain with AI</span>
+                </button>
+                <button 
+                  type="button" 
+                  class="copy-code-btn text-[11px] font-mono text-slate-400 hover:text-white px-2.5 py-1 rounded-md bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 transition flex items-center gap-1.5 cursor-pointer"
+                  data-code="${encodeURIComponent(text)}"
+                >
+                  <span>📋 Copy</span>
+                </button>
+              </div>
             </div>
             <div class="mermaid-target p-6 flex items-center justify-center overflow-x-auto min-h-[120px] bg-gradient-to-b from-[#0B101D] to-[#070B14]" id="${id}" data-mermaid-code="${encodeURIComponent(text)}">
               <div class="text-xs text-slate-400 flex items-center gap-2 font-mono py-4 animate-pulse">
@@ -213,8 +253,8 @@ marked.use({
               <span>📋 Copy</span>
             </button>
           </div>
-          <div class="p-4 sm:p-5 overflow-x-auto text-[13px] sm:text-[14px] leading-relaxed font-mono">
-            <pre class="!bg-transparent !p-0 !m-0 !border-0"><code class="hljs ${validLang ? `language-${validLang}` : ''}">${highlighted}</code></pre>
+          <div class="p-4 sm:p-5 overflow-x-auto text-[13px] sm:text-[14px] leading-relaxed font-mono text-slate-100">
+            <pre class="!bg-transparent !p-0 !m-0 !border-0 text-slate-100"><code class="hljs ${validLang ? `language-${validLang}` : ''} !text-slate-100">${highlighted}</code></pre>
           </div>
         </div>
       `;
@@ -260,10 +300,11 @@ export default function MarkdownRenderer({ content, activeSpokenText = '', class
     });
   }, [html]);
 
-  // Setup click listeners for dynamic copy buttons
+  // Setup click listeners for dynamic copy buttons and AI explain buttons
   useEffect(() => {
     if (!containerRef.current) return;
     const copyBtns = containerRef.current.querySelectorAll('.copy-code-btn');
+    const aiBtns = containerRef.current.querySelectorAll('.explain-ai-btn');
     
     copyBtns.forEach(btn => {
       const handleCopy = () => {
@@ -280,7 +321,27 @@ export default function MarkdownRenderer({ content, activeSpokenText = '', class
       };
 
       btn.addEventListener('click', handleCopy);
-      return () => btn.removeEventListener('click', handleCopy);
+    });
+
+    aiBtns.forEach(btn => {
+      const handleAiExplain = () => {
+        const title = decodeURIComponent(btn.getAttribute('data-title') || 'Visualization');
+        const src = decodeURIComponent(btn.getAttribute('data-src') || '');
+        const code = decodeURIComponent(btn.getAttribute('data-code') || '');
+        const type = btn.getAttribute('data-type') || 'image';
+
+        mfeEventBus.emit(MfeEvents.OPEN_AI_CHAT, {
+          prompt: `Explain this ${title}:`,
+          visualPreview: {
+            title,
+            type,
+            src,
+            code
+          }
+        });
+      };
+
+      btn.addEventListener('click', handleAiExplain);
     });
   }, [html]);
 
@@ -353,7 +414,7 @@ export default function MarkdownRenderer({ content, activeSpokenText = '', class
   return (
     <div 
       ref={containerRef} 
-      className={`prose prose-invert max-w-none prose-p:text-slate-200 prose-p:text-[14.5px] sm:prose-p:text-[15px] prose-p:leading-[1.85] prose-p:tracking-[0.025em] prose-p:my-3.5 prose-li:text-slate-200 prose-li:text-[14px] sm:prose-li:text-[14.5px] prose-li:leading-[1.8] prose-li:tracking-[0.025em] prose-li:my-2 prose-ul:my-3.5 prose-ol:my-3.5 prose-ul:space-y-2 prose-ol:space-y-2 prose-strong:text-cyan-200 prose-strong:font-bold prose-strong:tracking-[0.025em] prose-code:text-amber-300 prose-code:bg-slate-900/90 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:border prose-code:border-slate-800 prose-code:before:content-none prose-code:after:content-none ${className}`}
+      className={`prose dark:prose-invert max-w-none prose-p:text-slate-700 dark:prose-p:text-slate-200 prose-p:text-[14.5px] sm:prose-p:text-[15px] prose-p:leading-[1.85] prose-p:tracking-[0.015em] prose-p:my-3.5 prose-li:text-slate-700 dark:prose-li:text-slate-200 prose-li:text-[14px] sm:prose-li:text-[14.5px] prose-li:leading-[1.8] prose-li:tracking-[0.015em] prose-li:my-2 prose-ul:my-3.5 prose-ol:my-3.5 prose-ul:space-y-2 prose-ol:space-y-2 prose-strong:text-slate-900 dark:prose-strong:text-cyan-200 prose-strong:font-bold prose-strong:tracking-[0.015em] prose-code:text-amber-800 dark:prose-code:text-amber-300 prose-code:bg-slate-100 dark:prose-code:bg-slate-900/90 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:border prose-code:border-slate-200 dark:prose-code:border-slate-800 prose-code:before:content-none prose-code:after:content-none ${className}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
