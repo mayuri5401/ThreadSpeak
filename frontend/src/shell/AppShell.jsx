@@ -283,6 +283,7 @@ export default function AppShell() {
             currentTrackId={currentTrackId}
             selectedTopicId={selectedTopicId}
             onSelectTopic={handleSelectTopic}
+            onSelectTrack={handleSelectTrack}
             completedTopicIds={completedTopicIds}
             bookmarkedTopicIds={bookmarkedTopicIds}
             onToggleComplete={handleToggleComplete}

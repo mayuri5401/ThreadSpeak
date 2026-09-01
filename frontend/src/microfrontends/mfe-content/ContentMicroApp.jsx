@@ -12,6 +12,7 @@ export default function ContentMicroApp({
   currentTrackId = 'core-java',
   selectedTopicId = 'java-intro-what-is-java',
   onSelectTopic,
+  onSelectTrack,
   completedTopicIds = new Set(),
   bookmarkedTopicIds = new Set(),
   onToggleComplete,
