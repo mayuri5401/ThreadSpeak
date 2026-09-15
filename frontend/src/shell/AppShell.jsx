@@ -7,6 +7,7 @@ import ContentMicroApp from '../microfrontends/mfe-content/ContentMicroApp';
 import UserProgressMicroApp from '../microfrontends/mfe-user-progress/UserProgressMicroApp';
 import CodeRunnerMicroApp from '../microfrontends/mfe-code-runner/CodeRunnerMicroApp';
 import QuizMicroApp from '../microfrontends/mfe-quiz/QuizMicroApp';
+import StriversA2ZSheetView from '../components/practice/StriversA2ZSheetView';
 
 import { fetchTracks, fetchTopics } from '../microfrontends/mfe-content/services/contentApiClient';
 import { 
@@ -27,9 +28,10 @@ export default function AppShell() {
   const [allTopics, setAllTopics] = useState([]);
   const [selectedTopicId, setSelectedTopicId] = useState(initialUrlState.topicId || 'java-intro-what-is-java');
   const [activeTab, setActiveTab] = useState(initialUrlState.tab || 'notes');
-  const [currentView, setCurrentView] = useState(initialUrlState.view || 'topics'); // 'topics' | 'progress' | 'playground' | 'profile' | 'quiz'
+  const [currentView, setCurrentView] = useState(initialUrlState.view || 'topics'); // 'topics' | 'progress' | 'playground' | 'profile' | 'quiz' | 'strivers-sheet'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [playgroundCode, setPlaygroundCode] = useState(null);
+  const [activeProblem, setActiveProblem] = useState(null);
 
   // History & popstate tracking refs to prevent redundant pushState
   const isPopStateRef = useRef(false);
@@ -247,7 +249,14 @@ export default function AppShell() {
   };
 
   const handleOpenPlaygroundWithCode = (code) => {
+    setActiveProblem(null);
     setPlaygroundCode(code);
+    setCurrentView('playground');
+  };
+
+  const handleOpenProblemInPlayground = (problem) => {
+    setActiveProblem(problem);
+    setPlaygroundCode(null);
     setCurrentView('playground');
   };
 
@@ -327,11 +336,21 @@ export default function AppShell() {
           </div>
         )}
 
+        {/* Striver's A2Z DSA Sheet View */}
+        {currentView === 'strivers-sheet' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <StriversA2ZSheetView onOpenProblemInPlayground={handleOpenProblemInPlayground} />
+          </div>
+        )}
 
         {/* MFE: Java Code Runner & Execution Sandbox */}
         {currentView === 'playground' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <CodeRunnerMicroApp initialCode={playgroundCode} />
+            <CodeRunnerMicroApp 
+              initialCode={playgroundCode}
+              activeProblem={activeProblem}
+              onBackToSheet={() => setCurrentView('strivers-sheet')}
+            />
           </div>
         )}
 

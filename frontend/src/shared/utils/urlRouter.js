@@ -24,7 +24,7 @@ export function parseUrlState() {
     }
     if (pathParts.length > 0) {
       const first = pathParts[0].toLowerCase();
-      if (['progress', 'playground', 'profile', 'quiz'].includes(first)) {
+      if (['progress', 'playground', 'profile', 'quiz', 'strivers-sheet'].includes(first)) {
         view = first;
         if (first === 'quiz' && pathParts[1]) {
           topicId = pathParts[1];
@@ -62,7 +62,7 @@ export function parseUrlState() {
       if (hashParts[0] === 'topic' && hashParts[1]) {
         topicId = hashParts[1];
         view = 'topics';
-      } else if (['progress', 'playground', 'profile', 'quiz'].includes(hashParts[0])) {
+      } else if (['progress', 'playground', 'profile', 'quiz', 'strivers-sheet'].includes(hashParts[0])) {
         view = hashParts[0];
       }
     }

@@ -105,7 +105,9 @@ export default function Navbar({
   const handleSelectPracticeScenario = (type) => {
     setActiveDropdown(null);
     setIsMobileMenuOpen(false);
-    if (type === 'dsa') {
+    if (type === 'strivers-sheet') {
+      onSelectView?.('strivers-sheet');
+    } else if (type === 'dsa') {
       onSelectTrack?.('dsa');
       onSelectView?.('playground');
     } else if (type === 'system-design') {
@@ -127,7 +129,7 @@ export default function Navbar({
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [menuBubble, setMenuBubble] = useState({ left: 0, width: 0, opacity: 0, colorClass: 'border-emerald-500/50 bg-emerald-500/20' });
 
-  const activeTarget = hoveredMenu || activeDropdown || (currentView === 'playground' ? 'practice' : currentView === 'topics' ? 'learn' : null);
+  const activeTarget = hoveredMenu || activeDropdown || (currentView === 'playground' || currentView === 'strivers-sheet' ? 'practice' : currentView === 'topics' ? 'learn' : null);
 
   const updateBubblePosition = () => {
     if (!navContainerRef.current) return;
@@ -353,6 +355,7 @@ export default function Navbar({
               {activeDropdown === 'practice' && (
                 <div className="absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[#090E1A] light:bg-white border border-slate-800 light:border-slate-200 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150 space-y-1">
                   {[
+                    { type: 'strivers-sheet', title: "Striver's A2Z Sheet", desc: '450+ Step-by-Step DSA Problems', icon: Sparkles, color: 'text-rose-400', isNew: true },
                     { type: 'dsa', title: 'DSA Patterns', desc: '75+ Code templates', icon: Code, color: 'text-cyan-400' },
                     { type: 'system-design', title: 'System Design', desc: 'Traffic & cache simulator', icon: Layers, color: 'text-indigo-400', isNew: true },
                     { type: 'concurrency', title: 'Concurrency', desc: 'Virtual threads & deadlocks', icon: Zap, color: 'text-amber-400', isNew: true },
