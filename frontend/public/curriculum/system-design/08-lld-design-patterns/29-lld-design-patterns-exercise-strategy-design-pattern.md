@@ -744,9 +744,9 @@ Build a discount system for an e-commerce checkout where different discount stra
 
 - Strategy interface: `DiscountStrategy` with a method `applyDiscount(price)` that returns the discounted price
 - Concrete strategies:
-   - `NoDiscount` - returns the original price unchanged
-   - `PercentageDiscount` - takes a percentage (e.g., 20) and reduces the price by that percent
-   - `FlatDiscount` - takes a fixed amount and subtracts it from the price (minimum $0)
+ - `NoDiscount` - returns the original price unchanged
+ - `PercentageDiscount` - takes a percentage (e.g., 20) and reduces the price by that percent
+ - `FlatDiscount` - takes a fixed amount and subtracts it from the price (minimum $0)
 - Context: `ShoppingCart` with `setDiscountStrategy()` and `checkout(price)` that prints the original and final price
 
 ```java
@@ -1525,9 +1525,9 @@ Build a sorting system where different strategies sort an array of integers usin
 
 - Strategy interface `SortStrategy` with a method `sort(array)` that returns a sorted copy of the input array
 - Three concrete strategies:
-   - `BubbleSortStrategy` - implements actual bubble sort, prints `"Using Bubble Sort"`
-   - `MergeSortStrategy` - uses the language's built-in sort as a simulation, prints `"Using Merge Sort"`
-   - `QuickSortStrategy` - uses the language's built-in sort as a simulation, prints `"Using Quick Sort"`
+ - `BubbleSortStrategy` - implements actual bubble sort, prints `"Using Bubble Sort"`
+ - `MergeSortStrategy` - uses the language's built-in sort as a simulation, prints `"Using Merge Sort"`
+ - `QuickSortStrategy` - uses the language's built-in sort as a simulation, prints `"Using Quick Sort"`
 - Context class `Sorter` with `setStrategy()` and `sortArray(array)` that prints the sorted result
 - **Challenge:** Create a `TimedSortStrategy` that wraps any `SortStrategy`, delegates the sort call, measures the elapsed time, and prints it. This combines Strategy with the Decorator pattern since the wrapper itself implements the same strategy interface.
 
@@ -1653,12 +1653,12 @@ class Sorter:
 
 # TODO (Challenge): Implement TimedSortStrategy that wraps another SortStrategy
 # class TimedSortStrategy(SortStrategy):
-#     def __init__(self, inner: SortStrategy):
-#         self._inner = inner
+# def __init__(self, inner: SortStrategy):
+# self._inner = inner
 #
-#     def sort(self, array: list[int]) -> list[int]:
-#         # measure time, delegate to inner, print elapsed time
-#         pass
+# def sort(self, array: list[int]) -> list[int]:
+# # measure time, delegate to inner, print elapsed time
+# pass
 
 if __name__ == "__main__":
     data = [38, 27, 43, 3, 9, 82, 10]

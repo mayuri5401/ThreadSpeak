@@ -40,9 +40,9 @@ codeSnippet:
     }
 ---
 
-# 🔄 Java Looping Statements with Examples
+# Java Looping Statements with Examples
 
-## 📖 Introduction
+## Introduction
 
 **Looping Statements** are also known as **"Iteration Statements"**.  
 Looping statements allow us to repeat a block of code multiple times, making our programs much more efficient and drastically reducing code redundancy.
@@ -60,7 +60,7 @@ Looping statements allow us to repeat a block of code multiple times, making our
 
 ---
 
-### 🗺️ Examples of Looping Statements in Java:
+### Examples of Looping Statements in Java:
 - **`for` loop**: Repeats a block of code a specific, predetermined number of times.
 - **`while` loop**: Executes a block of code as long as a specified boolean condition is `true`.
 - **`do-while` loop**: Executes a block of code once first, then repeats it as long as the condition is `true`.
@@ -70,7 +70,7 @@ These are explained deeply below with syntax breakdowns, programs, outputs, and 
 
 ---
 
-## 🔹 1. "for" Loop in Java
+## 1. "for" Loop in Java
 
 The **`for` loop** is used to repeat a block of code a **specific number of times**.  
 The `for` loop is especially useful when the **number of iterations is known beforehand** (i.e. we know exactly how many times we need to repeat a task), such as when working with fixed-size arrays or running a counter from $1$ to $N$.
@@ -92,7 +92,7 @@ The `for` loop is especially useful when the **number of iterations is known bef
 └────────────────────────────────────────────────────────┘
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 for (initialization; condition; increment/decrement)
 {
@@ -100,13 +100,13 @@ for (initialization; condition; increment/decrement)
 }
 ```
 
-#### 🔍 Syntax Explanation:
+#### Syntax Explanation:
 1. **Initialization**: The loop control variable is initialized before the loop starts. This part runs **only once** at the very beginning.
 2. **Condition**: Checks the boolean condition before each iteration. If the condition is `true`, the loop executes the statements inside the `for` block. If `false`, the loop terminates.
 3. **Increment/Decrement**: Updates the loop control variable after each iteration, helping the loop progress toward termination.
 4. **Statements**: The code block executed whenever the `for` loop condition is `true`.
 
-#### 💻 Program:
+#### Program:
 ```java
 public class ForLoopExample
 {
@@ -121,7 +121,7 @@ public class ForLoopExample
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Number: 1
 Number: 2
@@ -132,16 +132,16 @@ Number: 5
 
 ---
 
-### 💡 NOTE on Single-Statement `for` Loops:
+### NOTE on Single-Statement `for` Loops:
 > If there is **only one statement** in the `for` loop body, then the curly braces `{}` are **optional**.
 
-#### 📌 Single-Statement Syntax:
+#### Single-Statement Syntax:
 ```java
 for (initialization; condition; increment/decrement)
     statement;
 ```
 
-#### 💻 Example:
+#### Example:
 ```java
 public class ForLoopExample
 {
@@ -155,7 +155,7 @@ public class ForLoopExample
 
 ---
 
-## 🔹 2. "while" Loop in Java
+## 2. "while" Loop in Java
 
 The **`while` loop** is used to repeat a block of code **as long as a specific condition is true**.  
 The `while` loop is useful when we **don’t know in advance how many times** we need to repeat the task, and the loop should continue running as long as the condition holds `true`.
@@ -176,7 +176,7 @@ The `while` loop is useful when we **don’t know in advance how many times** we
                    └────────────────────────────┘
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 while (condition)
 {
@@ -184,7 +184,7 @@ while (condition)
 }
 ```
 
-#### 🔍 Syntax Explanation:
+#### Syntax Explanation:
 - **Condition**: Evaluated before each iteration (**entry-controlled**). If `true`, the loop body executes; if `false`, the loop exits.
 - **Statements**: The statements inside the loop are executed repeatedly as long as the condition remains `true`.
 
@@ -194,7 +194,7 @@ while (condition)
 
 ---
 
-#### 💻 Task & Solution:
+#### Task & Solution:
 - **Task:** Print all the even numbers between $1$ and $17$.
 - **Solution:** Since we don't know the exact count of even numbers in an arbitrary range upfront, we can cleanly use a `while` loop starting at $2$ and incrementing by $+2$.
 
@@ -214,7 +214,7 @@ public class WhileLoopExample
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Even Number: 2
 Even Number: 4
@@ -228,10 +228,10 @@ Even Number: 16
 
 ---
 
-### 💡 NOTE on Single-Statement `while` Loops:
+### NOTE on Single-Statement `while` Loops:
 > If there is **only one statement** inside the `while` loop, curly braces `{}` are **optional**.
 
-#### 📌 Single-Statement Syntax:
+#### Single-Statement Syntax:
 ```java
 while (condition)
     statement;
@@ -239,7 +239,7 @@ while (condition)
 
 ---
 
-## 🔹 3. "do-while" Loop in Java
+## 3. "do-while" Loop in Java
 
 The **`do-while` loop** is used to repeat a block of code **at least once** and then repeatedly as long as the condition is `true`.  
 The `do-while` loop is useful when we want the code to **run at least once**, even if the condition evaluates to `false` initially.
@@ -258,7 +258,7 @@ The `do-while` loop is useful when we want the code to **run at least once**, ev
              [ Exit Loop ]
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 do
 {
@@ -266,7 +266,7 @@ do
 } while (condition);
 ```
 
-#### 🔍 Syntax Explanation:
+#### Syntax Explanation:
 - **Statements**: The block of code that is executed **at least once**, regardless of the condition.
 - **Condition**: After executing the statements, the condition is checked (**exit-controlled**). If `true`, the loop continues; if `false`, it terminates. Note the mandatory trailing semicolon (`;`).
 
@@ -274,7 +274,7 @@ do
 
 ---
 
-#### 💻 Task & Solution:
+#### Task & Solution:
 - **Task:** Prompt the user for a number, and keep asking until they provide a positive number ($> 0$).
 - **Solution:** Since we must always take input from the user at least once before testing if it's positive, a `do-while` loop is the ideal choice.
 
@@ -302,7 +302,7 @@ public class DoWhileExample
 
 > 📖 *Note on User Input:* Here we used the `Scanner` class to read console input. [Click Here](https://smartprogramming.in/tutorials/java/java-looping-statements#) to read more about Scanner and looping statements.
 
-#### 🖥️ Sample Console Execution:
+#### Sample Console Execution:
 ```text
 Enter a positive number: -20
 Enter a positive number: 0
@@ -312,7 +312,7 @@ You entered a valid positive number: 5
 
 ---
 
-## 🔹 4. "for-each" Loop (Enhanced For Loop) in Java
+## 4. "for-each" Loop (Enhanced For Loop) in Java
 
 The **`for-each` loop** (also called the **Enhanced For Loop**) in Java is used to **iterate over elements in an array or collection** without needing an explicit index variable.  
 It is commonly used when we don’t need to manipulate index counters and simply want to process each element in sequence.
@@ -329,7 +329,7 @@ It is commonly used when we don’t need to manipulate index counters and simply
 └────────────────────────────────────────────────────────┘
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 for (dataType variable : collection)
 {
@@ -337,14 +337,14 @@ for (dataType variable : collection)
 }
 ```
 
-#### 🔍 Syntax Explanation:
+#### Syntax Explanation:
 - **`dataType`**: Specifies the type of the elements stored in the array or collection (e.g. `int`, `String`).
 - **`variable`**: Represents the current element during each iteration.
 - **`collection`**: The array or collection (e.g. `List`, `Set`, array) being iterated over.
 
 > 💡 **NOTE:** The `for-each` loop is primarily used with arrays and collections, but it can be used with any object implementing the **`Iterable`** interface.
 
-#### 💻 Program:
+#### Program:
 ```java
 public class EnhancedForLoopExample
 {
@@ -361,7 +361,7 @@ public class EnhancedForLoopExample
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Apple
 Banana
@@ -370,14 +370,14 @@ Cherry
 
 ---
 
-### 🌟 Key Advantages of Enhanced `for-each` Loop:
+### Key Advantages of Enhanced `for-each` Loop:
 1. **Cleaner Code**: Eliminates boilerplates (initialization, index counter `i`, boundary check `i < length`, and increment `i++`).
 2. **Safe from Out-of-Bounds**: Eliminates `ArrayIndexOutOfBoundsException` risks since the JVM automatically bounds traversal.
 3. **High Readability**: Makes intention crystal clear when reading through datasets.
 
 ---
 
-## 📊 Summary Comparison: `for` vs `while` vs `do-while` vs `for-each`
+## Summary Comparison: `for` vs `while` vs `do-while` vs `for-each`
 
 | Feature | `for` Loop | `while` Loop | `do-while` Loop | Enhanced `for-each` |
 |:---|:---|:---|:---|:---|

@@ -17,11 +17,11 @@ codeSnippet:
   explanation: "Demonstrating Java 7 Multi-catch block using pipe operator with disjoint exception types."
 ---
 
-# 🚀 Multi-Catch Block in Java 7
+# Multi-Catch Block in Java 7
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 Before Java 7, if a **`try`** block could throw multiple different exceptions that all required the **same handling logic** (such as logging the error or showing a standard error dialog), developers were forced to write separate `catch` blocks for each exception.
 
@@ -36,7 +36,7 @@ To reduce this redundancy and write cleaner code, **Java 7 introduced the Multi-
 
 ---
 
-## 📝 2. Syntax of Multi-Catch Block
+## 2. Syntax of Multi-Catch Block
 
 ```java
 try {
@@ -48,7 +48,7 @@ try {
 
 ---
 
-## 💻 3. Complete Practical Working Example
+## 3. Complete Practical Working Example
 
 Let us write a complete Java application where a single catch block handles both **`InputMismatchException`** and **`ArithmeticException`** using the Java 7 pipe (`|`) operator:
 
@@ -78,7 +78,7 @@ public class MainApp {
 }
 ```
 
-### 🔍 Code Explanation:
+### Code Explanation:
 Here we used a **single multi-catch block** (`catch (InputMismatchException | ArithmeticException ex)`):
 - If the user enters a non-numeric string (e.g. `"abc"`), `InputMismatchException` is thrown and caught by `ex`.
 - If the user enters `0` for `no2`, `ArithmeticException` is thrown and caught by the exact same `ex` variable.
@@ -86,9 +86,9 @@ Here we used a **single multi-catch block** (`catch (InputMismatchException | Ar
 
 ---
 
-## 🔄 4. Output Tracing for Different Inputs
+## 4. Output Tracing for Different Inputs
 
-### 🟡 Scenario 1: Input Mismatch Error (User inputs `"hello"`)
+### Scenario 1: Input Mismatch Error (User inputs `"hello"`)
 ```text
 ----- App Started -----
 Enter no 1
@@ -99,7 +99,7 @@ Exception Occurred : java.util.InputMismatchException
 
 ---
 
-### 🔴 Scenario 2: Division by Zero Error (User inputs `100` and `0`)
+### Scenario 2: Division by Zero Error (User inputs `100` and `0`)
 ```text
 ----- App Started -----
 Enter no 1
@@ -112,7 +112,7 @@ Exception Occurred : java.lang.ArithmeticException: / by zero
 
 ---
 
-### 🟢 Scenario 3: Valid Input (User inputs `100` and `5`)
+### Scenario 3: Valid Input (User inputs `100` and `5`)
 ```text
 ----- App Started -----
 Enter no 1
@@ -125,16 +125,16 @@ Result : 20
 
 ---
 
-## 📌 5. Crucial Points to Remember for Multi-Catch Block
+## 5. Crucial Points to Remember for Multi-Catch Block
 
 ---
 
-### 1️⃣ The Disjoint Rule: Exceptions Must Be Unrelated (No Parent-Child Relationship)
+### 1⃣ The Disjoint Rule: Exceptions Must Be Unrelated (No Parent-Child Relationship)
 The exceptions listed inside a multi-catch block **must be alternatives (disjoint)**. They cannot have an inheritance (IS-A) relationship with one another.
 
-- ✅ **`IOException | SQLException`** $\rightarrow$ **Allowed** (Siblings with no inheritance relationship).
-- ✅ **`InputMismatchException | ArithmeticException`** $\rightarrow$ **Allowed** (Both inherit independently from `RuntimeException`).
-- ❌ **`Exception | IOException`** $\rightarrow$ **NOT Allowed!** (Because `IOException` is already a child subclass of `Exception`).
+- **`IOException | SQLException`** $\rightarrow$ **Allowed** (Siblings with no inheritance relationship).
+- **`InputMismatchException | ArithmeticException`** $\rightarrow$ **Allowed** (Both inherit independently from `RuntimeException`).
+- **`Exception | IOException`** $\rightarrow$ **NOT Allowed!** (Because `IOException` is already a child subclass of `Exception`).
 
 ```java
 // ❌ COMPILE-TIME ERROR:
@@ -152,7 +152,7 @@ try {
 
 ---
 
-### 2️⃣ The Exception Variable is Implicitly `final`
+### 2⃣ The Exception Variable is Implicitly `final`
 In a standard single `catch (Exception e)` block, the variable `e` is non-final (you could reassign it).  
 However, in a Java 7 multi-catch block, the reference variable (`ex`) is **implicitly `final`**. You **cannot reassign** a new object to it inside the catch block.
 
@@ -167,19 +167,19 @@ try {
 
 ---
 
-### 3️⃣ Single Variable Name at the End
+### 3⃣ Single Variable Name at the End
 You specify the variable name only once at the very end of the type list:
-- ✅ **`catch (IOException | SQLException ex)`**
-- ❌ **`catch (IOException ex1 | SQLException ex2)`** (Syntax error)
+- **`catch (IOException | SQLException ex)`**
+- **`catch (IOException ex1 | SQLException ex2)`** (Syntax error)
 
 ---
 
-### 4️⃣ Cleaner, Shorter, and DRY (Don't Repeat Yourself) Code
+### 4⃣ Cleaner, Shorter, and DRY (Don't Repeat Yourself) Code
 Multi-catch eliminates code duplication, reduces the generated `.class` bytecode size, and makes enterprise applications much easier to maintain.
 
 ---
 
-## ⚖️ 6. Before Java 7 vs After Java 7: Side-by-Side Comparison
+## 6. Before Java 7 vs After Java 7: Side-by-Side Comparison
 
 ```java
 // ==========================================
@@ -211,7 +211,7 @@ try {
 
 ---
 
-## 🏢 7. Enterprise Real-World Case Study: Cloud Storage Ingestion Pipeline
+## 7. Enterprise Real-World Case Study: Cloud Storage Ingestion Pipeline
 
 In high-throughput microservices, data ingestion tasks stream data from external buckets, parse payloads, and persist to SQL databases. Multiple distinct I/O, database, and parsing errors all trigger a unified alert and dead-letter queue routing:
 
@@ -234,7 +234,7 @@ public class CloudStorageIngestionService {
 
 ---
 
-## ❓ 8. Frequently Asked Questions (FAQ)
+## 8. Frequently Asked Questions (FAQ)
 
 ### Q1: Can we mix multiple catch blocks with multi-catch blocks?
 **Yes!** You can have specialized single catch blocks followed by a multi-catch block or fallback `catch (Exception e)`.
@@ -256,7 +256,7 @@ At runtime, the type of `ex` is the **Least Upper Bound (LUB)** of the listed ty
 
 ---
 
-## 📊 9. Comparison Matrix: Single vs Multiple vs Multi-Catch (Java 7)
+## 9. Comparison Matrix: Single vs Multiple vs Multi-Catch (Java 7)
 
 | Feature | Single catch Block | Multiple catch Blocks | Multi-Catch Block (Java 7+) |
 | :--- | :--- | :--- | :--- |

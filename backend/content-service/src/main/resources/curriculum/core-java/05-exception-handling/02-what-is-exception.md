@@ -35,11 +35,11 @@ codeSnippet:
     }
 ---
 
-# 🛡️ Exception in Java
+# Exception in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 An **Exception** is an **unwanted event** that occurs during the execution of a program and **disrupts the normal flow of instructions**.
 
@@ -48,23 +48,23 @@ An **Exception** is an **unwanted event** that occurs during the execution of a 
 
 ---
 
-### 💻 Key Examples of Exceptions:
+### Key Examples of Exceptions:
 
-#### 1️⃣ `IOException`
+#### 1⃣ `IOException`
 - **Occurs when:** An input/output operation fails (e.g., file not found or unreadable).
 - **Syntax / Code:**
 ```java
 FileReader fr = new FileReader("file.txt"); // May throw IOException
 ```
 
-#### 2️⃣ `ArithmeticException`
+#### 2⃣ `ArithmeticException`
 - **Occurs when:** Dividing a number by zero or performing an illegal arithmetic calculation.
 - **Syntax / Code:**
 ```java
 int result = 10 / 0; // Throws ArithmeticException
 ```
 
-#### 3️⃣ `NullPointerException`
+#### 3⃣ `NullPointerException`
 - **Occurs when:** Calling a method, accessing a field, or getting length on a `null` object.
 - **Syntax / Code:**
 ```java
@@ -76,7 +76,7 @@ System.out.println(str.length()); // Throws NullPointerException
 
 ---
 
-## 🏷️ Types of Exceptions in Java
+## Types of Exceptions in Java
 
 There are **two types of Exceptions** in Java:
 
@@ -88,14 +88,14 @@ flowchart TD
 
 ---
 
-### 1️⃣ Checked Exceptions
+### 1⃣ Checked Exceptions
 
 **Checked Exceptions** are those which are **checked at compile time**.
 
 - The Java compiler checks these at compile time.
 - The program **won't compile** unless they are handled with `try-catch` or declared using `throws`.
 
-#### 📝 Examples:
+#### Examples:
 1. **`IOException`**: Input/output operation fails (e.g., file not found).
 ```java
 FileReader fr = new FileReader("abc.txt"); // May throw IOException
@@ -107,7 +107,7 @@ Connection con = DriverManager.getConnection(url, user, pass); // May throw SQLE
 
 ---
 
-### 2️⃣ Unchecked Exceptions
+### 2⃣ Unchecked Exceptions
 
 **Unchecked Exceptions** are those which **occur during runtime**, not checked by compiler.
 
@@ -115,7 +115,7 @@ Connection con = DriverManager.getConnection(url, user, pass); // May throw SQLE
 - Usually caused by **programming mistakes** like invalid index, null access, or divide by zero.
 - They are all direct or indirect subclasses of `java.lang.RuntimeException`.
 
-#### 📝 Examples:
+#### Examples:
 1. **`ArithmeticException`**: Divide by zero error.
 ```java
 int result = 10 / 0; // Throws ArithmeticException
@@ -128,7 +128,7 @@ System.out.println(arr[5]); // Throws ArrayIndexOutOfBoundsException
 
 ---
 
-## 🌲 Exception Class Hierarchy
+## Exception Class Hierarchy
 
 **Exception** is the pre-defined class in Java which inherits the **`Throwable`** class.
 
@@ -152,20 +152,20 @@ flowchart TD
     Unchecked --> AIOOBE["📊 ArrayIndexOutOfBoundsException"]
 ```
 
-### 📌 Points to Remember:
+### Points to Remember:
 1. **`Object` class** is the parent class of all the classes in Java.
 2. **`Throwable` class** is the parent class of `Exception` class in Java.
 3. **`Exception` class itself is a checked exception**, because it is not a subclass of `RuntimeException`.
 
 ---
 
-## ⚙️ What is Exception Handling?
+## What is Exception Handling?
 
 **Exception Handling** is the mechanism to handle the exceptions (or runtime errors) so that the **normal flow of the program is not disrupted**.
 
 ---
 
-### 🎯 Need for Exception Handling:
+### Need for Exception Handling:
 - **Prevents program crashes.**
 - **Provides meaningful error messages.**
 - **Separates normal logic from error-handling logic.**
@@ -173,7 +173,7 @@ flowchart TD
 
 ---
 
-### 🔑 Keywords Used in Exception Handling:
+### Keywords Used in Exception Handling:
 
 Java provides **5 primary keywords** for managing exceptions:
 
@@ -193,14 +193,14 @@ Java provides **5 primary keywords** for managing exceptions:
 
 ---
 
-### 📌 Points to Remember:
+### Points to Remember:
 1. **Technically, the `catch` keyword is used to handle exceptions in Java.** Other keywords (`try`, `finally`, `throw`, `throws`) have different functionalities and do not directly handle exceptions.
 2. **It is compulsory to handle Checked Exceptions in Java.**
 3. **It is not compulsory to handle Unchecked Exceptions**, but it is a **best practice to handle both (Checked and Unchecked)** for making applications more stable and user-friendly.
 
 ---
 
-## ⚖️ Difference between Error and Exception in Java
+## Difference between Error and Exception in Java
 
 | Feature | ⚠️ Error | 🛡️ Exception |
 | :--- | :--- | :--- |
@@ -212,9 +212,9 @@ Java provides **5 primary keywords** for managing exceptions:
 
 ---
 
-## 💻 Full Code Demonstration: Unhandled vs Handled Execution
+## Full Code Demonstration: Unhandled vs Handled Execution
 
-### 🔴 Unhandled Exception (Program Crashes):
+### Unhandled Exception (Program Crashes):
 
 ```java
 public class UnhandledDemo {
@@ -230,7 +230,7 @@ public class UnhandledDemo {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Step 1: Program starts.
 Exception in thread "main" java.lang.ArithmeticException: / by zero
@@ -239,7 +239,7 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 
 ---
 
-### 🟢 Handled Exception (Normal Flow Continues):
+### Handled Exception (Normal Flow Continues):
 
 ```java
 public class HandledDemo {
@@ -261,7 +261,7 @@ public class HandledDemo {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Step 1: Program starts.
 ⚠️ Handled: Cannot divide by zero -> / by zero

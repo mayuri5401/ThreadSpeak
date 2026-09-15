@@ -182,10 +182,10 @@ For example, consider inserting `"new york"`, `"new delhi"`, and `"new balance"`
 - **Time Complexity:** Lookups take O(m) time, where 'm' is the length of the prefix. This is incredibly fast, as it doesn't depend on the total number of words.
 - **Space Efficiency:** Common prefixes share nodes, significantly reducing redundancy compared to storing entire words independently. The worst-case space complexity is **O(ALPHABET_SIZE × N × M)**, but with compression techniques like **radix trees** or **path compression**, this becomes manageable.
 - **Metadata Storage:** Each node can also store metadata useful for ranking and personalization:
-   - `frequency` – how often this word is searched.
-   - `last_updated` – timestamp for recency scoring.
-   - `is_end_of_word` – boolean flag for word boundaries.
-   - `suggestions` – a cached list of top-N completions from this prefix.
+ - `frequency` – how often this word is searched.
+ - `last_updated` – timestamp for recency scoring.
+ - `is_end_of_word` – boolean flag for word boundaries.
+ - `suggestions` – a cached list of top-N completions from this prefix.
 
 ##### **Code Representation:**
 
@@ -449,10 +449,10 @@ Once the terms are ranked, we update the **main lookup structure** typically a *
 
 - Each term is inserted into the Trie along its character path.
 - Leaf or terminal nodes store metadata:
-   - Frequency
-   - Popularity score
-   - Click-through rate
-   - Last updated timestamp
+ - Frequency
+ - Popularity score
+ - Click-through rate
+ - Last updated timestamp
 - Prefix nodes may also cache the **top-N suggestions** to speed up lookups.
 
 #### 5. Distribution and Deployment
@@ -483,11 +483,11 @@ Now that we have our data structured and indexed, let's trace how a user's query
 4. **Service Checks Cache:** The Autocomplete Service first checks its distributed cache (e.g., Redis) for suggestions associated with the prefix "spo." This is the fastest path.
 5. **Cache Hit:** If found, the cached, ranked suggestions are immediately returned to the client. This is the ideal scenario for popular prefixes.
 6. **Cache Miss:** If not found in the cache:
-   - **Query Trie/Index:** The service queries the main Data Store (Trie) for all terms starting with "spo."
-   - **Collect Matches:** The Trie rapidly returns a list of matching terms, along with their associated metadata (popularity score, etc.).
-   - **Rank Suggestions:** The service then applies its ranking algorithm to these matches, ordering them by relevance (e.g., "spotify" before "sports news").
-   - **Cache Results:** The top N ranked results are stored in the cache with an appropriate Time-To-Live (TTL) for future requests.
-   - **Return Results:** The top N ranked suggestions are returned to the client.
+ - **Query Trie/Index:** The service queries the main Data Store (Trie) for all terms starting with "spo."
+ - **Collect Matches:** The Trie rapidly returns a list of matching terms, along with their associated metadata (popularity score, etc.).
+ - **Rank Suggestions:** The service then applies its ranking algorithm to these matches, ordering them by relevance (e.g., "spotify" before "sports news").
+ - **Cache Results:** The top N ranked results are stored in the cache with an appropriate Time-To-Live (TTL) for future requests.
+ - **Return Results:** The top N ranked suggestions are returned to the client.
 7. **Frontend Displays:** The frontend receives the suggestions and displays them to the user.
 
 ---

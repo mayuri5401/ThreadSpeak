@@ -1399,7 +1399,7 @@ public class Main {
         System.out.println("  " + alice.getName() + "'s teams: " + alice.getTeamNames());
         System.out.println("  Backend has " + backend.getMemberCount() + " members");
         System.out.println("  Company has " + company.getTeamCount() + " teams, "
-            + company.getEmployeeCount() + " employees");
+ + company.getEmployeeCount() + " employees");
 
         company.dissolveTeam(backend);
 
@@ -1407,7 +1407,7 @@ public class Main {
         System.out.println("  " + alice.getName() + "'s teams: " + alice.getTeamNames());
         System.out.println("  " + charlie.getName() + "'s teams: " + charlie.getTeamNames());
         System.out.println("  Company has " + company.getTeamCount() + " teams, "
-            + company.getEmployeeCount() + " employees");
+ + company.getEmployeeCount() + " employees");
         System.out.println("  " + alice.getName() + " still exists: " + alice.getRole());
     }
 }
@@ -2122,7 +2122,7 @@ public class Main {
         System.out.println("  " + alice.getName() + "'s teams: " + alice.getTeamNames());
         System.out.println("  Backend has " + backend.getMemberCount() + " members");
         System.out.println("  Company has " + company.getTeamCount() + " teams, "
-            + company.getEmployeeCount() + " employees");
+ + company.getEmployeeCount() + " employees");
 
         company.dissolveTeam(backend);
 
@@ -2130,7 +2130,7 @@ public class Main {
         System.out.println("  " + alice.getName() + "'s teams: " + alice.getTeamNames());
         System.out.println("  " + charlie.getName() + "'s teams: " + charlie.getTeamNames());
         System.out.println("  Company has " + company.getTeamCount() + " teams, "
-            + company.getEmployeeCount() + " employees");
+ + company.getEmployeeCount() + " employees");
         System.out.println("  " + alice.getName() + " still exists: " + alice.getRole());
     }
 }

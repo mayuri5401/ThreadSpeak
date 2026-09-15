@@ -47,11 +47,11 @@ codeSnippet:
     }
 ---
 
-# ⚡ "static" Keyword in Java
+# "static" Keyword in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 The **`static` keyword is a non-access modifier in Java**.
 - It is used to **create members (variables, methods, blocks, or nested classes) that belong to the class rather than any specific object**.
@@ -59,20 +59,20 @@ The **`static` keyword is a non-access modifier in Java**.
 
 ---
 
-## 🎯 Use of `static` Keyword:
+## Use of `static` Keyword:
 
 - It is used for **memory management** by sharing data among all instances of a class.
 - It means a **static member is shared among all objects of the class**.
 
 ---
 
-### 1️⃣ 1. Static Variable (Class Variable)
+### 1⃣ 1. Static Variable (Class Variable)
 
 - A **static variable is shared among all objects** of a class.
 - It is initialized **only once**, at the start of program execution when the class is loaded.
 - Useful for defining **common properties or global counters**.
 
-#### 💻 Java Program Example 1 (Shared School Name):
+#### Java Program Example 1 (Shared School Name):
 ```java
 class Student
 {
@@ -114,7 +114,7 @@ public class StaticDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Name     : Amit
 Roll No  : 101
@@ -130,7 +130,7 @@ School   : ABC Public School
 --------------------------
 ```
 
-#### 💻 Java Program Example 2 (Object Counter):
+#### Java Program Example 2 (Object Counter):
 ```java
 public class Counter
 {
@@ -154,7 +154,7 @@ public class Counter
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Object created. Count = 1
 Object created. Count = 2
@@ -163,12 +163,12 @@ Object created. Count = 3
 
 ---
 
-### 2️⃣ 2. Static Method
+### 2⃣ 2. Static Method
 
 - A **static method belongs to the class**, not to any specific object.
 - It can be called **without creating an object** of the class (`ClassName.methodName()`).
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 public class StaticDemo
 {
@@ -196,7 +196,7 @@ public class StaticDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Hello! This is a static method.
 This is a non-static method.
@@ -209,13 +209,13 @@ This is a non-static method.
 
 ---
 
-### 3️⃣ 3. Static Block
+### 3⃣ 3. Static Block
 
 - A **static block is used to initialize static variables**.
 - It is **executed only once**, when the class is first loaded into memory by the JVM (even before the `main()` method runs).
 - Useful for setting up complex static values, database connection pools, or loading native drivers.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 public class StaticDemo
 {
@@ -235,7 +235,7 @@ public class StaticDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Static block executed.
 Max Limit : 100
@@ -244,13 +244,13 @@ Main method executed
 
 ---
 
-### 4️⃣ 4. Static Class (Nested Class)
+### 4⃣ 4. Static Class (Nested Class)
 
 - Java allows the creation of **static nested classes** (a class inside another class declared as `static`).
 - A static nested class **can access only static members** of the outer class.
 - It **doesn't need an instance of the outer class** to be instantiated.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 public class Outer
 {
@@ -272,14 +272,14 @@ public class Outer
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Static nested class method.
 ```
 
 ---
 
-## 📊 Summary Comparison: Static vs Instance Members
+## Summary Comparison: Static vs Instance Members
 
 | Feature | Static Member (Class-Level) | Instance Member (Object-Level) |
 |:---|:---|:---|

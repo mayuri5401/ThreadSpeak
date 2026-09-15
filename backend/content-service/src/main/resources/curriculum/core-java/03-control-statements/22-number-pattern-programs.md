@@ -30,13 +30,13 @@ codeSnippet:
     }
 ---
 
-# 🔢 Top 8 Number Pattern Programs in Java
+# Top 8 Number Pattern Programs in Java
 
 Number pattern programs combine arithmetic logic with nested loop indices. Here are the **8 most popular number pattern programs** in Java.
 
 ---
 
-## 🔹 1. Sequential Increasing Number Triangle
+## 1. Sequential Increasing Number Triangle
 ```text
 1
 1 2
@@ -60,7 +60,7 @@ public class NumberTriangle1 {
 
 ---
 
-## 🔹 2. Repeated Row Number Triangle
+## 2. Repeated Row Number Triangle
 ```text
 1
 2 2
@@ -84,7 +84,7 @@ public class RepeatedNumberTriangle {
 
 ---
 
-## 🔹 3. Inverted Number Triangle
+## 3. Inverted Number Triangle
 ```text
 1 2 3 4 5
 1 2 3 4
@@ -108,7 +108,7 @@ public class InvertedNumberTriangle {
 
 ---
 
-## 🔹 4. Floyd's Triangle
+## 4. Floyd's Triangle
 Continuous running counter starting at 1.
 ```text
 1
@@ -132,7 +132,7 @@ public class FloydTriangle {
 
 ---
 
-## 🔹 5. 0-1 Binary Alternating Triangle
+## 5. 0-1 Binary Alternating Triangle
 Outputs alternating 1 and 0 using parity check `(i + j) % 2`.
 ```text
 1
@@ -161,7 +161,7 @@ public class BinaryTriangle {
 
 ---
 
-## 🔹 6. Palindromic Number Pyramid
+## 6. Palindromic Number Pyramid
 Counts up to row index `i` and then counts back down to 1.
 ```text
         1
@@ -192,7 +192,7 @@ public class PalindromePyramid {
 
 ---
 
-## 🔹 7. Pascal's Triangle
+## 7. Pascal's Triangle
 Mathematical triangle where each number is the sum of the two numbers directly above it ($\binom{n}{k} = \frac{n!}{k!(n-k)!}$).
 ```text
       1
@@ -220,7 +220,7 @@ public class PascalTriangle {
 
 ---
 
-## 🔹 8. Continuous Sequential Number Grid
+## 8. Continuous Sequential Number Grid
 ```text
 1  2  3  4
 5  6  7  8

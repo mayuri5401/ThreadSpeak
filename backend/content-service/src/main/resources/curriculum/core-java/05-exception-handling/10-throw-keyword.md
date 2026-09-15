@@ -43,11 +43,11 @@ codeSnippet:
     }
 ---
 
-# 🚀 "throw" Keyword in Java
+# "throw" Keyword in Java
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 The **`throw` keyword** is used in Java to **explicitly create and throw an exception object**.
 
@@ -57,7 +57,7 @@ The **`throw` keyword** is used in Java to **explicitly create and throw an exce
 
 ---
 
-## 🌟 2. Use
+## 2. Use
 
 - **Manually Signal Errors**: To manually signal that an error or abnormal/exceptional condition has occurred during program execution.
 - **Custom Exceptions**: Mostly used to throw custom user-defined exceptions when domain-specific business rules are violated.
@@ -65,7 +65,7 @@ The **`throw` keyword** is used in Java to **explicitly create and throw an exce
 
 ---
 
-## 📜 3. Syntax
+## 3. Syntax
 
 ```java
 throw throwableObject;
@@ -75,7 +75,7 @@ Here, `throwableObject` is an instance of the **`java.lang.Throwable`** class or
 
 ---
 
-## 💡 4. Example: Two Ways to Throw an Exception
+## 4. Example: Two Ways to Throw an Exception
 
 ### A. Direct Inline Instantiation and Throw (Most Common):
 ```java
@@ -92,7 +92,7 @@ throw ae;
 
 ---
 
-## 💻 5. Program: `ThrowDemo`
+## 5. Program: `ThrowDemo`
 
 ```java
 import java.util.Scanner;
@@ -128,7 +128,7 @@ public class ThrowDemo
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Enter no1
 100
@@ -139,16 +139,16 @@ Exception caught: / by zero
 
 ---
 
-## 🧭 6. Flow of Program
+## 6. Flow of Program
 
 1. **Taking User Input and Division**:  
    User enters `no1 = 100` and `no2 = 0`. When executing `no1 / no2`, division by zero occurs, and Java throws an `ArithmeticException`.
 2. **With `try-catch` Block**:  
    The `catch` block catches the exception object and prints `"Exception caught: / by zero"`. The program continues normally.
 3. **Without `try-catch` Block inside `m1()`**:
-   - If we don't handle the exception object using a `try-catch` block inside `m1()`, it will be passed to the caller method (`main()` in this case).
-   - If `main()` also doesn't handle it, the exception will propagate to the JVM.
-   - The JVM default exception handler will print the **stack trace** and terminate the program abruptly.
+ - If we don't handle the exception object using a `try-catch` block inside `m1()`, it will be passed to the caller method (`main()` in this case).
+ - If `main()` also doesn't handle it, the exception will propagate to the JVM.
+ - The JVM default exception handler will print the **stack trace** and terminate the program abruptly.
 
 > [!NOTE]
 > **Points to Note**:
@@ -157,7 +157,7 @@ Exception caught: / by zero
 
 ---
 
-## 🎬 7. Interactive Animation & Call Stack Propagation
+## 7. Interactive Animation & Call Stack Propagation
 
 Our interactive visualizer simulates the complete lifecycle of the `throw` statement and call stack unwinding:
 
@@ -178,7 +178,7 @@ flowchart TD
     CheckMainCatch -- "❌ No" --> JVMHandler["☠️ JVM Default UncaughtExceptionHandler<br>Prints Stack Trace & Terminates Process"]
 ```
 
-### 🔍 Animation Explanation & Execution Stages:
+### Animation Explanation & Execution Stages:
 
 1. **Stage 1: Condition & Evaluation**: The program takes input and detects an abnormal condition (`no2 == 0` or invalid business data).
 2. **Stage 2: Heap Object Instantiation**: An exception object is created on the JVM Heap containing the diagnostic message (`"/ by zero"`) and current execution stack frame details.
@@ -188,7 +188,7 @@ flowchart TD
 
 ---
 
-## 📌 8. Points to Remember for "throw" Keyword
+## 8. Points to Remember for "throw" Keyword
 
 1. **Single Exception Object**: The `throw` keyword creates and throws only a **single exception object** at a time, not multiple.
 2. **Inside Method/Block**: It must be used inside a method, constructor, or initializer block. It cannot be used at the class level.
@@ -198,7 +198,7 @@ flowchart TD
 
 ---
 
-## 🧠 9. Deep-Dive: `throw` vs `throws` vs `Throwable`
+## 9. Deep-Dive: `throw` vs `throws` vs `Throwable`
 
 | Feature | `throw` | `throws` | `Throwable` |
 | :--- | :--- | :--- | :--- |
@@ -210,7 +210,7 @@ flowchart TD
 
 ---
 
-## 💎 10. Custom User-Defined Exception with `throw`
+## 10. Custom User-Defined Exception with `throw`
 
 In production software, `throw` is most frequently paired with custom domain exceptions to represent business rule violations:
 
@@ -242,14 +242,14 @@ public class VotingSystem {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 ❌ Registration Failed: Voting Denied: Age (16) must be at least 18.
 ```
 
 ---
 
-## 🔄 11. Exception Rethrowing & Exception Chaining
+## 11. Exception Rethrowing & Exception Chaining
 
 A common enterprise pattern is catching a low-level technical exception (e.g., `SQLException`), logging it, and **rethrowing** a high-level business exception:
 
@@ -267,7 +267,7 @@ public void processPayment(String accountId, double amount) {
 
 ---
 
-## 📊 12. Summary Comparison Matrix
+## 12. Summary Comparison Matrix
 
 | Aspect | JVM Implicit Throw | Developer Explicit `throw` |
 | :--- | :--- | :--- |

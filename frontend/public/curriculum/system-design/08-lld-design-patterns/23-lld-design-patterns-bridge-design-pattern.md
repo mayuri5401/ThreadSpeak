@@ -76,8 +76,8 @@ Let’s walk through a real-world example to see how we can apply the Bridge Pat
 
 Imagine you're building a **cross-platform graphics library**. It supports rendering **shapes** like circles and rectangles using different rendering approaches:
 
-- 🟢 **Vector rendering:** for scalable, resolution-independent output
-- 🔵 **Raster rendering:** for pixel-based output
+- **Vector rendering:** for scalable, resolution-independent output
+- **Raster rendering:** for pixel-based output
 
 Now, you need to support:
 
@@ -346,7 +346,7 @@ interface Renderer {
 
 These classes provide the actual rendering logic for each engine.
 
-#### 🟢 VectorRenderer
+#### VectorRenderer
 
 ```java
 class VectorRenderer implements Renderer {
@@ -362,7 +362,7 @@ class VectorRenderer implements Renderer {
 }
 ```
 
-#### 🔵 RasterRenderer
+#### RasterRenderer
 
 ```java
 class RasterRenderer implements Renderer {

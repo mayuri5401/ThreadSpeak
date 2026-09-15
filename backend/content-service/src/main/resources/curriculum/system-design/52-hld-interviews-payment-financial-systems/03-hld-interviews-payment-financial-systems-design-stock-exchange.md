@@ -582,8 +582,8 @@ The matching algorithm is the soul of the exchange. It determines who gets match
 The rules are simple:
 
 1. **Price Priority:** Better prices always match first.
-   - For buyers, "better" means willing to pay more
-   - For sellers, "better" means willing to accept less
+ - For buyers, "better" means willing to pay more
+ - For sellers, "better" means willing to accept less
 2. **Time Priority:** Among orders at the same price, whoever submitted first matches first.
 
 Let's see how this works with a concrete example.

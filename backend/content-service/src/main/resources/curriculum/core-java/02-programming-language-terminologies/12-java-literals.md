@@ -48,9 +48,9 @@ codeSnippet:
     }
 ---
 
-# 💎 Literals in Java
+# Literals in Java
 
-## 📖 Introduction
+## Introduction
 
 **Literals are constants used in Java programs to represent fixed values.**  
 They represent fixed values such as numeric values, characters, strings, and booleans that are directly assigned to variables in source code.
@@ -68,13 +68,13 @@ int rollno = 101;
 └─────────────────┴──────────────────┴─────────────────┘
 ```
 
-- **`int`** ➔ Data Type
-- **`rollno`** ➔ Variable Identifier
-- **`101`** ➔ **Literal (Constant Value)**
+- **`int`** Data Type
+- **`rollno`** Variable Identifier
+- **`101`** **Literal (Constant Value)**
 
 ---
 
-## 🗺️ Types of Literals in Java
+## Types of Literals in Java
 
 Java provides **6 primary categories of literals**:
 
@@ -90,7 +90,7 @@ Java provides **6 primary categories of literals**:
 
 ---
 
-## 🔹 1. Integer Literals
+## 1. Integer Literals
 
 Integer literals represent **whole numbers** and can be written in **4 different number systems**:
 
@@ -106,7 +106,7 @@ Integer literals represent **whole numbers** and can be written in **4 different
 2. Use **`L`** or **`l`** suffix to specify a **`long`** literal (8 bytes):  
    `long bigNum = 123456789L;`
 
-### 💻 Program for Integer Literals:
+### Program for Integer Literals:
 
 ```java
 public class IntegerLiteralsExample {
@@ -138,7 +138,7 @@ public class IntegerLiteralsExample {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Decimal Literal: 42
 Binary Literal: 10
@@ -150,7 +150,7 @@ Sum of all literals: 91
 
 ---
 
-## 🔹 2. Floating-Point Literals
+## 2. Floating-Point Literals
 
 Floating-point literals represent numbers containing **fractional parts (decimal points)**.
 
@@ -160,7 +160,7 @@ Floating-point literals represent numbers containing **fractional parts (decimal
 | **`double`** | *Optional* `D` or `d` | `double e = 2.718;` | 64-bit double precision (Default) |
 | **Scientific** | `e` or `E` (Exponent: $10^x$) | `double sci = 1.23e4;` | $1.23 \times 10^4 = 12300.0$ |
 
-### 💻 Program for Floating-Point Literals:
+### Program for Floating-Point Literals:
 
 ```java
 public class FloatingPointLiteralsExample {
@@ -188,7 +188,7 @@ public class FloatingPointLiteralsExample {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Float Literal (pi): 3.14
 Double Literal (e): 2.718
@@ -199,7 +199,7 @@ Double with precision (preciseNum): 3.14159265359
 
 ---
 
-## 🔹 3. Character Literals & Escape Sequences
+## 3. Character Literals & Escape Sequences
 
 Character literals represent a single **16-bit Unicode character** enclosed in **single quotes (`' '`)**.
 
@@ -222,7 +222,7 @@ Escape sequences allow representing non-printable or special characters:
 | **`\r`** | Carriage Return | Resets cursor to beginning of line |
 | **`\b`** | Backspace | Erases previous character |
 
-### 💻 Program for Character Literals:
+### Program for Character Literals:
 
 ```java
 public class CharacterLiteralsExample {
@@ -253,7 +253,7 @@ public class CharacterLiteralsExample {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Character Literal (letter): A
 Character Literal (digit): 7
@@ -267,7 +267,7 @@ Escape Sequence (backslash): \This is backslash.
 
 ---
 
-## 🔹 4. String Literals
+## 4. String Literals
 
 String literals represent a **sequence of characters** enclosed in **double quotes (`" "`)**.
 
@@ -280,7 +280,7 @@ String empty = ""; // An empty string
 1. **Immutable**: Strings in Java cannot be modified in place once created.
 2. **Escape Sequences**: Strings can embed escape sequences like `\n`, `\t`, and `\"`.
 
-### 💻 Program for String Literals:
+### Program for String Literals:
 
 ```java
 public class StringLiteralsExample {
@@ -306,7 +306,7 @@ public class StringLiteralsExample {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 String Literal (greeting): Hello, World!
 String Literal (empty): ''
@@ -319,7 +319,7 @@ String with Escape Sequences (tabbedString): Item1	Item2
 
 ---
 
-## 🔹 5. Boolean Literals
+## 5. Boolean Literals
 
 Boolean literals represent truth values and can only be **`true`** or **`false`**.
 
@@ -328,7 +328,7 @@ boolean isJavaFun = true;
 boolean isHot = false;
 ```
 
-### 💻 Program for Boolean Literals:
+### Program for Boolean Literals:
 
 ```java
 public class BooleanLiteralsExample {
@@ -355,7 +355,7 @@ public class BooleanLiteralsExample {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Is Java Fun? true
 Is it Hot? false
@@ -365,7 +365,7 @@ It is not hot today!
 
 ---
 
-## 🔹 6. Null Literal
+## 6. Null Literal
 
 The **`null`** literal represents the **absence of a value or object reference**.
 
@@ -376,7 +376,7 @@ String str = null; // str points to no object in memory
 > [!IMPORTANT]
 > **Null Rule**: `null` can **only** be assigned to reference data types (`String`, `Arrays`, `Classes`, `Interfaces`). It **cannot** be assigned to primitive data types (e.g. `int x = null;` ❌ Compilation Error).
 
-### 💻 Program for Null Literal:
+### Program for Null Literal:
 
 ```java
 public class NullLiteralExample {
@@ -392,14 +392,14 @@ public class NullLiteralExample {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 The string is null, no value assigned.
 ```
 
 ---
 
-## ⚡ Underscores in Numeric Literals (Java 7+)
+## Underscores in Numeric Literals (Java 7+)
 
 From Java 7 onwards, you can place **underscores (`_`) inside numeric literals** to significantly improve code readability without altering the number's numeric value.
 
@@ -409,12 +409,12 @@ double pi = 3.141_592_653;        // Equivalent to 3.141592653
 long creditCard = 1234_5678_9012L;
 ```
 
-### 🚫 Rules for Using Underscores:
-- ❌ **Cannot** be at the beginning or end of a number: `_100` ❌ or `100_` ❌
-- ❌ **Cannot** be adjacent to a decimal point: `3._14` ❌ or `3_.14` ❌
-- ❌ **Cannot** be before an `L` or `F` suffix: `100_L` ❌
+### Rules for Using Underscores:
+- **Cannot** be at the beginning or end of a number: `_100` or `100_`
+- **Cannot** be adjacent to a decimal point: `3._14` or `3_.14`
+- **Cannot** be before an `L` or `F` suffix: `100_L`
 
-### 💻 Program for Underscores in Numeric Literals:
+### Program for Underscores in Numeric Literals:
 
 ```java
 public class NumericLiteralsWithUnderscore {
@@ -428,7 +428,7 @@ public class NumericLiteralsWithUnderscore {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Million: 1000000
 Pi value: 3.141592653
@@ -436,7 +436,7 @@ Pi value: 3.141592653
 
 ---
 
-## 📊 Summary: Java Literals Quick Reference
+## Summary: Java Literals Quick Reference
 
 | Literal Category | Examples | Default Type / Notes |
 |:---|:---|:---|

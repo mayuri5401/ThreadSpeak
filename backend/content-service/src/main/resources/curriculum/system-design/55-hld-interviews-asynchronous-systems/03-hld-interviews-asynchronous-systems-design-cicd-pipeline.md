@@ -1123,8 +1123,8 @@ In this approach, the Pipeline Service reacts to events. When a stage completes,
 2. Stages with no dependencies (typically just "build") are immediately queued for execution.
 3. Workers pick up these stages and execute them. When finished, they report back to the Pipeline Service.
 4. The Pipeline Service receives the completion event and does two things:
-   - Updates the stage status in the database (pending → success or failed)
-   - Queries for stages that depend on the completed stage and checks if all their dependencies are now satisfied
+ - Updates the stage status in the database (pending → success or failed)
+ - Queries for stages that depend on the completed stage and checks if all their dependencies are now satisfied
 5. Any stages whose dependencies are all satisfied get queued. The process continues until all stages complete or a required stage fails.
 
 ```mermaid

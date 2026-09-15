@@ -29,7 +29,7 @@ codeSnippet:
     }
 ---
 
-### 🌐 8-Step Spring MVC Request Pipeline
+### 8-Step Spring MVC Request Pipeline
 
 ```text
 [Client Browser / Mobile App]

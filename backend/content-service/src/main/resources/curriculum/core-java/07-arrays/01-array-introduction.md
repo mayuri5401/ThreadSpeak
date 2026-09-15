@@ -33,26 +33,26 @@ codeSnippet:
     }
 ---
 
-# 📦 Arrays in Java — Complete Masterclass
+# Arrays in Java — Complete Masterclass
 
 ---
 
-## 📖 1. Introduction to Arrays
+## 1. Introduction to Arrays
 
 In Java, an **array** is an **object** that stores a **fixed number of elements of the same data type** (homogeneous data). It allows us to group multiple related values together under a **single variable name** instead of declaring individual separate variables for each item.
 
-### 📝 Basic Syntax:
+### Basic Syntax:
 ```java
 int[] marks = {88, 74, 91, 82, 68, 94};
 ```
 
 ---
 
-## ❓ 2. Why Do We Need Arrays?
+## 2. Why Do We Need Arrays?
 
 Suppose a teacher has **6 students** in a class and wants to store their exam marks:
 
-### ❌ Approach 1: Without Arrays (Individual Variables)
+### Approach 1: Without Arrays (Individual Variables)
 ```java
 int marks1 = 88;
 int marks2 = 74;
@@ -62,20 +62,20 @@ int marks5 = 68;
 int marks6 = 94;
 ```
 - **The Problem**: This works fine for 6 students. But imagine managing a school with **100, 1,000, or 10,000 students**!
-  - Declaring 1,000 separate variable names (`marks1` to `marks1000`) is exhausting, error-prone, and unmaintainable.
-  - You cannot easily iterate through separate variables using a loop.
-  - Calculating the average or finding the highest mark requires writing 1,000 lines of manual code.
+ - Declaring 1,000 separate variable names (`marks1` to `marks1000`) is exhausting, error-prone, and unmaintainable.
+ - You cannot easily iterate through separate variables using a loop.
+ - Calculating the average or finding the highest mark requires writing 1,000 lines of manual code.
 
 ---
 
-### ✅ Approach 2: With Arrays (Single Unified Variable)
+### Approach 2: With Arrays (Single Unified Variable)
 ```java
 int[] marks = {88, 74, 91, 82, 68, 94};
 ```
-- **The Solution**: 
-  - All 6 marks (or 10,000 marks) are stored inside a **single variable** named `marks`.
-  - Every student's score is accessed in $O(1)$ constant time using a numeric **index** (`marks[0]`, `marks[1]`, ...).
-  - We can iterate, sort, search, calculate averages, and find highest/lowest scores with a simple 3-line loop!
+- **The Solution**:
+ - All 6 marks (or 10,000 marks) are stored inside a **single variable** named `marks`.
+ - Every student's score is accessed in $O(1)$ constant time using a numeric **index** (`marks[0]`, `marks[1]`, ...).
+ - We can iterate, sort, search, calculate averages, and find highest/lowest scores with a simple 3-line loop!
 
 ```java
 // Calculating average marks in 3 lines
@@ -89,7 +89,7 @@ System.out.println("Class Average: " + average);
 
 ---
 
-## 🔑 3. Key Features of Java Arrays
+## 3. Key Features of Java Arrays
 
 ```mermaid
 flowchart TD
@@ -101,7 +101,7 @@ flowchart TD
     end
 ```
 
-### 1️⃣ Index Based (0-Indexed)
+### 1⃣ Index Based (0-Indexed)
 Array elements are accessed using zero-based indices starting from `0` up to `length - 1`.
 ```java
 int[] numbers = {10, 20, 30};
@@ -112,7 +112,7 @@ System.out.println(numbers[2]); // Output: 30 (Third element)
 
 ---
 
-### 2️⃣ Fixed Size (Non-Dynamic)
+### 2⃣ Fixed Size (Non-Dynamic)
 Once an array is created on the Heap, its size **cannot be expanded or shrunk**.
 ```java
 int[] numbers = new int[5]; // Size is strictly 5 (indices 0 to 4)
@@ -123,7 +123,7 @@ numbers[5] = 10; // ❌ Runtime Error: ArrayIndexOutOfBoundsException!
 
 ---
 
-### 3️⃣ Stores Same Type of Elements (Homogeneous)
+### 3⃣ Stores Same Type of Elements (Homogeneous)
 An array can only store elements of its declared data type (or valid subclasses for objects).
 ```java
 int[] numbers = {10, 20, 30}; // Only int values allowed
@@ -134,7 +134,7 @@ int[] numbers = {10, 20, 30}; // Only int values allowed
 
 ---
 
-### 4️⃣ Contiguous Memory Allocation
+### 4⃣ Contiguous Memory Allocation
 In JVM Heap memory, array slots are placed side-by-side in **continuous memory addresses**. This allows the CPU to calculate the physical memory address of any element instantly using pointer arithmetic in **$O(1)$ time**:
 
 $$\text{Address of } A[i] = \text{Base Address} + (i \times \text{Size of Data Type})$$
@@ -162,7 +162,7 @@ flowchart LR
 
 ---
 
-## 🚀 4. Advantages of Arrays
+## 4. Advantages of Arrays
 
 | # | Advantage | Description | Code Example |
 | :--- | :--- | :--- | :--- |
@@ -175,9 +175,9 @@ flowchart LR
 
 ---
 
-## ⚠️ 5. Disadvantages & Limitations of Arrays
+## 5. Disadvantages & Limitations of Arrays
 
-### 1️⃣ Fixed Size (Zero Dynamic Flexibility)
+### 1⃣ Fixed Size (Zero Dynamic Flexibility)
 Once created, an array cannot grow to accommodate extra elements. If you allocate an array of size 5 and need to insert a 6th element, you must manually create a brand-new larger array and copy all old elements over.
 ```java
 int[] numbers = new int[5];
@@ -186,7 +186,7 @@ int[] numbers = new int[5];
 
 ---
 
-### 2️⃣ Cannot Store Heterogeneous (Mixed) Types
+### 2⃣ Cannot Store Heterogeneous (Mixed) Types
 All elements must adhere to the single declared type. You cannot store integers and strings in the same primitive array.
 ```java
 int[] numbers = {10, 20, 30};
@@ -195,7 +195,7 @@ int[] numbers = {10, 20, 30};
 
 ---
 
-### 3️⃣ Costly Insertion and Deletion in the Middle ($O(N)$ Shifting)
+### 3⃣ Costly Insertion and Deletion in the Middle ($O(N)$ Shifting)
 Because memory must remain strictly contiguous, deleting or inserting an item in the middle requires shifting all subsequent elements to the left or right.
 
 ```java
@@ -210,7 +210,7 @@ numbers[3] = 0;          // Clear last slot: {10, 30, 40, 0}
 
 ---
 
-### 4️⃣ Memory Wastage (Over-Allocation)
+### 4⃣ Memory Wastage (Over-Allocation)
 If you allocate an array larger than required, the unused slots permanently occupy Heap memory with default values.
 ```java
 int[] numbers = new int[10]; // 10 integer slots reserved (40 bytes)
@@ -221,12 +221,12 @@ numbers[1] = 10;
 
 ---
 
-### 5️⃣ No Built-in Instance Utility Methods
+### 5⃣ No Built-in Instance Utility Methods
 Java array objects do not have instance methods like `add()`, `remove()`, `contains()`, or `indexOf()`. Developers must either write custom algorithms or use the static helper methods in `java.util.Arrays`.
 
 ---
 
-## 🗂️ 6. Types of Arrays in Java
+## 6. Types of Arrays in Java
 
 Java supports two primary categories of arrays:
 
@@ -245,7 +245,7 @@ flowchart TD
     Multi --> HigherD["Higher-D Arrays (3D, 4D, 5D...)<br><code>int[][][] cube = new int[2][3][4];</code>"]
 ```
 
-### 1️⃣ Single-Dimensional Arrays (1D)
+### 1⃣ Single-Dimensional Arrays (1D)
 Stores elements in a single sequential linear row.
 ```java
 int[] numbers = {10, 20, 30};
@@ -253,7 +253,7 @@ int[] numbers = {10, 20, 30};
 
 ---
 
-### 2️⃣ Multi-Dimensional Arrays
+### 2⃣ Multi-Dimensional Arrays
 Arrays with more than one dimension (arrays of array references).
 
 - **2D Array**: Represents data in a 2-dimensional table of rows and columns ($M \times N$).
@@ -282,7 +282,7 @@ Arrays with more than one dimension (arrays of array references).
 
 ---
 
-## 📌 7. Essential Points to Remember
+## 7. Essential Points to Remember
 
 ```mermaid
 flowchart LR
@@ -321,9 +321,9 @@ Person[] people = {new Person("Deepak"), new Person("Rahul")};
 
 ---
 
-## 🧠 8. Advanced Intelligent Insights: JVM Internal Array Anatomy
+## 8. Advanced Intelligent Insights: JVM Internal Array Anatomy
 
-### 🔬 What Does an Array Look Like Inside JVM Heap Memory?
+### What Does an Array Look Like Inside JVM Heap Memory?
 
 When you create `int[] arr = new int[4];`, HotSpot JVM allocates a single contiguous block consisting of:
 1. **Mark Word (8 Bytes on 64-bit JVM)**: Stores identity hashcode, lock state, and GC age bits.
@@ -332,7 +332,7 @@ When you create `int[] arr = new int[4];`, HotSpot JVM allocates a single contig
 4. **Contiguous Element Payload ($4 \times 4 = 16\text{ Bytes}$)**: 4 consecutive 32-bit integer slots initialized to `0`.
 5. **Padding**: Rounded to the nearest multiple of 8 bytes for 64-bit memory word alignment.
 
-### 📊 Default Zero-Values Table
+### Default Zero-Values Table
 When instantiated with `new Type[N]`, all elements are immediately given default zero-values:
 
 | Data Type | Default Allocated Value |
@@ -345,23 +345,23 @@ When instantiated with `new Type[N]`, all elements are immediately given default
 
 ---
 
-## 🎬 9. Interactive Architecture Animation Walkthrough
+## 9. Interactive Architecture Animation Walkthrough
 
 To help you build a crystalline mental model of how Java arrays operate under the hood, explore the **Interactive Visualizer Animation** in the **Architecture Tab**:
 
 1. **Memory & Contiguous Allocation Simulator**:
-   - Inspect the **Stack Pointer (`0x7FFE`)** connecting directly to the **Heap Memory Object**.
-   - Modify values live and watch the physical memory address (`Base + index * 4`) compute automatically.
+ - Inspect the **Stack Pointer (`0x7FFE`)** connecting directly to the **Heap Memory Object**.
+ - Modify values live and watch the physical memory address (`Base + index * 4`) compute automatically.
 2. **Variable Explosion vs Array Comparison**:
-   - Visually compare 6 scattered loose variables vs 1 organized contiguous array container.
+ - Visually compare 6 scattered loose variables vs 1 organized contiguous array container.
 3. **Trap Demonstration**:
-   - Trigger an **`ArrayIndexOutOfBoundsException`** live to see how JVM boundary enforcement works.
+ - Trigger an **`ArrayIndexOutOfBoundsException`** live to see how JVM boundary enforcement works.
 4. **Insertion / Deletion Shifting Animation**:
-   - Watch step-by-step element shifting animations illustrating why middle insertions take $O(N)$ time.
+ - Watch step-by-step element shifting animations illustrating why middle insertions take $O(N)$ time.
 
 ---
 
-## ❓ 10. Top Interview FAQs
+## 10. Top Interview FAQs
 
 <details>
 <summary><b>Q1: Is an array a primitive or an Object in Java?</b></summary>

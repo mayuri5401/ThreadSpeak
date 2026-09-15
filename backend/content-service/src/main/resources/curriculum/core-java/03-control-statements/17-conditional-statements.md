@@ -38,9 +38,9 @@ codeSnippet:
     }
 ---
 
-# 🔀 Java Conditional Statements with Examples
+# Java Conditional Statements with Examples
 
-## 📖 Introduction & Real-World Analogy
+## Introduction & Real-World Analogy
 
 <div class="my-6 rounded-2xl bg-gradient-to-b from-[#0F172A] via-[#0D1527] to-[#0A0F1D] border border-cyan-500/30 p-5 sm:p-6 shadow-2xl relative overflow-hidden">
 <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-800/80">
@@ -86,13 +86,13 @@ codeSnippet:
 
 ---
 
-### 🎯 Conditional Statements Help Us To:
+### Conditional Statements Help Us To:
 1. **Control the flow of the program.**
 2. **Decide which block of code should be executed when certain conditions are met.**
 
 ---
 
-### 🗺️ Examples of Conditional Statements in Java:
+### Examples of Conditional Statements in Java:
 - **`if`**: Runs code if a condition is `true`.
 - **`if-else`**: Runs one block of code if `true`, and another block if `false`.
 - **`if-else if ladder`**: Checks multiple conditions one by one and runs the block of code for the first `true` condition.
@@ -102,7 +102,7 @@ These are explained deeply below with syntax, code examples, and outputs.
 
 ---
 
-## 🔹 1. "if" Statement in Java
+## 1. "if" Statement in Java
 
 The **`if`** statement in Java evaluates a **boolean condition**.  
 If the condition is **`true`**, the block of code inside the `if` statement is executed. If `false`, the block is skipped.
@@ -121,7 +121,7 @@ If the condition is **`true`**, the block of code inside the `if` statement is e
             └──────────────┘             └──────────────┘
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 if (condition)
 {
@@ -129,7 +129,7 @@ if (condition)
 }
 ```
 
-#### 💻 Program:
+#### Program:
 ```java
 public class IfExample
 {
@@ -146,23 +146,23 @@ public class IfExample
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 The number is positive.
 ```
 
 ---
 
-### 💡 NOTE on Single-Statement `if` Blocks:
+### NOTE on Single-Statement `if` Blocks:
 > If there is **only one statement** in the `if` block, then the curly braces `{}` are **optional**.
 
-#### 📌 Single-Statement Syntax:
+#### Single-Statement Syntax:
 ```java
 if (condition)
     statement;
 ```
 
-#### 💻 Example:
+#### Example:
 ```java
 public class IfExample
 {
@@ -178,7 +178,7 @@ public class IfExample
 
 ---
 
-## 🔹 2. "if-else" Statement in Java
+## 2. "if-else" Statement in Java
 
 The **`if-else`** statement in Java evaluates a **boolean condition**.  
 If the condition is **`true`**, the block of code inside the `if` block is executed; otherwise, the code inside the **`else`** block runs.
@@ -199,7 +199,7 @@ If the condition is **`true`**, the block of code inside the `if` block is execu
                      [ Next Code ]
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 if (condition)
 {
@@ -211,7 +211,7 @@ else
 }
 ```
 
-#### 💻 Program:
+#### Program:
 ```java
 public class IfElseExample
 {
@@ -232,17 +232,17 @@ public class IfElseExample
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 The number is negative.
 ```
 
 ---
 
-### 💡 NOTE on Single-Statement `if-else` Blocks:
+### NOTE on Single-Statement `if-else` Blocks:
 > If there is **only one statement** in the `if` and `else` blocks, then curly braces `{}` are **optional**.
 
-#### 📌 Single-Statement Syntax:
+#### Single-Statement Syntax:
 ```java
 if (condition)
     statement;
@@ -252,7 +252,7 @@ else
 
 ---
 
-## 🔹 3. "if-else if" Ladder Statement in Java
+## 3. "if-else if" Ladder Statement in Java
 
 The **`if-else if` ladder** in Java evaluates **multiple boolean conditions in sequence**.  
 If any condition is **`true`**, the block of code associated with that condition is executed. If **none** of the conditions are true, the optional **`else`** block runs.
@@ -267,7 +267,7 @@ If any condition is **`true`**, the block of code associated with that condition
                else ──────────────────────────► [ Fallback Block ]
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 if (condition1) 
 {
@@ -284,7 +284,7 @@ else
 }
 ```
 
-#### 💻 Program:
+#### Program:
 ```java
 public class IfElseIfLadderExample
 {
@@ -313,14 +313,14 @@ public class IfElseIfLadderExample
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Grade: B
 ```
 
 ---
 
-## 🔹 4. "switch" Statement in Java
+## 4. "switch" Statement in Java
 
 The **`switch`** statement in Java runs one block of code based on **matching a condition or value**.  
 It checks multiple `cases` for a matching value and runs that specific case. If no case matches, the optional **`default`** block runs.
@@ -335,7 +335,7 @@ It checks multiple `cases` for a matching value and runs that specific case. If 
      break;           break;           break;           break;
 ```
 
-#### 📌 Syntax:
+#### Syntax:
 ```java
 switch (expression)
 {
@@ -354,7 +354,7 @@ switch (expression)
 
 > 💡 **NOTE:** Instead of writing many `if-else` statements for equality checks, we can use the **`switch` statement** for simpler, cleaner, and more readable code.
 
-#### 💻 Program:
+#### Program:
 ```java
 public class SwitchExample
 {
@@ -393,14 +393,14 @@ public class SwitchExample
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Wednesday
 ```
 
 ---
 
-## 📊 Summary Comparison: `if-else` Ladder vs `switch` Statement
+## Summary Comparison: `if-else` Ladder vs `switch` Statement
 
 | Feature | `if-else` Ladder | `switch` Statement |
 |:---|:---|:---|

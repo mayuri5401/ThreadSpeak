@@ -1137,10 +1137,10 @@ flowchart TD
 - **Enable encryption at rest:**
 
 - **Use external secret managers:**
-   - AWS Secrets Manager
-   - HashiCorp Vault
-   - Azure Key Vault
-   - Google Secret Manager
+ - AWS Secrets Manager
+ - HashiCorp Vault
+ - Azure Key Vault
+ - Google Secret Manager
 - **External Secrets Operator:**
 
 ### 8.5 Configuration Updates
@@ -1229,17 +1229,17 @@ flowchart LR
 **Three pillars of observability:**
 
 1. **Metrics:** Prometheus + Grafana
-   - Node and pod metrics
-   - Application metrics
-   - Alerting rules
+ - Node and pod metrics
+ - Application metrics
+ - Alerting rules
 2. **Logs:** Loki, Elasticsearch, or cloud logging
-   - Centralized log aggregation
-   - Structured logging
-   - Log-based alerting
+ - Centralized log aggregation
+ - Structured logging
+ - Log-based alerting
 3. **Traces:** Jaeger, Zipkin, or cloud tracing
-   - Distributed request tracing
-   - Latency analysis
-   - Service dependencies
+ - Distributed request tracing
+ - Latency analysis
+ - Service dependencies
 
 ### 9.5 High Availability
 

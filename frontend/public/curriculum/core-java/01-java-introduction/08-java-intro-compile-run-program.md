@@ -24,13 +24,13 @@ codeSnippet:
     }
 ---
 
-# 💻 Compile & Run Java Program: How to Compile and Run Java Program Using CMD
+# Compile & Run Java Program: How to Compile and Run Java Program Using CMD
 
 To compile and run a Java program from scratch using **Notepad** and the **Command Prompt (CMD)**, follow the 4 essential steps below:
 
 ---
 
-## 📋 Quick 4-Step Summary Table
+## Quick 4-Step Summary Table
 
 | Step | Action | Command | Output / Result |
 |:---:|:---|:---|:---|
@@ -41,18 +41,18 @@ To compile and run a Java program from scratch using **Notepad** and the **Comma
 
 ---
 
-## 🛠️ Step-by-Step Detailed Guide
+## Step-by-Step Detailed Guide
 
 ---
 
-### 🔹 Step 1: Set Up Java (If Not Already Done)
+### Step 1: Set Up Java (If Not Already Done)
 
 Before compiling, ensure that the **Java Development Kit (JDK)** is installed and configured in your system environment variables.
 
 1. **Install JDK**: If not installed, download and install JDK from Oracle or OpenJDK.
 2. **Verify Installation**:
-   - Open a **Command Prompt (CMD)** window.
-   - Type the following verification commands:
+ - Open a **Command Prompt (CMD)** window.
+ - Type the following verification commands:
 
 ```cmd
 C:\Users\Username> java -version
@@ -69,7 +69,7 @@ javac 21.0.2
 
 ---
 
-### 🔹 Step 2: Write the Java Program in Notepad
+### Step 2: Write the Java Program in Notepad
 
 1. Open **Notepad** (or any plain text editor).
 2. Type the following Java program code:
@@ -84,13 +84,13 @@ public class MainApp {
 ```
 
 3. **Save the File**:
-   - Click **File ➔ Save As...**
-   - **File Name**: `MainApp.java` *(Make sure to enclose in quotes or select "All Files (*.*)" so Notepad doesn't save it as `MainApp.java.txt`)*.
-   - **Location**: Save it in a dedicated folder, e.g., `D:\JavaPrograms`.
+ - Click **File Save As...**
+ - **File Name**: `MainApp.java` *(Make sure to enclose in quotes or select "All Files (*.*)" so Notepad doesn't save it as `MainApp.java.txt`)*.
+ - **Location**: Save it in a dedicated folder, e.g., `D:\JavaPrograms`.
 
 ---
 
-### 🔹 Step 3: Compile the Java Program
+### Step 3: Compile the Java Program
 
 1. Open a **Command Prompt (CMD)**.
 2. **Navigate to the Directory** where your `.java` file is saved:
@@ -116,7 +116,7 @@ D:\JavaPrograms> javac MainApp.java
 
 ---
 
-### 🔹 Step 4: Run the Java Program
+### Step 4: Run the Java Program
 
 Run the compiled `.class` bytecode file using the `java` runtime launcher command:
 
@@ -132,7 +132,7 @@ Hello Deepak
 
 ---
 
-## 🔍 Visual Directory Lifecycle
+## Visual Directory Lifecycle
 
 ```text
 D:\JavaPrograms/
@@ -150,7 +150,7 @@ D:\JavaPrograms/
 
 ---
 
-## ⚠️ Common Beginner CMD Errors & Fixes
+## Common Beginner CMD Errors & Fixes
 
 | Error Message in CMD | Cause | Solution |
 |:---|:---|:---|

@@ -474,7 +474,7 @@ sequenceDiagram
 
 Eventual consistency makes a weaker promise: given enough time without new updates, all replicas will converge to the same state. But in the meantime" You might read stale data.
 
-#### **How it works:** 
+#### **How it works:**
 
 Speed over correctness. When you write data, the primary acknowledges immediately and you can continue. Replication to other nodes happens in the background. You get your response fast, but other clients might see old data for a while.
 

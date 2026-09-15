@@ -981,11 +981,11 @@ This is probably the most common approach for online judges because it balances 
 
 1. Pre-build Docker images for each supported language (python:3.11, openjdk:17, gcc:12)
 2. For each submission:
-   - Spin up a container from the appropriate image
-   - Mount the user code as a read-only volume
-   - Execute with resource limits
-   - Capture stdout, stderr, and exit code
-   - Destroy the container immediately after
+ - Spin up a container from the appropriate image
+ - Mount the user code as a read-only volume
+ - Execute with resource limits
+ - Capture stdout, stderr, and exit code
+ - Destroy the container immediately after
 
 The `--network=none` flag is critical. It prevents the code from making any network calls, which stops data exfiltration and attacks on external systems.
 

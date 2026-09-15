@@ -8,6 +8,13 @@ server:
 spring:
   application:
     name: api-gateway
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        max.block.ms: 1000
   cloud:
     gateway:
       httpclient:
@@ -22,22 +29,22 @@ spring:
           lower-case-service-id: true
       routes:
         - id: content-service-tracks
-          uri: ${CONTENT_SERVICE_URI:http://localhost:8081}
+          uri: ${CONTENT_SERVICE_URI:lb://content-service}
           predicates:
             - Path=/api/tracks/**, /api/topics/**, /system-design/**, /api/system-design/**
 
         - id: user-service-progress
-          uri: ${USER_SERVICE_URI:http://localhost:8082}
+          uri: ${USER_SERVICE_URI:lb://user-service}
           predicates:
             - Path=/api/progress/**, /api/users/**
 
         - id: quiz-service-quizzes
-          uri: ${QUIZ_SERVICE_URI:http://localhost:8083}
+          uri: ${QUIZ_SERVICE_URI:lb://quiz-service}
           predicates:
             - Path=/api/quizzes/**
 
         - id: code-runner-service
-          uri: ${CODE_RUNNER_URI:http://localhost:8084}
+          uri: ${CODE_RUNNER_URI:lb://code-runner-service}
           predicates:
             - Path=/api/code/**, /api/simulators/**
 

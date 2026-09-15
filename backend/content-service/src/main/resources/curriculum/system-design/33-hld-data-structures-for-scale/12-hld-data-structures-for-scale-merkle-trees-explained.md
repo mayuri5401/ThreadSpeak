@@ -241,16 +241,16 @@ flowchart TB
 #### **Synchronization Algorithm:**
 
 1. **Compare root hashes**
-   - If equal: Trees are identical, done
-   - If different: Proceed to children
+ - If equal: Trees are identical, done
+ - If different: Proceed to children
 2. **Compare H12 hashes**
-   - They match (def456), so Blocks 1 and 2 are identical
-   - No need to check these blocks
+ - They match (def456), so Blocks 1 and 2 are identical
+ - No need to check these blocks
 3. **Compare H34 hashes**
-   - They differ, so the problem is in Blocks 3 or 4
-   - Continue drilling down
+ - They differ, so the problem is in Blocks 3 or 4
+ - Continue drilling down
 4. **Compare H3 and H4 hashes**
-   - Find exactly which block(s) differ
+ - Find exactly which block(s) differ
 
 With this approach, finding differences in a tree with **1 million blocks** takes at most **20 comparisons** (log2 of 1 million) instead of 1 million.
 

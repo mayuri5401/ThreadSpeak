@@ -58,11 +58,11 @@ codeSnippet:
     }
 ---
 
-# 📦 Java Serialization, transient Keyword & serialVersionUID
+# Java Serialization, transient Keyword & serialVersionUID
 
 ---
 
-## 📖 1. What is Serialization & Deserialization?
+## 1. What is Serialization & Deserialization?
 
 - **Serialization**: The process of converting the runtime state of a Java object into a byte stream. Used to persist objects to disk or transmit them across networks.
 - **Deserialization**: The reverse process of reading a byte stream and reconstructing the live Java object in Heap memory.
@@ -75,7 +75,7 @@ flowchart LR
 
 ---
 
-## 🔑 2. The `transient` Keyword
+## 2. The `transient` Keyword
 
 Marking a field with the **`transient`** modifier tells the JVM: **"Do NOT serialize this field"**.
 - During serialization, transient fields are skipped.
@@ -84,7 +84,7 @@ Marking a field with the **`transient`** modifier tells the JVM: **"Do NOT seria
 
 ---
 
-## 🛡️ 3. Why `serialVersionUID` is Mandatory
+## 3. Why `serialVersionUID` is Mandatory
 
 When an object is serialized, the JVM embeds a version number called **`serialVersionUID`**.
 - During deserialization, the JVM compares the stream's `serialVersionUID` with the current class definition.

@@ -596,9 +596,9 @@ Let us break this down:
 1. **User A swipes right on User B:** The swipe arrives at the Swipe Service.
 2. **Check for existing like:** Before recording anything, we check Redis to see if User B has already liked User A. This is a single O(1) lookup.
 3. **Match detected:** If User B already liked User A, we have a match. We immediately:
-   - Create a match record in the database
-   - Notify both users via the Notification Service
-   - Return the match details in the API response so User A sees the celebration screen
+ - Create a match record in the database
+ - Notify both users via the Notification Service
+ - Return the match details in the API response so User A sees the celebration screen
 4. **No match yet:** If User B has not liked User A, we store User A's like in Redis (so future swipes from User B will detect the match) and persist it to the database asynchronously.
 
 **Why Redis for match detection"** The database would work, but Redis gives us sub-millisecond lookups. For a feature that users experience 100 times per session, shaving off latency makes the app feel snappier.
@@ -969,15 +969,15 @@ Geohashing converts a 2D coordinate (lat, long) into a single string that repres
 #### How It Works
 
 1. **Encoding:** The Earth is recursively divided into grid cells. Each additional character in the geohash represents a finer subdivision.
-   - `9q8` might represent San Francisco Bay Area (large region)
-   - `9q8yy` might represent a few city blocks
-   - `9q8yyk` might represent a single building
+ - `9q8` might represent San Francisco Bay Area (large region)
+ - `9q8yy` might represent a few city blocks
+ - `9q8yyk` might represent a single building
 2. **Proximity Property:** Locations with similar geohashes are geographically close. Nearby locations often share the same prefix.
 3. **Querying:** To find users within a radius:
-   - Calculate the geohash of the user's location.
-   - Determine which neighboring geohash cells are within the radius.
-   - Query the database for all users in those cells.
-   - Filter results by exact distance.
+ - Calculate the geohash of the user's location.
+ - Determine which neighboring geohash cells are within the radius.
+ - Query the database for all users in those cells.
+ - Filter results by exact distance.
 
 #### Implementation
 

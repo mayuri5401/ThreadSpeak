@@ -59,34 +59,34 @@ codeSnippet:
 ---
 
 
-# 🚀 Master Low-Level Design (LLD) From Scratch
+# Master Low-Level Design (LLD) From Scratch
 
 Welcome to an **interactive, hands-on, and battle-tested** curriculum designed to help you master Low-Level Design (LLD), Object-Oriented Architecture, and Ace FAANG/Tier-1 Machine Coding & Design Interviews.
 
 ---
 
-### 🌐 Supported Programming Languages
+### Supported Programming Languages
 Learn and implement design patterns and machine coding in your language of choice:
-- ☕ **Java (Primary & Production Standard)**
-- 🐍 **Python**
-- ⚡ **C++**
-- 🔷 **C#**
-- 🐹 **Go**
-- 🟦 **TypeScript**
+- **Java (Primary & Production Standard)**
+- **Python**
+- **C++**
+- **C#**
+- **Go**
+- **TypeScript**
 
 ---
 
-### 📚 Essential Additional Resources
+### Essential Additional Resources
 Accelerate your preparation with these curated companion tools:
-- 💻 **[Original HTML Lesson Source](http://localhost:8080/system-design/01.%20low%20level%20design/01_Welcome/01_Course_Introduction.html)**: Standalone offline HTML course view.
-- 📄 **[LLD Masterclass Notes & PDF (Google Drive)](file:///D:/ThreadSpeak/SystemDesign/01.%20low%20level%20design/01_Welcome/01_Course_Introduction.html)**: Complete handwritten study notes, diagrams, and cheat sheets.
-- 🌟 **[LLD GitHub Repository (awesome-low-level-design)](https://github.com/ashishps1/awesome-low-level-design)**: Over **25k+ stars** on GitHub with open-source reference implementations.
-- 📋 **[LLD Revision Sheet](https://algomaster.io/learn/lld)**: Track your progress, star key questions for fast revision, and take structured notes.
-- 🤖 **[LLD AI Mock Interview Practice](https://algomaster.io/interview/low-level-design)**: Practice real-time Low-Level Design interview problems with an AI interviewer giving instant architectural feedback.
+- **[Original HTML Lesson Source](http://localhost:8080/system-design/01.%20low%20level%20design/01_Welcome/01_Course_Introduction.html)**: Standalone offline HTML course view.
+- **[LLD Masterclass Notes & PDF (Google Drive)](file:///D:/ThreadSpeak/SystemDesign/01.%20low%20level%20design/01_Welcome/01_Course_Introduction.html)**: Complete handwritten study notes, diagrams, and cheat sheets.
+- **[LLD GitHub Repository (awesome-low-level-design)](https://github.com/ashishps1/awesome-low-level-design)**: Over **25k+ stars** on GitHub with open-source reference implementations.
+- **[LLD Revision Sheet](https://algomaster.io/learn/lld)**: Track your progress, star key questions for fast revision, and take structured notes.
+- **[LLD AI Mock Interview Practice](https://algomaster.io/interview/low-level-design)**: Practice real-time Low-Level Design interview problems with an AI interviewer giving instant architectural feedback.
 
 ---
 
-# 🗺️ What's Inside This Course: The 4 Core Pillars
+# What's Inside This Course: The 4 Core Pillars
 
 ```mermaid
 flowchart LR
@@ -100,13 +100,13 @@ flowchart LR
 ## 1. A Structured Roadmap
 You never need to guess what to learn next. This curriculum follows a step-by-step progression:
 
-### 🧩 1.1 Object-Oriented Programming (OOP) Foundation
+### 1.1 Object-Oriented Programming (OOP) Foundation
 - **Classes & Objects**: State encapsulation and identity.
 - **Interfaces & Abstract Classes**: Contract-driven development.
 - **The 4 Pillars**: Encapsulation, Abstraction, Inheritance, and Polymorphism.
 - **UML Class Relationships**: *Association*, *Aggregation* (has-a weak), *Composition* (part-of strong), and *Dependency* (uses-a).
 
-### 🛡️ 1.2 SOLID Principles
+### 1.2 SOLID Principles
 Learn the 5 golden rules for creating adaptable, decoupled, and maintainable software:
 1. **S - Single Responsibility Principle (SRP)**: A class should have one, and only one, reason to change.
 2. **O - Open/Closed Principle (OCP)**: Open for extension, closed for modification.
@@ -114,7 +114,7 @@ Learn the 5 golden rules for creating adaptable, decoupled, and maintainable sof
 4. **I - Interface Segregation Principle (ISP)**: Clients should not be forced to depend upon interfaces they do not use.
 5. **D - Dependency Inversion Principle (DIP)**: Depend on abstractions, not on concrete implementations.
 
-### 🎨 1.3 20+ Gang of Four (GoF) Design Patterns
+### 1.3 20+ Gang of Four (GoF) Design Patterns
 | Pattern Group | Core Patterns Included |
 | :--- | :--- |
 | **Creational** | Singleton, Factory Method, Abstract Factory, Builder, Prototype |
@@ -123,12 +123,12 @@ Learn the 5 golden rules for creating adaptable, decoupled, and maintainable sof
 
 ---
 
-### 🏆 1.4 40+ Real-World Machine Coding Interview Problems
+### 1.4 40+ Real-World Machine Coding Interview Problems
 Apply your design skills to end-to-end production systems:
-- 🎮 **Games & Puzzles**: Tic-Tac-Toe, Snake and Ladder, Chess Game, Minesweeper.
-- 🚗 **Management Systems**: Parking Lot, Elevator System, Hotel Management, Library System.
-- 💳 **Fintech & Booking**: ATM System, Splitwise Expense Sharing, Movie Ticket Booking (BookMyShow), Payment Gateway.
-- ⚡ **Infrastructure & Concurrency**: LRU Cache, Distributed Rate Limiter, Thread-Safe Logging Framework, Notification Service, Vending Machine.
+- **Games & Puzzles**: Tic-Tac-Toe, Snake and Ladder, Chess Game, Minesweeper.
+- **Management Systems**: Parking Lot, Elevator System, Hotel Management, Library System.
+- **Fintech & Booking**: ATM System, Splitwise Expense Sharing, Movie Ticket Booking (BookMyShow), Payment Gateway.
+- **Infrastructure & Concurrency**: LRU Cache, Distributed Rate Limiter, Thread-Safe Logging Framework, Notification Service, Vending Machine.
 
 Each problem walks through:
 1. Requirements Clarification & Scope
@@ -142,7 +142,7 @@ Each problem walks through:
 
 ## 2. Class and Sequence Diagrams
 
-### 📐 Static Class Diagrams
+### Static Class Diagrams
 Understand class hierarchies, inheritance, and dependency injection before writing code:
 
 ```text
@@ -175,7 +175,7 @@ Understand class hierarchies, inheritance, and dependency injection before writi
        └───────────┘ └──────────────┘
 ```
 
-### ⚡ Runtime Sequence Diagrams
+### Runtime Sequence Diagrams
 Sequence diagrams trace object lifecycles and runtime execution steps:
 
 ```text
@@ -193,10 +193,10 @@ Client 1                   Client 2                    Singleton
 
 ## 3. Hands-On Design Exercise: Bank Account Class
 
-### 📝 Problem Description
+### Problem Description
 Design a thread-safe `BankAccount` class that manages deposit, withdrawal, and balance checking operations with strict validation.
 
-### 📋 Requirements:
+### Requirements:
 1. **Fields**: `accountNumber` (String), `ownerName` (String), `balance` (double).
 2. **Constructor**: Initializes account with `accountNumber` and `ownerName`. Balance starts at `0.0`.
 3. **`deposit(double amount)`**: Adds money to balance (only accepts strictly positive amounts).

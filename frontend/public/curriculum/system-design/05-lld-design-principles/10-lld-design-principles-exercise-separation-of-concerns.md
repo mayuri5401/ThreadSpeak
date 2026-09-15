@@ -125,7 +125,7 @@ class UserProfileHandler {
 
         res.setStatus(200);
         res.getWriter().write("{\"message\": \"Profile updated\", \"id\": \""
-            + userId + "\"}");
+ + userId + "\"}");
     }
 }
 
@@ -209,7 +209,7 @@ public class Main {
         HttpServletResponse res1 = new HttpServletResponse();
         controller.handleUpdate(req1, res1);
         System.out.println("Test 1 - Status: " + res1.getStatus()
-            + ", Response: " + res1.getBody());
+ + ", Response: " + res1.getBody());
 
         // Test 2: Empty name (validation failure)
         HttpServletRequest req2 = new HttpServletRequest();
@@ -219,7 +219,7 @@ public class Main {
         HttpServletResponse res2 = new HttpServletResponse();
         controller.handleUpdate(req2, res2);
         System.out.println("Test 2 - Status: " + res2.getStatus()
-            + ", Response: " + res2.getBody());
+ + ", Response: " + res2.getBody());
 
         // Test 3: User not found
         HttpServletRequest req3 = new HttpServletRequest();
@@ -229,7 +229,7 @@ public class Main {
         HttpServletResponse res3 = new HttpServletResponse();
         controller.handleUpdate(req3, res3);
         System.out.println("Test 3 - Status: " + res3.getStatus()
-            + ", Response: " + res3.getBody());
+ + ", Response: " + res3.getBody());
 
         // Test 4: Email already taken
         HttpServletRequest req4 = new HttpServletRequest();
@@ -239,7 +239,7 @@ public class Main {
         HttpServletResponse res4 = new HttpServletResponse();
         controller.handleUpdate(req4, res4);
         System.out.println("Test 4 - Status: " + res4.getStatus()
-            + ", Response: " + res4.getBody());
+ + ", Response: " + res4.getBody());
     }
 }
 ```
@@ -1456,7 +1456,7 @@ class UserProfileController {
             service.updateProfile(userId, name, email);
             res.setStatus(200);
             res.getWriter().write("{\"message\": \"Profile updated\", \"id\": \""
-                + userId + "\"}");
+ + userId + "\"}");
         } catch (IllegalArgumentException e) {
             res.setStatus(400);
             res.getWriter().write("{\"error\": \"" + e.getMessage() + "\"}");
@@ -1490,7 +1490,7 @@ public class Main {
         HttpServletResponse res1 = new HttpServletResponse();
         controller.handleUpdate(req1, res1);
         System.out.println("Test 1 - Status: " + res1.getStatus()
-            + ", Response: " + res1.getBody());
+ + ", Response: " + res1.getBody());
 
         // Test 2: Empty name (validation failure)
         HttpServletRequest req2 = new HttpServletRequest();
@@ -1500,7 +1500,7 @@ public class Main {
         HttpServletResponse res2 = new HttpServletResponse();
         controller.handleUpdate(req2, res2);
         System.out.println("Test 2 - Status: " + res2.getStatus()
-            + ", Response: " + res2.getBody());
+ + ", Response: " + res2.getBody());
 
         // Test 3: User not found
         HttpServletRequest req3 = new HttpServletRequest();
@@ -1510,7 +1510,7 @@ public class Main {
         HttpServletResponse res3 = new HttpServletResponse();
         controller.handleUpdate(req3, res3);
         System.out.println("Test 3 - Status: " + res3.getStatus()
-            + ", Response: " + res3.getBody());
+ + ", Response: " + res3.getBody());
 
         // Test 4: Email already taken
         HttpServletRequest req4 = new HttpServletRequest();
@@ -1520,7 +1520,7 @@ public class Main {
         HttpServletResponse res4 = new HttpServletResponse();
         controller.handleUpdate(req4, res4);
         System.out.println("Test 4 - Status: " + res4.getStatus()
-            + ", Response: " + res4.getBody());
+ + ", Response: " + res4.getBody());
     }
 }
 ```

@@ -548,7 +548,7 @@ class BankAccount {
 
     public void displayAccount() {
         System.out.println(ownerName + " (" + accountNumber + ") | Balance: "
-            + String.format("$%.2f", balance));
+ + String.format("$%.2f", balance));
     }
 }
 
@@ -1570,8 +1570,8 @@ class Shape {
 
     public void describe() {
         System.out.println("Shape: " + name + ", Area: "
-            + String.format("%.2f", area()) + ", Perimeter: "
-            + String.format("%.2f", perimeter()));
+ + String.format("%.2f", area()) + ", Perimeter: "
+ + String.format("%.2f", perimeter()));
     }
 }
 

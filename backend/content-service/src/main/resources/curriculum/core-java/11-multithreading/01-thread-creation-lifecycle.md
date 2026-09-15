@@ -50,11 +50,11 @@ codeSnippet:
     }
 ---
 
-# ⚡ Multithreading: Thread Creation & Lifecycle States
+# Multithreading: Thread Creation & Lifecycle States
 
 ---
 
-## 📖 1. The 6 Thread Lifecycle States in Java
+## 1. The 6 Thread Lifecycle States in Java
 
 Every thread in the JVM transitions through the states defined in **`Thread.State`**:
 
@@ -74,7 +74,7 @@ stateDiagram-v2
 
 ---
 
-## 🏗️ 2. Thread vs Runnable vs Callable
+## 2. Thread vs Runnable vs Callable
 
 | Approach | Inheritance Tradeoff | Returns Result? | Throws Checked Exception? |
 | :--- | :--- | :--- | :--- |

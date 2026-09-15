@@ -194,10 +194,10 @@ An editor tries to delete a blog post. The full flow looks like this:
 5. The API validates the session or token.
 6. The API loads post `42`.
 7. The authorization layer checks:
-   - Does the user have `posts:delete`"
-   - Does the post belong to the same tenant"
-   - Is the post locked, archived, or under legal hold"
-   - Does this action require step-up authentication"
+ - Does the user have `posts:delete`"
+ - Does the post belong to the same tenant"
+ - Is the post locked, archived, or under legal hold"
+ - Does this action require step-up authentication"
 8. The API either deletes the post or returns `403 Forbidden`.
 
 An authenticated user who lacks access gets `403 Forbidden`. A request with missing or invalid authentication usually gets `401 Unauthorized`. The names are imperfect, but the distinction is useful: `401` means the caller has not presented valid credentials; `403` means the caller is known but not allowed.

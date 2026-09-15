@@ -1419,7 +1419,7 @@ class SmsNotificationService implements NotificationService {
     public void notifyCustomer(String orderId, String code, String lockerAddress, long expirationTime) {
         String phone = orderPhoneMap.get(orderId);
         String message = "Your package for order " + orderId + " is ready! "
-            + "Pickup code: " + code + " at " + lockerAddress;
+ + "Pickup code: " + code + " at " + lockerAddress;
         smsClient.send(phone, message);
     }
 }

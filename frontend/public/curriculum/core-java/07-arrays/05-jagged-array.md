@@ -37,18 +37,18 @@ codeSnippet:
     }
 ---
 
-# 🪜 Jagged Array in Java — Masterclass
+# Jagged Array in Java — Masterclass
 
 ---
 
-## 📖 1. Introduction to Jagged Arrays
+## 1. Introduction to Jagged Arrays
 
 A **Jagged Array** (also known as a **Ragged Array**) in Java is a type of **2D array** where **the number of columns in each row can be different**.
 
 - In Java, all multi-dimensional arrays are fundamentally **"arrays of arrays"**.
 - Unlike a standard **Matrix** (where every row has the exact same number of columns in an $M \times N$ rectangular shape), a Jagged Array allows **variable-length rows**, creating a **staircase** or **ragged** layout.
 
-### 📝 Example:
+### Example:
 ```java
 int[][] jaggedArr = {
     {10, 20, 30},       // Row 0 has 3 columns
@@ -76,24 +76,24 @@ flowchart TD
 
 ---
 
-## 📌 2. Points to Remember & Architecture Insights
+## 2. Points to Remember & Architecture Insights
 
 1. **High Memory Efficiency**:
-   - In a rectangular matrix, if some rows only need 2 elements while one row needs 4, you must allocate a $3 \times 4 = 12$ slot matrix, wasting 3 empty slots.
-   - With a Jagged Array, you allocate exactly $3 + 2 + 4 = 9$ slots on the Heap — saving **25% memory**!
+ - In a rectangular matrix, if some rows only need 2 elements while one row needs 4, you must allocate a $3 \times 4 = 12$ slot matrix, wasting 3 empty slots.
+ - With a Jagged Array, you allocate exactly $3 + 2 + 4 = 9$ slots on the Heap — saving **25% memory**!
 2. **Ideal for Irregular Real-World Data**:
-   - Useful for storing student marks when different students enroll in different numbers of elective courses.
-   - Cinema halls or stadiums where front rows have fewer seats than rear rows.
-   - Monthly sales logs where each month has a different number of days (28, 30, or 31).
+ - Useful for storing student marks when different students enroll in different numbers of elective courses.
+ - Cinema halls or stadiums where front rows have fewer seats than rear rows.
+ - Monthly sales logs where each month has a different number of days (28, 30, or 31).
 3. **Not Suitable for Matrix Math**:
-   - Unlike uniform matrices, jagged arrays **cannot** undergo matrix addition, multiplication, or determinant calculations because column dimensions do not match.
+ - Unlike uniform matrices, jagged arrays **cannot** undergo matrix addition, multiplication, or determinant calculations because column dimensions do not match.
 4. **Dimension Properties**:
-   - `jaggedArr.length` $\rightarrow$ gives the **number of rows** (3).
-   - `jaggedArr[i].length` $\rightarrow$ gives the **number of columns in row $i$** (varies per row).
+ - `jaggedArr.length` $\rightarrow$ gives the **number of rows** (3).
+ - `jaggedArr[i].length` $\rightarrow$ gives the **number of columns in row $i$** (varies per row).
 
 ---
 
-## 🧠 3. JVM "Array of Arrays" Memory Structure
+## 3. JVM "Array of Arrays" Memory Structure
 
 Because Java does not allocate contiguous 2D memory blocks, the Master Array simply holds reference pointers (`0x2000`, `0x3000`, `0x4000`) pointing to three completely independent 1D array instances of different capacities on the Heap!
 
@@ -127,11 +127,11 @@ flowchart LR
 
 ---
 
-## 🛠️ 4. Working with Jagged Arrays (The 4 Steps)
+## 4. Working with Jagged Arrays (The 4 Steps)
 
 ---
 
-### 📝 Step 1: Declare a Jagged Array
+### Step 1: Declare a Jagged Array
 Defines the reference variable on the Stack without allocating memory on the Heap:
 ```java
 dataType[][] arrayName;
@@ -142,7 +142,7 @@ int[][] jaggedArr;
 
 ---
 
-### 📦 Step 2: Create a Jagged Array
+### Step 2: Create a Jagged Array
 Unlike a rectangular matrix where you specify `new int[rows][cols]`, a jagged array is created in **two stages**:
 
 1. **Allocate the Master Row Array** (Leave column size empty):
@@ -160,9 +160,9 @@ Unlike a rectangular matrix where you specify `new int[rows][cols]`, a jagged ar
 
 ---
 
-### ✏️ Step 3: Initialize a Jagged Array
+### Step 3: Initialize a Jagged Array
 
-#### 🏷️ Manual Element Assignment:
+#### Manual Element Assignment:
 ```java
 // Row 0 (3 elements)
 jaggedArr[0][0] = 10;
@@ -180,7 +180,7 @@ jaggedArr[2][2] = 80;
 jaggedArr[2][3] = 90;
 ```
 
-#### 💡 Shorthand Array Literal (All 3 Steps in One Line):
+#### Shorthand Array Literal (All 3 Steps in One Line):
 ```java
 dataType[][] arrayName = {
     {value1, value2, value3},        // Row 0
@@ -198,15 +198,15 @@ int[][] jaggedArr = {
 
 ---
 
-### 🔍 Step 4: Retrieve Elements of a Jagged Array
+### Step 4: Retrieve Elements of a Jagged Array
 
-#### 1️⃣ Using Row and Column Index:
+#### 1⃣ Using Row and Column Index:
 ```java
 System.out.println(jaggedArr[0][1]); // Output: 20 (Row 0, Col 1)
 System.out.println(jaggedArr[2][3]); // Output: 90 (Row 2, Col 3)
 ```
 
-#### 2️⃣ Using Nested Traditional `for` Loops:
+#### 2⃣ Using Nested Traditional `for` Loops:
 > ⚠️ **Important:** Notice that the inner loop condition must be `j < jaggedArr[i].length` (using row $i$'s length), **not** a fixed number!
 ```java
 for (int i = 0; i < jaggedArr.length; i++) {
@@ -217,7 +217,7 @@ for (int i = 0; i < jaggedArr.length; i++) {
 }
 ```
 
-#### 3️⃣ Using Nested Enhanced `for-each` Loops (Preferred & Cleanest):
+#### 3⃣ Using Nested Enhanced `for-each` Loops (Preferred & Cleanest):
 ```java
 for (int[] row : jaggedArr) {
     for (int num : row) {
@@ -229,9 +229,9 @@ for (int[] row : jaggedArr) {
 
 ---
 
-## 💻 5. Complete Code Programs & Walkthrough
+## 5. Complete Code Programs & Walkthrough
 
-### 📜 Program 1: Step-by-Step Explicit Jagged Array (JaggedArray1)
+### Program 1: Step-by-Step Explicit Jagged Array (JaggedArray1)
 ```java
 public class JaggedArray1 {
     public static void main(String[] args) {
@@ -273,7 +273,7 @@ public class JaggedArray1 {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Way 1:
 10 20 30 
@@ -287,7 +287,7 @@ Way 2:
 
 ---
 
-### 📜 Program 2: Shorthand Jagged Array Initialization (MainJaggedArray2)
+### Program 2: Shorthand Jagged Array Initialization (MainJaggedArray2)
 ```java
 public class MainJaggedArray2 {
     public static void main(String[] args) {
@@ -310,7 +310,7 @@ public class MainJaggedArray2 {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Jagged Array Elements:
 10 20 
@@ -320,7 +320,7 @@ Jagged Array Elements:
 
 ---
 
-## 🌟 6. Classic Algorithm: Pascal's Triangle Using a Jagged Array
+## 6. Classic Algorithm: Pascal's Triangle Using a Jagged Array
 
 Pascal's Triangle is the most famous computer science application of a Jagged Array, where row $i$ has exactly $i + 1$ elements, and each inner element is the sum of the two elements directly above it:
 
@@ -349,7 +349,7 @@ public class PascalsTriangle {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 1 
 1 1 
@@ -360,24 +360,24 @@ public class PascalsTriangle {
 
 ---
 
-## 🎬 7. Interactive Visualizer Animation Walkthrough
+## 7. Interactive Visualizer Animation Walkthrough
 
 Open the **Architecture Tab** to explore the **Interactive Jagged Array Visualizer**:
 
 1. **Heap Pointer Staircase Map**:
-   - Inspect the **Master Pointer Array** holding 3 references pointing to 3 independent Child Arrays of lengths **3, 2, and 4** in Heap memory.
+ - Inspect the **Master Pointer Array** holding 3 references pointing to 3 independent Child Arrays of lengths **3, 2, and 4** in Heap memory.
 2. **2-Stage Creation Simulator**:
-   - Watch the JVM allocate `new int[3][]` (master holding `null`), followed by individual allocations for `new int[3]`, `new int[2]`, and `new int[4]`.
+ - Watch the JVM allocate `new int[3][]` (master holding `null`), followed by individual allocations for `new int[3]`, `new int[2]`, and `new int[4]`.
 3. **Memory Waste Comparison Tool**:
-   - See a live side-by-side visual comparison between a $3 \times 4$ Rectangular Matrix (wasted slots) vs a Jagged Array (0% waste).
+ - See a live side-by-side visual comparison between a $3 \times 4$ Rectangular Matrix (wasted slots) vs a Jagged Array (0% waste).
 4. **Interactive Pascal's Triangle Generator**:
-   - Watch a jagged array dynamically construct Pascal's Triangle row-by-row in real time.
+ - Watch a jagged array dynamically construct Pascal's Triangle row-by-row in real time.
 5. **Interactive Assessment Quiz**:
-   - 4 multiple-choice questions on jagged memory layout and traversal rules.
+ - 4 multiple-choice questions on jagged memory layout and traversal rules.
 
 ---
 
-## ❓ 8. Top Interview FAQs
+## 8. Top Interview FAQs
 
 <details>
 <summary><b>Q1: Can we create a jagged array with <code>int[][] arr = new int[][3];</code> in Java?</b></summary>

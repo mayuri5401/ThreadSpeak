@@ -32,7 +32,7 @@ codeSnippet:
     }
 ---
 
-### 🔗 Linked List Reversal & Floyd Cycle Detection
+### Linked List Reversal & Floyd Cycle Detection
 
 1. **In-Place Reversal**: O(N) Time, O(1) Space without extra nodes.
 2. **Floyd's Tortoise and Hare**: Fast moves 2 steps, slow moves 1 step. If they meet, a cycle exists.

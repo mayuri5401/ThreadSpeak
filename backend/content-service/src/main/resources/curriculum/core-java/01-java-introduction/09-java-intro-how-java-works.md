@@ -27,13 +27,13 @@ codeSnippet:
     }
 ---
 
-# 🚀 How Java Works: Deep Explanation of How Java Works Step by Step
+# How Java Works: Deep Explanation of How Java Works Step by Step
 
 The diagram and guide below visually explain the complete sequence of steps involved when **writing, compiling, and executing a Java program** using Notepad and the Command Prompt (CMD).
 
 ---
 
-## 🗺️ Visual Step-by-Step Architecture Diagram
+## Visual Step-by-Step Architecture Diagram
 
 ```text
 ┌─────────────────┐       Step 2        ┌─────────────────┐       Step 4        ┌─────────────────┐
@@ -46,7 +46,7 @@ The diagram and guide below visually explain the complete sequence of steps invo
 
 ---
 
-## 📋 5-Step Process Overview
+## 5-Step Process Overview
 
 | Step # | Stage Name | Tool / Component | File / State | Primary Purpose |
 |:---:|:---|:---|:---|:---|
@@ -58,11 +58,11 @@ The diagram and guide below visually explain the complete sequence of steps invo
 
 ---
 
-## 🔍 Detailed 5-Step Explanation
+## Detailed 5-Step Explanation
 
 ---
 
-### 📝 Step 1: Writing the Java Program
+### Step 1: Writing the Java Program
 - We write our Java program in a plain text editor like **Notepad** (or an IDE like IntelliJ / Eclipse / VS Code).
 - The program is saved with a `.java` extension, e.g., `MainApp.java`.
 
@@ -79,7 +79,7 @@ public class MainApp {
 
 ---
 
-### ⚙️ Step 2: Compilation (`javac`)
+### Step 2: Compilation (`javac`)
 - In the compilation phase, we open **Command Prompt (CMD)**, navigate to the directory where our `.java` file is located, and run the `javac` command:
 
 ```cmd
@@ -95,15 +95,15 @@ javac MainApp.java
 
 ---
 
-### 📦 Step 3: Bytecode (`.class` File)
+### Step 3: Bytecode (`.class` File)
 - The `.class` file contains the compiled **bytecode** (hexadecimal instructions starting with the magic number `0xCAFEBABE`), which can be executed on **any system** that has a Java Virtual Machine (JVM) installed.
 - **Why Bytecode Matters ("WORA")**:
-  - Bytecode ensures Java's famous **"Write Once, Run Anywhere" (WORA)** principle.
-  - Because bytecode is not tied to a specific hardware architecture (Intel x86, AMD, ARM) or operating system (Windows, macOS, Linux), the same `MainApp.class` file runs identically across all platforms without recompilation.
+ - Bytecode ensures Java's famous **"Write Once, Run Anywhere" (WORA)** principle.
+ - Because bytecode is not tied to a specific hardware architecture (Intel x86, AMD, ARM) or operating system (Windows, macOS, Linux), the same `MainApp.class` file runs identically across all platforms without recompilation.
 
 ---
 
-### 🚀 Step 4: Execution (`java MainApp`)
+### Step 4: Execution (`java MainApp`)
 - To run the program, we execute the `java` command in CMD:
 
 ```cmd
@@ -121,7 +121,7 @@ java MainApp
 
 ---
 
-### 🖥️ Step 5: Output
+### Step 5: Output
 - If the program contains a print statement, such as:
   ```java
   System.out.println("Hello Deepak");
@@ -134,7 +134,7 @@ Hello Deepak
 
 ---
 
-## 📊 Summary Comparison: Source Code vs Bytecode vs Machine Code
+## Summary Comparison: Source Code vs Bytecode vs Machine Code
 
 | Feature | Source Code (`.java`) | Bytecode (`.class`) | Machine Code (Native Binary) |
 |:---|:---|:---|:---|

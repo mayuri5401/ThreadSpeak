@@ -39,11 +39,11 @@ codeSnippet:
     }
 ---
 
-# 🚀 Lambda Expressions & Functional Interfaces
+# Lambda Expressions & Functional Interfaces
 
 ---
 
-## 📖 1. What is a Functional Interface?
+## 1. What is a Functional Interface?
 
 A **Functional Interface** is an interface that contains **exactly ONE abstract method** (known as **SAM - Single Abstract Method**). It can contain any number of `default` or `static` methods.
 
@@ -51,7 +51,7 @@ It is marked with the optional but recommended annotation **`@FunctionalInterfac
 
 ---
 
-## 🔑 2. The 4 Built-In Core Functional Interfaces
+## 2. The 4 Built-In Core Functional Interfaces
 
 | Interface | Method Signature | Purpose | Example |
 | :--- | :--- | :--- | :--- |

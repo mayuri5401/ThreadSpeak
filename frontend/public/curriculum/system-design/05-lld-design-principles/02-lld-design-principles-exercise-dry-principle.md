@@ -37,7 +37,7 @@ class USOrderProcessor {
         double tax = amount * 0.10; // Duplicated tax logic
         double total = amount + tax;
         System.out.println("US Order - Subtotal: $" + amount
-            + ", Tax: $" + tax + ", Total: $" + total);
+ + ", Tax: $" + tax + ", Total: $" + total);
     }
 }
 
@@ -46,7 +46,7 @@ class EUOrderProcessor {
         double tax = amount * 0.20; // Duplicated tax logic
         double total = amount + tax;
         System.out.println("EU Order - Subtotal: $" + amount
-            + ", Tax: $" + tax + ", Total: $" + total);
+ + ", Tax: $" + tax + ", Total: $" + total);
     }
 }
 
@@ -55,7 +55,7 @@ class UKOrderProcessor {
         double tax = amount * 0.15; // Duplicated tax logic
         double total = amount + tax;
         System.out.println("UK Order - Subtotal: $" + amount
-            + ", Tax: $" + tax + ", Total: $" + total);
+ + ", Tax: $" + tax + ", Total: $" + total);
     }
 }
 

@@ -4,7 +4,7 @@ import TopicViewer from '../../components/topics/TopicViewer';
 import CourseFooterDock from '../../components/layout/CourseFooterDock';
 import NotebookDrawer from '../../components/layout/NotebookDrawer';
 import AskAiDrawer from '../../components/layout/AskAiDrawer';
-import { fetchTracks, fetchTopics, fetchTopicById } from './services/contentApiClient';
+import { fetchTracks, fetchTopics, fetchTopicById, prefetchTopic } from './services/contentApiClient';
 import { mfeEventBus, MfeEvents } from '../../shared/events/MfeEventBus';
 import { ChevronRight, Layers, GripVertical } from 'lucide-react';
 
@@ -95,7 +95,7 @@ export default function ContentMicroApp({
     return () => { isCancelled = true; };
   }, [currentTrackId]);
 
-  // Load Active Topic Content
+  // Load Active Topic Content & Predictively Prefetch Next Topic
   useEffect(() => {
     let isCancelled = false;
     async function loadTopicDetail() {
@@ -105,11 +105,19 @@ export default function ContentMicroApp({
       const data = await fetchTopicById(selectedTopicId);
       if (!isCancelled && data) {
         setSelectedTopic(data);
+
+        // Predictive HLD Cache Optimization: prefetch next sequential topic in idle time
+        if (topics && topics.length > 0) {
+          const currentIndex = topics.findIndex(t => t.id === selectedTopicId);
+          if (currentIndex >= 0 && currentIndex + 1 < topics.length) {
+            prefetchTopic(topics[currentIndex + 1].id);
+          }
+        }
       }
     }
     loadTopicDetail();
     return () => { isCancelled = true; };
-  }, [selectedTopicId]);
+  }, [selectedTopicId, topics]);
 
   const currentTrack = tracks.find(t => t.id === currentTrackId) || tracks[0];
 

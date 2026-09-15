@@ -701,8 +701,8 @@ Let's walk through what happens:
 2. **Lock and verify:** The Auction Service acquires a lock on the auction (to prevent concurrent closures) and verifies it is still in "active" status. If it is already closed, we return early.
 3. **Handle in-flight bids:** Any bids that arrived before the end time but have not been processed yet should still be considered. We give a small grace period (a few seconds) for in-flight requests.
 4. **Determine outcome:** Check if the highest bid meets or exceeds the reserve price.
-   - If yes: Mark status as "sold" and record the winner
-   - If no: Mark status as "ended" (no sale)
+ - If yes: Mark status as "sold" and record the winner
+ - If no: Mark status as "ended" (no sale)
 5. **Notify parties:** Publish an `auction_closed` event that the Notification Service picks up. It sends appropriate messages to all parties.
 
 ```mermaid

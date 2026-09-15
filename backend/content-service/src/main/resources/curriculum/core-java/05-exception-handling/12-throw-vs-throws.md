@@ -39,11 +39,11 @@ codeSnippet:
     }
 ---
 
-# ⚖️ "throw" vs "throws" in Java
+# "throw" vs "throws" in Java
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 Although **`throw`** and **`throws`** sound similar, they perform completely different roles in Java Exception Handling:
 - **`throw`** is an **executable action statement** used to trigger an exception at runtime.
@@ -70,7 +70,7 @@ flowchart LR
 
 ---
 
-## 💥 2. The "throw" Keyword
+## 2. The "throw" Keyword
 
 - **Definition**: The `throw` keyword is used to **actually throw an exception object** from a method or block of code.
 - **Single Exception Object**: It can throw **only one exception object** at a time per statement.
@@ -82,7 +82,7 @@ flowchart LR
 
 ---
 
-## 📢 3. The "throws" Keyword
+## 3. The "throws" Keyword
 
 - **Definition**: The `throws` keyword is used in a **method declaration** to declare the exceptions that a method might throw during its execution.
 - **Multiple Exceptions**: We can declare **one or multiple exceptions**, separated by commas.
@@ -94,7 +94,7 @@ flowchart LR
 
 ---
 
-## 📊 4. Comparison Table: "throw" vs "throws"
+## 4. Comparison Table: "throw" vs "throws"
 
 | Aspect | `throw` Keyword | `throws` Keyword |
 | :--- | :--- | :--- |
@@ -110,7 +110,7 @@ flowchart LR
 
 ---
 
-## 💻 5. Complete Code Example: Synergistic Collaboration
+## 5. Complete Code Example: Synergistic Collaboration
 
 Here is how `throw` and `throws` work together in a production-style Java class:
 
@@ -167,7 +167,7 @@ public class ThrowVsThrowsDemo
 }
 ```
 
-### 🖥️ Console Output:
+### Console Output:
 ```text
 --- Test 1: Empty file name ---
 🦺 Caught in main caller: Invalid File Name: File path cannot be empty or null!
@@ -179,7 +179,7 @@ public class ThrowVsThrowsDemo
 
 ---
 
-## 🎬 6. Interactive Animation & Visualizer Breakdown
+## 6. Interactive Animation & Visualizer Breakdown
 
 The accompanying **Interactive "throw" vs "throws" Visualizer & Comparison Theater** brings these concepts to life through real-time simulation:
 
@@ -200,7 +200,7 @@ sequenceDiagram
     Caller->>Caller: Print handled message & resume safely
 ```
 
-### 🕹️ What the Animation Demonstrates:
+### What the Animation Demonstrates:
 1. **The Firing Action of `throw`**: Watch how `throw` creates a concrete exception instance in heap memory and instantly halts the normal execution sequence.
 2. **The Contract of `throws`**: See how `throws` acts like a warning badge in the method header that requires callers to wrap calls in `try-catch`.
 3. **Single vs Multiple Multiplicity**: Experience how a method signature can declare multiple exceptions (`throws IOException, SQLException`), while a `throw` statement can only dispatch one concrete instance at a time.
@@ -209,7 +209,7 @@ sequenceDiagram
 
 ---
 
-## 🏛️ 7. The Architectural Synergy Between "throw" and "throws"
+## 7. The Architectural Synergy Between "throw" and "throws"
 
 In enterprise software (such as Spring Boot REST microservices):
 - **Low-Level Code (DAO / Sockets)** uses **`throw`** when a specific condition fails (e.g. `throw new SQLException("Connection Timeout")`).
@@ -218,9 +218,9 @@ In enterprise software (such as Spring Boot REST microservices):
 
 ---
 
-## 🚫 8. Common Traps, Compiler Errors & Anti-Patterns
+## 8. Common Traps, Compiler Errors & Anti-Patterns
 
-### 🪤 Trap 1: Unreachable Code Error After `throw`
+### Trap 1: Unreachable Code Error After `throw`
 Because `throw` transfers execution immediately, any statement placed directly after an unconditional `throw` is **unreachable** and causes a compilation error:
 
 ```java
@@ -230,13 +230,13 @@ void check() {
 }
 ```
 
-### 🪤 Trap 2: Throwing `null`
+### Trap 2: Throwing `null`
 ```java
 RuntimeException ex = null;
 throw ex; // 💥 At runtime, throws NullPointerException, NOT RuntimeException!
 ```
 
-### 🪤 Trap 3: Throwing a Checked Exception Without Declaring/Catching
+### Trap 3: Throwing a Checked Exception Without Declaring/Catching
 ```java
 void load() {
     // ❌ COMPILE ERROR: unreported exception IOException; must be caught or declared to be thrown
@@ -246,7 +246,7 @@ void load() {
 
 ---
 
-## ❓ 9. Frequently Asked FAANG Interview Questions
+## 9. Frequently Asked FAANG Interview Questions
 
 <details>
 <summary><b>Q1: Can we use 'throw' without 'throws'?</b></summary>

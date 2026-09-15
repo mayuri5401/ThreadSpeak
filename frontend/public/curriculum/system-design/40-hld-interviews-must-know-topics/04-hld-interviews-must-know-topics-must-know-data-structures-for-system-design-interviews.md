@@ -17,12 +17,12 @@ codeSnippet:
   explanation: "Production implementation for Must-Know Data Structures for System Design Interviews"
   code: |
     Given:
-    - 1 billion URLs to track
-    - 1% acceptable false positive rate
+ - 1 billion URLs to track
+ - 1% acceptable false positive rate
     
     Formula: m = -n × ln(p) / (ln(2))^2
-    - m = -1B × ln(0.01) / 0.48
-    - m ≈ 9.6 billion bits ≈ 1.2 GB
+ - m = -1B × ln(0.01) / 0.48
+ - m ≈ 9.6 billion bits ≈ 1.2 GB
     
     Optimal hash functions: k = (m/n) × ln(2) ≈ 7
 ---
@@ -1096,20 +1096,20 @@ Design with Elasticsearch:
    }
 
 2. Create index mappings:
-   - title: text field (analyzed, for full-text search)
-   - title.keyword: keyword field (for exact match, sorting)
-   - brand: keyword (for filtering, aggregations)
-   - price: float (for range queries)
+ - title: text field (analyzed, for full-text search)
+ - title.keyword: keyword field (for exact match, sorting)
+ - brand: keyword (for filtering, aggregations)
+ - price: float (for range queries)
 
 3. Query:
-   - BM25 on title and description
-   - Boost matches in title (title^2)
-   - Filter by category and price range
-   - Aggregate for facet counts
+ - BM25 on title and description
+ - Boost matches in title (title^2)
+ - Filter by category and price range
+ - Aggregate for facet counts
 
 4. Autocomplete:
-   - Separate edge-ngram index for suggestions
-   - Or use completion suggester
+ - Separate edge-ngram index for suggestions
+ - Or use completion suggester
 ```
 
 ---
@@ -1384,9 +1384,9 @@ Design:
    On each hashtag: update current minute's sketch, query sum across all 60
 
 3. Every minute:
-   - Discard oldest sketch
-   - Create new empty sketch
-   - Refresh top-100 heap
+ - Discard oldest sketch
+ - Create new empty sketch
+ - Refresh top-100 heap
 
 Query "trending":
   Return heap (already ranked)
@@ -1528,19 +1528,19 @@ Problem:
 Solution: Merkle tree anti-entropy repair
 
 1. Each replica builds a Merkle tree:
-   - Divide keyspace into 256 ranges
-   - Each range is a leaf: hash of all keys in that range
-   - Build tree up to root
+ - Divide keyspace into 256 ranges
+ - Each range is a leaf: hash of all keys in that range
+ - Build tree up to root
 
 2. Repair process:
-   - Replica A sends root hash to Replica B
-   - If roots match: done! Replicas are consistent.
-   - If different: exchange child hashes
-   - Recursively identify differing ranges
+ - Replica A sends root hash to Replica B
+ - If roots match: done! Replicas are consistent.
+ - If different: exchange child hashes
+ - Recursively identify differing ranges
 
 3. Only sync the differing ranges:
-   - 10 GB total data, 3 ranges differ (30 MB)
-   - Transfer only 30 MB instead of comparing 10 GB
+ - 10 GB total data, 3 ranges differ (30 MB)
+ - Transfer only 30 MB instead of comparing 10 GB
 
 Complexity:
   Tree depth: log₂(256) = 8 levels

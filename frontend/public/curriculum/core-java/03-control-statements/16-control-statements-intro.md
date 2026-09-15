@@ -45,9 +45,9 @@ codeSnippet:
     }
 ---
 
-# 🚦 Control Statements in Java
+# Control Statements in Java
 
-## 📖 Introduction
+## Introduction
 
 **Control statements in Java are the instructions that control or manage the flow of execution of a program based on specific conditions or loops.**
 
@@ -55,7 +55,7 @@ By default, Java programs execute statements sequentially, from top to bottom, o
 
 ---
 
-## 🎯 What are Control Statements Used For?
+## What are Control Statements Used For?
 
 Control Statements in Java are primarily used to accomplish **3 fundamental tasks**:
 
@@ -75,7 +75,7 @@ on conditions (if, switch)        times (for, while, do-while)      flow (break,
 
 ---
 
-## 🧭 Real-World Analogy: GPS Driving Navigation
+## Real-World Analogy: GPS Driving Navigation
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -90,7 +90,7 @@ on conditions (if, switch)        times (for, while, do-while)      flow (break,
 
 ---
 
-## 🗺️ Types of Control Statements
+## Types of Control Statements
 
 Control Statements in Java are divided into **3 main categories**:
 
@@ -164,7 +164,7 @@ Control Statements in Java are divided into **3 main categories**:
 
 ---
 
-## 📊 Comprehensive Comparison Table
+## Comprehensive Comparison Table
 
 | Category | Primary Function | Keywords / Constructs | Typical Use Case |
 |:---|:---|:---|:---|
@@ -174,7 +174,7 @@ Control Statements in Java are divided into **3 main categories**:
 
 ---
 
-## 💻 Master Java Program: All 3 Categories in Action
+## Master Java Program: All 3 Categories in Action
 
 ```java
 public class ControlMasterDemo {
@@ -220,7 +220,7 @@ public class ControlMasterDemo {
 }
 ```
 
-### 🖥️ Program Output:
+### Program Output:
 ```text
 === 🏦 Transaction Processing System ===
 💳 Standard Transaction  : $120

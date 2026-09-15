@@ -30,4 +30,13 @@ public class WebConfig implements WebMvcConfigurer {
                         "file:///D:/ThreadSpeak/SystemDesign/"
                 );
     }
+
+    /**
+     * High-Level Design Tiered HTTP Caching:
+     * Generates ETags for responses and handles If-None-Match headers with 304 Not Modified.
+     */
+    @org.springframework.context.annotation.Bean
+    public org.springframework.web.filter.ShallowEtagHeaderFilter shallowEtagHeaderFilter() {
+        return new org.springframework.web.filter.ShallowEtagHeaderFilter();
+    }
 }

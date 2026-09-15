@@ -1241,10 +1241,10 @@ flowchart TD
 2. **Continuous measurement:** After each segment download, measure the actual throughput. If a 4-second segment at 5 Mbps (2.5 MB) downloaded in 2 seconds, throughput is 10 Mbps.
 3. **Buffer monitoring:** Track how many seconds of video are buffered ahead. A healthy buffer is 20-30 seconds. Below 10 seconds is concerning. Below 5 seconds is critical.
 4. **Quality decisions:** Based on throughput and buffer status:
-   - If buffer is critically low, immediately drop to lowest quality to avoid buffering
-   - If bandwidth dropped, gradually decrease quality
-   - If buffer is healthy and bandwidth supports it, gradually increase quality
-   - Avoid oscillating, use hysteresis to prevent rapid switching
+ - If buffer is critically low, immediately drop to lowest quality to avoid buffering
+ - If bandwidth dropped, gradually decrease quality
+ - If buffer is healthy and bandwidth supports it, gradually increase quality
+ - Avoid oscillating, use hysteresis to prevent rapid switching
 5. **Lookahead:** Smart algorithms consider not just current conditions but trends. If bandwidth has been declining for the last few segments, proactively reduce quality before the buffer runs out.
 
 > 💡 **Key Insight:**

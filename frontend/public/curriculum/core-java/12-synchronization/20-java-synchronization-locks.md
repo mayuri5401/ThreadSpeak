@@ -40,6 +40,6 @@ codeSnippet:
     }
 ---
 
-# 🔒 Synchronization: Thread Safety & Monitors
+# Synchronization: Thread Safety & Monitors
 
 Synchronization in Java is the capability to control the access of multiple threads to any shared resource.

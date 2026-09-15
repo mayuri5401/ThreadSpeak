@@ -304,7 +304,7 @@ You are still tightly coupled. This defeats the purpose of inversion. The depend
 
 Not exactly.
 
-- **Dependency Inversion (DIP)** is a principle:  *“Depend on abstractions, not concrete implementations.”*
+- **Dependency Inversion (DIP)** is a principle: *“Depend on abstractions, not concrete implementations.”*
 - **Dependency Injection (DI)** is a technique used to achieve DIP: You *inject* dependencies into a class (via constructor, setter, or method) instead of the class creating them itself.
 
 You can follow DIP without using a DI container, and you can use DI without necessarily following DIP (though you probably should do both!).

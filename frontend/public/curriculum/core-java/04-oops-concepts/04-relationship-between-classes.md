@@ -46,11 +46,11 @@ codeSnippet:
     }
 ---
 
-# 🔗 Relationship Between Classes in Java
+# Relationship Between Classes in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 **Relationship between classes** describes how multiple classes **interact with or depend on each other**.  
 These relationships help structure and organize code in a logical, reusable, and maintainable way.
@@ -70,20 +70,20 @@ These relationships help structure and organize code in a logical, reusable, and
 
 ---
 
-## 1️⃣ Association (HAS-A relationship)
+## 1⃣ Association (HAS-A relationship)
 
-### 📌 Definition:
+### Definition:
 **Association** is a relationship where **one class interacts with another class** by holding an object reference.
 
-### 💡 Real-World Examples:
+### Real-World Examples:
 - `Student HAS-A Address`
 - `Car HAS-A Engine`
 - `Bank HAS-A Account`
 
-### ⚙️ How to achieve Association ?
+### How to achieve Association ?
 Association is achieved by **declaring object references as instance variables inside a class**.
 
-### 💻 Program:
+### Program:
 ```java
 class Address {
     String city = "Delhi";
@@ -115,7 +115,7 @@ public class MainApp {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Name: Deepak, Roll No: 101
 City: Delhi, Country: India
@@ -123,23 +123,23 @@ City: Delhi, Country: India
 
 ---
 
-## 2️⃣ Dependency (USES-A relationship)
+## 2⃣ Dependency (USES-A relationship)
 
-### 📌 Definition:
+### Definition:
 **Dependency** is a relationship where **one class uses another class to perform a specific task**.  
 It typically exists when one class depends on another **temporarily**, usually **within a method scope**.
 
-### 💡 Real-World Examples:
+### Real-World Examples:
 - `Office Worker USES-A Printer`
 - `Driver USES-A GPS`
 - `Painter USES-A Brush`
 
-### ⚙️ How to achieve Dependency ?
+### How to achieve Dependency ?
 Dependency can be achieved through:
 1. **Local variables inside methods**
 2. **Method parameters**
 
-### 💻 Program:
+### Program:
 ```java
 class Printer {
     void printDocument(String doc) {
@@ -163,7 +163,7 @@ public class MainApp {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Printing document: ProjectReport.pdf
 Work completed.
@@ -171,22 +171,22 @@ Work completed.
 
 ---
 
-## 3️⃣ Inheritance (IS-A relationship)
+## 3⃣ Inheritance (IS-A relationship)
 
-### 📌 Definition:
+### Definition:
 **IS-A (Inheritance)** is the process by which a **child class (subclass) inherits fields and methods from a parent class (superclass)**.
 
-### 💡 Real-World Examples:
+### Real-World Examples:
 - `A Car IS-A Vehicle`
 - `A Dog IS-A Animal`
 - `A SavingsAccount IS-A BankAccount`
 
-### ⚙️ How to achieve Inheritance ?
+### How to achieve Inheritance ?
 Inheritance is achieved using:
 - **`extends`** keyword in the case of classes.
 - **`implements`** keyword in the case of interfaces.
 
-### 💻 Program:
+### Program:
 ```java
 class Vehicle {
     void start() {
@@ -210,7 +210,7 @@ public class MainApp {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Vehicle starts.
 Car drives.
@@ -218,7 +218,7 @@ Car drives.
 
 ---
 
-## 📊 Summary Comparison: HAS-A vs USES-A vs IS-A
+## Summary Comparison: HAS-A vs USES-A vs IS-A
 
 | Relationship | Type | Implementation Syntax | Lifetime / Scope | Coupling Level | Canonical Example |
 |:---|:---|:---|:---|:---|:---|

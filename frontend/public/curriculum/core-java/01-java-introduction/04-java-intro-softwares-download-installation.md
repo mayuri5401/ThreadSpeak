@@ -26,9 +26,9 @@ codeSnippet:
     javac 21.0.2
 ---
 
-### 🛠️ Download & Install Java?
+### Download & Install Java?
 
-### 💻 Java Softwares
+### Java Softwares
 → If we want to learn Java, we need tools for writing, compiling and running Java code. Here’s a list of software you can use, along with explanations for each:
 1. **Java Development Kit (JDK)**
 2. **Text Editors**
@@ -46,18 +46,18 @@ These softwares are explained below....
 * **How to install** :
   1. Download the JDK for the respective operating system.
   2. Then set the [Java Path & JAVA_HOME](https://smartprogramming.in/tutorials/java/java-home-vs-path-environment-variables.php) environment variable.
-* **Reference Video** : [▶️ Click Here](https://www.youtube.com/watch?v=U864YoX16l4&list=PLlhM4lkb2sEjtoPRP2AfVGJWFoltwtDdx&index=2) to see how to download/install JDK Software and How to set Java Path & JAVA_HOME.
+* **Reference Video** : [▶ Click Here](https://www.youtube.com/watch?v=U864YoX16l4&list=PLlhM4lkb2sEjtoPRP2AfVGJWFoltwtDdx&index=2) to see how to download/install JDK Software and How to set Java Path & JAVA_HOME.
 
 ---
 
 ### 2. Text Editors
 * **Introduction** : These are the pre-installed, lightweight and simple tools available in every platform.
 * **Examples** :
-  - Notepad in Windows Platform
-  - Notepad++
-  - TextEdit in macOS
-  - Gedit in Linux
-  - etc...
+ - Notepad in Windows Platform
+ - Notepad++
+ - TextEdit in macOS
+ - Gedit in Linux
+ - etc...
 * **Use** : These are used to write basic java code.
 
 ---
@@ -65,17 +65,17 @@ These softwares are explained below....
 ### 3. Integrated Development Environments (IDEs)
 * **Introduction** : IDEs are advanced software tools to write Java Code including development, debugging, project management etc.
 * **Examples** :
-  - IntelliJ IDEA
-  - Eclipse
-  - NetBeans
-  - VS Code
-  - etc...
+ - IntelliJ IDEA
+ - Eclipse
+ - NetBeans
+ - VS Code
+ - etc...
 * **Reference Video & Guides** :
-  - [▶️ Click Here](https://www.youtube.com/watch?v=4X9vDTeUzZ4&list=PLlhM4lkb2sEjtoPRP2AfVGJWFoltwtDdx&index=3) to see how to download & install IntelliJ IDEA.
-  - [▶️ Click Here](https://www.youtube.com/watch?v=yaMad_z02lg&list=PLlhM4lkb2sEjtoPRP2AfVGJWFoltwtDdx&index=4) to see how to download & install Eclipse IDE.
-  - [📖 Click Here](https://smartprogramming.in/tutorials/java/java-home-vs-path-environment-variables.php) to see the difference between Java Path & JAVA_HOME.
+ - [▶ Click Here](https://www.youtube.com/watch?v=4X9vDTeUzZ4&list=PLlhM4lkb2sEjtoPRP2AfVGJWFoltwtDdx&index=3) to see how to download & install IntelliJ IDEA.
+ - [▶ Click Here](https://www.youtube.com/watch?v=yaMad_z02lg&list=PLlhM4lkb2sEjtoPRP2AfVGJWFoltwtDdx&index=4) to see how to download & install Eclipse IDE.
+ - [ Click Here](https://smartprogramming.in/tutorials/java/java-home-vs-path-environment-variables.php) to see the difference between Java Path & JAVA_HOME.
 
 ---
 
-### 💡 Help Us Get Better Every Day
+### Help Us Get Better Every Day
 > **Your feedback helps us grow!** If there's anything we can fix or improve, please let us know. We’re here to make our tutorials better based on your thoughts and suggestions.

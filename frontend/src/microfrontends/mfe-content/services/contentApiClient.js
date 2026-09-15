@@ -1,7 +1,9 @@
 // =============================================================================
-// MFE-Content API Client
-// Connected to Backend Content Service (:8081 via Gateway /api)
-// With Full Static Fallback for Vercel / GitHub Pages
+// MFE-Content API Client with High-Level Design Multi-Tier Caching & Prefetching
+// Tier 1: In-Memory L1 LRU Cache (< 0.1ms access)
+// Tier 2: Static Markdown On-Demand Stream (/curriculum/{track}/{topic}.md)
+// Tier 3: Live Microservices Gateway Fallback (/api/topics/{id})
+// Tier 4: Background Topic Prefetcher (Predictive Next-Topic Cache Ingestion)
 // =============================================================================
 
 import { gatewayFetch } from '../../../shared/api/gatewayClient';
@@ -90,7 +92,6 @@ function parseMarkdownFile(raw, id) {
     mentalModel: get('mentalModel'),
     animationType: get('animationType'),
     tags,
-    // Use the markdown body as deepDive (the rich notes content)
     deepDive: body || get('deepDive'),
   };
 }
@@ -98,6 +99,7 @@ function parseMarkdownFile(raw, id) {
 export async function fetchTopicById(id) {
   if (!id) return null;
 
+  // Tier 1: In-Memory L1 LRU Cache (Instant < 0.1ms access)
   if (topicDetailCache.has(id)) {
     const cached = topicDetailCache.get(id);
     if (cached && (cached.deepDive || cached.eli10)) {
@@ -105,12 +107,7 @@ export async function fetchTopicById(id) {
     }
   }
 
-  // Tier 1: Check pre-compiled topics catalog (instant 0ms memory access)
   const catalogEntry = topicsCatalog.find(t => t.id === id);
-  if (catalogEntry && (catalogEntry.deepDive || catalogEntry.eli10)) {
-    topicDetailCache.set(id, catalogEntry);
-    return catalogEntry;
-  }
 
   // Tier 2: Static markdown file fetch from public/curriculum
   const filePath = curriculumIndex[id] || catalogEntry?.filePath;
@@ -128,11 +125,11 @@ export async function fetchTopicById(id) {
         return merged;
       }
     } catch (staticErr) {
-      // static fetch failed
+      // static fetch failed, fall through to gateway
     }
   }
 
-  // Tier 3: Optional live gateway fetch
+  // Tier 3: Live Gateway / API Microservice Fetch
   try {
     const data = await gatewayFetch(`/topics/${id}`);
     if (data && (data.deepDive || data.eli10)) {
@@ -140,10 +137,25 @@ export async function fetchTopicById(id) {
       return data;
     }
   } catch (err) {
-    // ignore
+    // Gateway offline, fall through
   }
 
   return catalogEntry || null;
+}
+
+/**
+ * Predictive Next-Topic Background Pre-fetcher
+ * Ingests adjacent topics during idle browser time to provide instant 0ms tab navigation
+ */
+export function prefetchTopic(topicId) {
+  if (!topicId || topicDetailCache.has(topicId)) return;
+  const schedule = typeof window !== 'undefined' && window.requestIdleCallback
+    ? window.requestIdleCallback
+    : (cb) => setTimeout(cb, 100);
+
+  schedule(() => {
+    fetchTopicById(topicId).catch(() => {});
+  });
 }
 
 function getLocalTracksFallback() {

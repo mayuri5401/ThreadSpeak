@@ -1036,7 +1036,7 @@ Tracks what each user has already bought, enabling per-user limit enforcement.
 
 The composite primary key (user_id, item_id) ensures fast lookups when checking if a user has already purchased an item.
 
-#### **Why a separate table"** 
+#### **Why a separate table"**
 
 We could query the orders table for this information, but that query would be expensive during a flash sale. Having a denormalized table with exactly the data we need makes the per-user limit check fast.
 

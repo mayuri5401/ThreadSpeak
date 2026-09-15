@@ -33,7 +33,7 @@ codeSnippet:
     }
 ---
 
-### ⚡ Features of Java
+### Features of Java
 
 #### 1. Platform Independent
 → Java is platform independent because a Java program can be compiled on one machine and executed on another machine.

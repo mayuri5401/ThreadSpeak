@@ -46,23 +46,23 @@ codeSnippet:
     }
 ---
 
-# 🤝 Association (HAS-A Relationship) in Java
+# Association (HAS-A Relationship) in Java
 
 ---
 
-## ❓ Definition
+## Definition
 
 **Association** is a relationship where **one class uses or interacts with another class by holding a reference to it**.  
 It represents a **HAS-A relationship** in object-oriented programming.
 
-### 💡 Real-World Examples:
+### Real-World Examples:
 - `Student HAS-A Address`
 - `Car HAS-A Engine`
 - `Laptop HAS-A Processor`
 
 ---
 
-## ⚙️ How to Achieve Association ?
+## How to Achieve Association ?
 
 Association is achieved by **declaring object references as instance variables inside a class**.
 
@@ -73,7 +73,7 @@ We can inject dependent objects using **3 primary approaches**:
 
 ---
 
-### 📝 Program 1: Association using Direct Reference Variables
+### Program 1: Association using Direct Reference Variables
 
 ```java
 class Address {
@@ -106,7 +106,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Name: Deepak, Roll No: 101
 City: Delhi, Country: India
@@ -114,7 +114,7 @@ City: Delhi, Country: India
 
 ---
 
-### 📝 Program 2: Association using Constructor Injection
+### Program 2: Association using Constructor Injection
 
 ```java
 class Engine {
@@ -150,7 +150,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Engine starts.
 Car starts.
@@ -158,7 +158,7 @@ Car starts.
 
 ---
 
-### 📝 Program 3: Association using Setter Injection
+### Program 3: Association using Setter Injection
 
 ```java
 class Processor {
@@ -201,7 +201,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Processor starts processing.
 Laptop starts.
@@ -209,7 +209,7 @@ Laptop starts.
 
 ---
 
-## 🏷️ Types of Association: Aggregation vs Composition
+## Types of Association: Aggregation vs Composition
 
 ```text
                                      Association (HAS-A)
@@ -220,35 +220,35 @@ Laptop starts.
              e.g. Car HAS-A Music Player                   e.g. Car HAS-A Engine
 ```
 
-### 1️⃣ Aggregation (Weak Association)
+### 1⃣ Aggregation (Weak Association)
 - **Weak relationship** between classes.
 - Objects can **exist independently** of each other.
 - **Example**: `A Car HAS-A Music Player`.
-  - The Music Player can be removed, reused, or replaced — it can exist without the car.
+ - The Music Player can be removed, reused, or replaced — it can exist without the car.
 
-### 2️⃣ Composition (Strong Association)
+### 2⃣ Composition (Strong Association)
 - **Strong relationship** between classes.
 - One object is **fully dependent on the other**; their lifecycles are bound together.
 - **Example**: `A Car HAS-A Engine`.
-  - The Engine is an essential part of the car — if the car is destroyed, the engine has no standalone meaning in the context of that vehicle.
+ - The Engine is an essential part of the car — if the car is destroyed, the engine has no standalone meaning in the context of that vehicle.
 
 > **📌 NOTE** : In both Aggregation and Composition, the **program logic remains the same**, but the **architectural lifecycle and ownership between the classes is different**.
 
 ---
 
-## 🔢 Cardinality of Associations
+## Cardinality of Associations
 
 **Cardinality** refers to the count or the number of connections between associating classes:
 
 1. **One-to-One (1:1)**:
-   - One instance of Class A is associated with exactly one instance of Class B.
-   - *Example*: `One Person HAS-A One Passport`.
+ - One instance of Class A is associated with exactly one instance of Class B.
+ - *Example*: `One Person HAS-A One Passport`.
 2. **One-to-Many (1:N)**:
-   - One instance of Class A is associated with multiple instances of Class B.
-   - *Example*: `One Department HAS-A List of Many Employees`.
+ - One instance of Class A is associated with multiple instances of Class B.
+ - *Example*: `One Department HAS-A List of Many Employees`.
 3. **Many-to-One (N:1)**:
-   - Multiple instances of Class A belong to a single instance of Class B.
-   - *Example*: `Many Students belong to One College`.
+ - Multiple instances of Class A belong to a single instance of Class B.
+ - *Example*: `Many Students belong to One College`.
 4. **Many-to-Many (M:N)**:
-   - Multiple instances of Class A associate with multiple instances of Class B.
-   - *Example*: `Many Students enroll in Many Courses`.
+ - Multiple instances of Class A associate with multiple instances of Class B.
+ - *Example*: `Many Students enroll in Many Courses`.

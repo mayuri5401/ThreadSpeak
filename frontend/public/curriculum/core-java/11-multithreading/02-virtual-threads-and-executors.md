@@ -39,11 +39,11 @@ codeSnippet:
     }
 ---
 
-# 🚀 ExecutorService & Java 21 Virtual Threads (Project Loom)
+# ExecutorService & Java 21 Virtual Threads (Project Loom)
 
 ---
 
-## 📖 1. Platform Threads vs Java 21 Virtual Threads
+## 1. Platform Threads vs Java 21 Virtual Threads
 
 | Metric | Traditional Platform Thread | Java 21 Virtual Thread |
 | :--- | :--- | :--- |

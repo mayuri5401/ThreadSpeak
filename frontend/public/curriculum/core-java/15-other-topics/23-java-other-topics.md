@@ -31,6 +31,6 @@ codeSnippet:
     }
 ---
 
-# 🚀 Other Topics: Generics, Enums, Annotations & Records
+# Other Topics: Generics, Enums, Annotations & Records
 
 This module covers critical modern Java features that every professional Java developer and architect must master.

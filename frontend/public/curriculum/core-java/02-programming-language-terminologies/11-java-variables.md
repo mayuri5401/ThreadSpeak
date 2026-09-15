@@ -47,16 +47,16 @@ codeSnippet:
     }
 ---
 
-# 📦 Variables in Java
+# Variables in Java
 
-## 📖 Introduction
+## Introduction
 
 A **variable** is the name of a memory location that can store data.  
 In simple words, **variables are the containers used to store data values**.
 
 ---
 
-## 🚌 Real-World Analogy: The Bus Analogy
+## Real-World Analogy: The Bus Analogy
 
 ```text
 ┌────────────────────────────────────────────────────────┐
@@ -74,13 +74,13 @@ In simple words, **variables are the containers used to store data values**.
                  Memory Location (RAM)
 ```
 
-- **Memory Location (RAM)** ➔ The **Bus** (the physical space reserved in memory).
-- **Data** ➔ The **Passenger** (the actual data value stored inside, e.g., `101`).
-- **Variable Name** ➔ The **Number Plate** (the unique identifier pointing to that memory location, e.g., `rollno`).
+- **Memory Location (RAM)** The **Bus** (the physical space reserved in memory).
+- **Data** The **Passenger** (the actual data value stored inside, e.g., `101`).
+- **Variable Name** The **Number Plate** (the unique identifier pointing to that memory location, e.g., `rollno`).
 
 ---
 
-## 💻 Java Example & RAM Allocation
+## Java Example & RAM Allocation
 
 ```java
 int rollno = 101;
@@ -108,7 +108,7 @@ Here:
 
 ---
 
-## 📌 Important Characteristics of Variables
+## Important Characteristics of Variables
 
 1. **Statically Typed**:  
    Java is a statically typed language. We **must declare the data type** before using any variable.
@@ -129,7 +129,7 @@ Here:
 
 ---
 
-## 🔍 Types of Variables in Java
+## Types of Variables in Java
 
 There are **3 types of variables** in Java:
 
@@ -145,7 +145,7 @@ There are **3 types of variables** in Java:
 
 ---
 
-### 🔹 1. Local Variables
+### 1. Local Variables
 - **Definition**: A variable defined within a block, method, or constructor is called a local variable.
 - **Creation & Destruction**: Created when the block/method is called and destroyed as soon as the method exits.
 - **Scope**: Limited strictly to the block in which it is declared; cannot be accessed from outside.
@@ -153,7 +153,7 @@ There are **3 types of variables** in Java:
 
 ---
 
-### 🔹 2. Instance Variables
+### 2. Instance Variables
 - **Definition**: A variable defined inside a class but outside any method, block, or constructor is called an instance variable.
 - **Creation & Destruction**: Created when an object of the class is instantiated (`new` keyword) and destroyed when the object is garbage-collected.
 - **Object Copy**: Each object instance gets its **own separate copy** of instance variables.
@@ -161,7 +161,7 @@ There are **3 types of variables** in Java:
 
 ---
 
-### 🔹 3. Static Variables
+### 3. Static Variables
 - **Definition**: A variable defined with the **`static`** keyword inside a class is called a static variable.
 - **Single Shared Copy**: Shared across **all instances** of the class; only one copy exists in memory.
 - **Creation & Destruction**: Created when the class is loaded by JVM and destroyed when the class is unloaded.
@@ -169,7 +169,7 @@ There are **3 types of variables** in Java:
 
 ---
 
-## 💻 Deep Code Demonstration: Local, Instance & Static Variables
+## Deep Code Demonstration: Local, Instance & Static Variables
 
 ```java
 public class MainApp {
@@ -211,7 +211,7 @@ public class MainApp {
 }
 ```
 
-### 🖥️ Program Output:
+### Program Output:
 ```text
 Result 1 : 110
 Result 2 : 310
@@ -222,7 +222,7 @@ Result 8 : 230
 
 ---
 
-## 📊 Summary Comparison: Local vs Instance vs Static Variables
+## Summary Comparison: Local vs Instance vs Static Variables
 
 | Property | Local Variables | Instance Variables | Static Variables |
 |:---|:---|:---|:---|

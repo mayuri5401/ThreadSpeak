@@ -301,8 +301,8 @@ Primary handles all writes, replicas receive changes and serve reads.
 ### Pros
 
 - Simple to set up (managed services handle it)
-- Offloads read traffic from primary	
-- Provides read availability if primary fails	
+- Offloads read traffic from primary
+- Provides read availability if primary fails
 - No application changes for basic setup
 
 ### Cons
@@ -334,9 +334,9 @@ flowchart TB
 
 ### Pros
 
-- Distributes both reads AND writes	
-- Scales horizontally (add more shards)	
-- Each shard is smaller, faster	
+- Distributes both reads AND writes
+- Scales horizontally (add more shards)
+- Each shard is smaller, faster
 - Can place shards in different regions
 
 ### Cons
@@ -363,7 +363,7 @@ NoSQL databases like Cassandra, MongoDB, and DynamoDB are designed for horizonta
 ### Pros
 
 - Built-in sharding (automatic distribution)
-- Designed for horizontal scale	
+- Designed for horizontal scale
 - Often better write performance
 - Schema flexibility
 

@@ -45,11 +45,11 @@ codeSnippet:
     }
 ---
 
-# 🏗️ Constructors in Java
+# Constructors in Java
 
 ---
 
-## ❓ What is Constructor in Java ?
+## What is Constructor in Java ?
 
 A **constructor in Java** is a special type of method used to **initialize objects**.
 - It is called when an instance of the class is created (when an object of a class is created).
@@ -82,7 +82,7 @@ public class Test
 
 ---
 
-## 🎯 Use of Constructor
+## Use of Constructor
 
 Constructors are used to **initialize the object**.  
 This means that a constructor **assigns values to instance variables** when an object is created. This can be done manually by the programmer or automatically by Java using a default constructor.
@@ -92,20 +92,20 @@ This means that a constructor **assigns values to instance variables** when an o
 
 ---
 
-## 📜 Rules for Constructors in Java
+## Rules for Constructors in Java
 
 Below are the mandatory rules for constructors in Java:
 
 1. **The constructor must have the SAME name as the class name.**
 2. **A constructor DOES NOT have a return type** (not even `void`).
-   - *If you add a return type like `void Test()`, Java treats it as a regular method, NOT a constructor!*
+ - *If you add a return type like `void Test()`, Java treats it as a regular method, NOT a constructor!*
 3. **Constructors can have any access modifier** (`public`, `private`, `protected`, or `default`).
-   - *Constructors CANNOT have non-access modifiers like `static`, `final`, `abstract`, `synchronized`.*
+ - *Constructors CANNOT have non-access modifiers like `static`, `final`, `abstract`, `synchronized`.*
 4. **The constructor is called automatically** when an object is created using `new`.
 
 ---
 
-## 🏷️ Types of Constructors in Java
+## Types of Constructors in Java
 
 There are **3 types of constructors in Java**:
 1. **Default Constructor** (created automatically by compiler)
@@ -114,7 +114,7 @@ There are **3 types of constructors in Java**:
 
 ---
 
-### 1️⃣ Default Constructor
+### 1⃣ Default Constructor
 If the programmer **does not create any constructor**, then the Java compiler automatically creates one constructor which is known as the **Default Constructor**.
 - It initializes object properties with default values (`0`, `null`, `false`).
 
@@ -140,7 +140,7 @@ public class Test
 }
 ```
 
-#### 📌 Important Points for Default Constructor:
+#### Important Points for Default Constructor:
 - The access modifier of the Default Constructor is the same as that of the class. If a class is `public`, the default constructor is `public`, and so on.
 - The Default Constructor has **no parameters**.
 - The Default Constructor automatically calls the superclass constructor (`super()`):
@@ -154,7 +154,7 @@ public Test()
 
 ---
 
-### 2️⃣ No-Args (No Argument) Constructor
+### 2⃣ No-Args (No Argument) Constructor
 If a programmer **explicitly creates a constructor without any parameters**, it is known as a **No Argument Constructor**.
 - It is used to initialize objects with predefined default values or perform basic startup configuration.
 
@@ -202,7 +202,7 @@ Student Name: Deepak
 
 ---
 
-### 3️⃣ Parameterized Constructor
+### 3⃣ Parameterized Constructor
 If a programmer creates a constructor with parameters, it is known as a **Parameterized Constructor**.
 
 #### It is used to:
@@ -255,7 +255,7 @@ Name: Deepak, Roll No.: 101
 
 ---
 
-## 🔄 Constructor Overloading
+## Constructor Overloading
 
 **Constructor Overloading** in Java is a technique of having **more than one constructor with different parameter lists** (different number of arguments, different data types, or different argument order) within the same class.
 
@@ -290,7 +290,7 @@ public class Employee {
 
 ---
 
-## ⛓️ Constructor Chaining (`this()` and `super()`)
+## Constructor Chaining (`this()` and `super()`)
 
 **Constructor Chaining** is the process of calling one constructor from another constructor:
 
@@ -326,7 +326,7 @@ class Car extends Vehicle {
 
 ---
 
-## 📊 Master Comparison: Constructor vs Method
+## Master Comparison: Constructor vs Method
 
 | Feature | Constructor | Method |
 |:---|:---|:---|
@@ -339,7 +339,7 @@ class Car extends Vehicle {
 
 ---
 
-## 🔒 Special Case: Private Constructors & Singleton Pattern
+## Special Case: Private Constructors & Singleton Pattern
 
 If a constructor is declared **`private`**, objects of that class **cannot be instantiated from outside the class using `new`**.
 

@@ -35,17 +35,17 @@ codeSnippet:
     }
 ---
 
-# 📦 Java Generics & Type Erasure
+# Java Generics & Type Erasure
 
 ---
 
-## 📖 1. Why Generics?
+## 1. Why Generics?
 
 Before Java 5, collections stored raw `Object` references, requiring manual casting and risking runtime `ClassCastException`. Generics provide **compile-time type safety**.
 
 ---
 
-## 🎯 2. The PECS Rule for Wildcards
+## 2. The PECS Rule for Wildcards
 
 When using wildcards with Generics, remember the famous **PECS** rule:
 > **P**roducer **E**xtends, **C**onsumer **S**uper
@@ -55,7 +55,7 @@ When using wildcards with Generics, remember the famous **PECS** rule:
 
 ---
 
-## 🧹 3. What is Type Erasure?
+## 3. What is Type Erasure?
 
 To maintain backward compatibility with legacy pre-Java 5 bytecode, Java uses **Type Erasure**:
 1. All type parameters (e.g. `List<String>`) are replaced with their bound (e.g. `Object` or `Number`).

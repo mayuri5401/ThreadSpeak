@@ -27,7 +27,7 @@ codeSnippet:
     }
 ---
 
-# ☕ Simple Java Hello Program: Deep Line-by-Line Explanation
+# Simple Java Hello Program: Deep Line-by-Line Explanation
 
 In the previous topic, we explored the overall **Structure of a Java Program**. Now, let us perform a forensic deep-dive into the simplest and most fundamental program in Java: the **Java Hello Program**.
 
@@ -44,7 +44,7 @@ In this program, we have a class named `MainApp`, and within this class, there i
 
 ---
 
-## 🗺️ Architectural Program Mapping: The 4 Functional Layers
+## Architectural Program Mapping: The 4 Functional Layers
 
 Every single character and keyword in this program serves a precise architectural purpose in the Java Virtual Machine (JVM). We can group the **18 distinct elements** into 4 functional layers:
 
@@ -57,11 +57,11 @@ Every single character and keyword in this program serves a precise architectura
 
 ---
 
-## 🔍 In-Depth Forensic Explanation of All 18 Elements
+## In-Depth Forensic Explanation of All 18 Elements
 
 ---
 
-### 🏛️ LAYER 1: CLASS BLUEPRINT DECLARATION
+### LAYER 1: CLASS BLUEPRINT DECLARATION
 
 #### 1. `public` (Keyword — Class Access Modifier)
 - **Role**: The `public` access modifier keyword declares that the `MainApp` class is accessible from **anywhere** across the entire program (including other packages) and allows the external JVM runtime engine to invoke it from outside.
@@ -71,9 +71,9 @@ Every single character and keyword in this program serves a precise architectura
 #### 2. `class` (Keyword)
 - **Role**: The `class` keyword is a reserved Java keyword used to define a new class type, which acts as a blueprint or template for creating objects.
 - **Components**: A class encapsulates:
-  - **Variables (Fields)**: Store data or attributes.
-  - **Constructors**: Initialize the state of new object instances.
-  - **Methods**: Define behaviors, computations, and actions.
+ - **Variables (Fields)**: Store data or attributes.
+ - **Constructors**: Initialize the state of new object instances.
+ - **Methods**: Define behaviors, computations, and actions.
 
 #### 3. `MainApp` (User-Defined Class Name)
 - **Role**: `MainApp` is the user-defined identifier representing the class name that encloses the overall program.
@@ -86,7 +86,7 @@ Every single character and keyword in this program serves a precise architectura
 
 ---
 
-### 🚀 LAYER 2: JVM ENTRY POINT METHOD
+### LAYER 2: JVM ENTRY POINT METHOD
 
 #### 5. `public` (Keyword — Method Access Modifier)
 - **Role**: The `public` keyword applied to the `main()` method makes it accessible to the **Java Virtual Machine (JVM)** bootstrap launcher from outside the class and package.
@@ -111,9 +111,9 @@ Every single character and keyword in this program serves a precise architectura
   java MainApp Hello Deepak
   ```
   The JVM automatically populates the array:
-  - `args[0]` = `"Hello"`
-  - `args[1]` = `"Deepak"`
-  - `args.length` = `2`
+ - `args[0]` = `"Hello"`
+ - `args[1]` = `"Deepak"`
+ - `args.length` = `2`
 
 #### 10. `args` (Parameter Name — Argument Variable)
 - **Role**: `args` is the identifier variable name chosen for the `String[]` array parameter.
@@ -124,21 +124,21 @@ Every single character and keyword in this program serves a precise architectura
 
 ---
 
-### 🖥️ LAYER 3: CONSOLE OUTPUT STREAM PIPELINE
+### LAYER 3: CONSOLE OUTPUT STREAM PIPELINE
 
 #### 12. `System` (Pre-Defined Class Name)
 - **Role**: `System` is a built-in `final` utility class residing in the fundamental `java.lang` package.
 - **Purpose**: Provides access to system-level facilities, standard input/output streams, environment variables, time measurements, and Garbage Collection utilities.
 - **Core Stream Members in `System`**:
-  - `System.in`: Standard input stream (connected to keyboard / console input).
-  - `System.out`: Standard output stream (connected to terminal console output).
-  - `System.err`: Standard error output stream (used to print error logs to console).
+ - `System.in`: Standard input stream (connected to keyboard / console input).
+ - `System.out`: Standard output stream (connected to terminal console output).
+ - `System.err`: Standard error output stream (used to print error logs to console).
 
 #### 13. `.` (Dot — Member Access Operator)
 - **Role**: The dot (`.`) is the member access operator in Java. It is used to access fields, methods, and nested classes belonging to a class or an object instance.
 - **Usage**:
-  - `System.out` accesses the static `out` member inside the `System` class.
-  - `out.println()` invokes the `println()` method on the `out` stream object.
+ - `System.out` accesses the static `out` member inside the `System` class.
+ - `out.println()` invokes the `println()` method on the `out` stream object.
 
 #### 14. `out` (Pre-Defined Object — Static Field)
 - **Role**: `out` is a `public static final` field inside the `System` class that holds a reference to an instance of `java.io.PrintStream`.
@@ -155,20 +155,20 @@ Every single character and keyword in this program serves a precise architectura
 
 ---
 
-### 🛑 LAYER 4: STATEMENT TERMINATOR & SCOPE CLOSURES
+### LAYER 4: STATEMENT TERMINATOR & SCOPE CLOSURES
 
 #### 17. `;` (Semicolon — Statement Terminator)
 - **Role**: The semicolon marks the **end of an executable statement** in Java.
 - **Rule**: Every standalone executable statement in Java must terminate with a semicolon. Omitting it triggers a compile-time syntax error (`';' expected`).
 
 #### 18. `}` & `}` (Closing Curly Braces)
-- **Role**: 
-  - The first `}` closes the `main()` method block.
-  - The final `}` closes the `MainApp` class definition block.
+- **Role**:
+ - The first `}` closes the `main()` method block.
+ - The final `}` closes the `MainApp` class definition block.
 
 ---
 
-## 📊 Complete 18-Element Master Reference Matrix
+## Complete 18-Element Master Reference Matrix
 
 | # | Element | Category | Exact JVM Technical Function |
 |:---:|:---|:---|:---|
@@ -193,15 +193,15 @@ Every single character and keyword in this program serves a precise architectura
 
 ---
 
-## ⚠️ Top 5 Interview Questions on `Hello World`
+## Top 5 Interview Questions on `Hello World`
 
 1. **Why is `main()` declared `static`?**
-   - Because when the JVM starts, no objects exist in memory. Declaring `main()` as `static` allows the JVM to invoke `MainApp.main(args)` directly using the class reference without needing to create an instance with `new MainApp()`.
+ - Because when the JVM starts, no objects exist in memory. Declaring `main()` as `static` allows the JVM to invoke `MainApp.main(args)` directly using the class reference without needing to create an instance with `new MainApp()`.
 2. **Can we execute a Java program without the `main()` method?**
-   - In modern Java (Java 7+), **No**. The JVM strictly mandates the presence of `public static void main(String[] args)` to launch execution.
+ - In modern Java (Java 7+), **No**. The JVM strictly mandates the presence of `public static void main(String[] args)` to launch execution.
 3. **Can `main()` be overloaded?**
-   - **Yes!** You can have `public static void main(int a)` or `public static void main(String s)` in the same class. However, the JVM will **only** invoke `main(String[] args)` as the program launchpad.
+ - **Yes!** You can have `public static void main(int a)` or `public static void main(String s)` in the same class. However, the JVM will **only** invoke `main(String[] args)` as the program launchpad.
 4. **Why is `java.lang.System` usable without an `import` statement?**
-   - Because the Java compiler automatically injects `import java.lang.*;` into every single `.java` compilation unit by default.
+ - Because the Java compiler automatically injects `import java.lang.*;` into every single `.java` compilation unit by default.
 5. **What is the difference between `System.out.print()` and `System.out.println()`?**
-   - `print()` writes text to the console without advancing the cursor. `println()` writes text and automatically appends a newline character (`\n`), placing the cursor on the next line.
+ - `print()` writes text to the console without advancing the cursor. `println()` writes text and automatically appends a newline character (`\n`), placing the cursor on the next line.

@@ -43,11 +43,11 @@ codeSnippet:
     }
 ---
 
-# 📖 String Class in Java (`java.lang.String`)
+# String Class in Java (`java.lang.String`)
 
 ---
 
-## 📌 1. Introduction
+## 1. Introduction
 
 The **`String` class** in Java represents a sequence of characters enclosed within double quotes (`" "`).
 
@@ -74,7 +74,7 @@ Strings are universally used to represent textual data in programming—such as 
 
 ---
 
-## 🛠️ 2. Methods of the `String` Class
+## 2. Methods of the `String` Class
 
 Below is a reference of the most important and frequently used methods in the `String` class with examples and outputs:
 
@@ -96,9 +96,9 @@ Below is a reference of the most important and frequently used methods in the `S
 
 ---
 
-## 🏗️ 3. Different Ways to Create a String Object in Java
+## 3. Different Ways to Create a String Object in Java
 
-### 1️⃣ Using String Literals (Recommended)
+### 1⃣ Using String Literals (Recommended)
 This is the most common and memory-efficient way to create strings in Java.
 ```java
 String s1 = "Hello";
@@ -109,7 +109,7 @@ String s2 = "Hello"; // s1 and s2 point to the SAME object in SCP!
 
 ---
 
-### 2️⃣ Using the `new` Keyword
+### 2⃣ Using the `new` Keyword
 ```java
 String s3 = new String("Hello"); // Created in Heap memory
 ```
@@ -117,7 +117,7 @@ String s3 = new String("Hello"); // Created in Heap memory
 
 ---
 
-## 💎 4. Core Properties of the `String` Class
+## 4. Core Properties of the `String` Class
 
 ```mermaid
 graph TD
@@ -134,7 +134,7 @@ graph TD
 
 ---
 
-## 🔒 5. Why is the `String` Class `final`? (6 Major Reasons)
+## 5. Why is the `String` Class `final`? (6 Major Reasons)
 
 The `String` class is declared as **`public final class String`**. Here are the 6 architectural reasons:
 
@@ -147,7 +147,7 @@ The `String` class is declared as **`public final class String`**. Here are the 
 
 ---
 
-## 📜 6. The `CharSequence` Interface
+## 6. The `CharSequence` Interface
 
 `CharSequence` is a readable, read-only interface in `java.lang` that represents a uniform sequence of characters.
 
@@ -160,10 +160,10 @@ graph TD
 ```
 
 ### Common `CharSequence` Methods:
-- `length()` ➔ Returns number of characters.
-- `charAt(int index)` ➔ Returns character at index.
-- `subSequence(int start, int end)` ➔ Returns a subsequence.
-- `toString()` ➔ Converts the sequence into a `String` object.
+- `length()` Returns number of characters.
+- `charAt(int index)` Returns character at index.
+- `subSequence(int start, int end)` Returns a subsequence.
+- `toString()` Converts the sequence into a `String` object.
 
 ```java
 CharSequence seq = "Deepak";
@@ -178,7 +178,7 @@ System.out.println(seq.toString());          // "Deepak"
 
 ---
 
-## ⚔️ 7. Quick Summary: `String` vs `StringBuffer` vs `StringBuilder`
+## 7. Quick Summary: `String` vs `StringBuffer` vs `StringBuilder`
 
 | Class | Mutability | Thread-Safety | Speed / Performance |
 | :--- | :--- | :--- | :--- |

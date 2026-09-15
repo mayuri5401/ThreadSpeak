@@ -36,13 +36,13 @@ codeSnippet:
     }
 ---
 
-### ⚙️ JDK, JRE, JVM Architecture Overview
+### JDK, JRE, JVM Architecture Overview
 
 > 💡 **Interactive Visualizer**: Use the live animated diagram above to click on **JDK**, **JRE**, **JVM**, **Class Loader**, **Memory areas**, and **Development Tools** to explore interactive component cards and simulate the live execution lifecycle!
 
 ---
 
-## 🌟 Simple Explanation (The Golden Formulas)
+## Simple Explanation (The Golden Formulas)
 
 To understand Java's foundation, remember these **3 core architecture equations**:
 
@@ -79,11 +79,11 @@ To understand Java's foundation, remember these **3 core architecture equations*
 
 ---
 
-## 🔍 In-Depth Architectural Breakdown
+## In-Depth Architectural Breakdown
 
 ---
 
-### 1. 🛠️ JDK (Java Development Kit)
+### 1. JDK (Java Development Kit)
 
 #### What is JDK?
 The **Java Development Kit (JDK)** is the complete software development package that a programmer must install on their machine to **write, compile, test, debug, and package** Java applications.
@@ -91,17 +91,17 @@ The **Java Development Kit (JDK)** is the complete software development package 
 #### What does JDK Contain?
 1. **The Entire JRE (Java Runtime Environment)**: Allows developers to immediately run and test their code locally.
 2. **Development Tools (Command-Line Utilities)**:
-   * **`javac` (Java Compiler)**: Converts human-readable source code files (`.java`) into platform-independent intermediate bytecode files (`.class`).
-   * **`java` (Java Application Launcher)**: Spawns the JVM process, loads the main class, and initiates execution of `public static void main(String[] args)`.
-   * **`jar` (Java Archiver)**: Packages hundreds of compiled `.class` files, icons, and configuration files into a single zip-compressed `.jar` (Java Archive) file.
-   * **`javadoc` (Documentation Generator)**: Parses formatted comments (`/** ... */`) inside your Java code and automatically produces professional HTML API documentation pages.
-   * **`jdb` (Java Debugger)**: Allows developers to step through code line-by-line, set breakpoints, and inspect live stack frames and variable values.
-   * **`javap` (Java Disassembler)**: Unpacks and displays the raw bytecode opcodes inside any compiled `.class` file (e.g. `aload_0`, `invokespecial`, `bipush`).
-   * **`jconsole` & `jstat` (Diagnostic Tools)**: Real-time graphical monitoring tools for inspecting heap memory consumption, thread deadlocks, and Garbage Collection pauses.
+ * **`javac` (Java Compiler)**: Converts human-readable source code files (`.java`) into platform-independent intermediate bytecode files (`.class`).
+ * **`java` (Java Application Launcher)**: Spawns the JVM process, loads the main class, and initiates execution of `public static void main(String[] args)`.
+ * **`jar` (Java Archiver)**: Packages hundreds of compiled `.class` files, icons, and configuration files into a single zip-compressed `.jar` (Java Archive) file.
+ * **`javadoc` (Documentation Generator)**: Parses formatted comments (`/** ... */`) inside your Java code and automatically produces professional HTML API documentation pages.
+ * **`jdb` (Java Debugger)**: Allows developers to step through code line-by-line, set breakpoints, and inspect live stack frames and variable values.
+ * **`javap` (Java Disassembler)**: Unpacks and displays the raw bytecode opcodes inside any compiled `.class` file (e.g. `aload_0`, `invokespecial`, `bipush`).
+ * **`jconsole` & `jstat` (Diagnostic Tools)**: Real-time graphical monitoring tools for inspecting heap memory consumption, thread deadlocks, and Garbage Collection pauses.
 
 ---
 
-### 2. 📦 JRE (Java Runtime Environment)
+### 2. JRE (Java Runtime Environment)
 
 #### What is JRE?
 The **Java Runtime Environment (JRE)** is an implementation bundle designed strictly for **running** already-compiled Java programs. If an end-user only wants to run a Java desktop application or play a Java-based game (like Minecraft), they only need the JRE—not the full JDK development tools.
@@ -109,18 +109,18 @@ The **Java Runtime Environment (JRE)** is an implementation bundle designed stri
 #### What does JRE Contain?
 1. **The JVM (Java Virtual Machine)**: The core engine that interprets and executes bytecode instructions.
 2. **Java Package Classes (Standard Class Library)**: Pre-written, highly optimized foundational classes that Java programs rely on:
-   * **`java.lang`** *(Automatically imported)*: Core language classes such as `Object`, `String`, `System`, `Math`, `Thread`, and `Exception`.
-   * **`java.util`**: Collection framework data structures (`ArrayList`, `HashMap`, `HashSet`, `PriorityQueue`), date/time utilities, and stream APIs.
-   * **`java.io` & `java.nio`**: Input/Output streaming, disk file reading/writing, network channels, and memory buffers.
-   * **`java.net`**: Socket communication, IP networking (`Socket`, `ServerSocket`, `URL`, `HttpURLConnection`).
-   * **`java.sql` & `javax.sql`**: JDBC database connectivity interfaces and connection pool drivers.
+ * **`java.lang`** *(Automatically imported)*: Core language classes such as `Object`, `String`, `System`, `Math`, `Thread`, and `Exception`.
+ * **`java.util`**: Collection framework data structures (`ArrayList`, `HashMap`, `HashSet`, `PriorityQueue`), date/time utilities, and stream APIs.
+ * **`java.io` & `java.nio`**: Input/Output streaming, disk file reading/writing, network channels, and memory buffers.
+ * **`java.net`**: Socket communication, IP networking (`Socket`, `ServerSocket`, `URL`, `HttpURLConnection`).
+ * **`java.sql` & `javax.sql`**: JDBC database connectivity interfaces and connection pool drivers.
 3. **Runtime Libraries & Support Files**:
-   * Security policies, cryptographic providers, character encoding sets (UTF-8, ASCII), timezone datasets, and font rendering engines.
-   * Historical `rt.jar` (Runtime Jar) containing foundational platform classes (modernized into Java 9+ JPMS modular modules like `java.base`).
+ * Security policies, cryptographic providers, character encoding sets (UTF-8, ASCII), timezone datasets, and font rendering engines.
+ * Historical `rt.jar` (Runtime Jar) containing foundational platform classes (modernized into Java 9+ JPMS modular modules like `java.base`).
 
 ---
 
-### 3. ⚡ JVM (Java Virtual Machine) — The Heart of Java
+### 3. JVM (Java Virtual Machine) — The Heart of Java
 
 #### What is JVM?
 The **Java Virtual Machine (JVM)** is an abstract computing machine that has its own instruction set, memory architecture, and register set. It is responsible for taking the platform-independent bytecode (`.class`) and translating it into **native machine instructions (0s and 1s)** that your specific computer's CPU (Intel x86, AMD64, ARM Apple Silicon, etc.) can physically execute.
@@ -157,44 +157,44 @@ JVM architecture is composed of **3 major subsystems**:
 
 ---
 
-#### 🔹 Subsystem 1: ClassLoader Subsystem
+#### Subsystem 1: ClassLoader Subsystem
 The ClassLoader is responsible for loading `.class` files from disk into memory, verifying their integrity, and preparing them for execution. It follows a 3-phase workflow:
 
 1. **Loading**: Reads `.class` binary data using the **Delegation Hierarchy**:
-   * **Bootstrap ClassLoader**: Loads core JDK classes (`java.lang.*`) from the base module (written in native C/C++).
-   * **Platform / Extension ClassLoader**: Loads platform extensions and XML/Security providers.
-   * **Application / System ClassLoader**: Loads your application code and third-party JARs from your project's classpath.
+ * **Bootstrap ClassLoader**: Loads core JDK classes (`java.lang.*`) from the base module (written in native C/C++).
+ * **Platform / Extension ClassLoader**: Loads platform extensions and XML/Security providers.
+ * **Application / System ClassLoader**: Loads your application code and third-party JARs from your project's classpath.
 2. **Linking**:
-   * **Verification**: Checks bytecode integrity (verifies the magic number `0xCAFEBABE`, prevents stack overflows, and ensures code adheres to JVM type safety).
-   * **Preparation**: Allocates memory for `static` fields and initializes them with default values (e.g. `0`, `null`, `false`).
-   * **Resolution**: Replaces symbolic memory references with direct concrete memory addresses in the Constant Pool.
+ * **Verification**: Checks bytecode integrity (verifies the magic number `0xCAFEBABE`, prevents stack overflows, and ensures code adheres to JVM type safety).
+ * **Preparation**: Allocates memory for `static` fields and initializes them with default values (e.g. `0`, `null`, `false`).
+ * **Resolution**: Replaces symbolic memory references with direct concrete memory addresses in the Constant Pool.
 3. **Initialization**:
-   * Executes all static variable initializations and runs `static { ... }` static initializer blocks in top-to-bottom order.
+ * Executes all static variable initializations and runs `static { ... }` static initializer blocks in top-to-bottom order.
 
 ---
 
-#### 🔹 Subsystem 2: JVM Runtime Data Areas (Memory Architecture)
+#### Subsystem 2: JVM Runtime Data Areas (Memory Architecture)
 
 1. **Method Area (Metaspace)** *(Shared by all threads)*:
-   * Stores class metadata, method bytecode, runtime constant pools, field descriptors, and static variables.
+ * Stores class metadata, method bytecode, runtime constant pools, field descriptors, and static variables.
 2. **Heap Area** *(Shared by all threads)*:
-   * The central memory pool where **all instantiated objects** (`new User()`, `new ArrayList()`) and arrays reside.
-   * Directly managed and periodically swept by the automatic **Garbage Collector**.
+ * The central memory pool where **all instantiated objects** (`new User()`, `new ArrayList()`) and arrays reside.
+ * Directly managed and periodically swept by the automatic **Garbage Collector**.
 3. **JVM Stack Area** *(Per-thread private)*:
-   * Created whenever a new thread starts.
-   * Every time a method is called, a **Stack Frame** is pushed onto the stack. A frame contains:
-     - **Local Variable Array (LVA)**: Holds method arguments and local variables.
-     - **Operand Stack**: Workspace for intermediate math operations and value pushes/pops.
-     - **Frame Data**: Exception dispatch tables and method return addresses.
-   * Popped automatically when the method finishes execution.
+ * Created whenever a new thread starts.
+ * Every time a method is called, a **Stack Frame** is pushed onto the stack. A frame contains:
+ - **Local Variable Array (LVA)**: Holds method arguments and local variables.
+ - **Operand Stack**: Workspace for intermediate math operations and value pushes/pops.
+ - **Frame Data**: Exception dispatch tables and method return addresses.
+ * Popped automatically when the method finishes execution.
 4. **Program Counter (PC) Registers** *(Per-thread private)*:
-   * Holds the exact memory address of the JVM bytecode instruction currently being executed by that specific thread.
+ * Holds the exact memory address of the JVM bytecode instruction currently being executed by that specific thread.
 5. **Native Method Stacks** *(Per-thread private)*:
-   * Holds stack frames for native C/C++ libraries invoked through the Java Native Interface (JNI).
+ * Holds stack frames for native C/C++ libraries invoked through the Java Native Interface (JNI).
 
 ---
 
-#### 🔹 Subsystem 3: Execution Engine
+#### Subsystem 3: Execution Engine
 
 1. **Interpreter**: Reads bytecode instructions line-by-line and executes them immediately. Great for fast startup, but slower for repeated loops.
 2. **JIT (Just-In-Time) Compiler**: Continuously profiles running code to identify **hotspots** (frequently executed loops and methods). It compiles those hotspots directly into **raw native CPU machine assembly code** (using the C1 Client and C2 Server compilers). Subsequent invocations run at bare-metal execution speed!
@@ -203,7 +203,7 @@ The ClassLoader is responsible for loading `.class` files from disk into memory,
 
 ---
 
-## 📊 Summary Comparison Matrix
+## Summary Comparison Matrix
 
 | Feature | JDK | JRE | JVM |
 |---|---|---|---|

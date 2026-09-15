@@ -26,11 +26,11 @@ codeSnippet:
     }
 ---
 
-# 🔐 Access-Modifiers in Java
+# Access-Modifiers in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 **Access modifiers** are the keywords used to **set access levels (visibility)** for classes, methods, variables, and constructors.
 - They help in **implementing encapsulation** and maintaining security in object-oriented programming.
@@ -43,7 +43,7 @@ codeSnippet:
 
 ---
 
-## 🎯 Why Use Access Modifiers?
+## Why Use Access Modifiers?
 
 - **To hide internal implementation details (data hiding)**.
 - **To control access to class members** from outside the class or package.
@@ -52,27 +52,27 @@ codeSnippet:
 
 ---
 
-## 🔍 Types of Access Modifiers
+## Types of Access Modifiers
 
-### 1️⃣ `public`
+### 1⃣ `public`
 - The member is **accessible from anywhere in the program**.
 - Can be used across packages and classes.
 
-### 2️⃣ `protected`
+### 2⃣ `protected`
 - The member is **accessible within the same package** and also in **subclasses** (even if they are in different packages).
 - Cannot be accessed by non-subclass classes outside the package.
 
-### 3️⃣ `default` (no modifier specified)
+### 3⃣ `default` (no modifier specified)
 - The member is **accessible only within the same package**.
 - Cannot be accessed from classes in different packages.
 
-### 4️⃣ `private`
+### 4⃣ `private`
 - The member is **accessible only within the same class**.
 - Cannot be accessed from outside the class, even by subclasses.
 
 ---
 
-## 📊 Access Control Table
+## Access Control Table
 
 | Access Modifier | Same Class | Same Package | Subclass (Other Package) | Other Package (World) |
 |:---|:---:|:---:|:---:|:---:|
@@ -83,7 +83,7 @@ codeSnippet:
 
 ---
 
-## 💻 Java Program Example:
+## Java Program Example:
 
 ```java
 public class Car
@@ -100,7 +100,7 @@ public class Car
 
 ### Multi-Package Practical Demonstration:
 
-#### 📄 Package 1: `pkg1/Car.java`
+#### Package 1: `pkg1/Car.java`
 ```java
 package pkg1;
 
@@ -116,7 +116,7 @@ public class Car {
 }
 ```
 
-#### 📄 Package 2: `pkg2/SportsCar.java` (Subclass in Different Package)
+#### Package 2: `pkg2/SportsCar.java` (Subclass in Different Package)
 ```java
 package pkg2;
 
@@ -138,7 +138,7 @@ public class SportsCar extends Car {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Speed: 120
 Brand: Tata
@@ -147,7 +147,7 @@ Engine started for Safari
 
 ---
 
-## ⚠️ Method Overriding Access Rule
+## Method Overriding Access Rule
 
 > **🔥 IMPORTANT RULE**: An overriding method in a child class **CANNOT assign a more restrictive access modifier** than the parent method:
 > - `public` $\to$ must remain `public`.

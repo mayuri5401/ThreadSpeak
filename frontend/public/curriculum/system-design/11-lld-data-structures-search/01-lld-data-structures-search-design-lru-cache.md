@@ -630,8 +630,8 @@ All operations are O(1): HashMap lookup, pointer manipulation in the list.
 *Case 2: Key is new*
 
 1. Check if we're at capacity. If so, evict the LRU item:
-   - Remove the last node from the list
-   - Use its key to remove the entry from the map
+ - Remove the last node from the list
+ - Use its key to remove the entry from the map
 2. Create a new node with the key and value
 3. Add the node to the front of the list
 4. Add the key→node mapping to the map

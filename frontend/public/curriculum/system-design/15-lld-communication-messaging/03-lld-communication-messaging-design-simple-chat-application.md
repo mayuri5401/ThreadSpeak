@@ -184,7 +184,7 @@ Each `User` has a unique `id` and a `name`. Crucially, it contains the `onMessag
 
 `Chat`** (Abstract Class)**: This class serves as the blueprint for all types of conversations. It manages a collection of `members` (`User` objects) and `messages` (`Message` objects). It defines the common behavior for all chats but delegates the specific implementation of retrieving the chat's name to its subclasses via the abstract `getName` method.
 
-#### `OneToOneChat` 
+#### `OneToOneChat`
 
 A concrete implementation of `Chat` designed for a private conversation between exactly two users.
 

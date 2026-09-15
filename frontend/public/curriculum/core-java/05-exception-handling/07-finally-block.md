@@ -17,17 +17,17 @@ codeSnippet:
   explanation: "Demonstrating the guaranteed execution of the finally block in Java."
 ---
 
-# 🧹 finally Block in Java Exception Handling
+# finally Block in Java Exception Handling
 
 ---
 
-## 📖 1. Introduction & Real-Life Analogy
+## 1. Introduction & Real-Life Analogy
 
 In previous topics, we learned how the **`try`** block isolates risky code and the **`catch`** block handles errors if they occur.
 
 **However, what about critical cleanup operations that MUST run under all circumstances?**
 
-### 🔥 Real-Life Analogy: Turning Off the Kitchen Gas Stove
+### Real-Life Analogy: Turning Off the Kitchen Gas Stove
 Imagine you are cooking dinner in the kitchen:
 - **Case 1 (Success):** Your meal cooks to perfection $\rightarrow$ You turn off the gas stove before leaving.
 - **Case 2 (Failure):** You accidentally burn the food $\rightarrow$ You **still** turn off the gas stove before leaving!
@@ -42,20 +42,20 @@ In Java, the **`finally` block** is your safety switch — it guarantees that cr
 
 ---
 
-## 🎯 2. Why Do We Use the finally Block? (4 Core Purposes)
+## 2. Why Do We Use the finally Block? (4 Core Purposes)
 
 1. **Release Resources Safely**:
-   - Close opened files, database connections, sockets, and hardware streams to prevent **resource leaks** and connection pool exhaustion.
+ - Close opened files, database connections, sockets, and hardware streams to prevent **resource leaks** and connection pool exhaustion.
 2. **Perform Mandatory Cleanup Tasks**:
-   - Reset shared flags, unlock thread mutexes, or flush temporary memory buffers.
+ - Reset shared flags, unlock thread mutexes, or flush temporary memory buffers.
 3. **Maintain Program Reliability**:
-   - Guarantees that system state remains consistent and healthy even when catastrophic runtime errors occur.
+ - Guarantees that system state remains consistent and healthy even when catastrophic runtime errors occur.
 4. **Guarantee Execution**:
-   - Acts as a bulletproof safety mechanism that cannot be accidentally bypassed by normal control flow (including `return`, `break`, or `continue`).
+ - Acts as a bulletproof safety mechanism that cannot be accidentally bypassed by normal control flow (including `return`, `break`, or `continue`).
 
 ---
 
-## 📝 3. Syntax of the finally Block
+## 3. Syntax of the finally Block
 
 In Java, a `finally` block cannot stand alone. It must follow a `try` block in one of two standard forms:
 
@@ -81,11 +81,11 @@ try {
 
 ---
 
-## 💻 4. Practical Working Examples & Output Tracing
+## 4. Practical Working Examples & Output Tracing
 
 ---
 
-### 🟢 Example 1: Normal Execution (No Exception Occurs)
+### Example 1: Normal Execution (No Exception Occurs)
 
 ```java
 public class FinallyDemo1 {
@@ -105,7 +105,7 @@ public class FinallyDemo1 {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Inside try block
 Result: 5
@@ -120,7 +120,7 @@ Rest of the code...
 
 ---
 
-### 🟡 Example 2: Exception Occurs and is Handled by catch
+### Example 2: Exception Occurs and is Handled by catch
 
 ```java
 public class FinallyDemo2 {
@@ -140,7 +140,7 @@ public class FinallyDemo2 {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Inside try block
 Exception caught: java.lang.ArithmeticException: / by zero
@@ -155,7 +155,7 @@ Rest of the code...
 
 ---
 
-### 🔴 Example 3: Exception Occurs and is NOT Caught
+### Example 3: Exception Occurs and is NOT Caught
 
 ```java
 public class FinallyDemoUnhandled {
@@ -175,7 +175,7 @@ public class FinallyDemoUnhandled {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Inside try block
 Finally block STILL executes before crash!
@@ -187,7 +187,7 @@ Even when there is **NO matching catch block**, the JVM executes the `finally` b
 
 ---
 
-### ↩️ Example 4: `finally` Block with a `return` Statement
+### ↩ Example 4: `finally` Block with a `return` Statement
 
 A very common interview question: **Does `finally` execute if there is a `return` statement inside `try` or `catch`?**
 
@@ -210,7 +210,7 @@ public class FinallyDemo3 {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Inside try
 Finally block executed before return
@@ -225,7 +225,7 @@ Returning from try
 
 ---
 
-## 🛑 5. The ONLY Cases Where the finally Block Does NOT Execute
+## 5. The ONLY Cases Where the finally Block Does NOT Execute
 
 Is `finally` 100% guaranteed under every possible event in the universe? **No.** There are exactly 4 specific edge cases where `finally` will not run:
 
@@ -240,19 +240,19 @@ graph TD
 ```
 
 1. **`System.exit(0)` is Called**:
-   - Calling `System.exit(0)` instructs the operating system to immediately terminate the JVM process. No further bytecode instructions are executed.
+ - Calling `System.exit(0)` instructs the operating system to immediately terminate the JVM process. No further bytecode instructions are executed.
 2. **Fatal JVM Crash / Hardware Failure**:
-   - If the computer loses power or the JVM crashes due to an unrecoverable `OutOfMemoryError` in core native memory, `finally` cannot run.
+ - If the computer loses power or the JVM crashes due to an unrecoverable `OutOfMemoryError` in core native memory, `finally` cannot run.
 3. **Infinite Loop or Deadlock in `try`**:
-   - If the code inside `try` gets stuck in `while(true) {}` or a thread deadlock, it never exits the `try` block, so `finally` is never reached.
+ - If the code inside `try` gets stuck in `while(true) {}` or a thread deadlock, it never exits the `try` block, so `finally` is never reached.
 4. **OS Level Process Termination**:
-   - If the OS kills the process (`kill -9 <PID>` on Linux or "End Task" in Windows Task Manager).
+ - If the OS kills the process (`kill -9 <PID>` on Linux or "End Task" in Windows Task Manager).
 
 ---
 
-## ⚠️ 6. Common Interview Pitfalls & Anti-Patterns
+## 6. Common Interview Pitfalls & Anti-Patterns
 
-### 🪤 Trap 1: The "Silent Return Override" Anti-Pattern
+### Trap 1: The "Silent Return Override" Anti-Pattern
 What happens if the `finally` block itself contains a `return` statement?
 
 ```java
@@ -271,12 +271,12 @@ A `return` inside `finally` **silently discards** any pending `return` or unhand
 
 ---
 
-### 🪤 Trap 2: Throwing an Exception inside `finally`
+### Trap 2: Throwing an Exception inside `finally`
 If an exception is thrown inside `finally`, it masks and swallows any exception that was originally thrown inside the `try` block.
 
 ---
 
-## 🏢 7. Enterprise Real-World Case Study: Database Connection Pooling (JDBC)
+## 7. Enterprise Real-World Case Study: Database Connection Pooling (JDBC)
 
 In production enterprise backend services (such as Spring Boot with HikariCP), failing to close database connections leads to connection pool starvation and full server outages:
 
@@ -313,7 +313,7 @@ public class UserService {
 
 ---
 
-## ❓ 8. Frequently Asked Questions (FAQ)
+## 8. Frequently Asked Questions (FAQ)
 
 ### Q1: Can we write a `try` block with only `finally` (no `catch`)?
 **Yes!** A `try-finally` block is completely valid. It is used when you want cleanup to happen locally, but want the exception to propagate to the calling method.
@@ -326,7 +326,7 @@ The expression in `return` is evaluated first, but the method **pauses**, execut
 
 ---
 
-## 📊 9. Summary Comparison Matrix
+## 9. Summary Comparison Matrix
 
 | Feature | `try` Block | `catch` Block | `finally` Block |
 | :--- | :--- | :--- | :--- |

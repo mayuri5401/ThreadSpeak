@@ -250,22 +250,22 @@ Typically, this store:
 
 ### Typical Workflow
 
-#### 🔐 Acquire Lock
+#### Acquire Lock
 
 1. The client calls `acquire(resource_id, ttl_ms)`.
 2. The coordinator node generates a unique `lock_token` and attempts an **atomic insert** in the metadata store.
 3. If successful, the client receives the token — meaning it owns the lock.
 4. If the resource is already locked, the service returns a **409 Conflict** or retries based on client policy.
 
-#### 🕰️ tryAcquire with Timeout
+#### tryAcquire with Timeout
 
 1. The client calls `tryAcquire(resource_id, timeout_ms)`.
 2. The SDK keeps retrying lock acquisition until either:
-   - The lock is acquired, or
-   - The timeout expires.
+ - The lock is acquired, or
+ - The timeout expires.
 3. This is useful for non-blocking operations or batch jobs that can proceed without exclusive access if necessary.
 
-#### 🔓 Release Lock
+#### Release Lock
 
 - The client sends `release(resource_id, lock_token)`.
 - The coordinator verifies that the token matches the current lock owner.

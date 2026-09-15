@@ -32,6 +32,6 @@ codeSnippet:
     }
 ---
 
-# ⚡ Multithreading: Concurrent Thread Execution
+# Multithreading: Concurrent Thread Execution
 
 Multithreading in Java is a process of executing multiple threads simultaneously. A thread is a lightweight sub-process, the smallest unit of processing.

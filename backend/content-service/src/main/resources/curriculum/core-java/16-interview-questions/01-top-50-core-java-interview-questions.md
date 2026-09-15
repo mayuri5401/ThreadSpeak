@@ -32,11 +32,11 @@ codeSnippet:
     }
 ---
 
-# 🏆 Top 50 Core Java Interview Questions & Answers
+# Top 50 Core Java Interview Questions & Answers
 
 ---
 
-## 🏛️ 1. OOPs & Core Fundamentals
+## 1. OOPs & Core Fundamentals
 
 ### Q1: Why is Java not purely Object-Oriented?
 Because Java supports **8 primitive data types** (`byte`, `short`, `int`, `long`, `float`, `double`, `boolean`, `char`) which are stored directly on the stack as raw binary values without being wrapped as objects.
@@ -50,7 +50,7 @@ If class `C` implements interfaces `A` and `B`, and both provide a `default void
 
 ---
 
-## 🧵 2. Strings & Memory Management
+## 2. Strings & Memory Management
 
 ### Q4: Why is String immutable in Java?
 1. **String Constant Pool (SCP)** caching saves memory.
@@ -64,7 +64,7 @@ If class `C` implements interfaces `A` and `B`, and both provide a `default void
 
 ---
 
-## 📚 3. Collections Framework
+## 3. Collections Framework
 
 ### Q6: How does `HashMap` work internally in Java 8+?
 `HashMap` stores data in an array of `Node<K,V>[]` buckets. The bucket index is computed as `(n - 1) & hash(key.hashCode())`.
@@ -78,7 +78,7 @@ If class `C` implements interfaces `A` and `B`, and both provide a `default void
 
 ---
 
-## ⚡ 4. Multithreading & Concurrency
+## 4. Multithreading & Concurrency
 
 ### Q8: What is the difference between `wait()` and `sleep()`?
 - **`Thread.sleep(ms)`**: Keeps the intrinsic monitor lock and puts current thread to sleep.
@@ -89,7 +89,7 @@ Guarantees **Visibility** in the Java Memory Model (JMM). It forces all reads an
 
 ---
 
-## 🛡️ 5. Exception Handling
+## 5. Exception Handling
 
 ### Q10: What is the difference between `throw` and `throws`?
 - **`throw`**: An action statement inside a method body that instantiates and throws a single exception object at runtime (`throw new IOException();`).

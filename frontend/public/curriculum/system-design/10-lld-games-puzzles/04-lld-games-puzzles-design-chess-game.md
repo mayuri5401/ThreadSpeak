@@ -379,7 +379,7 @@ We'll throw this when an illegal move is attempted, a move is made out of turn, 
 
 Data classes are simple containers that hold data with minimal behavior. They represent the "nouns" in our system that have attributes but limited logic.
 
-#### `Player` 
+#### `Player`
 
 Represents a chess player.
 
@@ -433,7 +433,7 @@ classDiagram
 
 The Position class is a **value object**. Two positions with the same row and column are equal. Immutability means positions can be safely shared and compared without defensive copying. The constructor validates that both row and col are within 0-7, catching off-board positions at creation time.
 
-#### `Move` 
+#### `Move`
 
 Records a single move in the game.
 
@@ -479,7 +479,7 @@ The Move class captures the complete state of a move. We store the captured piec
 
 The piece hierarchy is the core of this design. Each piece type has fundamentally different movement rules, and polymorphism lets the board and game interact with pieces without knowing which type they are.
 
-#### `Piece` (abstract) 
+#### `Piece` (abstract)
 
 Defines the common structure and movement contract.
 
@@ -547,7 +547,7 @@ Each concrete subclass implements `canMove()` with its specific movement logic:
 
 ### Core Classes
 
-#### `Board` 
+#### `Board`
 
 Manages the 8x8 grid of pieces.
 
@@ -589,7 +589,7 @@ The Board handles **mechanics**, not **rules**. It can move any piece anywhere. 
 
 The `findKing()` method is essential for check detection. After every move, we need to know where the king is to determine if any opponent piece can attack that square.
 
-#### `Game` 
+#### `Game`
 
 It is the orchestrator that enforces all chess rules.
 
@@ -871,7 +871,7 @@ This section presents the complete implementation, built bottom-up. We start wit
 
 ## Enums
 
-#### `Color` 
+#### `Color`
 
 Represents the two sides. The `opposite()` method makes turn switching clean.
 
@@ -885,7 +885,7 @@ enum Color {
 }
 ```
 
-#### `PieceType` 
+#### `PieceType`
 
 Categorizes the six piece types.
 
@@ -895,7 +895,7 @@ enum PieceType {
 }
 ```
 
-#### `GameStatus` 
+#### `GameStatus`
 
 Tracks the game lifecycle.
 
@@ -911,7 +911,7 @@ enum GameStatus {
 
 ## Custom Exception
 
-#### `ChessException` 
+#### `ChessException`
 
 Provides a domain-specific exception for all rule violations.
 
@@ -927,7 +927,7 @@ We extend `RuntimeException` (unchecked) because chess rule violations are not r
 
 ## Data Classes
 
-#### `Player` 
+#### `Player`
 
 It is a simple immutable identity holder.
 
@@ -949,7 +949,7 @@ class Player {
 }
 ```
 
-#### `Position` 
+#### `Position`
 
 It is a value object representing a board coordinate. The constructor validates bounds, and `equals`/`hashCode` are implemented so positions can be compared and used in collections.
 
@@ -1008,7 +1008,7 @@ The Move class is mostly immutable. The `capturedPiece` and promotion fields are
 
 Now the core of the design: the abstract Piece and its six concrete subclasses.
 
-#### `Piece` 
+#### `Piece`
 
 Provides the shared state and defines the movement contract.
 

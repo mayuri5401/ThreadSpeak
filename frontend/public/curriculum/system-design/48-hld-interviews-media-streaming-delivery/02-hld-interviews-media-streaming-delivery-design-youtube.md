@@ -134,8 +134,8 @@ We can break the architecture of YouTube into two primary components:
 
 1. The user clicks on a video thumbnail or opens a video page.
 2. The client app (on web, mobile or TV) sends a request to the **Video Metadata Service** (via the API Gateway or Load Balancer) to fetch:
-   - Video metadata (title, description, thumbnail, channel info)
-   - A **streaming manifest URL** (e.g., HLS `.m3u8` or DASH `.mpd` file), which contains links to video segments stored in CDN.
+ - Video metadata (title, description, thumbnail, channel info)
+ - A **streaming manifest URL** (e.g., HLS `.m3u8` or DASH `.mpd` file), which contains links to video segments stored in CDN.
 3. The video player (e.g., HTML5 player, Android/iOS native player, Smart TV app) downloads the manifest file.
 4. This manifest file contains references to video segments in multiple resolutions and bitrates, allowing **adaptive streaming** based on the user’s internet speed.
 5. The **CDN**, which maintains copies of the video stored at various locations worldwide, serves the video content. The edge server closest to the user handles the request, ensuring low latency and optimized bandwidth usage.
@@ -181,34 +181,34 @@ We can break the architecture of YouTube into two primary components:
 
 - A logged-in content creator selects a video file via a frontend client (web, mobile, or smart TV interface).
 - The client sends an upload request to the **Video** **Upload Service** via the **API Gateway.**
-   - Includes metadata such as `channel_id`, `title`, `description`, `tags`, and other relevant fields.
+ - Includes metadata such as `channel_id`, `title`, `description`, `tags`, and other relevant fields.
 - The server generates a [**pre-signed URL**](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) for an **Object Storage** bucket (e.g., AWS S3).
 - The client uploads the video **directly to Object Storage** using the pre-signed URL.
 
 #### **2. Upload to Object Storage**
 
 - Large files often use **multi-part** or **chunked** uploads. The client splits a large file into smaller “parts” (chunks), each typically ranging from a few MBs to tens of MBs.
-   - If the connection drops in the middle of the upload, only the **incomplete chunk** needs to be re-sent rather than re-uploading the entire file from scratch.
-   - In many multi-part implementations, each chunk can be **uploaded concurrently** using multiple threads or connections.
+ - If the connection drops in the middle of the upload, only the **incomplete chunk** needs to be re-sent rather than re-uploading the entire file from scratch.
+ - In many multi-part implementations, each chunk can be **uploaded concurrently** using multiple threads or connections.
 
 #### **3. Metadata Creation & Status Update**
 
 - Once the upload call is initiated, the **Upload Service** creates a new record in the **Videos** table with:
-   - `video_id` (primary key)
-   - `channel_id` (which user or channel this belongs to)
-   - `title`, `description`, `tags`
-   - `status = "processing"` (since it’s not yet ready for viewing)
-   - `upload_date = now()`
+ - `video_id` (primary key)
+ - `channel_id` (which user or channel this belongs to)
+ - `title`, `description`, `tags`
+ - `status = "processing"` (since it’s not yet ready for viewing)
+ - `upload_date = now()`
 - The **Videos** table record includes a reference or URL to the uploaded file in Object Storage, e.g., `raw_file_url: <https://bucket/raw/12345.mp4`>.
 - The Upload Service returns a response to the client with the newly created `video_id`.
 
 #### **4. Sending a Transcoding Job**
 
 - The **Upload Service** places a message on a **queue** (e.g., RabbitMQ, AWS SQS, Kafka) containing:
-   - `video_id`
-   - `raw_file_url`
-   - `target_resolutions`
-   - `target_formats`
+ - `video_id`
+ - `raw_file_url`
+ - `target_resolutions`
+ - `target_formats`
 
 ### **Video Transcoding Workflow:**
 
@@ -220,21 +220,21 @@ We can break the architecture of YouTube into two primary components:
 #### **2. Video Transcoding Process**
 
 - The worker uses video processing tools (e.g., **FFmpeg**) to create **adaptive bitrate** variants:
-   - **Low** resolution (240p or 360p) - For slow connections.
-   - **Standard** resolution (480p or 720p) - For average connections.
-   - **High** resolution (1080p or 4K) - For high-bandwidth users.
+ - **Low** resolution (240p or 360p) - For slow connections.
+ - **Standard** resolution (480p or 720p) - For average connections.
+ - **High** resolution (1080p or 4K) - For high-bandwidth users.
 - Each variant is **split **into small segments** (e.g., 2-10 seconds long)** for **adaptive streaming**.
 - The worker writes the final video segments and streaming manifests to a “transcoded” bucket in Object Storage or a **CDN**-backed storage path, e.g.:
-   - [`https://cdn.provider.com/videos/11111/720p/`](https://cdn.provider.com/videos/11111/720p/)`...`.
+ - [`https://cdn.provider.com/videos/11111/720p/`](https://cdn.provider.com/videos/11111/720p/)`...`.
 - The worker may also generate a **thumbnail** at this stage (capturing a frame at X seconds into the video).
 
 #### **3. Status Update & Database Sync**
 
 - Once transcoding finishes successfully, the Transcoding Service calls an **internal API** (e.g., `PUT /videos/{video_id}/status`) on the **Metadata Service**.
 - The **Videos** metadata table record is updated:
-   - `status = "live”` (video is now available for streaming).
-   - `transcoded_url` fields updated with resolution-based URLs.
-   - `thumbnail_url` updated.
+ - `status = "live”` (video is now available for streaming).
+ - `transcoded_url` fields updated with resolution-based URLs.
+ - `thumbnail_url` updated.
 - If transcoding **fails**, the worker marks **status = "failed"**, optionally storing an error message.
 - Once the transcoded files are in object storage or an origin server, the **CDN** automatically caches content at edge locations to serve playback requests.
 - Future **playback requests** are served from CDN edge nodes, reducing origin bandwidth usage and improving streaming performance.
@@ -491,9 +491,9 @@ This process is often executed in steps using a **pipeline** to produce the fina
 - A user uploads a raw video file (e.g., `MP4`**, **`MOV`**, **`AVI`).
 - The raw file is stored in **Object Storage** (e.g., AWS S3) directly from the user’s device.
 - Metadata is recorded in the Videos Metadata Table, including:
-   - `video_id`
-   - `duration`
-   - `status = "processing"`
+ - `video_id`
+ - `duration`
+ - `status = "processing"`
 
 #### **Step 2: Job Dispatching via Message Queue**
 
@@ -542,9 +542,9 @@ Example storage structure:
 #### **Step 8: Updating the Database & CDN**
 
 - The **Video Metadata Table** is updated with:
-   - `Transcoded URLs` for different resolutions
-   - `Thumbnail URL`
-   - `status = "live"` (video is ready to stream).
+ - `Transcoded URLs` for different resolutions
+ - `Thumbnail URL`
+ - `status = "live"` (video is ready to stream).
 - The CDN caches video segments for low-latency streaming and fast access.
 
 ## **6.2 Video Streaming**
@@ -665,12 +665,12 @@ Users might upload duplicate videos, wasting storage and processing power.
 **Identify and Deduplicate Videos Before Processing**
 
 - **Hashing-Based Deduplication**
-   - Generate a unique hash (SHA-256, MD5) from the video file.
-   - If a hash matches an existing video, store a reference instead of a new copy.
+ - Generate a unique hash (SHA-256, MD5) from the video file.
+ - If a hash matches an existing video, store a reference instead of a new copy.
 - **Perceptual Hashing (PHash) for Similar Videos**
-   - Detect similar but slightly altered videos (e.g., re-uploads with minor edits).
+ - Detect similar but slightly altered videos (e.g., re-uploads with minor edits).
 - **Machine Learning Deduplication**
-   - Use ML models to compare video/audio frames and detect near-duplicates.
+ - Use ML models to compare video/audio frames and detect near-duplicates.
 
 #### Multi-Tiered Storage (Hot, Warm, Cold)
 

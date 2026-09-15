@@ -118,7 +118,7 @@ Core entities are the fundamental building blocks of our system. We identify the
 
 Let’s walk through the functional requirements and extract the relevant entities:
 
-#### **1.  Allow users to browse and search for products by name and category.**
+#### **1. Allow users to browse and search for products by name and category.**
 
 This points directly to a `Product` entity, which represents an item for sale. Products are classified, leading to a `ProductCategory` enum. The action of searching is encapsulated in a `SearchService` that operates on the product catalog.
 

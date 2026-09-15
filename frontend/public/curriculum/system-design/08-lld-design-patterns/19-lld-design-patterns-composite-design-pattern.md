@@ -412,11 +412,11 @@ public class FileExplorerApp {
 ```shell
 ---- File Structure ----
 + Home/
-  + Documents/
-    - readme.txt (5 KB)
-    - data.csv (300 KB)
-  + Pictures/
-    - photo.jpg (1500 KB)
+ + Documents/
+ - readme.txt (5 KB)
+ - data.csv (300 KB)
+ + Pictures/
+ - photo.jpg (1500 KB)
 
 Total Size: 1805 KB
 

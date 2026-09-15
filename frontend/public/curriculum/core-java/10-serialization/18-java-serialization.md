@@ -32,6 +32,6 @@ codeSnippet:
     }
 ---
 
-# 📦 Serialization: Object State Persistence
+# Serialization: Object State Persistence
 
 Serialization in Java is a mechanism of writing the state of an object into a byte-stream. It is mainly used in Hibernate, RMI, JPA, EJB and JMS technologies.

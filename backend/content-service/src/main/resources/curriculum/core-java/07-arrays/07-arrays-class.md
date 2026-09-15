@@ -46,13 +46,13 @@ codeSnippet:
     }
 ---
 
-# 🛠️ Arrays Class in Java (`java.util.Arrays`)
+# Arrays Class in Java (`java.util.Arrays`)
 
 ---
 
-## 📌 1. Introduction & Overview
+## 1. Introduction & Overview
 
-### 🏷️ What is `java.util.Arrays`?
+### What is `java.util.Arrays`?
 `Arrays` is a predefined utility class present in the **`java.util`** package of the Java Development Kit (JDK). It provides a rich set of **static methods** designed to dynamically manipulate arrays—including sorting, searching, copying, comparing, filling, and converting arrays to human-readable strings.
 
 ```java
@@ -68,14 +68,14 @@ public final class Arrays extends Object {
 
 ---
 
-### 🎯 Why Do We Need the `Arrays` Class?
+### Why Do We Need the `Arrays` Class?
 1. **Fixed-Size Limitation**: In Java, arrays are fixed in size once instantiated in Heap memory.
 2. **Boilerplate Reduction**: Operations like sorting, searching, copying, and equality comparison normally require complex manual loops and index pointers.
 3. **Optimized Performance**: The methods in `Arrays` are heavily optimized by the JVM engineering team (using **Dual-Pivot Quicksort**, **TimSort**, and vectorized SIMD instructions).
 
 ---
 
-## ⚙️ 2. Key Characteristics & Syntax
+## 2. Key Characteristics & Syntax
 
 ```mermaid
 graph TD
@@ -85,7 +85,7 @@ graph TD
     A --> E["Overloaded for All 8 Primitives + Object[]"]
 ```
 
-### 📋 Characteristics:
+### Characteristics:
 1. **`final` Class**: Declared as `public final class Arrays`, preventing inheritance or modification.
 2. **Private Constructor**: Prevents instantiation (`new Arrays()` is a compile-time error).
 3. **All Methods are `static`**: Always invoked directly using the class name:
@@ -100,7 +100,7 @@ graph TD
 
 ---
 
-## 💎 3. Major Advantages
+## 3. Major Advantages
 
 | Advantage | Practical Benefit in Production |
 | :--- | :--- |
@@ -111,7 +111,7 @@ graph TD
 
 ---
 
-## 📚 4. Master Methods of the `Arrays` Class
+## 4. Master Methods of the `Arrays` Class
 
 | Method Signature | Description | Time Complexity | Code Example |
 | :--- | :--- | :--- | :--- |
@@ -131,9 +131,9 @@ graph TD
 
 ---
 
-## 🔍 5. Deep Dive into Essential Methods
+## 5. Deep Dive into Essential Methods
 
-### 1️⃣ `Arrays.toString()` and `Arrays.deepToString()`
+### 1⃣ `Arrays.toString()` and `Arrays.deepToString()`
 When you print an array reference directly using `System.out.println(arr)`, Java prints the default `Object.toString()` format: `[I@1b6d3586` (Type code + Memory HashCode). To view the actual array contents, use `Arrays.toString()`.
 
 ```java
@@ -148,7 +148,7 @@ System.out.println(Arrays.deepToString(matrix)); // Output: [[1, 2], [3, 4]] (De
 
 ---
 
-### 2️⃣ `Arrays.sort()` — Dual-Pivot Quicksort & TimSort
+### 2⃣ `Arrays.sort()` — Dual-Pivot Quicksort & TimSort
 - For **primitive arrays** (`int[]`, `double[]`), Java uses Vladimir Yaroslavskiy's **Dual-Pivot Quicksort** ($O(N \log N)$).
 - For **Object arrays** (`String[]`, `User[]`), Java uses **TimSort** (a stable adaptive mergesort).
 
@@ -165,7 +165,7 @@ System.out.println(Arrays.toString(arr)); // Output: [50, 20, 30, 40, 10]
 
 ---
 
-### 3️⃣ `Arrays.binarySearch()` — Understanding Return Values
+### 3⃣ `Arrays.binarySearch()` — Understanding Return Values
 ⚠️ **Critical Rule**: The array **MUST be sorted in ascending order** before calling `Arrays.binarySearch()`. If the array is unsorted, the result is undefined.
 
 - **Element Found**: Returns the 0-based index of the target key.
@@ -184,7 +184,7 @@ System.out.println(Arrays.binarySearch(sorted, 25)); // Output: -3
 
 ---
 
-### 4️⃣ `Arrays.copyOf()` & `Arrays.copyOfRange()`
+### 4⃣ `Arrays.copyOf()` & `Arrays.copyOfRange()`
 Creates an independent, deeply allocated copy of an array with arbitrary sizing:
 
 ```java
@@ -205,7 +205,7 @@ System.out.println(Arrays.toString(slice)); // Output: [20, 30, 40]
 
 ---
 
-### 5️⃣ `Arrays.equals()` vs `Arrays.deepEquals()`
+### 5⃣ `Arrays.equals()` vs `Arrays.deepEquals()`
 
 ```java
 // 1D Arrays: Arrays.equals compares element values
@@ -222,7 +222,7 @@ System.out.println(Arrays.deepEquals(m1, m2)); // Output: true (Compares recursi
 
 ---
 
-### 6️⃣ `Arrays.fill()`
+### 6⃣ `Arrays.fill()`
 Assigns a default constant value to every slot or a sub-range of an array:
 
 ```java
@@ -237,7 +237,7 @@ System.out.println(Arrays.toString(board)); // Output: [-1, 7, 7, 7, -1]
 
 ---
 
-## ⚠️ 6. Common Traps & Interview Pitfalls
+## 6. Common Traps & Interview Pitfalls
 
 > [!CAUTION]
 > **Trap 1: Calling `binarySearch()` on an Unsorted Array**
@@ -253,7 +253,7 @@ System.out.println(Arrays.toString(board)); // Output: [-1, 7, 7, 7, -1]
 
 ---
 
-## 🎯 7. Complete Hands-on Code Example
+## 7. Complete Hands-on Code Example
 
 ```java
 import java.util.Arrays;

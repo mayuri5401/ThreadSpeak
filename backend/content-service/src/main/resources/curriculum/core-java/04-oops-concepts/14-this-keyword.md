@@ -31,18 +31,18 @@ codeSnippet:
     }
 ---
 
-# 👈 "this" Keyword in Java
+# "this" Keyword in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 In Java, the **`this` keyword is a reference variable**.
 - It **refers to the current class object** (the object whose method or constructor is being invoked).
 
 ---
 
-## 🎯 Use of `this` Keyword:
+## Use of `this` Keyword:
 
 1. **It is used to refer to the current class instance variable.**
 2. **It is used to refer to the current class method.**
@@ -53,11 +53,11 @@ In Java, the **`this` keyword is a reference variable**.
 
 ---
 
-### 1️⃣ 1. It is used to refer to the current class instance variable
+### 1⃣ 1. It is used to refer to the current class instance variable
 
 When a method or constructor parameter has the same name as an instance variable (variable shadowing), `this.` is used to disambiguate the instance field from the local parameter.
 
-#### 💻 Java Program Example 1:
+#### Java Program Example 1:
 ```java
 public class ThisDemo
 {
@@ -78,13 +78,13 @@ public class ThisDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 1. no : 20
 2. no : 10
 ```
 
-#### 💻 Java Program Example 2 (Constructor Variable Shadowing):
+#### Java Program Example 2 (Constructor Variable Shadowing):
 ```java
 class Student
 {
@@ -112,7 +112,7 @@ class Student
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 ID: 101
 Name: Deepak
@@ -120,11 +120,11 @@ Name: Deepak
 
 ---
 
-### 2️⃣ 2. It is used to refer to the current class method
+### 2⃣ 2. It is used to refer to the current class method
 
 You can invoke another method of the current class explicitly using `this.methodName()`. (If omitted, the compiler inserts it implicitly).
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 public class ThisDemo
 {
@@ -148,7 +148,7 @@ public class ThisDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Hello from showMessage() method
 Inside display() method
@@ -156,11 +156,11 @@ Inside display() method
 
 ---
 
-### 3️⃣ 3. It is used to refer to the current class constructor (`this()`)
+### 3⃣ 3. It is used to refer to the current class constructor (`this()`)
 
 Used to call another constructor within the same class (Constructor Chaining).
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 public class ThisDemo
 {
@@ -186,7 +186,7 @@ public class ThisDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Default constructor called
 Hello, Deepak
@@ -198,11 +198,11 @@ Hello, Deepak
 
 ---
 
-### 4️⃣ 4. It is used to pass the current class instance as a parameter to the method
+### 4⃣ 4. It is used to pass the current class instance as a parameter to the method
 
 Useful when an object needs to delegate work to an external utility method while passing its own instance.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 public class ThisDemo
 {
@@ -225,18 +225,18 @@ public class ThisDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 display() method is called
 ```
 
 ---
 
-### 5️⃣ 5. It is used to pass the current class instance as a parameter to the constructor
+### 5⃣ 5. It is used to pass the current class instance as a parameter to the constructor
 
 Useful when a child helper object needs a reference back to its enclosing parent instance.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 class A
 {
@@ -268,7 +268,7 @@ public class ThisDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Constructor of B is called
 Value from class A: 10
@@ -276,11 +276,11 @@ Value from class A: 10
 
 ---
 
-### 6️⃣ 6. It is used to return the current class instance from the method (Method Chaining)
+### 6⃣ 6. It is used to return the current class instance from the method (Method Chaining)
 
 By returning `this`, you can chain multiple method invocations together fluently on a single line.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 public class ThisDemo
 {
@@ -308,7 +308,7 @@ public class ThisDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Number: 100
 ```

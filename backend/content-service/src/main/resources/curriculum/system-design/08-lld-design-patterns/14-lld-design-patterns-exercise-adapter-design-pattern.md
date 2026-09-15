@@ -556,9 +556,9 @@ console.log(`Fahrenheit sensor (adapted): ${adapted.getTemperature().toFixed(1)}
 
 - Target: `NotificationSender` with `send(String recipient, String message)`
 - Adaptees:
-   - `SlackClient` with `postMessage(String channel, String text, boolean asBot)`
-   - `TeamsWebhook` with `sendCard(String title, String body, String webhookUrl)`
-   - `DiscordBot` with `sendMessage(long channelId, String content, boolean tts)`
+ - `SlackClient` with `postMessage(String channel, String text, boolean asBot)`
+ - `TeamsWebhook` with `sendCard(String title, String body, String webhookUrl)`
+ - `DiscordBot` with `sendMessage(long channelId, String content, boolean tts)`
 - Each adapter translates `send()` to the appropriate service call
 
 ```java

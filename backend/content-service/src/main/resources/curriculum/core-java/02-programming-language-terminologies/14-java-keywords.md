@@ -46,9 +46,9 @@ codeSnippet:
     }
 ---
 
-# 🔑 Keywords in Java
+# Keywords in Java
 
-## 📖 Introduction
+## Introduction
 
 **Keywords are predefined, reserved words used by the Java compiler for specific syntax operations.**  
 Because these words have special meanings to the compiler, they **cannot** be used as identifiers (such as variable names, method names, class names, or interface names).
@@ -59,7 +59,7 @@ Java contains a total of **50 keywords**:
 
 ---
 
-## 🗺️ Master Category Classification of Java Keywords
+## Master Category Classification of Java Keywords
 
 | Category | Keywords | Description |
 |:---|:---|:---|
@@ -77,7 +77,7 @@ Java contains a total of **50 keywords**:
 
 ---
 
-## 📌 Master Architecture: Reserved Words Breakdown
+## Master Architecture: Reserved Words Breakdown
 
 ```text
                             Total Java Vocabulary
@@ -96,10 +96,10 @@ Keywords (50)    Literals (Values) (3)
 
 ### 1. Reserved Words (53 Total):
 - **Keywords (50 Total)**:
-  - **48 Actively Used Keywords** (e.g. `public`, `class`, `static`, `int`, `if`).
-  - **2 Unused Reserved Keywords** (`goto`, `const`) — reserved to prevent C/C++ developers from misusing them and for possible future compiler extensions.
+ - **48 Actively Used Keywords** (e.g. `public`, `class`, `static`, `int`, `if`).
+ - **2 Unused Reserved Keywords** (`goto`, `const`) — reserved to prevent C/C++ developers from misusing them and for possible future compiler extensions.
 - **Literals (3 Total)**:
-  - `true`, `false`, `null` are technical literal values (not keywords), but are strictly reserved words that cannot be used as identifiers.
+ - `true`, `false`, `null` are technical literal values (not keywords), but are strictly reserved words that cannot be used as identifiers.
 
 ### 2. Contextual Keywords (5 Modern Java Additions):
 Introduced in recent Java versions (Java 10, 14, 17), **contextual keywords** act as keywords **only in specific contexts** (they can still be used as variable names elsewhere without breaking legacy code):
@@ -110,15 +110,15 @@ Introduced in recent Java versions (Java 10, 14, 17), **contextual keywords** ac
 
 ---
 
-## ⚡ Characteristics of Keywords in Java
+## Characteristics of Keywords in Java
 
 1. **Reserved Words**:  
    Keywords have fixed internal meanings and predefined functionality built directly into the compiler grammar.
 
 2. **Strictly Case-Sensitive**:  
    All keywords in Java are written in **lowercase**.
-   - `class` is a keyword ➔ ✅
-   - `Class` or `CLASS` is **not** a keyword (it can be an identifier) ➔ ❌
+ - `class` is a keyword
+ - `Class` or `CLASS` is **not** a keyword (it can be an identifier)
 
 3. **Cannot be Used as Identifiers**:  
    You cannot name variables, methods, classes, or interfaces using any keyword:
@@ -136,7 +136,7 @@ Introduced in recent Java versions (Java 10, 14, 17), **contextual keywords** ac
 
 ---
 
-## 💻 Java Program Demonstrating Keywords in Action
+## Java Program Demonstrating Keywords in Action
 
 ```java
 package com.threadspeak; // 'package' keyword
@@ -177,7 +177,7 @@ public class MainApp { // 'public', 'class' keywords
 }
 ```
 
-#### 🖥️ Program Output:
+#### Program Output:
 ```text
 Processing item: 1
 Processing item: 2

@@ -50,28 +50,28 @@ codeSnippet:
     }
 ---
 
-# 🎭 Polymorphism in Java
+# Polymorphism in Java
 
 ---
 
-## 📖 1. Introduction & Meaning
+## 1. Introduction & Meaning
 
 **Polymorphism** is one of the foundational pillars of **Object-Oriented Programming (OOP)** in Java.
 - **Linguistic Roots**: Derived from two Greek words:
-  - **Poly** $\to$ *Many*
-  - **Morph** $\to$ *Forms*
-  - Therefore, **Polymorphism means "Many Forms"**.
+ - **Poly** $\to$ *Many*
+ - **Morph** $\to$ *Forms*
+ - Therefore, **Polymorphism means "Many Forms"**.
 - **Formal Definition**: The capability of a single entity (such as a method, object, or operator) to take on different behaviors or perform different tasks depending on the runtime context.
 - **Architectural Goal**: Enables programmers to write generic, flexible, and decoupled code where high-level business workflows interact with clean abstractions without being tied to brittle concrete implementations.
 
-### 💡 Real-world Examples:
+### Real-world Examples:
 - **A Person**: A person simultaneously exhibits multiple identities — acting as an *employee/teacher* at office, a *father* at home, a *son* with parents, and a *customer* at a shopping mall.
 - **Water**: Takes on distinct physical states and shapes depending on temperature and container (liquid water in a glass, rigid solid ice cube in a tray, invisible vapor in the atmosphere).
 - **Universal Remote Control**: A single `Power` button powers ON a television, an air conditioner, or a sound system depending on which device it is aimed at.
 
 ---
 
-## 🌟 2. Advantages of Polymorphism
+## 2. Advantages of Polymorphism
 
 1. **Increases Flexibility and Reusability**: You can write general methods that work across entire families of classes (e.g. `List<Shape> shapes` can render circles, squares, and triangles in a single loop).
 2. **Supports the Open/Closed Principle (SOLID)**: Code is **open for extension but closed for modification**. You can add new subclasses (e.g. `CryptoPayment`) without altering existing, tested order processing code.
@@ -80,7 +80,7 @@ codeSnippet:
 
 ---
 
-## 🏷️ 3. Types of Polymorphism in Java
+## 3. Types of Polymorphism in Java
 
 Java categorizes polymorphism into **two major types**:
 
@@ -97,17 +97,17 @@ Java categorizes polymorphism into **two major types**:
 
 ---
 
-### 1️⃣ Compile-Time Polymorphism (Static Binding / Early Binding)
+### 1⃣ Compile-Time Polymorphism (Static Binding / Early Binding)
 
 - **Definition**: Method invocation is resolved and bound by the **Java Compiler (`javac`)** during compilation time.
 - **Also Known As**: **Static Binding** or **Early Binding**.
 - **Primary Mechanism**: **Method Overloading** (multiple methods with the same name but distinct parameter signatures).
 - **Secondary Mechanism**: **Operator Overloading** (Java does not support user-defined operator overloading, but internally overloads the `+` operator for arithmetic addition and string concatenation).
 
-#### 🔍 How javac Resolves It:
+#### How javac Resolves It:
 The compiler inspects the **number of arguments**, **data types of arguments**, and **sequence of argument types** alongside the reference variable type to select the exact method descriptor at build time.
 
-#### 💻 Program (Method Overloading):
+#### Program (Method Overloading):
 ```java
 class Calculator {
     // Method 1: Takes two integer arguments
@@ -138,7 +138,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Sum (int): 30
 Sum (double): 31.0
@@ -147,14 +147,14 @@ Sum (3 ints): 6
 
 ---
 
-### 2️⃣ Runtime Polymorphism (Dynamic Binding / Late Binding)
+### 2⃣ Runtime Polymorphism (Dynamic Binding / Late Binding)
 
 - **Definition**: Method invocation is resolved and dispatched dynamically by the **Java Virtual Machine (JVM)** at runtime while the program is actively executing.
 - **Also Known As**: **Dynamic Binding**, **Late Binding**, or **Dynamic Virtual Method Dispatch**.
 - **Primary Mechanism**: **Method Overriding** combined with **Upcasting**.
 - **Resolution Basis**: The JVM determines which method body to execute based on the **actual object type residing in Heap memory**, regardless of what type the reference variable was declared as!
 
-#### 💻 Program (Method Overriding & Upcasting):
+#### Program (Method Overriding & Upcasting):
 ```java
 class Animal {
     void makeSound() {
@@ -189,7 +189,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Dog barks: Woof! Woof!
 Cat meows: Meow! Meow!
@@ -197,7 +197,7 @@ Cat meows: Meow! Meow!
 
 ---
 
-## 🏛️ 4. Real-World Enterprise Example: Payment Gateway
+## 4. Real-World Enterprise Example: Payment Gateway
 
 Consider an eCommerce payment processing engine. By relying on runtime polymorphism, we can process transactions across multiple payment providers without modifying the checkout service:
 
@@ -245,9 +245,9 @@ public class CheckoutService {
 
 ---
 
-## ⚠️ 5. Critical Edge Cases & Rules
+## 5. Critical Edge Cases & Rules
 
-### ❌ Rule 1: Runtime Polymorphism Does NOT Apply to Data Members (Variables)!
+### Rule 1: Runtime Polymorphism Does NOT Apply to Data Members (Variables)!
 In Java, **methods are overridden, but instance variables are NOT overridden**.  
 Variables are resolved at **compile-time based on the reference type** (known as **Variable Shadowing / Field Hiding**).
 
@@ -270,7 +270,7 @@ public class Test {
 
 ---
 
-### ❌ Rule 2: Static Methods Cannot Be Overridden (Method Hiding)
+### Rule 2: Static Methods Cannot Be Overridden (Method Hiding)
 `static` methods belong to the **Class metadata**, not to individual object instances.  
 If a child class declares a `static` method with the exact same signature as a parent `static` method, it is called **Method Hiding** (resolved at compile-time by reference type), **NOT** Method Overriding!
 
@@ -293,13 +293,13 @@ public class Test {
 
 ---
 
-### ❌ Rule 3: Private and Final Methods Cannot Be Overridden
+### Rule 3: Private and Final Methods Cannot Be Overridden
 - **`private` Methods**: Accessible only inside their enclosing class; invisible to subclasses.
 - **`final` Methods**: Explicitly marked by the developer to prevent overriding.
 
 ---
 
-### ✨ Rule 4: Covariant Return Types
+### Rule 4: Covariant Return Types
 Since Java 5, an overriding method in a subclass can declare a **more specific return type (subtype)** than the return type declared in the parent method:
 
 ```java
@@ -315,7 +315,7 @@ class SubClass extends SuperClass {
 
 ---
 
-## ⚙️ 6. Under the Hood: How JVM Performs Dynamic Dispatch (`vtable`)
+## 6. Under the Hood: How JVM Performs Dynamic Dispatch (`vtable`)
 
 When the JVM loads a class into memory, it generates a **Virtual Method Table (`vtable`)** in Metaspace:
 1. Every class with virtual (non-static, non-private, non-final) methods receives a `vtable` containing memory pointers to its method implementations.
@@ -324,7 +324,7 @@ When the JVM loads a class into memory, it generates a **Virtual Method Table (`
 
 ---
 
-## 📊 7. Summary Comparison Matrix
+## 7. Summary Comparison Matrix
 
 | Feature | Compile-Time Polymorphism | Runtime Polymorphism |
 |:---|:---|:---|

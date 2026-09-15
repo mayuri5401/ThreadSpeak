@@ -2494,11 +2494,11 @@ Build a command queue system where commands have priorities and are executed in 
 
 - `PriorityCommand` interface extending `Command` with `getPriority()` (1 = highest)
 - `CommandQueue` invoker that:
-   - Accepts commands via `addCommand(command)`
-   - Executes all queued commands in priority order via `processQueue()`
-   - Logs each execution with a timestamp
-   - Supports `undoLast()` for the most recently processed command
-   - `getLog()` returns the execution history
+ - Accepts commands via `addCommand(command)`
+ - Executes all queued commands in priority order via `processQueue()`
+ - Logs each execution with a timestamp
+ - Supports `undoLast()` for the most recently processed command
+ - `getLog()` returns the execution history
 - At least two concrete commands with different priorities
 
 ```java

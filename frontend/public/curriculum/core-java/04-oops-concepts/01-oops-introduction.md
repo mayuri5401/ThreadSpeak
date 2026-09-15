@@ -39,11 +39,11 @@ codeSnippet:
     }
 ---
 
-# 🌐 Object Oriented Programming in Java
+# Object Oriented Programming in Java
 
 ---
 
-## 🧭 What is Programming Paradigm ?
+## What is Programming Paradigm ?
 
 A **programming paradigm** is a way or style of programming based on certain principles and techniques.  
 It defines how code is written, structured, and executed.
@@ -59,14 +59,14 @@ Some main programming paradigms are:
 
 ---
 
-## 🏛️ What is OOP's ?
+## What is OOP's ?
 
 **OOPS** stands for **Object-Oriented Programming System**.  
 **OOPs in Java** is a programming paradigm or approach that organizes code using **objects and classes** to improve **reusability, modularity, and maintainability**.
 
 ---
 
-## 🏛️ 6 Main Pillars of OOP's
+## 6 Main Pillars of OOP's
 
 The **6 main pillars of OOP's** are:
 
@@ -87,7 +87,7 @@ The **6 main pillars of OOP's** are:
 
 ---
 
-## ⚠️ NOTE : Is Java a Purely Object Oriented Language?
+## NOTE : Is Java a Purely Object Oriented Language?
 
 > **NOTE** : Java is a **strongly Object Oriented Language** but **not purely Object oriented** because Java has **primitive data types** (`int`, `char`, `boolean`, etc.) and the **`static` keyword** concept which is not related or tied to objects.
 >

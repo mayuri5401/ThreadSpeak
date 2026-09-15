@@ -503,7 +503,7 @@ abstract class Discount {
     public void describe(double originalPrice) {
         double discountedPrice = apply(originalPrice);
         System.out.println(label + ": $" + String.format("%.2f", originalPrice)
-            + " -> $" + String.format("%.2f", discountedPrice));
+ + " -> $" + String.format("%.2f", discountedPrice));
     }
 }
 

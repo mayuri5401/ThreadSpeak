@@ -33,6 +33,6 @@ codeSnippet:
     }
 ---
 
-# 📚 Collections Framework: Data Structures in Java
+# Collections Framework: Data Structures in Java
 
 The Java Collections Framework provides an architecture to store and manipulate a group of objects. It includes Interfaces, Implementations (Classes), and Algorithms.

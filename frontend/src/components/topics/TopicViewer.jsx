@@ -92,6 +92,7 @@ const JavaArrayProgramsVisualizer = lazy(() => import('../visualizers/JavaArrayP
 const JavaArraysClassVisualizer = lazy(() => import('../visualizers/JavaArraysClassVisualizer'));
 const JavaStringIntroVisualizer = lazy(() => import('../visualizers/JavaStringIntroVisualizer'));
 const JavaStringClassVisualizer = lazy(() => import('../visualizers/JavaStringClassVisualizer'));
+const JavaStringScpVisualizer = lazy(() => import('../visualizers/JavaStringScpVisualizer'));
 const TwoPointersVisualizer = lazy(() => import('../visualizers/TwoPointersVisualizer'));
 import HelloProgramDiagramCard from './HelloProgramDiagramCard';
 import VariableBusDiagramCard from './VariableBusDiagramCard';
@@ -366,6 +367,9 @@ export default function TopicViewer({
     }
     if (topic.id === 'java-strings-class' || topic.animationType === 'string-class' || topic.id === '02-string-class' || (topic.category === 'Strings' && topic.title?.toLowerCase().includes('string class'))) {
       return <JavaStringClassVisualizer onOpenPlayground={onOpenPlayground} activeTab={activeTab} />;
+    }
+    if (topic.id === 'java-strings-memory-scp' || topic.animationType === 'string-scp' || topic.id === '03-string-memory-management-scp' || (topic.category === 'Strings' && (topic.title?.toLowerCase().includes('constant pool') || topic.title?.toLowerCase().includes('scp') || topic.title?.toLowerCase().includes('memory')))) {
+      return <JavaStringScpVisualizer onOpenPlayground={onOpenPlayground} activeTab={activeTab} />;
     }
     if (topic.id === 'spring-web-dispatcherservlet' || topic.id?.includes('dispatcherservlet') || topic.id?.includes('spring-web') || topic.animationType === 'spring-request-flow' || topic.animationType === 'spring-pipeline') {
       return <SpringRequestFlowVisualizer />;

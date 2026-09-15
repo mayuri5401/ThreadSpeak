@@ -21,14 +21,20 @@ public class QuizService {
 
     private final QuizQuestionRepository quizQuestionRepository;
     private final UserProgressClient userProgressClient;
+    private final com.threadspeak.quiz.kafka.QuizKafkaProducer quizKafkaProducer;
     private final ObjectMapper mapper;
 
     // Fast in-memory cache synchronized with PostgreSQL
     private final Map<String, QuizQuestion> questionsMap = new ConcurrentHashMap<>();
 
-    public QuizService(QuizQuestionRepository quizQuestionRepository, UserProgressClient userProgressClient) {
+    public QuizService(
+            QuizQuestionRepository quizQuestionRepository,
+            UserProgressClient userProgressClient,
+            com.threadspeak.quiz.kafka.QuizKafkaProducer quizKafkaProducer
+    ) {
         this.quizQuestionRepository = quizQuestionRepository;
         this.userProgressClient = userProgressClient;
+        this.quizKafkaProducer = quizKafkaProducer;
         this.mapper = new ObjectMapper();
         this.mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
@@ -147,10 +153,16 @@ public class QuizService {
         }
 
         if (userId != null && !userId.isBlank() && totalXp > 0) {
+            // 1. Publish to Kafka Topic for asynchronous event-driven gamification
+            quizKafkaProducer.publishQuizCompleted(new com.threadspeak.quiz.event.QuizCompletedEvent(
+                    userId, topicOrTrackId != null ? topicOrTrackId : "quiz", correctCount, totalQuestions, totalXp
+            ));
+
+            // 2. Synchronous fallback for immediate REST consistency
             try {
                 userProgressClient.recordQuizScore(userId, topicOrTrackId != null ? topicOrTrackId : "quiz", correctCount, totalXp);
             } catch (Exception e) {
-                System.out.println("Could not sync total XP: " + e.getMessage());
+                System.out.println("Could not sync total XP via Feign: " + e.getMessage());
             }
         }
 
@@ -172,10 +184,16 @@ public class QuizService {
         int xpEarned = isCorrect ? 10 : 0;
 
         if (userId != null && !userId.isBlank() && isCorrect) {
+            // 1. Publish to Kafka Topic
+            quizKafkaProducer.publishQuizCompleted(new com.threadspeak.quiz.event.QuizCompletedEvent(
+                    userId, question.getTopicId() != null ? question.getTopicId() : "quiz", 1, 1, xpEarned
+            ));
+
+            // 2. Synchronous fallback
             try {
                 userProgressClient.recordQuizScore(userId, question.getTopicId() != null ? question.getTopicId() : "quiz", 1, xpEarned);
             } catch (Exception e) {
-                System.out.println("Could not sync XP with user-service: " + e.getMessage());
+                System.out.println("Could not sync XP via Feign: " + e.getMessage());
             }
         }
 

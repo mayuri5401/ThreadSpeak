@@ -26,11 +26,11 @@ codeSnippet:
     }
 ---
 
-# 🛑 "final" Keyword in Java
+# "final" Keyword in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 The **`final` keyword is a non-access modifier in Java**.
 - It is used to **restrict modification of variables, methods, and classes**.
@@ -42,13 +42,13 @@ The **`final` keyword is a non-access modifier in Java**.
 
 ---
 
-## 1️⃣ 1. "final" Variable
+## 1⃣ 1. "final" Variable
 
 - A final variable's value **cannot be changed** once it is assigned.
 - It must be initialized either at the time of declaration or inside the constructor.
 - `final` variables are commonly used to **define constants**.
 
-### 💻 Java Program Example:
+### Java Program Example:
 ```java
 public class FinalDemo
 {
@@ -62,19 +62,19 @@ public class FinalDemo
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Maximum marks allowed: 100
 ```
 
 ---
 
-## 2️⃣ 2. "final" Method
+## 2⃣ 2. "final" Method
 
 - A final method **cannot be overridden by subclasses**.
 - This is useful when we want to **stop other classes from changing or tampering with the code inside the method**.
 
-### 💻 Java Program Example:
+### Java Program Example:
 ```java
 class Parent
 {
@@ -105,19 +105,19 @@ public class FinalDemo
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 This is a final method from the Parent class.
 ```
 
 ---
 
-## 3️⃣ 3. "final" Class
+## 3⃣ 3. "final" Class
 
 - A final class **cannot be extended** (i.e., no class can inherit it).
 - This is useful for **security and immutability** (like the built-in `String` and primitive wrapper classes).
 
-### 💻 Java Program Example:
+### Java Program Example:
 ```java
 // Final class - cannot be extended
 final class A
@@ -146,14 +146,14 @@ public class FinalDemo
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 This is class A.
 ```
 
 ---
 
-## 📊 Summary Comparison: `final` vs `finally` vs `finalize()`
+## Summary Comparison: `final` vs `finally` vs `finalize()`
 
 | Identifier | Category | Purpose & Behavior |
 |:---|:---|:---|

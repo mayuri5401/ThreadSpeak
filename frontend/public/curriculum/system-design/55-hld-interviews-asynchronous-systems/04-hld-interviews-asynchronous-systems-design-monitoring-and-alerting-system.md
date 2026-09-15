@@ -638,8 +638,8 @@ The **workers** (or **ingesters**) are the consumer layer that reads from Kafka 
 - **Transform or enrich** data (normalize labels, compute rates).
 - **Compress** data batches before storage.
 - **Write** to final destinations such as:
-   - **Time-Series DB (TSDB):** Prometheus, Cortex, Mimir
-   - **Logs Store:** Elasticsearch, Loki, or S3
+ - **Time-Series DB (TSDB):** Prometheus, Cortex, Mimir
+ - **Logs Store:** Elasticsearch, Loki, or S3
 - **Retry failed writes** and push unprocessable data to a **Dead Letter Queue (DLQ)**.
 
 ##### Batch Writing
@@ -960,8 +960,8 @@ Let’s look under the hood of what happens when a metric sample arrives.
 
 - Keeps the most recent few hours of data in **memory**.
 - Organized as:
-   - **Hash map of series IDs → circular buffers** of samples.
-   - Optimized for append-only writes.
+ - **Hash map of series IDs → circular buffers** of samples.
+ - Optimized for append-only writes.
 - Once full, it is **flushed** to a persistent block file.
 
 #### 3. Block Files (Immutable Chunks)

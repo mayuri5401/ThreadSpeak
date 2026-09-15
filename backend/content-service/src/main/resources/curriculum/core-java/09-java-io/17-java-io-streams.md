@@ -32,6 +32,6 @@ codeSnippet:
     }
 ---
 
-# 💾 Java Input/Output: Byte Streams & Character Streams
+# Java Input/Output: Byte Streams & Character Streams
 
 Java I/O (Input and Output) is used to process the input and produce the output. Java uses the concept of a **stream** to make I/O operations fast and uniform.

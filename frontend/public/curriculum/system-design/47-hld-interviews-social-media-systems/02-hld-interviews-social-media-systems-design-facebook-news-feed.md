@@ -95,15 +95,15 @@ The basic setup includes three main components:
 To support core functionality of our news feed system, we maintain several key entities (tables) in the database. These form the foundation for features like post creation, following, liking, commenting, and feed generation.
 
 - **Users**: Stores user profile information.
-   - **Schema:**` user_id, name, bio, profile_pic_url`
+ - **Schema:**` user_id, name, bio, profile_pic_url`
 - **Posts**: Stores individual posts created by users.
-   - **Schema:** `post_id, author_id, content, timestamp, like_count, comment_count`
+ - **Schema:** `post_id, author_id, content, timestamp, like_count, comment_count`
 - **Follows**: Represents the social graph, who follows whom.
-   - **Schema:** `follower_id, followee_id`
+ - **Schema:** `follower_id, followee_id`
 - **Likes**: Tracks which user liked which post, along with the timestamp of the action.
-   - **Schema:** `post_id, user_id, timestamp`
+ - **Schema:** `post_id, user_id, timestamp`
 - **Comments**: Stores comments added to posts. Each comment is associated with a specific post and user.
-   - **Schema:** `comment_id, post_id, user_id, content, timestamp`
+ - **Schema:** `comment_id, post_id, user_id, content, timestamp`
 
 All of this is stored in a relational database such as PostgreSQL or MySQL.
 
@@ -303,8 +303,8 @@ Responsible for user profile data and social connections (followers/followees).
 - Stores user data in a **relational database**
 - Maintains **follow graphs** in memory or cache for fast access
 - Provides APIs like:
-   - `GET /users/{id}/followers`
-   - `GET /users/{id}/followees`
+ - `GET /users/{id}/followers`
+ - `GET /users/{id}/followees`
 
 #### Post Service
 
@@ -377,7 +377,7 @@ For a key-value store, keys can be like:
 
 - `post_id → like_count`
 - `user_id:post_id → true/false`
-   - to check if a specific user has liked a given post
+ - to check if a specific user has liked a given post
 
 Like counts for **popular posts** are cached in Redis
 
@@ -390,8 +390,8 @@ Sharding Strategy:
 
 - **Sharded by **`post_id`, so that all comments for a given post are stored together
 - Ensures that:
-   - Writes are distributed
-   - Reads (for one post) can be served efficiently from a single shard
+ - Writes are distributed
+ - Reads (for one post) can be served efficiently from a single shard
 
 Comments are retrieved in **batches**, sorted by timestamp:
 
@@ -444,8 +444,8 @@ Heavy, non-blocking tasks are offloaded to background workers using **message qu
 **Examples:**
 
 - When a post is created:
-   - Post Service stores the post
-   - Emits a `PostCreated` event to the queue
+ - Post Service stores the post
+ - Emits a `PostCreated` event to the queue
 - Feed Workers consume the event and fan-out the post to followers' feed caches
 - Engagement Workers process like/comment events and update counters asynchronously
 
@@ -458,8 +458,8 @@ Let’s walk through what happens when a user opens the app to view their feed:
 1. The client sends `GET /feed` with an authentication token
 2. The API Gateway validates the token and forwards the request to the Feed Service
 3. The Feed Service looks up the user’s feed in the cache
-   - If found, it returns post IDs
-   - If not found, it computes the feed using followee data and recent posts
+ - If found, it returns post IDs
+ - If not found, it computes the feed using followee data and recent posts
 4. Post metadata (text, author, media URL, like count, etc.) is fetched from the Post Service or cache
 5. The response is assembled and sent to the client
 6. The client uses the media URLs to fetch images or videos directly from the CDN
@@ -567,8 +567,8 @@ To balance efficiency and scalability, most platforms (e.g., Facebook, Twitter) 
 - Posts from "normal users" are pushed to followers’ feed caches at write time
 - Posts from celebrities are **not pushed**. Instead, followers fetch these on demand during feed generation
 - The Feed Service applies custom logic:
-   - For regular followees → use cached feed
-   - For celebrity followees → fetch latest posts on read
+ - For regular followees → use cached feed
+ - For celebrity followees → fetch latest posts on read
 
 This reduces fan-out pressure while still offering real-time performance to most users.
 
@@ -740,9 +740,9 @@ Ranking is part of the **Feed Service pipeline** and usually occurs after candid
 2. **Candidate Selection: **The Feed Service fetches a batch of recent posts from the **user’s feed cache** (e.g., last 100 post IDs)
 3. **Post Hydration: **It fetches post content, author info, and engagement metrics from the Post Service, User Service, and Like Cache
 4. **Ranking Module: **The list of hydrated posts is sent to the **Ranking Module**, which may be:
-   - A **local library** applying a heuristic model
-   - A **stateless Ranking Service** handling lightweight scoring
-   - An **Inference Service** powered by a machine learning model
+ - A **local library** applying a heuristic model
+ - A **stateless Ranking Service** handling lightweight scoring
+ - An **Inference Service** powered by a machine learning model
 5. **Ranking Step: **Posts are scored and sorted based on relevance
 6. **Feed Response: **The top N ranked posts are returned to the client for display
 

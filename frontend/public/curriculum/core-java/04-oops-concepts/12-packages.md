@@ -38,11 +38,11 @@ codeSnippet:
     }
 ---
 
-# 📦 Packages in Java
+# Packages in Java
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 A **package in Java** is a core concept used to **group related classes, interfaces, and sub-packages**.
 - It is used to **avoid name conflicts**, group related code, and improve code maintainability and access control.
@@ -64,7 +64,7 @@ A **package in Java** is a core concept used to **group related classes, interfa
 
 ---
 
-## 🎯 2. Why Use Packages?
+## 2. Why Use Packages?
 
 - **Organizes classes logically** (e.g., utility classes, model classes, repository classes, controller classes).
 - **Avoids class name conflicts** between different modules, libraries, or developers (e.g., `java.util.Date` vs `java.sql.Date`).
@@ -74,7 +74,7 @@ A **package in Java** is a core concept used to **group related classes, interfa
 
 ---
 
-## 📜 3. Syntax to Declare a Package
+## 3. Syntax to Declare a Package
 
 ```java
 package package_name;
@@ -91,7 +91,7 @@ package com.companyname.modulename.submodulename;
 
 ---
 
-## 📥 4. Syntax to Import a Package
+## 4. Syntax to Import a Package
 
 1. **Importing a specific class**:
    ```java
@@ -111,7 +111,7 @@ package com.companyname.modulename.submodulename;
 
 ---
 
-## ⚡ 5. Static Imports in Java
+## 5. Static Imports in Java
 
 Introduced in Java 5, **Static Import** allows accessing `static` members (fields and methods) of a class directly without qualifying them with the class name:
 
@@ -130,7 +130,7 @@ public class StaticImportDemo {
 
 ---
 
-## 1️⃣ 6. Built-in Packages
+## 1⃣ 6. Built-in Packages
 
 **Built-in packages** are part of the **Java Standard Library (JDK API)** and provide ready-made classes and interfaces for various functionalities like data structures, input/output, networking, GUI, and concurrency.
 
@@ -141,7 +141,7 @@ public class StaticImportDemo {
 - **`java.net`**: For socket programming, HTTP clients, and URL connections.
 - **`java.sql`**: For JDBC database connectivity (`Connection`, `Statement`, `ResultSet`).
 
-### 💻 Java Program Example (Built-in Package):
+### Java Program Example (Built-in Package):
 ```java
 import java.util.Scanner;
 
@@ -157,7 +157,7 @@ public class MainApp
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Enter your name: Deepak
 Hello, Deepak
@@ -165,13 +165,13 @@ Hello, Deepak
 
 ---
 
-## 2️⃣ 7. User-Defined Packages
+## 2⃣ 7. User-Defined Packages
 
 **User-defined packages** are created by programmers to logically group related classes and interfaces, improving code organization, reusability, and avoiding naming conflicts.
 
-### 💻 Java Program Example (User-Defined Package):
+### Java Program Example (User-Defined Package):
 
-#### 📄 File 1: `p1/MyClass.java`
+#### File 1: `p1/MyClass.java`
 ```java
 package p1;
 
@@ -184,7 +184,7 @@ public class MyClass
 }
 ```
 
-#### 📄 File 2: `p2/MainApp.java`
+#### File 2: `p2/MainApp.java`
 ```java
 package p2;
 
@@ -200,14 +200,14 @@ public class MainApp
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Hello from MyClass in p1 package.
 ```
 
 ---
 
-## 🖥️ 8. How to Compile and Run User-Defined Packages (Using Terminal)
+## 8. How to Compile and Run User-Defined Packages (Using Terminal)
 
 ### Method A: Direct File Path Compilation
 ```bash
@@ -233,7 +233,7 @@ java p2.MainApp
 
 ---
 
-## 🛡️ 9. Package Visibility & Access Control Rules
+## 9. Package Visibility & Access Control Rules
 
 | Access Level | Same Class | Same Package | Subclass (Other Package) | Global / World |
 |:---|:---:|:---:|:---:|:---:|

@@ -21,6 +21,13 @@ import java.util.stream.Collectors;
 public class CodeRunnerService {
 
     private static final long EXECUTION_TIMEOUT_MS = 6000; // 6 seconds execution timeout
+    private static final int MAX_CONCURRENT_EXECUTIONS = 8;
+    private final java.util.concurrent.Semaphore executionBulkhead = new java.util.concurrent.Semaphore(MAX_CONCURRENT_EXECUTIONS, true);
+    private final com.threadspeak.kafka.CodeRunnerKafkaProducer kafkaProducer;
+
+    public CodeRunnerService(com.threadspeak.kafka.CodeRunnerKafkaProducer kafkaProducer) {
+        this.kafkaProducer = kafkaProducer;
+    }
 
     public Map<String, Map<String, Object>> getScenarios() {
         Map<String, Map<String, Object>> scenarios = new LinkedHashMap<>();
@@ -211,9 +218,23 @@ public class CodeRunnerService {
      */
     public CodeExecutionResult executeCode(CodeExecutionRequest request) {
         long startTime = System.currentTimeMillis();
+        boolean permitAcquired = false;
         Path tempDir = null;
 
         try {
+            permitAcquired = executionBulkhead.tryAcquire(500, TimeUnit.MILLISECONDS);
+            if (!permitAcquired) {
+                return new CodeExecutionResult(
+                        false,
+                        "⚠️ Server capacity limit reached (Concurrency Bulkhead active). Please retry in a few seconds.",
+                        "Bulkhead capacity exceeded",
+                        0,
+                        List.of("Concurrency Bulkhead active: Max concurrent execution slots filled."),
+                        Collections.emptyList(),
+                        "The sandbox limits concurrent code executions to protect system resources."
+                );
+            }
+
             tempDir = Files.createTempDirectory("threadspeak_runner_");
             List<File> sourceFiles = new ArrayList<>();
             String mainClassName = null;
@@ -288,6 +309,10 @@ public class CodeRunnerService {
                 long compileTime = System.currentTimeMillis() - startTime;
                 String cleanedErrors = cleanErrorOutput(compileErrors, tempDir.toAbsolutePath().toString());
 
+                kafkaProducer.publishExecutionTelemetry(new com.threadspeak.event.CodeExecutionTelemetryEvent(
+                        request.getTopicId(), "java", compileTime, false, 1, "COMPILATION_ERROR"
+                ));
+
                 List<String> errLines = Arrays.stream(cleanedErrors.split("\n"))
                         .map(String::trim)
                         .filter(l -> !l.isEmpty())
@@ -305,10 +330,13 @@ public class CodeRunnerService {
             }
 
             // ==========================================
-            // 2. REAL JAVA BYTECODE EXECUTION STEP
+            // 2. REAL JAVA BYTECODE EXECUTION STEP (SANDBOXED)
             // ==========================================
             List<String> runCmd = new ArrayList<>();
             runCmd.add("java");
+            runCmd.add("-Xms16m");
+            runCmd.add("-Xmx64m");
+            runCmd.add("-XX:+ExitOnOutOfMemoryError");
             runCmd.add("-Dfile.encoding=UTF-8");
             runCmd.add("-cp");
             runCmd.add(tempDir.toAbsolutePath().toString());
@@ -338,6 +366,10 @@ public class CodeRunnerService {
                 long elapsed = System.currentTimeMillis() - startTime;
                 String timeoutMsg = "⏱️ Time Limit Exceeded (Execution exceeded 6.0 seconds timeout limit).\nPossible infinite loop or deadlock detected.";
 
+                kafkaProducer.publishExecutionTelemetry(new com.threadspeak.event.CodeExecutionTelemetryEvent(
+                        request.getTopicId(), "java", elapsed, false, 124, "TIMEOUT"
+                ));
+
                 return new CodeExecutionResult(
                         false,
                         timeoutMsg,
@@ -360,6 +392,11 @@ public class CodeRunnerService {
 
             if (exitCode != 0 && !stderr.isBlank()) {
                 String cleanedStderr = cleanErrorOutput(stderr, tempDir.toAbsolutePath().toString());
+
+                kafkaProducer.publishExecutionTelemetry(new com.threadspeak.event.CodeExecutionTelemetryEvent(
+                        request.getTopicId(), "java", executionTime, false, exitCode, "RUNTIME_ERROR"
+                ));
+
                 return new CodeExecutionResult(
                         false,
                         stdout + "\n❌ Runtime Error (Exit Code " + exitCode + "):\n" + cleanedStderr,
@@ -377,6 +414,10 @@ public class CodeRunnerService {
             } else if (output.isBlank()) {
                 output = "Program executed successfully with exit code 0 (No console output produced).";
             }
+
+            kafkaProducer.publishExecutionTelemetry(new com.threadspeak.event.CodeExecutionTelemetryEvent(
+                    request.getTopicId(), "java", executionTime, true, exitCode, "SUCCESS"
+            ));
 
             return new CodeExecutionResult(
                     true,
@@ -401,6 +442,9 @@ public class CodeRunnerService {
                     "Execution error encountered."
             );
         } finally {
+            if (permitAcquired) {
+                executionBulkhead.release();
+            }
             if (tempDir != null) {
                 deleteDirectoryRecursively(tempDir.toFile());
             }

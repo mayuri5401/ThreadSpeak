@@ -37,11 +37,11 @@ codeSnippet:
     }
 ---
 
-# ✂️ StringTokenizer Class in Java (`java.util.StringTokenizer`)
+# StringTokenizer Class in Java (`java.util.StringTokenizer`)
 
 ---
 
-## 📌 1. What is `StringTokenizer`?
+## 1. What is `StringTokenizer`?
 
 `java.util.StringTokenizer` is a predefined utility class in the **`java.util`** package used to break a given string into smaller individual units called **tokens**, separated by specified boundary characters called **delimiters**.
 
@@ -55,7 +55,7 @@ public class StringTokenizer implements Enumeration<Object> {
 
 ---
 
-## 🏗️ 2. `StringTokenizer` Constructors
+## 2. `StringTokenizer` Constructors
 
 | Constructor Signature | Description |
 | :--- | :--- |
@@ -76,7 +76,7 @@ StringTokenizer st3 = new StringTokenizer("A+B*C", "+*", true);
 
 ---
 
-## 🛠️ 3. Essential Methods of `StringTokenizer`
+## 3. Essential Methods of `StringTokenizer`
 
 | Method | Return Type | Description |
 | :--- | :--- | :--- |
@@ -89,7 +89,7 @@ StringTokenizer st3 = new StringTokenizer("A+B*C", "+*", true);
 
 ---
 
-## 📊 4. `StringTokenizer` vs `String.split()` vs `Scanner`
+## 4. `StringTokenizer` vs `String.split()` vs `Scanner`
 
 | Feature | `StringTokenizer` | `String.split(regex)` | `java.util.Scanner` |
 | :--- | :--- | :--- | :--- |
@@ -100,7 +100,7 @@ StringTokenizer st3 = new StringTokenizer("A+B*C", "+*", true);
 
 ---
 
-## 💡 5. Complete Code Example
+## 5. Complete Code Example
 
 ```java
 import java.util.StringTokenizer;

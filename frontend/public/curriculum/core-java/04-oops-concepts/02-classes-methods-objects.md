@@ -37,11 +37,11 @@ codeSnippet:
     }
 ---
 
-# 🏛️ Class, Objects & Methods in Java
+# Class, Objects & Methods in Java
 
 ---
 
-## 🌍 Real World Example of Class, Methods & Objects
+## Real World Example of Class, Methods & Objects
 
 First, let's understand what **Class, Methods & Objects** represent in the real world. Below are some classes:
 
@@ -60,7 +60,7 @@ Since objects represent real-world entities, they are used to **call methods and
 
 ---
 
-## 🏗️ What is Class in Java ?
+## What is Class in Java ?
 
 - **Class is a blueprint or prototype or template** for creating objects in Java.
 - It is **not a real-world entity**, meaning it does not exist physically; it only defines how an object should behave.
@@ -96,7 +96,7 @@ public class Animal {
 
 ---
 
-## ⚙️ What is Method in Java ?
+## What is Method in Java ?
 
 A **method in Java** is a block of code that performs a specific task and can be reused multiple times.
 
@@ -118,7 +118,7 @@ We can write computations, data processing, input/output operations, object mani
 
 ---
 
-## 🏎️ What is Object in Java ?
+## What is Object in Java ?
 
 - **Object is an instance of a class**: Objects are created from a class blueprint and represent real data.
 - **Object is a real-world entity**: It represents tangible things like a car, person, or book in programming.
@@ -149,11 +149,11 @@ ClassName objectName = new ClassName();
 
 ---
 
-## 💻 8 Comprehensive Practical Programs
+## 8 Comprehensive Practical Programs
 
 ---
 
-### 📝 Program 1: Basic Class, Object & Method
+### Program 1: Basic Class, Object & Method
 In this program, we create an `Animal1` class with one `run()` method and call it using the `jumbo` object:
 
 ```java
@@ -182,7 +182,7 @@ I'm running
 
 ---
 
-### 📝 Program 2: Multiple Methods (`run` & `eat`)
+### Program 2: Multiple Methods (`run` & `eat`)
 In this program, the `Animal2` class has two methods (`run()` and `eat()`), and the `jumbo` object accesses both:
 
 ```java
@@ -220,7 +220,7 @@ I'm eating...!!
 
 ---
 
-### 📝 Program 3: Multiple Objects (`jumbo` & `buzo`)
+### Program 3: Multiple Objects (`jumbo` & `buzo`)
 In this program, two objects (`jumbo` and `buzo`) are instantiated from `Animal3` and access both methods:
 
 ```java
@@ -269,7 +269,7 @@ I'm running
 
 ---
 
-### 📝 Program 4: Method Parameters
+### Program 4: Method Parameters
 In this program, methods accept a `String name` parameter:
 
 ```java
@@ -310,7 +310,7 @@ Buzo is running
 
 ---
 
-### 📝 Program 5: Multiple Parameters in Methods
+### Program 5: Multiple Parameters in Methods
 In this program, methods accept multiple parameters:
 
 ```java
@@ -351,7 +351,7 @@ Buzo has run 12 km
 
 ---
 
-### 📝 Program 6: Instance Variables & Methods
+### Program 6: Instance Variables & Methods
 In this program, we declare instance variables `no_of_eyes` and `color` and print their values:
 
 ```java
@@ -397,7 +397,7 @@ Color : Black
 
 ---
 
-### 📝 Program 7: Best Practice (Separate Main Class)
+### Program 7: Best Practice (Separate Main Class)
 In real-world development, it is **best practice** to keep the entity class separate from the driver class containing the `main()` method:
 
 ```java
@@ -427,7 +427,7 @@ I'm running
 
 ---
 
-### 📝 Program 8: Best Practice (Multiple Entity Classes)
+### Program 8: Best Practice (Multiple Entity Classes)
 Demonstrating multiple entity classes (`Animal8` and `Birds8`) with distinct behaviors executed from a single `MainApp8`:
 
 ```java

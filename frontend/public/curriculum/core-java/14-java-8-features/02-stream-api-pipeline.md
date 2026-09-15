@@ -34,11 +34,11 @@ codeSnippet:
     }
 ---
 
-# 🌊 Stream API: Pipelines, Intermediate & Terminal Operations
+# Stream API: Pipelines, Intermediate & Terminal Operations
 
 ---
 
-## 📖 1. The Stream Lifecycle & Lazy Evaluation
+## 1. The Stream Lifecycle & Lazy Evaluation
 
 A Java Stream is **NOT a data structure** (it does not store data). It is a pipeline of computational steps executed lazily.
 
@@ -52,7 +52,7 @@ flowchart LR
 
 ---
 
-## 📊 2. Intermediate vs Terminal Operations
+## 2. Intermediate vs Terminal Operations
 
 | Category | Execution Nature | Return Type | Examples |
 | :--- | :--- | :--- | :--- |

@@ -50,15 +50,15 @@ codeSnippet:
     }
 ---
 
-# 🧠 HashMap Internals, Bucket Collisions & Treeification
+# HashMap Internals, Bucket Collisions & Treeification
 
 ---
 
-## 📖 1. The Core Architecture of `HashMap`
+## 1. The Core Architecture of `HashMap`
 
 A `HashMap` in Java is an array of buckets (`Node<K,V>[] table`), where each bucket stores key-value pairs.
 
-### 📐 The Mathematical Index Formula:
+### The Mathematical Index Formula:
 When you call `map.put(key, value)`:
 1. `hash = hash(key.hashCode())` (Applies bit-mixing to distribute bits evenly)
 2. `index = (n - 1) & hash` (Computes bucket index, where $n$ is the array power-of-two capacity, default 16)
@@ -75,7 +75,7 @@ flowchart TD
 
 ---
 
-## 🌳 2. The Java 8+ Treeification Thresholds
+## 2. The Java 8+ Treeification Thresholds
 
 In Java 7, collisions formed a linear `LinkedList`, degrading lookup to $O(n)$ under adversarial hash collisions (Denial of Service risk).
 
@@ -86,7 +86,7 @@ In **Java 8+**:
 
 ---
 
-## ⚖️ 3. Default Capacity & Load Factor (0.75)
+## 3. Default Capacity & Load Factor (0.75)
 
 - **Default Initial Capacity**: `16`
 - **Default Load Factor**: `0.75`

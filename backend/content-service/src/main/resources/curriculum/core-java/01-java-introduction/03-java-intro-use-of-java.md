@@ -30,14 +30,14 @@ codeSnippet:
     }
 ---
 
-### 🌐 Use of Java
+### Use of Java
 
-#### 📌 Usage
+#### Usage
 Java is a versatile and widely-used programming language known for its platform independence, reliability, and scalability. It is employed in various domains, including web development, mobile applications, enterprise systems, and embedded devices. Java’s **"write once, run anywhere"** capability, thanks to the Java Virtual Machine (JVM), allows developers to create applications that can run on multiple platforms without modification. Additionally, Java's extensive ecosystem of libraries and frameworks supports efficient and effective development across different types of software projects, making it a preferred choice for businesses and developers worldwide.
 
 ---
 
-### 🚀 Types of usage
+### Types of usage
 
 #### 1. Web Development
 * **Server-Side Technologies** : Java is extensively used in web development, particularly on the server side. Frameworks like Spring, JavaServer Faces (JSF), and Apache Struts help build robust, scalable web applications.

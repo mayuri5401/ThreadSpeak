@@ -63,7 +63,7 @@ class OrderService {
 
         // Responsibility 4: Send notification
         System.out.println("Email to " + customerEmail + ": Order " + orderId
-            + " confirmed. Total: $" + total);
+ + " confirmed. Total: $" + total);
     }
 }
 

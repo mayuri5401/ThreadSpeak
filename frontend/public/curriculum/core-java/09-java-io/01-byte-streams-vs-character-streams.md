@@ -45,11 +45,11 @@ codeSnippet:
     }
 ---
 
-# 💾 Java I/O: Byte Streams vs Character Streams
+# Java I/O: Byte Streams vs Character Streams
 
 ---
 
-## 📖 1. The Core I/O Stream Hierarchy
+## 1. The Core I/O Stream Hierarchy
 
 Java divides all Input/Output operations into two major families:
 1. **Byte Streams (`InputStream` / `OutputStream`)**: Operates on raw 8-bit bytes. Best for binary data (images, PDFs, audio, videos, network packets).
@@ -74,7 +74,7 @@ flowchart TD
 
 ---
 
-## ⚖️ 2. Comparison Table
+## 2. Comparison Table
 
 | Feature | Byte Streams | Character Streams |
 | :--- | :--- | :--- |
@@ -85,6 +85,6 @@ flowchart TD
 
 ---
 
-## 🚀 3. Why `BufferedReader` is Crucial for Performance
+## 3. Why `BufferedReader` is Crucial for Performance
 
 Reading from disk one byte at a time requires an expensive OS system call per byte. `BufferedReader` reads a large 8KB chunk into an internal buffer in memory, reducing OS system calls by over 99%!

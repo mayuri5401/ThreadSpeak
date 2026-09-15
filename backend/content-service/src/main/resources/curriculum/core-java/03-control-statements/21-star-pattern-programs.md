@@ -33,13 +33,13 @@ codeSnippet:
     }
 ---
 
-# ⭐ Top 18 Star Pattern Programs in Java
+# Top 18 Star Pattern Programs in Java
 
 Star pattern printing is the single best way to build rock-solid mastery over **nested loops**, **coordinate spacing**, and **row-column iteration logic**.
 
 ---
 
-## 🔹 1. Right Triangle Star Pattern
+## 1. Right Triangle Star Pattern
 ```text
 *
 * *
@@ -63,7 +63,7 @@ public class RightTriangle {
 
 ---
 
-## 🔹 2. Inverted Right Triangle Star Pattern
+## 2. Inverted Right Triangle Star Pattern
 ```text
 * * * * *
 * * * *
@@ -87,12 +87,12 @@ public class InvertedRightTriangle {
 
 ---
 
-## 🔹 3. Left Triangle Star Pattern
+## 3. Left Triangle Star Pattern
 ```text
         *
-      * *
-    * * *
-  * * * *
+ * *
+ * * *
+ * * * *
 * * * * *
 ```
 ```java
@@ -114,12 +114,12 @@ public class LeftTriangle {
 
 ---
 
-## 🔹 4. Inverted Left Triangle Star Pattern
+## 4. Inverted Left Triangle Star Pattern
 ```text
 * * * * *
-  * * * *
-    * * *
-      * *
+ * * * *
+ * * *
+ * *
         *
 ```
 ```java
@@ -141,11 +141,11 @@ public class InvertedLeftTriangle {
 
 ---
 
-## 🔹 5. Pyramid Star Pattern (Equilateral Triangle)
+## 5. Pyramid Star Pattern (Equilateral Triangle)
 ```text
     *
-   * *
-  * * *
+ * *
+ * * *
  * * * *
 * * * * *
 ```
@@ -168,12 +168,12 @@ public class PyramidPattern {
 
 ---
 
-## 🔹 6. Inverted Pyramid Star Pattern
+## 6. Inverted Pyramid Star Pattern
 ```text
 * * * * *
  * * * *
-  * * *
-   * *
+ * * *
+ * *
     *
 ```
 ```java
@@ -195,16 +195,16 @@ public class InvertedPyramid {
 
 ---
 
-## 🔹 7. Diamond Star Pattern
+## 7. Diamond Star Pattern
 ```text
     *
-   * *
-  * * *
+ * *
+ * * *
  * * * *
 * * * * *
  * * * *
-  * * *
-   * *
+ * * *
+ * *
     *
 ```
 ```java
@@ -229,12 +229,12 @@ public class DiamondPattern {
 
 ---
 
-## 🔹 8. Hollow Square Star Pattern
+## 8. Hollow Square Star Pattern
 ```text
 * * * * *
-*       *
-*       *
-*       *
+* *
+* *
+* *
 * * * * *
 ```
 ```java
@@ -257,12 +257,12 @@ public class HollowSquare {
 
 ---
 
-## 🔹 9. Hollow Pyramid Star Pattern
+## 9. Hollow Pyramid Star Pattern
 ```text
     *
-   * *
-  *   *
- *     *
+ * *
+ * *
+ * *
 *********
 ```
 ```java
@@ -286,16 +286,16 @@ public class HollowPyramid {
 
 ---
 
-## 🔹 10. Hollow Diamond Star Pattern
+## 10. Hollow Diamond Star Pattern
 ```text
     *
-   * *
-  *   *
- *     *
-*       *
- *     *
-  *   *
-   * *
+ * *
+ * *
+ * *
+* *
+ * *
+ * *
+ * *
     *
 ```
 ```java
@@ -324,7 +324,7 @@ public class HollowDiamond {
 
 ---
 
-## 🔹 11. Right Pascal's Triangle
+## 11. Right Pascal's Triangle
 ```text
 *
 * *
@@ -352,14 +352,14 @@ public class RightPascal {
 
 ---
 
-## 🔹 12. Left Pascal's Triangle
+## 12. Left Pascal's Triangle
 ```text
       *
-    * *
-  * * *
+ * *
+ * * *
 * * * *
-  * * *
-    * *
+ * * *
+ * *
       *
 ```
 ```java
@@ -382,15 +382,15 @@ public class LeftPascal {
 
 ---
 
-## 🔹 13. Sandglass (Hourglass) Star Pattern
+## 13. Sandglass (Hourglass) Star Pattern
 ```text
 * * * * *
  * * * *
-  * * *
-   * *
+ * * *
+ * *
     *
-   * *
-  * * *
+ * *
+ * * *
  * * * *
 * * * * *
 ```
@@ -414,9 +414,9 @@ public class SandglassPattern {
 
 ---
 
-## 🔹 14. Butterfly Star Pattern
+## 14. Butterfly Star Pattern
 ```text
-*        *
+* *
 **      **
 ***    ***
 ****  ****
@@ -424,7 +424,7 @@ public class SandglassPattern {
 ****  ****
 ***    ***
 **      **
-*        *
+* *
 ```
 ```java
 public class ButterflyPattern {
@@ -450,13 +450,13 @@ public class ButterflyPattern {
 
 ---
 
-## 🔹 15. Cross (X) Star Pattern
+## 15. Cross (X) Star Pattern
 ```text
-*   *
+* *
  * *
   *
  * *
-*   *
+* *
 ```
 ```java
 public class CrossPattern {
@@ -475,7 +475,7 @@ public class CrossPattern {
 
 ---
 
-## 🔹 16. Plus (+) Star Pattern
+## 16. Plus (+) Star Pattern
 ```text
     *
     *
@@ -500,12 +500,12 @@ public class PlusPattern {
 
 ---
 
-## 🔹 17. Hollow Inverted Pyramid
+## 17. Hollow Inverted Pyramid
 ```text
 *********
- *     *
-  *   *
-   * *
+ * *
+ * *
+ * *
     *
 ```
 ```java
@@ -526,7 +526,7 @@ public class HollowInvertedPyramid {
 
 ---
 
-## 🔹 18. Square Star Grid
+## 18. Square Star Grid
 ```text
 * * * * *
 * * * * *

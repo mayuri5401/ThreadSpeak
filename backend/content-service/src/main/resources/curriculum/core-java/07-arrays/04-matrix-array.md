@@ -44,11 +44,11 @@ codeSnippet:
     }
 ---
 
-# 🧮 Matrix Array in Java — Masterclass
+# Matrix Array in Java — Masterclass
 
 ---
 
-## 📖 1. Introduction to Matrix Arrays
+## 1. Introduction to Matrix Arrays
 
 A **Matrix Array** is a specialized type of **two-dimensional (2D) array** that stores data in a **$M \text{ rows} \times N \text{ columns}$** format, just like a mathematical matrix or table.
 
@@ -59,7 +59,7 @@ It is widely used in scientific computing, game development, image processing, m
 - **Determinants & Inverse Matrices**
 - **Diagonal & Symmetry Checks**
 
-### 📝 Example:
+### Example:
 ```java
 int[][] matrixArr = {
     {10, 20, 30},
@@ -87,25 +87,25 @@ flowchart TD
 
 ---
 
-## 📌 2. Important Points to Remember
+## 2. Important Points to Remember
 
 1. **Numeric Values Only**:
-   - A Matrix Array stores only **numeric types** (`int`, `float`, `double`, `long`), **not** `String` or custom objects.
-   - *Reason*: Mathematical operations like $+$, $-$, $\times$, determinants, and transformations only make mathematical sense with numeric numbers.
+ - A Matrix Array stores only **numeric types** (`int`, `float`, `double`, `long`), **not** `String` or custom objects.
+ - *Reason*: Mathematical operations like $+$, $-$, $\times$, determinants, and transformations only make mathematical sense with numeric numbers.
 2. **Uniform Columns (Rectangular Grid)**:
-   - A matrix array can have any number of rows ($M$), but **every row must have the exact same number of columns ($N$)**.
-   - *Note*: If rows have different column lengths, Java considers it a **Jagged Array**, not a mathematical matrix.
+ - A matrix array can have any number of rows ($M$), but **every row must have the exact same number of columns ($N$)**.
+ - *Note*: If rows have different column lengths, Java considers it a **Jagged Array**, not a mathematical matrix.
 3. **Dimensions**:
-   - `matrix.length` $\rightarrow$ gives the **number of rows ($M$)**.
-   - `matrix[i].length` $\rightarrow$ gives the **number of columns ($N$)** in row $i$.
+ - `matrix.length` $\rightarrow$ gives the **number of rows ($M$)**.
+ - `matrix[i].length` $\rightarrow$ gives the **number of columns ($N$)** in row $i$.
 
 ---
 
-## 🛠️ 3. Working with Matrix Arrays (The 4 Steps)
+## 3. Working with Matrix Arrays (The 4 Steps)
 
 ---
 
-### 📝 Step 1: Declare a Matrix Array
+### Step 1: Declare a Matrix Array
 Defines the reference variable on the Stack without allocating Heap memory:
 ```java
 dataType[][] arrayName;
@@ -116,7 +116,7 @@ int[][] numbers;
 
 ---
 
-### 📦 Step 2: Create a Matrix Array
+### Step 2: Create a Matrix Array
 Allocates contiguous memory on the Heap for the specified rows and columns:
 ```java
 arrayName = new dataType[rows][columns];
@@ -125,16 +125,16 @@ arrayName = new dataType[rows][columns];
 numbers = new int[2][3]; // 2 rows, 3 columns (6 elements initialized to 0)
 ```
 
-#### ⚡ Combined Declaration & Creation:
+#### Combined Declaration & Creation:
 ```java
 int[][] numbers = new int[2][3];
 ```
 
 ---
 
-### ✏️ Step 3: Initialize a Matrix Array
+### Step 3: Initialize a Matrix Array
 
-#### 🏷️ Manual Element-by-Element Assignment:
+#### Manual Element-by-Element Assignment:
 ```java
 int[][] numbers = new int[2][3];
 
@@ -149,7 +149,7 @@ numbers[1][1] = 50;
 numbers[1][2] = 60;
 ```
 
-#### 💡 Shorthand Array Literal (All in One Line):
+#### Shorthand Array Literal (All in One Line):
 ```java
 int[][] numbers = {
     {10, 20, 30},
@@ -159,9 +159,9 @@ int[][] numbers = {
 
 ---
 
-### 🔍 Step 4: Retrieve Elements of a Matrix Array
+### Step 4: Retrieve Elements of a Matrix Array
 
-#### 1️⃣ Using Nested `for` Loops (With Row & Column Indices):
+#### 1⃣ Using Nested `for` Loops (With Row & Column Indices):
 ```java
 for (int i = 0; i < numbers.length; i++) {
     for (int j = 0; j < numbers[i].length; j++) {
@@ -171,7 +171,7 @@ for (int i = 0; i < numbers.length; i++) {
 }
 ```
 
-#### 2️⃣ Using Nested Enhanced `for-each` Loops (Preferred for Clean Display):
+#### 2⃣ Using Nested Enhanced `for-each` Loops (Preferred for Clean Display):
 ```java
 for (int[] row : numbers) {
     for (int num : row) {
@@ -183,9 +183,9 @@ for (int[] row : numbers) {
 
 ---
 
-## 💻 4. Complete Code Programs & Walkthrough
+## 4. Complete Code Programs & Walkthrough
 
-### 📜 Program 1: Basic Matrix Array Display (MainApp1)
+### Program 1: Basic Matrix Array Display (MainApp1)
 ```java
 public class MainApp1 {
     public static void main(String[] args) {
@@ -207,7 +207,7 @@ public class MainApp1 {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Numbers are:
 10 20 30 
@@ -216,7 +216,7 @@ Numbers are:
 
 ---
 
-### 📜 Program 2: Matrix Addition in Java (MatrixAddition)
+### Program 2: Matrix Addition in Java (MatrixAddition)
 ```java
 public class MatrixAddition {
     public static void main(String[] args) {
@@ -254,28 +254,28 @@ public class MatrixAddition {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Result of Matrix Addition:
 8 10 12 
 14 16 18 
 ```
 
-#### 📌 Points to Note:
+#### Points to Note:
 1. **Dimension Requirement**: To perform addition (or subtraction), both matrices **must have identical dimensions** ($R_1 = R_2$ and $C_1 = C_2$).
 2. **Operation**: Each cell in the result matrix is the direct sum of the corresponding cells at `[i][j]`:
-   - `sum[0][0] = 1 + 7 = 8`
-   - `sum[0][1] = 2 + 8 = 10`
-   - `sum[0][2] = 3 + 9 = 12`
-   - `sum[1][0] = 4 + 10 = 14`
-   - `sum[1][1] = 5 + 11 = 16`
-   - `sum[1][2] = 6 + 12 = 18`
+ - `sum[0][0] = 1 + 7 = 8`
+ - `sum[0][1] = 2 + 8 = 10`
+ - `sum[0][2] = 3 + 9 = 12`
+ - `sum[1][0] = 4 + 10 = 14`
+ - `sum[1][1] = 5 + 11 = 16`
+ - `sum[1][2] = 6 + 12 = 18`
 
 ---
 
-## 🧠 5. Advanced Matrix Operations
+## 5. Advanced Matrix Operations
 
-### 1️⃣ Matrix Multiplication ($A \times B$)
+### 1⃣ Matrix Multiplication ($A \times B$)
 - **Condition**: Columns of Matrix $A$ must equal Rows of Matrix $B$ ($C_1 == R_2$).
 - If $A$ is $(R_1 \times C_1)$ and $B$ is $(R_2 \times C_2)$, the resulting matrix $C$ has size $(R_1 \times C_2)$.
 - **Time Complexity**: $O(R_1 \times C_2 \times C_1)$.
@@ -304,7 +304,7 @@ public static int[][] multiply(int[][] a, int[][] b) {
 
 ---
 
-### 2️⃣ Matrix Transpose ($A^T$)
+### 2⃣ Matrix Transpose ($A^T$)
 - Swapping rows with columns: element at `[i][j]` moves to `[j][i]`.
 - An $M \times N$ matrix becomes an $N \times M$ transposed matrix.
 
@@ -325,7 +325,7 @@ public static int[][] transpose(int[][] matrix) {
 
 ---
 
-### 3️⃣ Primary and Secondary Diagonals (Square Matrix $N \times N$)
+### 3⃣ Primary and Secondary Diagonals (Square Matrix $N \times N$)
 - **Primary Diagonal**: Elements where $i == j$.
 - **Secondary Diagonal**: Elements where $i + j == N - 1$.
 
@@ -343,7 +343,7 @@ public static void printDiagonals(int[][] matrix) {
 
 ---
 
-## 📊 6. Summary of Matrix Complexity
+## 6. Summary of Matrix Complexity
 
 | Matrix Operation | Time Complexity | Space Complexity | Compatibility Rule |
 | :--- | :--- | :--- | :--- |
@@ -355,22 +355,22 @@ public static void printDiagonals(int[][] matrix) {
 
 ---
 
-## 🎬 7. Interactive Visualizer Animation Walkthrough
+## 7. Interactive Visualizer Animation Walkthrough
 
 Open the **Architecture Tab** to explore the **Interactive Matrix Array Visualizer**:
 
 1. **Live Matrix Addition Simulator**:
-   - Step through Matrix $A + \text{Matrix } B = \text{Matrix } C$ with animated corresponding cell highlights ($1+7=8$, $2+8=10$, etc.).
+ - Step through Matrix $A + \text{Matrix } B = \text{Matrix } C$ with animated corresponding cell highlights ($1+7=8$, $2+8=10$, etc.).
 2. **Matrix Multiplication Lab**:
-   - Watch the row of Matrix $A$ and column of Matrix $B$ highlight together as their dot product sum is computed.
+ - Watch the row of Matrix $A$ and column of Matrix $B$ highlight together as their dot product sum is computed.
 3. **Transpose & Diagonal Visualizer**:
-   - Watch $(i, j)$ flip to $(j, i)$ live, or trace primary and secondary diagonals on a square grid.
+ - Watch $(i, j)$ flip to $(j, i)$ live, or trace primary and secondary diagonals on a square grid.
 4. **Interactive Matrix Assessment Quiz**:
-   - Test your understanding of matrix dimension rules, compatibility checks, and addition algorithms.
+ - Test your understanding of matrix dimension rules, compatibility checks, and addition algorithms.
 
 ---
 
-## ❓ 8. Top Interview FAQs
+## 8. Top Interview FAQs
 
 <details>
 <summary><b>Q1: Why do matrix arrays only store numeric types?</b></summary>

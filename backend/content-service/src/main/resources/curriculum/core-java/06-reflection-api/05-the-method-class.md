@@ -60,11 +60,11 @@ codeSnippet:
     }
 ---
 
-# 🚀 Method class in Reflection API
+# Method class in Reflection API
 
 ---
 
-## 📖 1. Introduction & Overview
+## 1. Introduction & Overview
 
 The **`Method` class** in Java is part of the **Reflection API** and represents a single method of a class (either declared directly or inherited from parent classes/interfaces).
 
@@ -76,7 +76,7 @@ It provides methods to get metadata such as its **name**, **return type**, **par
 
 ---
 
-## 🏛️ 2. Method Class Architecture & Hierarchy
+## 2. Method Class Architecture & Hierarchy
 
 In Java's reflection architecture:
 - **`Method`** inherits from the abstract class **`Executable`** (which also serves as the parent of `Constructor`).
@@ -106,7 +106,7 @@ graph TD
 
 ---
 
-## 🔑 3. Important Methods of Method Class
+## 3. Important Methods of Method Class
 
 Below are the most crucial methods provided by the `Method` class:
 
@@ -123,15 +123,15 @@ Below are the most crucial methods provided by the `Method` class:
 
 ---
 
-## 💡 4. Real-World Mental Models & Analogies
+## 4. Real-World Mental Models & Analogies
 
 To understand why the `Method` class exists and how it operates, consider these real-world models:
 
-### 🎙️ Analogy 1: The Smart Home Voice Assistant (Alexa / Siri)
+### Analogy 1: The Smart Home Voice Assistant (Alexa / Siri)
 - **Normal Java Method Call (`lamp.turnOn(75)`)**: You walk over to the physical bedside lamp and twist the physical knob to 75% brightness. Both you and the lamp must be directly wired together at compile time.
 - **Reflective Invocation (`method.invoke(lamp, 75)`)**: You say into your smart speaker: *"Alexa, call 'turnOn' on 'lamp' with brightness 75"*. The voice assistant converts your spoken text string `"turnOn"` into a registered method lookup, passes the parameter `75`, and triggers the device wirelessly at runtime!
 
-### 🍽️ Analogy 2: The Restaurant Order Ticket
+### Analogy 2: The Restaurant Order Ticket
 - When a customer orders a meal, the waiter doesn't drag the customer into the kitchen.
 - The waiter writes an order ticket with method name (`"bakePizza"`) and parameters (`"ThinCrust", "ExtraCheese"`). The chef executes it and delivers the meal in an **`Object` Return Envelope**.
 
@@ -153,7 +153,7 @@ sequenceDiagram
 
 ---
 
-## 💻 5. Complete Java Code Demonstration
+## 5. Complete Java Code Demonstration
 
 Here is a complete, runnable program demonstrating method metadata extraction, parameter scanning, access bypass, and dynamic execution:
 
@@ -211,7 +211,7 @@ public class MainApp
 }
 ```
 
-### 🖥️ Exact Program Output:
+### Exact Program Output:
 ```text
 Method Name: add
 Return Type: int
@@ -228,7 +228,7 @@ Message: Hello Reflection!
 
 ---
 
-## 🔍 6. Step-by-Step Breakdown of the Code
+## 6. Step-by-Step Breakdown of the Code
 
 Let's dissect each critical phase of the program:
 
@@ -245,10 +245,10 @@ Let's dissect each critical phase of the program:
    Returns both `public` (`add`) and `private` (`display`) methods declared directly inside `Calculator`.
 
 3. **Inspecting Method Signature Details**:
-   - `method.getName()` retrieves `"add"` or `"display"`.
-   - `method.getReturnType().getSimpleName()` retrieves `"int"` or `"void"`.
-   - `Modifier.toString(method.getModifiers())` decodes the integer bitmask into `"public"` or `"private"`.
-   - `method.getParameterTypes()` returns an array of types (`int.class`, `String.class`).
+ - `method.getName()` retrieves `"add"` or `"display"`.
+ - `method.getReturnType().getSimpleName()` retrieves `"int"` or `"void"`.
+ - `Modifier.toString(method.getModifiers())` decodes the integer bitmask into `"public"` or `"private"`.
+ - `method.getParameterTypes()` returns an array of types (`int.class`, `String.class`).
 
 4. **Bypassing Private Encapsulation**:
    ```java
@@ -264,7 +264,7 @@ Let's dissect each critical phase of the program:
 
 ---
 
-## 🎯 7. Essential Concepts & Practical Scenarios
+## 7. Essential Concepts & Practical Scenarios
 
 ### Concept A: Overloaded Methods — Why Parameter Types are Mandatory
 In Java, a class can have multiple methods with the exact same name (Method Overloading).
@@ -320,7 +320,7 @@ try {
 
 ---
 
-## 🏢 8. How Major Industry Frameworks Use the `Method` Class
+## 8. How Major Industry Frameworks Use the `Method` Class
 
 | Framework | How it Uses `Method.invoke()` Under the Hood |
 | :--- | :--- |
@@ -331,7 +331,7 @@ try {
 
 ---
 
-## 📊 9. `getMethod()` vs `getDeclaredMethod()` Comparison
+## 9. `getMethod()` vs `getDeclaredMethod()` Comparison
 
 | Feature | `Class.getMethod(name, params...)` | `Class.getDeclaredMethod(name, params...)` |
 | :--- | :--- | :--- |
@@ -342,7 +342,7 @@ try {
 
 ---
 
-## 🎬 10. Interactive Architecture Simulation Theater
+## 10. Interactive Architecture Simulation Theater
 
 Head over to the **Architecture Tab** to experience the **Live 5-Stage Method Dispatch Simulation**:
 1. **Stage 1 (Metaspace Lookup)**: Resolves the `Method` reference in Metaspace.

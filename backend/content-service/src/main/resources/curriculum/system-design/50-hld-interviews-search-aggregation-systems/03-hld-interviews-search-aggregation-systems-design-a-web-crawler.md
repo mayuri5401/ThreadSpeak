@@ -1132,9 +1132,9 @@ Solution: **Bit-sampling tables**
 
 1. Store each SimHash in multiple tables, indexed by different bit subsets.
 2. To find near-duplicates of hash H:
-   - Query each table using corresponding bit subset of H
-   - Get candidate matches
-   - Compute exact Hamming distance for candidates
+ - Query each table using corresponding bit subset of H
+ - Get candidate matches
+ - Compute exact Hamming distance for candidates
 
 This reduces comparison from O(N) to O(candidates).
 

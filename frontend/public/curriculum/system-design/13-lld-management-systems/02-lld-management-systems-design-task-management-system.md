@@ -752,7 +752,7 @@ Implementation means a class fulfills an interface contract. The implementing cl
 
 Several design patterns are employed to ensure the system is flexible, scalable, and maintainable.
 
-### [**State** Pattern](/learn/lld/state)  (Task Lifecycle)
+### [**State** Pattern](/learn/lld/state) (Task Lifecycle)
 
 **The Problem:** A task can be in four states: TODO, IN_PROGRESS, DONE, BLOCKED. But transitions aren't free-form. You can't go directly from TODO to DONE. You can't mark a parent DONE if subtasks aren't complete. If we use a simple enum with switch statements, validation logic gets scattered throughout the codebase.
 

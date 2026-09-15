@@ -61,22 +61,22 @@ codeSnippet:
     }
 ---
 
-# 🎭 Abstraction in Java
+# Abstraction in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 **Abstraction** is the foundational OOP concept of:
 > **Hiding internal implementation details and showing only the essential features to the user.**
 
-### 💡 Real World Example:
+### Real World Example:
 When you drive a car, you only need to know how to operate the **steering wheel, pedals, and gear shift**. You don't need to understand how the internal combustion engine injects fuel, how the brake hydraulics compress fluid, or how the transmission gearbox is designed.  
 — *Concept popularized by James Gosling*
 
 ---
 
-## ⚙️ How to Achieve Abstraction in Java ?
+## How to Achieve Abstraction in Java ?
 
 We can achieve Abstraction in Java in **two ways**:
 1. **Using Abstract Classes** (Achieves $0\%$ to $100\%$ abstraction — can have both abstract & concrete methods).
@@ -84,14 +84,14 @@ We can achieve Abstraction in Java in **two ways**:
 
 ---
 
-## 🛑 Abstract Methods
+## Abstract Methods
 
-### 📌 Introduction:
+### Introduction:
 An **abstract method** is a method that is declared **without an implementation (no method body)**.
 - It provides only the **method signature** and forces concrete subclasses to provide the actual implementation.
 - Declared using the **`abstract`** keyword.
 
-### 📝 Syntax & Example:
+### Syntax & Example:
 ```java
 // Syntax:
 abstract returnType methodName(parameters);
@@ -100,7 +100,7 @@ abstract returnType methodName(parameters);
 abstract void makeSound(); // Abstract method – no body, ends with semicolon (;)
 ```
 
-### 📜 Rules of Abstract Method:
+### Rules of Abstract Method:
 1. **No method body** — ends immediately with a semicolon (`;`).
 2. **Must be declared inside an abstract class or interface**.
 3. A class that contains at least one abstract method **must be declared abstract**.
@@ -109,14 +109,14 @@ abstract void makeSound(); // Abstract method – no body, ends with semicolon (
 
 ---
 
-## 🏛️ Abstract Class
+## Abstract Class
 
-### 📌 Introduction:
+### Introduction:
 An **abstract class** in Java is a class that is declared using the **`abstract`** keyword.
 - It can contain a mix of **abstract methods** (without body) and **concrete methods** (with body).
 - It **cannot be instantiated** (you cannot create objects of it directly using `new`).
 
-### 📝 Syntax & Example:
+### Syntax & Example:
 ```java
 abstract class Car {
     // Abstract method (must be implemented by subclasses)
@@ -136,7 +136,7 @@ class Sedan extends Car {
 }
 ```
 
-### 📜 Rules of Abstract Class:
+### Rules of Abstract Class:
 1. Must be declared using the **`abstract`** keyword.
 2. Can contain both abstract and concrete methods (or even zero abstract methods).
 3. **Cannot be instantiated directly** (`new Vehicle()` ❌).
@@ -146,7 +146,7 @@ class Sedan extends Car {
 
 ---
 
-## ❌ Program Without Abstraction (The Problem)
+## Program Without Abstraction (The Problem)
 
 ```java
 // Car class without abstraction
@@ -191,7 +191,7 @@ public class MainApp {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Car has 4 tyres.
 Car starts with a key ignition.
@@ -202,25 +202,25 @@ Scooter starts with a kick or self-start.
 
 ---
 
-## ⚠️ Disadvantages of Not Using Abstraction
+## Disadvantages of Not Using Abstraction
 
 1. **No Polymorphism**:
-   - We cannot use a common parent reference to refer to multiple vehicle types (`Vehicle vehicle = new Car();` is impossible because no common `Vehicle` type exists).
-   - Limits architectural flexibility and prevents uniform collections (`List<Vehicle>`).
+ - We cannot use a common parent reference to refer to multiple vehicle types (`Vehicle vehicle = new Car();` is impossible because no common `Vehicle` type exists).
+ - Limits architectural flexibility and prevents uniform collections (`List<Vehicle>`).
 2. **Code Duplication**:
-   - Common logic like `displayTyres()` is copy-pasted in every class (`Car`, `Scooter`, etc.).
-   - In large enterprise systems, this leads to duplicate code, difficult maintenance, and bug propagation.
+ - Common logic like `displayTyres()` is copy-pasted in every class (`Car`, `Scooter`, etc.).
+ - In large enterprise systems, this leads to duplicate code, difficult maintenance, and bug propagation.
 3. **No Method Enforcement**:
-   - There is no guarantee that all vehicle-related classes will implement essential methods like `start()`.
-   - A developer might forget to write a critical method in a new `Bike` class.
+ - There is no guarantee that all vehicle-related classes will implement essential methods like `start()`.
+ - A developer might forget to write a critical method in a new `Bike` class.
 4. **Poor Scalability**:
-   - As new vehicles are added, maintaining consistency becomes difficult. Changes to shared logic require editing every single class.
+ - As new vehicles are added, maintaining consistency becomes difficult. Changes to shared logic require editing every single class.
 5. **No Common Structure or Contract**:
-   - Without a common abstract class or interface, there is no standardized blueprint that all vehicle classes must adhere to.
+ - Without a common abstract class or interface, there is no standardized blueprint that all vehicle classes must adhere to.
 
 ---
 
-## ✅ Program Using Abstraction (The Solution)
+## Program Using Abstraction (The Solution)
 
 ```java
 // Abstract class used to remove code duplication and enforce method structure
@@ -280,7 +280,7 @@ public class MainApp {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 This vehicle has 4 tyres.
 Car starts with key ignition.

@@ -1046,8 +1046,8 @@ The read logic is straightforward:
 ```shell
 1. Query the database for the paste metadata
 2. Check if content_inline is populated
-   - If yes: return it (we are done)
-   - If no: fetch from content_path in object storage
+ - If yes: return it (we are done)
+ - If no: fetch from content_path in object storage
 3. Return the content
 ```
 
@@ -1055,12 +1055,12 @@ For writes, the logic decides based on content size:
 
 ```shell
 1. If content.length < 64KB:
-   - Store in content_inline column
-   - Set content_path to null
+ - Store in content_inline column
+ - Set content_path to null
 2. Else:
-   - Upload to object storage at path: s3://bucket/{paste_key}
-   - Store the path in content_path column
-   - Set content_inline to null
+ - Upload to object storage at path: s3://bucket/{paste_key}
+ - Store the path in content_path column
+ - Set content_inline to null
 ```
 
 ### Compression for Large Content
@@ -1160,7 +1160,7 @@ Cache Value:  JSON {metadata, content}
 TTL:          min(time_until_expiry, 24_hours)
 ```
 
-#### **Why set a maximum TTL of 24 hours"** 
+#### **Why set a maximum TTL of 24 hours"**
 
 Even if a paste does not expire for a year, we do not want to cache it forever. Fresh data from the database ensures we catch any edge cases where cache and database diverge. The 24-hour window is a reasonable balance.
 

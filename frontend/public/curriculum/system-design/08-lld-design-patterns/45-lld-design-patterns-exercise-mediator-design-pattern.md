@@ -2237,13 +2237,13 @@ Build an auction system where bidders place bids through an auctioneer mediator.
 
 - `AuctionMediator` interface with `placeBid(bidder, amount)`, `registerBidder(bidder)`, and `closeAuction()` methods
 - `Auctioneer` mediator that:
-   - Tracks current highest bid and highest bidder
-   - Rejects bids that are not at least $10 more than the current highest bid
-   - Notifies all bidders when a new highest bid is placed
-   - Announces the winner when the auction closes
+ - Tracks current highest bid and highest bidder
+ - Rejects bids that are not at least $10 more than the current highest bid
+ - Notifies all bidders when a new highest bid is placed
+ - Announces the winner when the auction closes
 - `Bidder` class with mediator reference, name, and balance
-   - Cannot bid more than their balance
-   - Receives notifications about other bids
+ - Cannot bid more than their balance
+ - Receives notifications about other bids
 
 ```java
 import java.util.*;
@@ -2812,7 +2812,7 @@ class Auctioneer implements AuctionMediator {
     public void placeBid(Bidder bidder, int amount) {
         if (amount < highestBid + MINIMUM_INCREMENT) {
             bidder.receiveNotification("Bid rejected. Minimum bid is $" + (highestBid + MINIMUM_INCREMENT)
-                + " (current: $" + highestBid + " + $" + MINIMUM_INCREMENT + " increment).");
+ + " (current: $" + highestBid + " + $" + MINIMUM_INCREMENT + " increment).");
             return;
         }
         if (amount > bidder.getBalance()) {
@@ -2835,7 +2835,7 @@ class Auctioneer implements AuctionMediator {
             System.out.println("[Auctioneer] Auction closed. No bids on " + itemName + ".");
         } else {
             System.out.println("[Auctioneer] Auction closed! Winner: " + highestBidder.getName()
-                + " with $" + highestBid + " for \"" + itemName + "\"");
+ + " with $" + highestBid + " for \"" + itemName + "\"");
             for (Bidder b : bidders) {
                 if (b == highestBidder) {
                     b.receiveNotification("Congratulations! You won \"" + itemName + "\" for $" + highestBid + "!");
@@ -3009,7 +3009,7 @@ public:
     void placeBid(Bidder* bidder, int amount) override {
         if (amount < highestBid + MINIMUM_INCREMENT) {
             bidder->receiveNotification("Bid rejected. Minimum bid is $" + to_string(highestBid + MINIMUM_INCREMENT)
-                + " (current: $" + to_string(highestBid) + " + $" + to_string(MINIMUM_INCREMENT) + " increment).");
+ + " (current: $" + to_string(highestBid) + " + $" + to_string(MINIMUM_INCREMENT) + " increment).");
             return;
         }
         if (amount > bidder->getBalance()) {
@@ -3254,7 +3254,7 @@ class Auctioneer : IAuctionMediator
         if (amount < highestBid + MinimumIncrement)
         {
             bidder.ReceiveNotification("Bid rejected. Minimum bid is $" + (highestBid + MinimumIncrement)
-                + " (current: $" + highestBid + " + $" + MinimumIncrement + " increment).");
+ + " (current: $" + highestBid + " + $" + MinimumIncrement + " increment).");
             return;
         }
         if (amount > bidder.Balance)
@@ -3279,7 +3279,7 @@ class Auctioneer : IAuctionMediator
         else
         {
             Console.WriteLine("[Auctioneer] Auction closed! Winner: " + highestBidder.Name
-                + " with $" + highestBid + " for \"" + itemName + "\"");
+ + " with $" + highestBid + " for \"" + itemName + "\"");
             foreach (var b in bidders)
             {
                 if (b == highestBidder)

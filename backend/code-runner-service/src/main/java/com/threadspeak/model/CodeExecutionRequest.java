@@ -9,18 +9,23 @@ public class CodeExecutionRequest {
     private String language;
     private Map<String, Object> executionFlags;
 
+    private String topicId;
     private String stdin;
 
     public CodeExecutionRequest() {}
 
-    public CodeExecutionRequest(String scenarioId, String code, Map<String, String> files, String language, Map<String, Object> executionFlags, String stdin) {
+    public CodeExecutionRequest(String scenarioId, String code, Map<String, String> files, String language, Map<String, Object> executionFlags, String stdin, String topicId) {
         this.scenarioId = scenarioId;
         this.code = code;
         this.files = files;
         this.language = language;
         this.executionFlags = executionFlags;
         this.stdin = stdin;
+        this.topicId = topicId;
     }
+
+    public String getTopicId() { return topicId != null ? topicId : scenarioId; }
+    public void setTopicId(String topicId) { this.topicId = topicId; }
 
     public String getScenarioId() { return scenarioId; }
     public void setScenarioId(String scenarioId) { this.scenarioId = scenarioId; }

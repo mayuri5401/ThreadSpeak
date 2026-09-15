@@ -29,7 +29,7 @@ codeSnippet:
     }
 ---
 
-### ☕ What is Java?
+### What is Java?
 
 Java is a **high-level, robust, secured, and object-oriented programming language** designed to have as few implementation dependencies as possible.
 
@@ -37,20 +37,20 @@ Java is a **high-level, robust, secured, and object-oriented programming languag
 - **Object-Oriented**: Software is organized around real-world objects and entities (`Student`, `Car`, `Bank`, `Order`).
 - **Platform Independent**: Write Once, Run Anywhere (WORA) via JVM bytecode.
 
-### 📦 The 3 Major Java Editions
+### The 3 Major Java Editions
 
 1. **Java Standard Edition (Java SE)**:
-   - Core Java platform for desktop, console, and standalone applications.
-   - Contains the **JVM**, core libraries (`java.lang`, `java.util`, `java.io`), and base APIs.
+ - Core Java platform for desktop, console, and standalone applications.
+ - Contains the **JVM**, core libraries (`java.lang`, `java.util`, `java.io`), and base APIs.
 
 2. **Jakarta Enterprise Edition (Jakarta EE / Formerly Java EE)**:
-   - Enterprise-scale, distributed web applications and cloud microservices.
-   - Powers technologies like **Servlets, JSP, RESTful APIs, JPA, and Spring Boot**.
+ - Enterprise-scale, distributed web applications and cloud microservices.
+ - Powers technologies like **Servlets, JSP, RESTful APIs, JPA, and Spring Boot**.
 
 3. **Java Micro Edition (Java ME)**:
-   - Optimized for resource-constrained devices, embedded systems, and IoT hardware (smart cards, sensor chips, pagers).
+ - Optimized for resource-constrained devices, embedded systems, and IoT hardware (smart cards, sensor chips, pagers).
 
-### 📜 Complete Java Evolution History
+### Complete Java Evolution History
 
 | Year | Version / Milestone | Key Highlights |
 | :--- | :--- | :--- |

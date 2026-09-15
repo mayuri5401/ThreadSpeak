@@ -41,16 +41,16 @@ codeSnippet:
     }
 ---
 
-# 📦 Data Types in Java
+# Data Types in Java
 
-## 📖 Introduction: What are Data Types?
+## Introduction: What are Data Types?
 
 In Java, when we provide data like `101`, `Deepak`, `91.4`, etc., we need to specify which type of data we are providing.
 
 - For example, we need to specify that:
-  - `101` is of type **`int`**
-  - `Deepak` is of type **`String`**
-  - `91.4` is of type **`float`** or **`double`**
+ - `101` is of type **`int`**
+ - `Deepak` is of type **`String`**
+ - `91.4` is of type **`float`** or **`double`**
 
 So, we can say that in Java, **every piece of data has a specific type, known as a "data type"**.
 
@@ -62,16 +62,16 @@ int[] marks = {85, 90, 78}; // 'int[]' is an array to store multiple integers
 
 ---
 
-## 🎯 Purpose of Data Types
+## Purpose of Data Types
 
 1. **Informs the Compiler**: Data types inform the compiler about the kind of data to be stored in a variable.  
-   - *Example*: Declaring `int rollno = 101;` tells the compiler that `rollno` will store an integer.
+ - *Example*: Declaring `int rollno = 101;` tells the compiler that `rollno` will store an integer.
 2. **Allocates Memory Efficiently**: They help allocate the necessary memory for that data, ensuring that the program uses memory efficiently and that data is stored and processed correctly.  
-   - *Example*: `int rollno` allocates **4 bytes** of memory; similarly, `float marks` will also allocate **4 bytes** of memory.
+ - *Example*: `int rollno` allocates **4 bytes** of memory; similarly, `float marks` will also allocate **4 bytes** of memory.
 
 ---
 
-## 🏷️ Data Types & Variables
+## Data Types & Variables
 
 Data is stored in **variables**, and each variable is assigned a specific data type.
 
@@ -94,13 +94,13 @@ int rollno = 101;
 └─────────────────┴──────────────────┴─────────────────┘
 ```
 
-- **`int`** ➔ **Data Type** (tells compiler to reserve 4 bytes of integer storage).
-- **`rollno`** ➔ **Variable** (the named container holding the value).
-- **`101`** ➔ **Literal / Data** (the actual constant value assigned to the variable).
+- **`int`** **Data Type** (tells compiler to reserve 4 bytes of integer storage).
+- **`rollno`** **Variable** (the named container holding the value).
+- **`101`** **Literal / Data** (the actual constant value assigned to the variable).
 
 ---
 
-## ☀️ Types of Data Types in Java
+## Types of Data Types in Java
 
 There are **2 types of Data Types in Java**:
 1. **Primitive Data Types**
@@ -108,7 +108,7 @@ There are **2 types of Data Types in Java**:
 
 ---
 
-## 🗺️ Complete Data Types Classification Tree
+## Complete Data Types Classification Tree
 
 ```text
                                               ┌────────────┐
@@ -148,23 +148,23 @@ There are **2 types of Data Types in Java**:
 
 ---
 
-## 🔹 1. Primitive Data Types
+## 1. Primitive Data Types
 
 - **Pre-defined**: Primitive data types are built-in, core data types recognized directly by the compiler.
 - **Total Count**: There are **8 primitive data types** in Java: `boolean`, `char`, `byte`, `short`, `int`, `long`, `float`, and `double`.
 - **Fixed Memory Size**: Primitive data types have fixed memory footprints across all platforms:
-  - `boolean`: 1 bit logical flag (`true` or `false`)
-  - `byte`: 1 byte (8 bits), range: `-128` to `127`
-  - `short`: 2 bytes (16 bits), range: `-32,768` to `32,767`
-  - `int`: 4 bytes (32 bits), range: `-2,147,483,648` to `2,147,483,647`
-  - `long`: 8 bytes (64 bits), range: `±9.22 × 10^18`
-  - `float`: 4 bytes (32 bits IEEE 754 floating point)
-  - `double`: 8 bytes (64 bits IEEE 754 double precision)
-  - `char`: 2 bytes (16 bits Unicode UTF-16, `\u0000` to `\uffff`)
+ - `boolean`: 1 bit logical flag (`true` or `false`)
+ - `byte`: 1 byte (8 bits), range: `-128` to `127`
+ - `short`: 2 bytes (16 bits), range: `-32,768` to `32,767`
+ - `int`: 4 bytes (32 bits), range: `-2,147,483,648` to `2,147,483,647`
+ - `long`: 8 bytes (64 bits), range: `±9.22 × 10^18`
+ - `float`: 4 bytes (32 bits IEEE 754 floating point)
+ - `double`: 8 bytes (64 bits IEEE 754 double precision)
+ - `char`: 2 bytes (16 bits Unicode UTF-16, `\u0000` to `\uffff`)
 
 ---
 
-## 🔹 2. Non-Primitive Data Types in Java
+## 2. Non-Primitive Data Types in Java
 
 ### a) Non-Primitive Data Types are User-Defined or Derived Data Types
 - Non-primitive data types are more complex structures in Java.
@@ -220,7 +220,7 @@ Non-primitive data types do not have fixed memory sizes. Their memory usage depe
 
 ---
 
-## 📊 Deep Comparison: Primitive vs Non-Primitive Data Types
+## Deep Comparison: Primitive vs Non-Primitive Data Types
 
 | # | Property | Primitive Data Types | Non-Primitive Data Types |
 |:---:|:---|:---|:---|

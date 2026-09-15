@@ -1261,7 +1261,7 @@ For a simple console application where Alice and Bob take turns typing, no. But 
 
 **Result:** Both cells contain X. Bob's move was lost. The turn counter wrapped around, so Alice would go again. The board state is corrupted.
 
-#### **With synchronization:** 
+#### **With synchronization:**
 
 The `synchronized` keyword on `makeMove()` ensures Thread-A acquires the lock first. Thread-A completes the entire move atomically (place symbol, check win, switch player). Only then does Thread-B acquire the lock. Thread-B now reads the updated `currentPlayerIndex = 1`, confirms it's Bob's turn, and places O correctly.
 

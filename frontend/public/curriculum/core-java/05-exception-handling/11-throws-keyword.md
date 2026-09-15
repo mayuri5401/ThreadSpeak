@@ -51,11 +51,11 @@ codeSnippet:
     }
 ---
 
-# 📢 "throws" Keyword in Java
+# "throws" Keyword in Java
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 The **`throws` keyword** is used in Java to specify the types of exceptions that a method might throw during its execution.
 
@@ -69,7 +69,7 @@ flowchart LR
 
 ---
 
-## 🎯 2. Use of "throws" Keyword
+## 2. Use of "throws" Keyword
 
 - **Declares Checked Exceptions**: It is used to declare checked exceptions (such as `IOException`, `SQLException`, `ClassNotFoundException`, etc.) to satisfy the Java compiler.
 - **Informs Caller Methods**: It alerts the caller method about possible failure conditions before calling the method.
@@ -77,7 +77,7 @@ flowchart LR
 
 ---
 
-## 📝 3. Syntax
+## 3. Syntax
 
 ```java
 return_type methodName(parameters) throws ExceptionType1, ExceptionType2, ...
@@ -91,7 +91,7 @@ return_type methodName(parameters) throws ExceptionType1, ExceptionType2, ...
 
 ---
 
-## 💻 4. Code Example: Reading File with "throws" & try-with-resources
+## 4. Code Example: Reading File with "throws" & try-with-resources
 
 ```java
 import java.io.FileInputStream;
@@ -129,37 +129,37 @@ public class ThrowsDemo
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Exception handled: java.io.FileNotFoundException: test.txt (The system cannot find the file specified)
 ```
 
-### 🔍 Detailed Explanation:
+### Detailed Explanation:
 1. **Method Declaration**: The `readFile()` method declares `throws IOException`. This tells the compiler that `readFile()` might encounter an `IOException` while opening or reading the file, and that it does not contain a local `catch` block for it.
 2. **Resource Management**: Inside `readFile()`, `try (FileInputStream fis = new FileInputStream("test.txt"))` leverages Java's **try-with-resources** statement to guarantee that the file stream is closed automatically.
 3. **Caller Responsibility**: In the `main()` method, we call `obj.readFile()` inside a `try-catch` block.
 4. **Runtime Behavior**:
-   - If the file `test.txt` is **not found** on disk, `new FileInputStream("test.txt")` instantiates and throws a `FileNotFoundException` (which is a direct subclass of `IOException`).
-   - Because `readFile()` declares `throws IOException`, the exception is **ducked** and propagated up the call stack to `main()`.
-   - The `catch (IOException e)` in `main()` catches the exception polymorphically and prints `Exception handled: java.io.FileNotFoundException...`.
-   - If the file exists, the first byte is read and printed, and no exception is thrown.
+ - If the file `test.txt` is **not found** on disk, `new FileInputStream("test.txt")` instantiates and throws a `FileNotFoundException` (which is a direct subclass of `IOException`).
+ - Because `readFile()` declares `throws IOException`, the exception is **ducked** and propagated up the call stack to `main()`.
+ - The `catch (IOException e)` in `main()` catches the exception polymorphically and prints `Exception handled: java.io.FileNotFoundException...`.
+ - If the file exists, the first byte is read and printed, and no exception is thrown.
 
 ---
 
-## 📌 5. Points to Remember for "throws" Keyword
+## 5. Points to Remember for "throws" Keyword
 
-- 🏷️ **Method & Constructor Signature Only**: The `throws` keyword is used in a method or constructor declaration to declare the exceptions that might be thrown. It **cannot** be used inside a block of code or method body.
+- **Method & Constructor Signature Only**: The `throws` keyword is used in a method or constructor declaration to declare the exceptions that might be thrown. It **cannot** be used inside a block of code or method body.
 - 콤 **Multiple Exceptions Separated by Commas**: A method can declare one or multiple exceptions:
   ```java
   void myMethod() throws IOException, SQLException, ClassNotFoundException { }
   ```
-- 🛡️ **Primary Focus on Checked Exceptions**: It is mainly used for **checked exceptions** (checked at compile-time by `javac`), but can also declare unchecked exceptions (though declaring unchecked exceptions is optional and unnecessary).
-- 📢 **Informs Rather Than Throws**: Using `throws` does **NOT** throw an exception by itself; it only informs the caller about possible exceptions.
-- ⚖️ **The Caller's Dilemma**: If a method calls another method that declares checked exceptions, it must **either** handle the exception using `try-catch` **or** declare it in its own signature using `throws`.
+- **Primary Focus on Checked Exceptions**: It is mainly used for **checked exceptions** (checked at compile-time by `javac`), but can also declare unchecked exceptions (though declaring unchecked exceptions is optional and unnecessary).
+- **Informs Rather Than Throws**: Using `throws` does **NOT** throw an exception by itself; it only informs the caller about possible exceptions.
+- **The Caller's Dilemma**: If a method calls another method that declares checked exceptions, it must **either** handle the exception using `try-catch` **or** declare it in its own signature using `throws`.
 
 ---
 
-## 🎬 6. Interactive Animation & Visualizer Breakdown
+## 6. Interactive Animation & Visualizer Breakdown
 
 The accompanying **Interactive "throws" Keyword Visualizer & Propagation Theater** provides a step-by-step simulation of how Java unrolls the call stack:
 
@@ -182,20 +182,20 @@ sequenceDiagram
     Main->>JVM: Print error message & Exit gracefully (Exit Code 0)
 ```
 
-### 🕹️ What the Animation Demonstrates:
+### What the Animation Demonstrates:
 1. **Call Stack Construction**: Watch stack frames push onto the JVM stack (`main` $\rightarrow$ `readFile`).
 2. **Exception Trigger & Stack Unwinding**: See how the runtime immediately halts execution in `readFile()` and unwinds the stack to find the nearest matching `catch` block in the caller.
 3. **State Inspectors**: Track the state of the `FileInputStream`, disk status, variable values, and standard output terminal in real-time.
 4. **Multi-Scenario Exploration**: Switch between scenarios including:
-   - *Missing File (Propagated)*
-   - *Existing File (Clean Success)*
-   - *3-Tier Enterprise Stack Propagation (DAO $\rightarrow$ Service $\rightarrow$ Controller)*
-   - *Multiple Checked Exceptions*
-   - *Unhandled `main()` Crash (JVM Default Exception Handler)*
+ - *Missing File (Propagated)*
+ - *Existing File (Clean Success)*
+ - *3-Tier Enterprise Stack Propagation (DAO $\rightarrow$ Service $\rightarrow$ Controller)*
+ - *Multiple Checked Exceptions*
+ - *Unhandled `main()` Crash (JVM Default Exception Handler)*
 
 ---
 
-## 🏛️ 7. Architectural Deep-Dive: Ducking vs Handling (3-Tier Layering)
+## 7. Architectural Deep-Dive: Ducking vs Handling (3-Tier Layering)
 
 In real-world enterprise architectures, methods are split into decoupled layers:
 
@@ -217,7 +217,7 @@ flowchart TD
     ServiceLayer -->|Propagates Error| ControllerLayer
 ```
 
-### 📊 Strategy Comparison:
+### Strategy Comparison:
 | Strategy | Mechanism | When to Choose | Architectural Benefit |
 | :--- | :--- | :--- | :--- |
 | **`try-catch` (Handling)** | Catches and resolves error locally | In UI or Controller layers that have user context to display an alert, return HTTP JSON, or execute a fallback. | Prevents system crashes, encapsulates recovery logic. |
@@ -225,7 +225,7 @@ flowchart TD
 
 ---
 
-## ⚠️ 8. Method Overriding Rules with "throws" (Critical Interview Topic)
+## 8. Method Overriding Rules with "throws" (Critical Interview Topic)
 
 When a subclass overrides a parent class method, Java enforces strict rules on the `throws` clause to protect polymorphism (Liskov Substitution Principle):
 
@@ -244,18 +244,18 @@ graph TD
     P --> C6["Child: void readData() throws NullPointerException<br>✅ (Unchecked Exception)"]:::valid
 ```
 
-### 📋 The 3 Golden Rules:
+### The 3 Golden Rules:
 1. **Rule 1 (Parent throws NO checked exception)**: The child method **CANNOT** declare any checked exception.
 2. **Rule 2 (Parent throws a checked exception)**: The child method can declare:
-   - The **same** checked exception.
-   - A **narrower subclass** of the checked exception (e.g., `FileNotFoundException` when parent declares `IOException`).
-   - **No exception** at all.
-   - **NEVER** a broader superclass (e.g., `Exception`) or a new unrelated checked exception (e.g., `SQLException`).
+ - The **same** checked exception.
+ - A **narrower subclass** of the checked exception (e.g., `FileNotFoundException` when parent declares `IOException`).
+ - **No exception** at all.
+ - **NEVER** a broader superclass (e.g., `Exception`) or a new unrelated checked exception (e.g., `SQLException`).
 3. **Rule 3 (Unchecked Exceptions)**: An overriding method can declare any unchecked exception (`RuntimeException` subclasses) without restriction.
 
 ---
 
-## ⚔️ 9. "throw" vs "throws" Comparison Matrix
+## 9. "throw" vs "throws" Comparison Matrix
 
 | Aspect | `throw` Keyword | `throws` Keyword |
 | :--- | :--- | :--- |
@@ -267,7 +267,7 @@ graph TD
 
 ---
 
-## 🏗️ 10. "throws" with Constructors
+## 10. "throws" with Constructors
 
 Constructors can also declare exceptions using `throws`.
 
@@ -291,9 +291,9 @@ class SubClass extends SuperClass {
 
 ---
 
-## 💡 11. Best Practices & Anti-Patterns
+## 11. Best Practices & Anti-Patterns
 
-### ❌ Anti-Pattern 1: The "Lazy throws Exception" Anti-Pattern
+### Anti-Pattern 1: The "Lazy throws Exception" Anti-Pattern
 ```java
 // ❌ BAD: Forces callers to catch generic Exception, hiding true failure modes
 void processUser() throws Exception { ... }
@@ -302,7 +302,7 @@ void processUser() throws Exception { ... }
 void processUser() throws UserNotFoundException, DatabaseConnectionException { ... }
 ```
 
-### ❌ Anti-Pattern 2: Ducking in `main()` in Production
+### Anti-Pattern 2: Ducking in `main()` in Production
 ```java
 // ❌ BAD in production: If an exception occurs, JVM terminates abruptly with a stack trace
 public static void main(String[] args) throws IOException {
@@ -322,7 +322,7 @@ public static void main(String[] args) {
 
 ---
 
-## ❓ 12. Frequently Asked Interview Questions
+## 12. Frequently Asked Interview Questions
 
 <details>
 <summary><b>Q1: Can we use 'throws' for unchecked exceptions (like NullPointerException)?</b></summary>

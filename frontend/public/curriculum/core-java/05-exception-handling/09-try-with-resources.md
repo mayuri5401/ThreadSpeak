@@ -37,11 +37,11 @@ codeSnippet:
     }
 ---
 
-# 📦 Try-With-Resources in Java (Automatic Resource Management - ARM)
+# Try-With-Resources in Java (Automatic Resource Management - ARM)
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 In previous topics, we learned about the **`finally` block**, which is used to execute cleanup code and release external system resources like **files, database connections, sockets, or network streams**.
 
@@ -73,13 +73,13 @@ To eliminate these problems, **Java 7 introduced Try-With-Resources** (also know
 
 ---
 
-## 🎯 2. Definition & Core Concepts
+## 2. Definition & Core Concepts
 
 > [!IMPORTANT]
 > **Definition**: **Try-With-Resources** is a feature introduced in **Java 7** that allows you to declare resources directly inside the `try(...)` statement header.  
 > These resources are **automatically closed at the end of the `try` block**, completely eliminating the need for an explicit `finally` block for cleanup.
 
-### ❓ What is a "Resource"?
+### What is a "Resource"?
 A **resource** is any object that must be closed after the program is finished with it (e.g., file streams, database connections, scanner inputs).
 
 In Java, an object qualifies as a resource for try-with-resources **if and only if its class implements the `java.lang.AutoCloseable` or `java.io.Closeable` interface**.
@@ -94,7 +94,7 @@ Common built-in AutoCloseable resources include:
 
 ---
 
-## 🌟 3. Key Uses & Benefits
+## 3. Key Uses & Benefits
 
 - **Prevents Resource Leaks**: Automatically closes resources when execution leaves the `try` block, even if an unhandled exception or return statement occurs.
 - **Reduces Boilerplate Code**: Eliminates manual null-checking and verbose nested `try-catch` structures inside `finally`.
@@ -103,7 +103,7 @@ Common built-in AutoCloseable resources include:
 
 ---
 
-## 📜 4. Syntax
+## 4. Syntax
 
 ### A. Single Resource Syntax
 ```java
@@ -133,7 +133,7 @@ try (
 
 ---
 
-## 💻 5. Complete Code Example
+## 5. Complete Code Example
 
 ```java
 import java.io.BufferedReader;
@@ -159,7 +159,7 @@ public class TryWithResourcesDemo {
 }
 ```
 
-### 🖥️ Expected Output:
+### Expected Output:
 ```text
 ----- App Started -----
 Line 1 from test.txt
@@ -170,7 +170,7 @@ Line 2 from test.txt
 
 ---
 
-## 🎬 6. Interactive Animation & Architecture Breakdown
+## 6. Interactive Animation & Architecture Breakdown
 
 To help you build an intuitive mental model, our interactive visualizer simulates how the JVM executes a try-with-resources statement under the hood.
 
@@ -188,7 +188,7 @@ flowchart TD
     Catch --> Done
 ```
 
-### 🔍 Explanation of the Animation & Lifecycle Steps:
+### Explanation of the Animation & Lifecycle Steps:
 
 1. **Step 1: Resource Acquisition (Left-to-Right)**:  
    The JVM executes constructor expressions inside the `try(...)` header from left to right (`res1` allocated first, then `res2`).
@@ -203,7 +203,7 @@ flowchart TD
 
 ---
 
-## 📌 7. Points to Remember for Try-With-Resources
+## 7. Points to Remember for Try-With-Resources
 
 1. **No Need for Explicit `finally` Block**: The JVM automatically inserts resource cleanup code at compile-time.
 2. **`AutoCloseable` or `Closeable` Contract**: Any object declared in `try(...)` **MUST** implement either `java.lang.AutoCloseable` or `java.io.Closeable`.
@@ -215,7 +215,7 @@ flowchart TD
 
 ---
 
-## 🧠 8. Deep-Dive: `AutoCloseable` vs `Closeable`
+## 8. Deep-Dive: `AutoCloseable` vs `Closeable`
 
 ```mermaid
 classDiagram
@@ -240,7 +240,7 @@ classDiagram
 
 ---
 
-## 🔗 9. Suppressed Exceptions Deep-Dive (`e.getSuppressed()`)
+## 9. Suppressed Exceptions Deep-Dive (`e.getSuppressed()`)
 
 When an exception occurs inside the try block and *another* exception is thrown while the JVM calls `.close()`, Java preserves the **try block exception as the primary exception** and attaches the close exception as a **suppressed exception**.
 
@@ -272,7 +272,7 @@ public class SuppressedDemo {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Primary Exception: 💥 Primary Error: Business calculation failed!
   ↳ Suppressed Exception: ⚠️ Secondary Error: Failed to close hardware port!
@@ -280,7 +280,7 @@ Primary Exception: 💥 Primary Error: Business calculation failed!
 
 ---
 
-## 💎 10. Java 9 Enhancement: Effectively Final Variables
+## 10. Java 9 Enhancement: Effectively Final Variables
 
 In **Java 7**, resources had to be newly declared inside the `try(...)` header.  
 In **Java 9+**, you can pass **already existing `final` or effectively final reference variables** directly into `try(...)`:
@@ -298,7 +298,7 @@ try (reader1; reader2) {
 
 ---
 
-## 🏢 11. Enterprise Real-World Example: JDBC Triple Resource Management
+## 11. Enterprise Real-World Example: JDBC Triple Resource Management
 
 In production backend applications, executing SQL queries safely requires managing three independent database resources:
 1. `Connection`
@@ -339,7 +339,7 @@ public class JdbcTryWithResourcesDemo {
 
 ---
 
-## 📊 12. Summary Comparison Matrix
+## 12. Summary Comparison Matrix
 
 | Feature | Legacy `try-finally` (Java 6) | Try-With-Resources (Java 7+) |
 | :--- | :--- | :--- |

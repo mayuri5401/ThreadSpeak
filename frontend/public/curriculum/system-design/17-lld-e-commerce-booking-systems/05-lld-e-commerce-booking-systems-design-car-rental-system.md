@@ -1188,7 +1188,7 @@ This section presents the complete implementation, built bottom-up. We start wit
 
 ## Enums
 
-#### `VehicleType` 
+#### `VehicleType`
 
 Categorizes vehicles for reservation searches and pricing tiers. Five categories cover the typical rental fleet from budget to premium.
 
@@ -1202,7 +1202,7 @@ enum VehicleType {
 }
 ```
 
-#### `VehicleStatus` 
+#### `VehicleStatus`
 
 Tracks where a vehicle is in its lifecycle. Each status determines what operations are valid for that vehicle.
 
@@ -1215,7 +1215,7 @@ enum VehicleStatus {
 }
 ```
 
-#### `ReservationStatus` 
+#### `ReservationStatus`
 
 Tracks the booking lifecycle independently from vehicle status. A reservation and its assigned vehicle have separate but coordinated state machines.
 
@@ -1228,7 +1228,7 @@ enum ReservationStatus {
 }
 ```
 
-#### `PaymentMethod` 
+#### `PaymentMethod`
 
 Defines how customers can pay.
 
@@ -1238,7 +1238,7 @@ enum PaymentMethod {
 }
 ```
 
-#### `EquipmentType` 
+#### `EquipmentType`
 
 Categorizes add-on items.
 
@@ -1252,7 +1252,7 @@ enum EquipmentType {
 
 ## Custom Exception
 
-#### `CarRentalException` 
+#### `CarRentalException`
 
 Provides a domain-specific exception for all rental failures. This gives callers a single exception type to catch for availability issues, invalid state transitions, and missing reservations.
 
@@ -1270,7 +1270,7 @@ We extend `RuntimeException` (unchecked) rather than `Exception` (checked) becau
 
 Next, the data classes. These hold information with minimal behavior.
 
-#### `Customer` 
+#### `Customer`
 
 **Customer** is a simple immutable identity holder. All four fields are `final`, and there are no setters.
 
@@ -1300,7 +1300,7 @@ class Customer {
 
 The `toString()` returns just the name for readable notification output. License validation (checking format, expiry) would involve an external service and is out of scope for this design.
 
-#### `Location` 
+#### `Location`
 
 Represents a physical rental branch. Also immutable.
 
@@ -1325,7 +1325,7 @@ class Location {
 }
 ```
 
-#### `Vehicle` 
+#### `Vehicle`
 
 Represents a specific car in the fleet. Most fields are immutable, but `status` and `locationId` change throughout the vehicle's lifecycle.
 
@@ -1335,7 +1335,7 @@ $145
 
 A new vehicle starts as `AVAILABLE`. The `setStatus()` and `setLocationId()` methods are intentionally simple. State transition validation happens at the `CarRentalSystem` level, where the business logic lives. Vehicle is a data container, not a state machine.
 
-#### `Equipment` 
+#### `Equipment`
 
 Represents a rentable add-on item. Fully immutable.
 
@@ -1357,7 +1357,7 @@ class Equipment {
 }
 ```
 
-#### `Reservation` 
+#### `Reservation`
 
 It is the central data object that ties everything together. It tracks who, what, where, when, and the lifecycle status of a rental booking.
 
@@ -1381,7 +1381,7 @@ The total is calculated at construction: `baseCost + equipmentCost + lateFee`. O
 
 Now the interfaces that define extensibility points.
 
-#### `PricingStrategy` 
+#### `PricingStrategy`
 
 Defines the contract for rental cost calculation algorithms.
 
@@ -1393,7 +1393,7 @@ interface PricingStrategy {
 
 The interface takes the vehicle's daily rate and the number of rental days, and returns the base cost. The strategy only handles the base vehicle cost. Equipment charges and late fees are calculated separately by the CarRentalSystem. This separation keeps each calculation focused.
 
-#### `RentalObserver` 
+#### `RentalObserver`
 
 Defines the contract for rental event listeners.
 
@@ -1409,7 +1409,7 @@ Three methods cover the three key lifecycle events. The `onVehicleReturned` meth
 
 ## Strategy Implementations
 
-#### `StandardPricingStrategy` 
+#### `StandardPricingStrategy`
 
 Applies a flat daily rate. Simple multiplication, no modifiers.
 
@@ -1424,7 +1424,7 @@ class StandardPricingStrategy implements PricingStrategy {
 
 This is the default strategy. A $40/day Economy car for 3 days costs $120. Straightforward and predictable.
 
-#### `WeekendPricingStrategy` 
+#### `WeekendPricingStrategy`
 
 Applies a multiplier to the standard rate. Rental agencies commonly charge more on weekends due to higher leisure demand.
 
@@ -1447,7 +1447,7 @@ The multiplier is configurable at construction. A 1.5 multiplier means a $75/day
 
 ## Observer Implementations
 
-#### `EmailNotificationObserver` 
+#### `EmailNotificationObserver`
 
 Prints email-style notifications. In a real system, this would call an email API.
 
@@ -1474,10 +1474,10 @@ class InvoiceObserver implements RentalObserver {
     @Override
     public void onVehicleReturned(Reservation reservation, Bill bill) {
         System.out.println("[Invoice] Invoice generated for " + reservation.getId()
-            + ": Base=$" + String.format("%.2f", bill.getBaseCost())
-            + ", Equipment=$" + String.format("%.2f", bill.getEquipmentCost())
-            + ", Late Fee=$" + String.format("%.2f", bill.getLateFee())
-            + ", Total=$" + String.format("%.2f", bill.getTotalCost()));
+ + ": Base=$" + String.format("%.2f", bill.getBaseCost())
+ + ", Equipment=$" + String.format("%.2f", bill.getEquipmentCost())
+ + ", Late Fee=$" + String.format("%.2f", bill.getLateFee())
+ + ", Total=$" + String.format("%.2f", bill.getTotalCost()));
     }
 }
 ```
@@ -1486,7 +1486,7 @@ Both observers follow the same pattern: extract information from the reservation
 
 ## Core Class
 
-#### `CarRentalSystem` 
+#### `CarRentalSystem`
 
 is the heart of the system. It coordinates locations, vehicles, reservations, pricing, and notifications.
 

@@ -39,19 +39,19 @@ codeSnippet:
     }
 ---
 
-# 💻 20 Essential String Programs in Java
+# 20 Essential String Programs in Java
 
 ---
 
-## 📋 Comprehensive Curriculum Overview
+## Comprehensive Curriculum Overview
 
 This module covers the **20 most frequently asked String programming interview questions** in Java, structured into:
-- **🟢 10 Easy Foundation Programs** (Reversal, Palindrome, Counting, Case toggling, Vowels/Consonants).
-- **🟡 10 Medium / Advanced Programs** (Anagrams, Frequency maps, First non-repeating, Word reversal, Pangrams, Longest substring, Permutations).
+- ** 10 Easy Foundation Programs** (Reversal, Palindrome, Counting, Case toggling, Vowels/Consonants).
+- ** 10 Medium / Advanced Programs** (Anagrams, Frequency maps, First non-repeating, Word reversal, Pangrams, Longest substring, Permutations).
 
 ---
 
-## 📚 Complete List of 20 String Programs
+## Complete List of 20 String Programs
 
 | # | Program Title | Focus & Technique | Time / Space Complexity |
 | :--- | :--- | :--- | :--- |
@@ -78,7 +78,7 @@ This module covers the **20 most frequently asked String programming interview q
 
 ---
 
-## 🎯 Sample Program Solution Walkthrough: Anagram Verification
+## Sample Program Solution Walkthrough: Anagram Verification
 
 ```java
 import java.util.Arrays;

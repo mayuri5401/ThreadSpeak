@@ -32,13 +32,13 @@ codeSnippet:
     }
 ---
 
-# 💻 20 Essential Array Programs in Java — Practical Masterclass
+# 20 Essential Array Programs in Java — Practical Masterclass
 
 ---
 
-## 📑 Complete Programs Index
+## Complete Programs Index
 
-### 🟢 Easy Level Programs (1D Arrays — Programs 1 to 13)
+### Easy Level Programs (1D Arrays — Programs 1 to 13)
 1. [Sum of all elements in an array](#1-sum-of-all-elements-in-an-array)
 2. [Count even and odd elements](#2-count-even-and-odd-elements)
 3. [Sum of even and odd numbers separately](#3-sum-of-even-and-odd-numbers-separately)
@@ -53,7 +53,7 @@ codeSnippet:
 12. [Find the smallest element (Minimum)](#12-find-the-smallest-element-in-an-array)
 13. [Reverse the elements of an array](#13-reverse-the-elements-of-an-array)
 
-### 🟡 Medium Level Programs (2D & Matrix Arrays — Programs 14 to 20)
+### Medium Level Programs (2D & Matrix Arrays — Programs 14 to 20)
 14. [Sum of all elements in a 2D array](#14-sum-of-all-elements-in-a-2d-array)
 15. [Copy a 2D array into another 2D array](#15-copy-a-2d-array-into-another-2d-array)
 16. [Add two given matrices](#16-add-two-given-matrices)
@@ -64,7 +64,7 @@ codeSnippet:
 
 ---
 
-## 🟢 Part 1: Easy Level 1D Array Programs
+## Part 1: Easy Level 1D Array Programs
 
 ---
 
@@ -72,7 +72,7 @@ codeSnippet:
 
 **Problem Statement**: Write a Java program to calculate the total sum of all integer elements in a given array.
 
-#### 💡 Algorithm & Explanation:
+#### Algorithm & Explanation:
 1. Declare and initialize an accumulator variable `int sum = 0;`.
 2. Iterate through each element of the array using a loop (`for (int num : arr)`).
 3. In each iteration, add the current number to `sum`.
@@ -106,7 +106,7 @@ Sum of array elements: 170
 
 **Problem Statement**: Write a Java program to count how many even numbers and odd numbers are present in an array.
 
-#### 💡 Algorithm & Explanation:
+#### Algorithm & Explanation:
 1. Initialize two counters: `evenCount = 0` and `oddCount = 0`.
 2. Loop through each number in the array.
 3. Test if `num % 2 == 0`. If true, increment `evenCount++`; otherwise, increment `oddCount++`.
@@ -448,7 +448,7 @@ public class ReverseArray {
 
 ---
 
-## 🟡 Part 2: Medium Level 2D & Matrix Programs
+## Part 2: Medium Level 2D & Matrix Programs
 
 ---
 

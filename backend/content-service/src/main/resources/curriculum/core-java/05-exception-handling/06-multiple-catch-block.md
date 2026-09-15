@@ -17,16 +17,16 @@ codeSnippet:
   explanation: "Demonstrating multiple catch blocks in Java with Scanner, InputMismatchException, and ArithmeticException."
 ---
 
-# 🛡️ Multiple catch Block in Java
+# Multiple catch Block in Java
 
 
-## 📖 1. Introduction & Real-Life Analogy
+## 1. Introduction & Real-Life Analogy
 
 In previous topics, we learned that a **`try-catch`** block is used to prevent our Java programs from crashing when an error happens. We also learned that a basic catch block handles only one specific type of exception.
 
 **But what happens when a single block of code can fail in multiple different ways?**
 
-### 🏥 Real-Life Analogy: The Multi-Specialty Hospital
+### Real-Life Analogy: The Multi-Specialty Hospital
 Imagine you visit a hospital emergency department:
 - If a patient has a **bone fracture** $\rightarrow$ they are sent to the **Orthopedic Specialist** (`catch (BoneFractureException e)`).
 - If a patient has **eye irritation** $\rightarrow$ they are sent to the **Ophthalmologist** (`catch (EyeProblemException e)`).
@@ -42,7 +42,7 @@ Similarly, in Java, **different errors require different recovery actions**. We 
 
 ---
 
-## 🤔 2. Why Do We Need Multiple catch Blocks?
+## 2. Why Do We Need Multiple catch Blocks?
 
 Why not just write a single catch block or multiple `try-catch` blocks? Let us compare the three approaches:
 
@@ -63,7 +63,7 @@ graph TD
 
 ---
 
-## 📝 3. Syntax of Multiple catch Block
+## 3. Syntax of Multiple catch Block
 
 ```java
 try {
@@ -80,7 +80,7 @@ try {
 
 ---
 
-## 💻 4. Complete Practical Working Example
+## 4. Complete Practical Working Example
 
 Let us write a complete, beginner-friendly program where user input can trigger two different errors:
 1. `InputMismatchException`: Triggered if the user enters a non-numeric string (like `"abc"` or `"hello"`).
@@ -117,11 +117,11 @@ public class MainApp {
 
 ---
 
-## 🔄 5. How Multiple catch Block Executes (3 Output Scenarios)
+## 5. How Multiple catch Block Executes (3 Output Scenarios)
 
 Let us trace how the Java Virtual Machine (JVM) executes the code under different user inputs:
 
-### 🟢 Case 1: Normal Execution (User inputs `100` and `5`)
+### Case 1: Normal Execution (User inputs `100` and `5`)
 - `no1 = 100`, `no2 = 5`
 - `res = 100 / 5 = 20`
 - **Output:**
@@ -138,7 +138,7 @@ Let us trace how the Java Virtual Machine (JVM) executes the code under differen
 
 ---
 
-### 🟡 Case 2: Input Mismatch Error (User inputs `"abc"` for `no1`)
+### Case 2: Input Mismatch Error (User inputs `"abc"` for `no1`)
 - User inputs string `"abc"`
 - `sc.nextInt()` fails and throws `InputMismatchException`
 - **Output:**
@@ -153,7 +153,7 @@ Let us trace how the Java Virtual Machine (JVM) executes the code under differen
 
 ---
 
-### 🔴 Case 3: Division by Zero Error (User inputs `100` and `0`)
+### Case 3: Division by Zero Error (User inputs `100` and `0`)
 - `no1 = 100`, `no2 = 0`
 - `res = 100 / 0` throws `ArithmeticException`
 - **Output:**
@@ -170,32 +170,32 @@ Let us trace how the Java Virtual Machine (JVM) executes the code under differen
 
 ---
 
-## 📌 6. Crucial Points to Remember
+## 6. Crucial Points to Remember
 
 1. **Each catch block handles only one specific exception type**:
-   - Catch block 1 handles `InputMismatchException`.
-   - Catch block 2 handles `ArithmeticException`.
+ - Catch block 1 handles `InputMismatchException`.
+ - Catch block 2 handles `ArithmeticException`.
 
 2. **Only the first matching catch block executes**:
-   - Once a matching catch block is executed, **all remaining catch blocks are ignored**.
-   - Two catch blocks will **never** execute for the same try block during a single execution.
+ - Once a matching catch block is executed, **all remaining catch blocks are ignored**.
+ - Two catch blocks will **never** execute for the same try block during a single execution.
 
 3. **Execution stops on the very first exception in the try block**:
-   - If line 10 in the `try` block throws an exception, Java immediately jumps to the catch block. Lines 11, 12, and 13 inside the `try` block are **never executed**.
+ - If line 10 in the `try` block throws an exception, Java immediately jumps to the catch block. Lines 11, 12, and 13 inside the `try` block are **never executed**.
 
 4. **Catch blocks must be ordered from Subclass (Child) to Superclass (Parent)**:
-   - If a parent class like `Exception` is placed first, it will catch everything, making the child catch blocks unreachable.
+ - If a parent class like `Exception` is placed first, it will catch everything, making the child catch blocks unreachable.
 
 ---
 
-## ⚠️ 7. The Golden Rule: Child First, Parent Later
+## 7. The Golden Rule: Child First, Parent Later
 
 In Java, all exceptions form an inheritance hierarchy:
 $$\text{Throwable} \longrightarrow \text{Exception} \longrightarrow \text{RuntimeException} \longrightarrow \text{ArithmeticException}$$
 
 Because `ArithmeticException` **is a child of** `Exception`:
 
-### ❌ Incorrect Order (Causes Compile-Time Error):
+### Incorrect Order (Causes Compile-Time Error):
 
 ```java
 try {
@@ -220,7 +220,7 @@ catch (ArithmeticException ae) {
 
 ---
 
-### ✅ Correct Order (Subclass First, Parent Later):
+### Correct Order (Subclass First, Parent Later):
 
 ```java
 try {
@@ -238,7 +238,7 @@ catch (Exception e) {
 
 ---
 
-## ❓ 8. Frequently Asked Questions (FAQ) in Plain English
+## 8. Frequently Asked Questions (FAQ) in Plain English
 
 ### Q1: Can two catch blocks execute together for one try block?
 **No.** When an exception happens in a `try` block, execution immediately jumps to the first matching `catch` block. Once that catch block finishes, control exits the entire `try-catch` structure.
@@ -265,7 +265,7 @@ catch (ArithmeticException e) {
 
 ---
 
-## 📊 9. Quick Summary Matrix
+## 9. Quick Summary Matrix
 
 | Question / Feature | Behavior in Java |
 | :--- | :--- |

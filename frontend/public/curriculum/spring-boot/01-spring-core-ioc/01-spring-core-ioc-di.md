@@ -34,7 +34,7 @@ codeSnippet:
     }
 ---
 
-### 🌿 Spring ApplicationContext Lifecycle
+### Spring ApplicationContext Lifecycle
 
 1. **Bean Definition Loading**: Reads `@Configuration`, `@Component`, `@Service`, `@Repository`.
 2. **BeanFactoryPostProcessor**: Modifies bean definitions before any instances are created (e.g. `PropertySourcesPlaceholderConfigurer`).

@@ -50,11 +50,11 @@ codeSnippet:
     }
 ---
 
-# 🔒 Race Conditions & synchronized Keyword
+# Race Conditions & synchronized Keyword
 
 ---
 
-## 📖 1. What is a Race Condition?
+## 1. What is a Race Condition?
 
 A **race condition** occurs when two or more threads attempt to read and write **shared mutable state** concurrently, and the final outcome depends on the non-deterministic order of thread scheduling.
 
@@ -74,7 +74,7 @@ sequenceDiagram
 
 ---
 
-## 🔑 2. Synchronized Methods vs Synchronized Blocks
+## 2. Synchronized Methods vs Synchronized Blocks
 
 ```java
 // 1. Synchronized Method (Locks on 'this' instance)

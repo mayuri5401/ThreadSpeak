@@ -67,7 +67,7 @@ class UserManager {
                            String street, String city, String zip) {
         User user = new User(name, email, tier, street, city, zip);
         System.out.println("Created user: " + user.getName()
-            + " (" + user.getEmail() + ")");
+ + " (" + user.getEmail() + ")");
         return user;
     }
 
@@ -81,12 +81,12 @@ class UserManager {
 
     public String formatAddress(User user) {
         return user.getStreet() + ", " + user.getCity()
-            + ", " + user.getZip();
+ + ", " + user.getZip();
     }
 
     public void logActivity(User user, String action) {
         System.out.println("Activity: " + user.getName()
-            + " - " + action);
+ + " - " + action);
     }
 }
 
@@ -251,7 +251,7 @@ public:
 
     string formatAddress(const User& user) {
         return user.getStreet() + ", " + user.getCity()
-            + ", " + user.getZip();
+ + ", " + user.getZip();
     }
 
     void logActivity(const User& user, const string& action) {

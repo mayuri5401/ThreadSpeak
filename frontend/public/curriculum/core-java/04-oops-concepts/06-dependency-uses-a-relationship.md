@@ -43,11 +43,11 @@ codeSnippet:
     }
 ---
 
-# 🔄 Dependency (USES-A Relationship) in Java
+# Dependency (USES-A Relationship) in Java
 
 ---
 
-## ❓ Definition
+## Definition
 
 **Dependency** is a relationship where **one class uses another class temporarily to perform a specific task**.  
 This means the dependent object is **used within a method**, rather than being stored as an instance variable in the class.
@@ -55,14 +55,14 @@ This means the dependent object is **used within a method**, rather than being s
 - It represents a **USES-A relationship**.
 - The dependency is **typically short-lived (transient)**, existing only during the execution of that specific method.
 
-### 💡 Real-World Examples:
+### Real-World Examples:
 - `Teacher USES-A Whiteboard`
 - `Office Worker USES-A Printer`
 - `Painter USES-A Brush`
 
 ---
 
-## ⚙️ How to Achieve Dependency ?
+## How to Achieve Dependency ?
 
 Dependency is achieved by **creating or using objects of another class inside a method**, instead of holding them as long-term instance variables.
 
@@ -72,7 +72,7 @@ We can inject dependent objects using **2 primary techniques**:
 
 ---
 
-### 📝 Program 1: Dependency using Local Variable inside Method
+### Program 1: Dependency using Local Variable inside Method
 
 ```java
 // Dependent class
@@ -101,7 +101,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Writing on the whiteboard...
 Teacher is explaining the topic.
@@ -109,7 +109,7 @@ Teacher is explaining the topic.
 
 ---
 
-### 📝 Program 2: Dependency using Method Parameter
+### Program 2: Dependency using Method Parameter
 
 ```java
 // Dependent class
@@ -140,7 +140,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Printing document...
 OfficeWorker has completed printing task.
@@ -148,7 +148,7 @@ OfficeWorker has completed printing task.
 
 ---
 
-## 📊 Master Comparison: Dependency (USES-A) vs Association (HAS-A)
+## Master Comparison: Dependency (USES-A) vs Association (HAS-A)
 
 | Feature | Association (HAS-A) | Dependency (USES-A) |
 |:---|:---|:---|

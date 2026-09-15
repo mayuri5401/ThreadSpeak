@@ -178,10 +178,10 @@ The client sends a JSON payload with the comment's content and some useful metad
 
 **Responses:**
 
-- ✅** **`202 Accepted`: This is the ideal success response. It tells the client, "We've received your comment and will process it." It doesn't wait for the comment to be written to the database or broadcasted, allowing us to respond to the client immediately and keep the write path incredibly fast.
-- ❌ `400 Bad Request`: Sent if the request body is malformed (e.g., the `text` field is missing or too long).
-- ❌ `401 Unauthorized`: The provided JWT is missing, invalid, or expired.
-- ❌ `429 Too Many Requests`: The user or their IP address has exceeded the rate limit (e.g., posting too many comments in a short period).
+- ** **`202 Accepted`: This is the ideal success response. It tells the client, "We've received your comment and will process it." It doesn't wait for the comment to be written to the database or broadcasted, allowing us to respond to the client immediately and keep the write path incredibly fast.
+- `400 Bad Request`: Sent if the request body is malformed (e.g., the `text` field is missing or too long).
+- `401 Unauthorized`: The provided JWT is missing, invalid, or expired.
+- `429 Too Many Requests`: The user or their IP address has exceeded the rate limit (e.g., posting too many comments in a short period).
 
 ## 3.2 Read API
 
@@ -383,11 +383,11 @@ sequenceDiagram
 1. A user hits "send." The client application fires a `POST`** request** to our API Gateway.
 2. The API Gateway authenticates the user's token, checks for rate limits, and forwards the request to an available instance of the **Comment Service**.
 3. The Comment Service:
-   - Validates the request payload (text length, event_id, etc.)
-   - Assigns a **server-side timestamp **to ensure consistent ordering.
-   - It then kicks off two critical tasks in parallel:
-      - **Publish:** It publishes the full comment object to a specific topic on the **Message Broker** (e.g., `comments:stream-1234`)
-      - **Persist:** It asynchronously writes the comment to the **NoSQL Database**. This write happens in the background and does not block the user's request.
+ - Validates the request payload (text length, event_id, etc.)
+ - Assigns a **server-side timestamp **to ensure consistent ordering.
+ - It then kicks off two critical tasks in parallel:
+ - **Publish:** It publishes the full comment object to a specific topic on the **Message Broker** (e.g., `comments:stream-1234`)
+ - **Persist:** It asynchronously writes the comment to the **NoSQL Database**. This write happens in the background and does not block the user's request.
 4. Almost instantly, the Comment Service returns a `202 Accepted` response to the user. This makes the application *feel* instantaneous, as the user gets confirmation before the comment has even been broadcast to other viewers.
 
 ## 3.2 Receiving a Comment
@@ -680,9 +680,9 @@ Client application needs to perfectly time the appearance of each comment with t
 1. **Initialization:** When the VOD page loads, the client immediately requests the first chunk of comments (e.g., for the 0-3 minute window). These comments are loaded into a temporary in-memory buffer.
 2. **The Player Clock:** The video player provides a constantly updating clock (e.g., via a `timeupdate` event that fires several times a second). This clock is our "source of truth" for timing. Let's say the `player.currentTime` is `932.5` seconds.
 3. **The Render Loop:** The client's synchronization logic runs in a loop. In each cycle, it:
-   - Looks at the `player.currentTime`.
-   - Scans the comments in its buffer.
-   - **If a comment's timestamp (relative to the stream's start) is less than or equal to the **`player.currentTime`**, it is rendered on the screen and removed from the buffer.**
+ - Looks at the `player.currentTime`.
+ - Scans the comments in its buffer.
+ - **If a comment's timestamp (relative to the stream's start) is less than or equal to the **`player.currentTime`**, it is rendered on the screen and removed from the buffer.**
 4. **Proactive Buffering:** The client is always thinking ahead. When the video player's clock approaches the end of the current buffered chunk (e.g., at the 2.5-minute mark of a 3-minute chunk), it proactively fires off an API request for the *next* chunk (e.g., for the 3-6 minute window). This ensures there is always a buffer of upcoming comments ready to be displayed, preventing any stuttering in the chat playback.
 
 #### Handling Pauses and Seeks

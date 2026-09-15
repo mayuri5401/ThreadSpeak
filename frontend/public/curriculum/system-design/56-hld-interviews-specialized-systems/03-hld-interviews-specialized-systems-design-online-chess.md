@@ -408,13 +408,13 @@ Here is what happens when a player seeks a game:
 2. The **Matchmaking Service** looks up the player's current rating from the **Rating Service**
 3. The player is added to the appropriate **Match Queue** (there are separate queues for each time control like 3+0, 5+3, 15+10)
 4. The matchmaker continuously scans for compatible pairs:
-   - Initially looks for players within a tight rating range (e.g., +/- 50 points)
-   - Over time, the range expands to reduce wait times
-   - Also considers preferences like color choice
+ - Initially looks for players within a tight rating range (e.g., +/- 50 points)
+ - Over time, the range expands to reduce wait times
+ - Also considers preferences like color choice
 5. When a match is found:
-   - Both players are removed from the queue atomically
-   - A new game session is created
-   - Both players receive a WebSocket URL to join their game
+ - Both players are removed from the queue atomically
+ - A new game session is created
+ - Both players receive a WebSocket URL to join their game
 
 The expanding rating window is key to the user experience. You would rather wait 30 seconds for a good match than 5 minutes for a perfect one, but you also do not want an 800-rated beginner facing a 2000-rated expert.
 

@@ -166,16 +166,16 @@ A system like **Redis** or local in-memory stores on server nodes can serve this
 The system stores three main types of data:
 
 1. **Metadata Database**
-   - Stores document-level metadata: document ID, title, owner, timestamps, and access permissions
-   - Used for quick retrieval, listing, and access control checks
-   - Typically implemented using a **relational** or **key-value store**
+ - Stores document-level metadata: document ID, title, owner, timestamps, and access permissions
+ - Used for quick retrieval, listing, and access control checks
+ - Typically implemented using a **relational** or **key-value store**
 2. **Document Content Store**
-   - Stores the actual content of the document, including text and formatting
-   - Data is saved in a **structured format** (e.g., JSON) to support **partial updates and efficient diffs**
+ - Stores the actual content of the document, including text and formatting
+ - Data is saved in a **structured format** (e.g., JSON) to support **partial updates and efficient diffs**
 3. **Operation / Version History Store**
-   - Stores every edit as a **delta** (diff), along with metadata such as timestamp and revision number
-   - Maintains an **append-only log**, optionally supported by periodic **snapshots** for fast reconstruction
-   - Enables **rollback, conflict resolution**, and **replay of operations**
+ - Stores every edit as a **delta** (diff), along with metadata such as timestamp and revision number
+ - Maintains an **append-only log**, optionally supported by periodic **snapshots** for fast reconstruction
+ - Enables **rollback, conflict resolution**, and **replay of operations**
 
 ### Flow of a Single Edit
 
@@ -405,13 +405,13 @@ The goal is to balance **storage cost** with **reconstruction speed**.
 #### Storage Options for Snapshots
 
 1. **Document Store** (e.g., MongoDB, Firestore)
-   - Good for **recent snapshots** that need to be accessed frequently
-   - Can be indexed and queried like any regular document
-   - Easier integration with application-layer code
+ - Good for **recent snapshots** that need to be accessed frequently
+ - Can be indexed and queried like any regular document
+ - Easier integration with application-layer code
 2. **Blob Storage** (e.g., S3, GCS)
-   - Ideal for **older, archived snapshots**
-   - Cost-effective and scalable
-   - Suitable for background restore, backups, and cold access
+ - Ideal for **older, archived snapshots**
+ - Cost-effective and scalable
+ - Suitable for background restore, backups, and cold access
 
 > **Hybrid Strategy: **
 >
@@ -887,16 +887,16 @@ Each user maintains a **local copy** of the document and performs edits directly
 These edits are:
 
 1. **Assigned a globally unique identifier**
-   - Typically a combination of `user_id` and a local timestamp or counter
-   - Ensures total ordering across replicas
+ - Typically a combination of `user_id` and a local timestamp or counter
+ - Ensures total ordering across replicas
 2. **Tagged with causal dependencies**
-   - Tracks the “happened-before” relationship for concurrent operations
-   - Used to ensure edits are merged correctly
+ - Tracks the “happened-before” relationship for concurrent operations
+ - Used to ensure edits are merged correctly
 3. **Stored in a grow-only structure**
-   - Most CRDTs are based on trees, sequences, or graphs where inserts and deletes are immutable operations
+ - Most CRDTs are based on trees, sequences, or graphs where inserts and deletes are immutable operations
 4. **Synchronized opportunistically**
-   - When users reconnect, their local operations are shared with others
-   - All operations are applied and merged using deterministic rules
+ - When users reconnect, their local operations are shared with others
+ - All operations are applied and merged using deterministic rules
 
 #### Example: Concurrent Inserts
 
@@ -1052,8 +1052,8 @@ Once the "replace_all" operation is applied:
 - It is **persisted** in the `document_versions` log
 - It is **broadcast** to all active collaborators through the WebSocket server
 - Each connected client:
-   - **Receives and applies** the replacement operation
-   - **Updates their view** in real time, just like with regular edits
+ - **Receives and applies** the replacement operation
+ - **Updates their view** in real time, just like with regular edits
 
 This approach ensures transparency: if someone restores an older version, others are not silently reverted—they see it as a real-time update.
 
@@ -1068,9 +1068,9 @@ When a user opens a document while online, the system leverages browser technolo
 - **Document content** and metadata are cached in **IndexedDB**
 - **User session state** (e.g., cursor, scroll position) is stored locally
 - A **Service Worker** is registered to:
-   - Intercept requests when offline
-   - Serve cached UI and document content
-   - Enable offline loading of the app
+ - Intercept requests when offline
+ - Serve cached UI and document content
+ - Enable offline loading of the app
 
 ### Editing While Offline
 
@@ -1079,8 +1079,8 @@ When the user goes offline:
 - The editor loads the cached document state
 - The user can freely **edit, format, and interact** with the document
 - Each change is:
-   - **Applied immediately** using client-side OT or CRDT logic
-   - **Queued locally** as a structured operation with metadata
+ - **Applied immediately** using client-side OT or CRDT logic
+ - **Queued locally** as a structured operation with metadata
 
 #### Example:
 
@@ -1111,8 +1111,8 @@ When Alice reconnects:
 3. Transforms queued offline operations against any new edits made by others
 4. Pushes the transformed operations to the server
 5. The server:
-   - Applies the changes
-   - Broadcasts updates to all connected clients
+ - Applies the changes
+ - Broadcasts updates to all connected clients
 6. The client receives and applies missed operations from others
 
 This ensures that all changes, local and remote, are **applied in the correct order**, and all collaborators eventually converge on the same document state.

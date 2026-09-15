@@ -42,11 +42,11 @@ codeSnippet:
     }
 ---
 
-#  Field class in Reflection API
+# Field class in Reflection API
 
 ---
 
-## 🌟 Real-World Analogy: The "X-Ray Probe & Precision Screwdriver"
+## Real-World Analogy: The "X-Ray Probe & Precision Screwdriver"
 
 Imagine you have a sealed electronic gadget (an **Object** in memory). Inside the gadget, there are batteries, memory chips, and circuits (the **Fields**):
 
@@ -70,17 +70,17 @@ flowchart LR
     F2 --> M2 --> Obj
 ```
 
-### 1. 🔒 Normal Java Code
+### 1. Normal Java Code
 If a variable is marked `private`, the compiler locks the case shut. You cannot touch it directly (`s.age` produces a compile error).
 
-### 2. 🔍 The `Field` Class (The X-Ray Probe)
+### 2. The `Field` Class (The X-Ray Probe)
 - **X-Ray Discovery**: Reflection shines an X-Ray probe into the object to discover its type (`field.getType()`).
 - **Access Bypass**: With **`field.setAccessible(true)`**, it unlocks the private casing.
 - **Dynamic Mutation**: Uses a precision screwdriver (**`field.set(s, value)`**) to adjust the internal memory slot dynamically!
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 - **`Field` class** in Java is part of the **Reflection API** and represents a **single field (variable)** of a class or interface.
 
@@ -103,7 +103,7 @@ flowchart TD
 
 ---
 
-## 🛠️ Important Methods of Field Class
+## Important Methods of Field Class
 
 Below are some important methods of the `Field` class:
 
@@ -118,7 +118,7 @@ Below are some important methods of the `Field` class:
 
 ---
 
-## 💻 Java Demonstration Program
+## Java Demonstration Program
 
 ```java
 import java.lang.reflect.*;
@@ -160,7 +160,7 @@ public class MainApp
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Field Name: name
 Type: String
@@ -177,7 +177,7 @@ Value: 25
 
 ---
 
-## 📝 Step-by-Step Code Explanation for Beginners
+## Step-by-Step Code Explanation for Beginners
 
 ```mermaid
 sequenceDiagram
@@ -196,19 +196,19 @@ sequenceDiagram
 ```
 
 1. **`c.getDeclaredFields()`**:
-   - Returns an array of all `Field` objects declared inside `Student` (`name` and `age`).
+ - Returns an array of all `Field` objects declared inside `Student` (`name` and `age`).
 2. **`field.setAccessible(true)`**:
-   - By default, attempting to modify `private int age` throws an `IllegalAccessException`.
-   - Calling `setAccessible(true)` overrides Java's access-control check so your code can read and write to private fields.
+ - By default, attempting to modify `private int age` throws an `IllegalAccessException`.
+ - Calling `setAccessible(true)` overrides Java's access-control check so your code can read and write to private fields.
 3. **`field.set(s, "John")` and `field.set(s, 25)`**:
-   - The first argument `s` tells Java **which object instance** in Heap memory to update.
-   - The second argument is the new value to store.
+ - The first argument `s` tells Java **which object instance** in Heap memory to update.
+ - The second argument is the new value to store.
 4. **`field.get(s)`**:
-   - Reads the current value stored in object `s` for that field.
+ - Reads the current value stored in object `s` for that field.
 
 ---
 
-## 🔍 `getField()` vs `getDeclaredField()`
+## `getField()` vs `getDeclaredField()`
 
 | Method | Visibility Scope | Inherited Fields Included? | Throws Exception if Private? |
 | :--- | :--- | :---: | :---: |
@@ -217,40 +217,40 @@ sequenceDiagram
 
 ---
 
-## 🏢 Real-World Framework Applications
+## Real-World Framework Applications
 
 1. **🌱 Spring Boot (`@Autowired` & `@Value`)**:
-   - When Spring injects a `@Service` or `@Value("${server.port}")` into a `private` field, it uses `field.setAccessible(true)` and `field.set(bean, dependency)` under the hood without needing getters/setters!
+ - When Spring injects a `@Service` or `@Value("${server.port}")` into a `private` field, it uses `field.setAccessible(true)` and `field.set(bean, dependency)` under the hood without needing getters/setters!
 2. **🗄️ Hibernate / JPA Entity Hydration**:
-   - When loading a row from SQL into a `User` entity, Hibernate uses `field.set()` to populate private table fields directly from result sets.
+ - When loading a row from SQL into a `User` entity, Hibernate uses `field.set()` to populate private table fields directly from result sets.
 3. **📦 Jackson JSON Object Mapper**:
-   - Reads private fields using `field.get(obj)` to serialize Java objects into JSON strings.
+ - Reads private fields using `field.get(obj)` to serialize Java objects into JSON strings.
 
 ---
 
-## 🎬 How the Interactive Animation Theater Works
+## How the Interactive Animation Theater Works
 
 Our interactive architecture theater at the top of this lesson lets you experiment dynamically:
 
-### 📦 Tab 1: 4 Pillars of Field Class
+### Tab 1: 4 Pillars of Field Class
 - **Pillar 1 (Metadata Inspection)**: Inspect `name`, `type`, and `modifiers`.
 - **Pillar 2 (Private Field Bypass)**: Watch how `setAccessible(true)` unlocks private variables.
 - **Pillar 3 (Dynamic Getter)**: Observe `field.get(instance)` reading heap slots.
 - **Pillar 4 (Static Field Resolution)**: Understand why static fields use `field.get(null)`.
 
-### ⚡ Tab 2: Live Field Mutator Sandbox
+### Tab 2: Live Field Mutator Sandbox
 - **Interactive Heap Mutator**: Type any name and age, click **"Execute field.set(s, value)"**, and watch the live Heap Memory slot update with real-time logging!
 - **`setAccessible` Lock Toggle**: Toggle the lock off to see what happens when access checks block private field mutation (`IllegalAccessException`).
 
-### 🔍 Tab 3: getField vs getDeclaredField
+### Tab 3: getField vs getDeclaredField
 - Visual comparison matrix explaining when to use each method.
 
-### 🧠 Tab 4: Interactive Quiz
+### Tab 4: Interactive Quiz
 - Multi-question test on Field class contracts and access modifiers with instant scoring.
 
 ---
 
-## 🧠 Key Rules to Remember
+## Key Rules to Remember
 
 1. Use **`getDeclaredFields()`** to discover all private and public fields of a class.
 2. Always call **`field.setAccessible(true)`** before reading or modifying private fields.

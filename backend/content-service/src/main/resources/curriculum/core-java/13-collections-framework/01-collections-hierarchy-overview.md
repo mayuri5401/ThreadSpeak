@@ -37,11 +37,11 @@ codeSnippet:
     }
 ---
 
-# 📚 Java Collections Framework Architecture & Hierarchy
+# Java Collections Framework Architecture & Hierarchy
 
 ---
 
-## 🗺️ 1. Complete Collection Framework Hierarchy
+## 1. Complete Collection Framework Hierarchy
 
 ```mermaid
 flowchart TD
@@ -71,7 +71,7 @@ flowchart TD
 
 ---
 
-## 📊 2. Time Complexity Quick-Reference Table
+## 2. Time Complexity Quick-Reference Table
 
 | Collection Class | Interface | Underlying Structure | `add()` / `put()` | `get()` / `contains()` | `remove()` |
 | :--- | :--- | :--- | :--- | :--- | :--- |

@@ -181,7 +181,7 @@ These are simple Plain Old Java Objects (POJOs) or data containers with minimal 
 
 Represents a single unit of information to be indexed and searched. It contains a unique `id`, a `title`, and its `content`.
 
-#### `Posting` 
+#### `Posting`
 
 An entry in the inverted index. 
 

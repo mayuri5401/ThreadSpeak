@@ -40,9 +40,9 @@ codeSnippet:
     }
 ---
 
-# 🏷️ Identifiers in Java
+# Identifiers in Java
 
-## 📖 Introduction & Real-World Analogy
+## Introduction & Real-World Analogy
 
 <div class="my-6 rounded-2xl bg-gradient-to-b from-[#0F172A] via-[#0D1527] to-[#0A0F1D] border border-cyan-500/30 p-5 sm:p-6 shadow-2xl relative overflow-hidden">
   <!-- Ambient background glow -->
@@ -112,7 +112,7 @@ codeSnippet:
 
 ---
 
-## 🔍 Examples of Identifiers in Code
+## Examples of Identifiers in Code
 
 ```java
 String name = "Deepak";  // 'name' is an Identifier (Variable)
@@ -136,18 +136,18 @@ class Test {             // 'Test' is an Identifier (Class)
 
 ---
 
-## 📜 Mandatory Rules for Identifiers in Java
+## Mandatory Rules for Identifiers in Java
 
 Java enforces strict lexical rules on what constitutes a valid identifier. Violating any of these rules results in a **compile-time error**.
 
 ### 1. Spaces Cannot Be Used in an Identifier
 Identifiers must **never contain whitespace**.
-- ❌ **Invalid Examples:**
+- **Invalid Examples:**
   ```java
   int roll no;        // ❌ Compile Error: Spaces are not allowed
   String user name;   // ❌ Compile Error: Spaces are not allowed
   ```
-- ✅ **Valid Examples:**
+- **Valid Examples:**
   ```java
   int rollno;         // ✅ Valid
   String username;    // ✅ Valid
@@ -157,13 +157,13 @@ Identifiers must **never contain whitespace**.
 
 ### 2. Only Two Symbols (`_` and `$`) Can Be Used
 Identifiers can include underscores (`_`) or dollar signs (`$`). Any other special characters or symbols (such as `@`, `#`, `!`, `-`, `%`, `&`) are strictly prohibited.
-- ❌ **Invalid Examples:**
+- **Invalid Examples:**
   ```java
   int roll-no;        // ❌ Compile Error: '-' (hyphen) is not allowed
   double @price;      // ❌ Compile Error: '@' is not allowed
   int total#sum;      // ❌ Compile Error: '#' is not allowed
   ```
-- ✅ **Valid Examples:**
+- **Valid Examples:**
   ```java
   int roll_no;        // ✅ Valid (contains underscore)
   double $price;      // ✅ Valid (contains dollar sign)
@@ -174,12 +174,12 @@ Identifiers can include underscores (`_`) or dollar signs (`$`). Any other speci
 
 ### 3. Digits Cannot Be Used at the First Position
 Identifiers cannot begin with a number (`0-9`). However, digits **are allowed** anywhere after the first character.
-- ❌ **Invalid Examples:**
+- **Invalid Examples:**
   ```java
   int 1rollno;        // ❌ Compile Error: Cannot start with a digit
   double 3value;      // ❌ Compile Error: Cannot start with a digit
   ```
-- ✅ **Valid Examples:**
+- **Valid Examples:**
   ```java
   int rollno1;        // ✅ Valid (digit at the end)
   double _123value;   // ✅ Valid (starts with underscore, followed by digits)
@@ -190,13 +190,13 @@ Identifiers cannot begin with a number (`0-9`). However, digits **are allowed** 
 
 ### 4. Reserved Keywords Cannot Be Used as Identifiers
 Reserved words and keywords in Java (such as `class`, `public`, `if`, `while`, `static`, `int`, `return`) cannot be used as identifier names.
-- ❌ **Invalid Examples:**
+- **Invalid Examples:**
   ```java
   int class;          // ❌ Compile Error: 'class' is a reserved keyword
   String public;      // ❌ Compile Error: 'public' is a reserved keyword
   int if;             // ❌ Compile Error: 'if' is a reserved keyword
   ```
-- ✅ **Valid Examples:**
+- **Valid Examples:**
   ```java
   int my_class;       // ✅ Valid
   String _if;         // ✅ Valid
@@ -207,14 +207,14 @@ Reserved words and keywords in Java (such as `class`, `public`, `if`, `while`, `
 
 ### 5. Must Not Conflict with Built-in Library Names / Methods
 Avoid using names that conflict with commonly used built-in methods or standard library classes to prevent confusion and accidental shadowing.
-- ⚠️ **Example:**
+- **Example:**
   ```java
   int println = 5;    // ⚠️ Syntactically valid in Java, but confusing as 'println' is standard in System.out.println()
   ```
 
 ---
 
-## 📌 Important Characteristics & Best Practices for Identifiers
+## Important Characteristics & Best Practices for Identifiers
 
 ### 1. Case Sensitivity
 Java identifiers are **strictly case-sensitive**. Uppercase and lowercase letters are treated as completely distinct entities.
@@ -240,7 +240,7 @@ int age = 10; // ✅ Clean: Descriptive and meaningful
 
 ---
 
-## 📋 Master Comparison: Valid vs Invalid Identifiers
+## Master Comparison: Valid vs Invalid Identifiers
 
 | Identifier Name | Status | Reason / Explanation |
 |:---|:---:|:---|
@@ -259,15 +259,15 @@ int age = 10; // ✅ Clean: Descriptive and meaningful
 
 ---
 
-## 🏷️ Java Naming Conventions
+## Java Naming Conventions
 
-### 💡 What are Naming Conventions?
+### What are Naming Conventions?
 A **naming convention** refers to a set of standardized rules and industry best practices for naming classes, interfaces, methods, variables, constants, and packages.  
 Following naming conventions ensures that code is **readable**, **maintainable**, and **consistent** across large development teams worldwide.
 
 ---
 
-### 📊 Master Summary Table: Java Naming Conventions
+### Master Summary Table: Java Naming Conventions
 
 | Category | Single Word | Two Words | Three Words | Standard Case / Pattern |
 |:---|:---|:---|:---|:---|
@@ -279,9 +279,9 @@ Following naming conventions ensures that code is **readable**, **maintainable**
 
 ---
 
-### 🔑 Key Guidelines for Each Category
+### Key Guidelines for Each Category
 
-#### 🏛️ 1. Classes and Interfaces
+#### 1. Classes and Interfaces
 - **Rule:** Use **PascalCase** (Capitalize the first letter of each word).
 - **Type:** Classes should typically be **nouns** (e.g., `UserAccount`, `Student`), while Interfaces often represent capabilities or adjectives (e.g., `Runnable`, `Serializable`, `Printable`).
 - **Examples:**
@@ -291,7 +291,7 @@ Following naming conventions ensures that code is **readable**, **maintainable**
   public interface Printable { }
   ```
 
-#### ⚡ 2. Methods
+#### 2. Methods
 - **Rule:** Use **camelCase** (First word lowercase, subsequent words capitalized).
 - **Type:** Always name methods as **verbs or actions** describing what the method performs.
 - **Examples:**
@@ -301,7 +301,7 @@ Following naming conventions ensures that code is **readable**, **maintainable**
   void printReport() { }
   ```
 
-#### 📦 3. Variables
+#### 3. Variables
 - **Rule:** Use **camelCase** for instance variables, static variables, and local variables.
 - **Note:** Separate words with an underscore (`_`) only when necessary or adhering to specific domain conventions (e.g., `user_age`, `total_price`).
 - **Examples:**
@@ -311,7 +311,7 @@ Following naming conventions ensures that code is **readable**, **maintainable**
   String firstName = "Priya";
   ```
 
-#### 🔒 4. Constants
+#### 4. Constants
 - **Rule:** Use **UPPER_SNAKE_CASE** (All uppercase letters, words separated by underscores).
 - **Declaration:** Declared using `static final` modifiers.
 - **Examples:**
@@ -321,7 +321,7 @@ Following naming conventions ensures that code is **readable**, **maintainable**
   public static final double PI_VALUE = 3.14159;
   ```
 
-#### 📁 5. Packages
+#### 5. Packages
 - **Rule:** Use **all lowercase letters** with dots (`.`) separating hierarchical folder levels.
 - **Pattern:** Follows the reverse domain name convention to ensure global uniqueness.
 - **Examples:**
@@ -333,7 +333,7 @@ Following naming conventions ensures that code is **readable**, **maintainable**
 
 ---
 
-## 💻 Complete Java Program: Identifiers & Naming Conventions in Action
+## Complete Java Program: Identifiers & Naming Conventions in Action
 
 ```java
 package com.threadspeak.demo; // Package: all lowercase with dots
@@ -379,7 +379,7 @@ public class IdentifiersMasterDemo { // Class: PascalCase
 }
 ```
 
-### 🖥️ Expected Output:
+### Expected Output:
 ```text
 Academy      : ThreadSpeak
 Student Name : Priya

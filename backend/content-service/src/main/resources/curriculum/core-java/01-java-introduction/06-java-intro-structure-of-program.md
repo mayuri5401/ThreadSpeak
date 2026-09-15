@@ -73,7 +73,7 @@ codeSnippet:
     }
 ---
 
-# 🏗️ Structure of Java Program
+# Structure of Java Program
 
 When writing a program in any programming language, it is essential to follow a clean, standardized structure recommended by industry experts and language designers. 
 
@@ -111,15 +111,15 @@ In Java, every source file (`.java`) follows a strict, predictable top-down layo
 
 ---
 
-## 🏛️ Theoretical Overview: Why Java Enforces This Structure
+## Theoretical Overview: Why Java Enforces This Structure
 
 1. **Object-Oriented Encapsulation**: Unlike languages like C or Python where functions and variables can float globally outside any structure, **everything in Java must reside inside a class**. This guarantees strict memory scoping, modularity, and encapsulation.
 2. **Namespace Management & Scalability**: In enterprise software containing tens of thousands of classes, packages prevent naming collisions (e.g., distinguishing between `java.util.Date` and `java.sql.Date`).
 3. **Deterministic Compilation & ClassLoading**: The Java compiler (`javac`) and the JVM ClassLoader parse source files in a linear pipeline:
-   - **First**: Determine namespace (`package`).
-   - **Second**: Resolve external symbol dependencies (`import`).
-   - **Third**: Register class definitions and metadata in the JVM Metaspace (`class`).
-   - **Fourth**: Allocate memory and execute instructions (`members` & `main`).
+ - **First**: Determine namespace (`package`).
+ - **Second**: Resolve external symbol dependencies (`import`).
+ - **Third**: Register class definitions and metadata in the JVM Metaspace (`class`).
+ - **Fourth**: Allocate memory and execute instructions (`members` & `main`).
 
 ---
 
@@ -131,27 +131,27 @@ The package declaration specifies the namespace and organizational folder for th
 package com.example.myapp;
 ```
 
-### 🎯 Purpose:
+### Purpose:
 - **Grouping Related Code**: Organizes related classes, interfaces, and enums into cohesive modules (e.g., `com.company.controller`, `com.company.service`, `com.company.repository`).
 - **Preventing Name Collisions**: Allows two classes in different packages to share the same name (e.g., `com.app.order.Customer` vs `com.app.shipping.Customer`).
 - **Access Protection**: Supports package-private (default) access control, restricting visibility of internal components to classes within the same package.
 
-### 📝 Syntax:
+### Syntax:
 ```java
 package packageName;
 ```
 
-### 💡 Example:
+### Example:
 ```java
 package com.example.myapp;
 ```
 
-### 📚 Deep Theory & Rules:
+### Deep Theory & Rules:
 1. **First Line Rule**: If a package statement is used, it **MUST be the very first non-comment, non-whitespace statement** in the `.java` file. Putting an `import` before `package` causes a compile-time error.
 2. **Singular Declaration**: A Java source file can contain at most **one** `package` declaration.
 3. **Filesystem Directory Mapping**: Packages map directly to folders on your hard drive:
-   - `package com.example.myapp;` -> Resides in directory `com/example/myapp/Car.java`.
-   - When compiled with `javac -d . Car.java`, the compiler automatically generates the subdirectories `com/example/myapp/` containing `Car.class`.
+ - `package com.example.myapp;` -> Resides in directory `com/example/myapp/Car.java`.
+ - When compiled with `javac -d . Car.java`, the compiler automatically generates the subdirectories `com/example/myapp/` containing `Car.class`.
 4. **Reverse Domain Naming Convention**: Industry standard dictates using a reverse internet domain name to guarantee global uniqueness (e.g., `com.google.gson`, `org.apache.commons`, `com.threadspeak.service`).
 5. **Default / Unnamed Package**: If you omit the package declaration, Java places the class into the "default unnamed package". While acceptable for small demo scripts, production enterprise applications should always use explicit packages.
 
@@ -166,23 +166,23 @@ import java.util.Scanner;
 import java.util.Date;
 ```
 
-### 🎯 Purpose:
+### Purpose:
 - **Code Reusability**: Enables immediate use of Java's rich standard library (`java.util`, `java.io`, `java.net`, `java.time`) and 3rd-party dependencies.
 - **Syntactic Cleanliness**: Without `import`, you would have to write `java.util.Scanner scanner = new java.util.Scanner(java.lang.System.in);` every time. With `import java.util.Scanner;`, you simply write `Scanner scanner = new Scanner(System.in);`.
 
-### 📝 Syntax:
+### Syntax:
 ```java
 import packageName.ClassName;  // Imports a single specific class
 import packageName.*;          // Imports all classes within that package (Wildcard)
 ```
 
-### 💡 Example:
+### Example:
 ```java
 import java.util.Scanner;  // Imports only the Scanner class
 import java.util.*;        // Imports Scanner, ArrayList, HashMap, etc. from java.util
 ```
 
-### 📚 Deep Theory & Rules:
+### Deep Theory & Rules:
 1. **Placement**: All `import` statements must appear **after the package statement** and **before the first class definition**.
 2. **Multiple Imports**: You can include as many `import` statements as needed in a single file.
 3. **The `java.lang.*` Auto-Import Rule**: The Java compiler automatically imports `java.lang.*` into every single Java file by default. This is why classes like `System`, `String`, `Math`, `Object`, `Thread`, and `Integer` are available without any import statement!
@@ -214,25 +214,25 @@ public class Car {
 }
 ```
 
-### 🎯 Purpose:
+### Purpose:
 - A class serves as a **blueprint or template** from which real-world objects are constructed at runtime.
 - Encapsulates state (fields) and behaviors (methods) together into a single cohesive unit.
 
-### 📝 Syntax:
+### Syntax:
 ```java
 accessModifier class ClassName {
     // Class body containing Class Members
 }
 ```
 
-### 💡 Example:
+### Example:
 ```java
 public class Car {
     // Class members go here
 }
 ```
 
-### 📚 Deep Theory & Rules:
+### Deep Theory & Rules:
 1. **Multiple Classes Rule**: A single `.java` source file can define multiple classes.
 2. **The Public Class Rule**: A `.java` file can contain at most **one `public` class**. 
 3. **Filename Matching Rule**: If a class is declared `public`, the source file name **MUST match that class name exactly** (including uppercase/lowercase letters), followed by `.java` (e.g., `public class Car` must be saved in `Car.java`).
@@ -256,21 +256,21 @@ String model = "Tata Nexon";         // Field
 int year = 2020;                     // Field
 ```
 
-### 🎯 Purpose:
+### Purpose:
 - Define the state, attributes, characteristics, and properties of an object or class.
 
-### 📝 Syntax:
+### Syntax:
 ```java
 accessModifier dataType variableName = initialValue;
 ```
 
-### 💡 Example:
+### Example:
 ```java
 String model = "Tata Nexon";         // Field (Instance Variable)
 int year = 2020;                     // Field (Instance Variable)
 ```
 
-### 📚 The 3 Types of Variables in Java:
+### The 3 Types of Variables in Java:
 
 | Variable Type | Declaration Location | Memory Location | Lifetime | Default Value? |
 |:---|:---|:---|:---|:---:|
@@ -297,24 +297,24 @@ public Car() {
 }
 ```
 
-### 🎯 Purpose:
+### Purpose:
 - Allocates memory on the JVM Heap and initializes the instance variables of a newly created object.
 
-### 📝 Syntax:
+### Syntax:
 ```java
 accessModifier ClassName(parameterList) {
     // Constructor initialization logic
 }
 ```
 
-### 💡 Example:
+### Example:
 ```java
 public Car() {
     System.out.println("Constructor called!");
 }
 ```
 
-### 📚 Deep Theory & Rules:
+### Deep Theory & Rules:
 1. **Name Matching**: The constructor name **MUST match the class name exactly** (case-sensitive).
 2. **NO Return Type**: A constructor **must NOT have any return type** (not even `void`).
 3. **The `void` Constructor Trap**: If you write `public void Car()`, the code compiles without error, but it is **NOT** a constructor! Java treats it as a standard method named `Car()`.
@@ -343,11 +343,11 @@ public void start() {
 }
 ```
 
-### 🎯 Purpose:
+### Purpose:
 - Define the actions, behaviors, and operations of an object.
 - Promote code reusability (DRY - Don't Repeat Yourself) and modular design.
 
-### 📝 Syntax:
+### Syntax:
 ```java
 accessModifier returnType methodName(parameterList) {
     // Method body
@@ -355,21 +355,21 @@ accessModifier returnType methodName(parameterList) {
 }
 ```
 
-### 💡 Example:
+### Example:
 ```java
 public void start() {
     System.out.println("Car Started");
 }
 ```
 
-### 📚 Deep Theory & Rules:
+### Deep Theory & Rules:
 1. **Method Signature**: Consists of the method name and parameter type list (e.g., `start()`, `drive(int speed)`).
 2. **Return Type**:
-   - If the method produces a result, declare the data type (`int`, `String`, `boolean`, `Car`) and end with `return value;`.
-   - If no value is produced, declare the return type as `void`.
+ - If the method produces a result, declare the data type (`int`, `String`, `boolean`, `Car`) and end with `return value;`.
+ - If no value is produced, declare the return type as `void`.
 3. **Instance Methods vs Static Methods**:
-   - **Instance Method** (`public void start()`): Requires an object instance to invoke (`myCar.start()`). Can access both instance and static members.
-   - **Static Method** (`public static void displayCount()`): Belongs to the class itself. Invoked using the class name (`Car.displayCount()`). Cannot directly access instance variables without an object reference.
+ - **Instance Method** (`public void start()`): Requires an object instance to invoke (`myCar.start()`). Can access both instance and static members.
+ - **Static Method** (`public static void displayCount()`): Belongs to the class itself. Invoked using the class name (`Car.displayCount()`). Cannot directly access instance variables without an object reference.
 4. **Method Overloading**: Defining multiple methods in the same class with the same name but different parameter lists (different number, types, or order of parameters).
 
 ---
@@ -384,24 +384,24 @@ public static void main(String[] args) {
 }
 ```
 
-### 🎯 Purpose:
+### Purpose:
 - Acts as the launchpad that initiates program flow, instantiates objects, invokes methods, and manages program lifecycle.
 
-### 📝 Standard Syntax:
+### Standard Syntax:
 ```java
 public static void main(String[] args) {
     // Program execution starts here
 }
 ```
 
-### 💡 Example:
+### Example:
 ```java
 public static void main(String[] args) {
     System.out.println("Hello Deepak...!!");
 }
 ```
 
-### 🔬 Forensic Word-by-Word Breakdown:
+### Forensic Word-by-Word Breakdown:
 
 | Keyword | Type | In-Depth JVM Purpose |
 |:---|:---|:---|
@@ -420,7 +420,7 @@ public static void main(String[] args) {
 
 ---
 
-## 🚀 Complete Working Java Program Example
+## Complete Working Java Program Example
 
 Here is a unified, fully working Java program combining all components in their proper structural sequence:
 
@@ -512,7 +512,7 @@ public class Car {
 }
 ```
 
-### 🖥️ Expected Execution Output:
+### Expected Execution Output:
 
 ```text
 Hello Deepak...!!
@@ -532,7 +532,7 @@ Total Cars Instantiated in Memory: 2
 
 ---
 
-## 📊 Summary Quick-Reference Matrix
+## Summary Quick-Reference Matrix
 
 | Section # | Component | Is It Mandatory? | Placement Rule | Core Technical Purpose |
 |:---:|:---|:---:|:---|:---|
@@ -546,7 +546,7 @@ Total Cars Instantiated in Memory: 2
 
 ---
 
-## ⚠️ Top 8 Interview Traps & Core Rules to Remember
+## Top 8 Interview Traps & Core Rules to Remember
 
 1. **Package vs Import Ordering**: Putting `import` before `package` causes a compile error: `class, interface, enum, or record expected`.
 2. **The Constructor Return Type Trap**: Adding `void` (e.g. `public void Car()`) does not throw a syntax error, but converts it into a regular method. Java then supplies a default constructor instead.

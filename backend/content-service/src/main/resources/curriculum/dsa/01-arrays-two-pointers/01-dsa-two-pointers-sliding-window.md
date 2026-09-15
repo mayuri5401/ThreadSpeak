@@ -31,15 +31,15 @@ codeSnippet:
     }
 ---
 
-### 🎯 Two Pointers & Sliding Window Patterns
+### Two Pointers & Sliding Window Patterns
 
 1. **Opposite-Direction Pointers**:
-   - Array is sorted (or monotonically partitioned).
-   - `left` moves right (`left++`), `right` moves left (`right--`).
-   - Eliminates redundant search space in $O(N)$ time, $O(1)$ space.
+ - Array is sorted (or monotonically partitioned).
+ - `left` moves right (`left++`), `right` moves left (`right--`).
+ - Eliminates redundant search space in $O(N)$ time, $O(1)$ space.
 
 2. **Sliding Window (Expand & Shrink)**:
-   - Window boundaries: `[left, right]`.
-   - **Phase 1 (Expand)**: Increment `right`, incorporate `arr[right]` into window state (hash map / counter).
-   - **Phase 2 (Shrink Condition)**: While window violates constraints (e.g. duplicates or sum > target), remove `arr[left]` and increment `left++`.
-   - **Phase 3 (Update Output)**: Update maximum/minimum window length or best answer.
+ - Window boundaries: `[left, right]`.
+ - **Phase 1 (Expand)**: Increment `right`, incorporate `arr[right]` into window state (hash map / counter).
+ - **Phase 2 (Shrink Condition)**: While window violates constraints (e.g. duplicates or sum > target), remove `arr[left]` and increment `left++`.
+ - **Phase 3 (Update Output)**: Update maximum/minimum window length or best answer.

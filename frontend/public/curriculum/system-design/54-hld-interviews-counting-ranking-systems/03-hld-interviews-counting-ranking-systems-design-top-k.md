@@ -860,11 +860,11 @@ flowchart TB
 1. Create a 2D array of counters with `d` rows and `w` columns
 2. Use `d` different hash functions (one per row)
 3. For each event:
-   - Compute hash positions: `pos_i = hash_i(item) % w` for each row
-   - Increment counter at each position
+ - Compute hash positions: `pos_i = hash_i(item) % w` for each row
+ - Increment counter at each position
 4. To query count:
-   - Compute the same hash positions
-   - Return the **minimum** value across all rows
+ - Compute the same hash positions
+ - Return the **minimum** value across all rows
 
 The minimum is used because collisions can only increase counts, never decrease them. Taking the minimum reduces overestimation.
 
@@ -921,9 +921,9 @@ flowchart TD
 
 1. Maintain a fixed-size table of M entries (item, count, error)
 2. For each event:
-   - If item exists in table: increment its count
-   - If item does not exist and table is not full: add with count = 1
-   - If item does not exist and table is full: find the item with minimum count, replace it with the new item, set new count = old_min + 1, set error = old_min
+ - If item exists in table: increment its count
+ - If item does not exist and table is not full: add with count = 1
+ - If item does not exist and table is full: find the item with minimum count, replace it with the new item, set new count = old_min + 1, set error = old_min
 
 The error field tracks potential overestimation. When we replace an item, we do not know if the new item truly had old_min occurrences or zero. The error bounds this uncertainty.
 
@@ -1200,13 +1200,13 @@ flowchart LR
 #### **How It Works:**
 
 1. Maintain the current Top K in a data structure that supports:
-   - Fast lookup by item ID
-   - Fast removal of the K-th item
-   - Fast insertion maintaining sorted order
+ - Fast lookup by item ID
+ - Fast removal of the K-th item
+ - Fast insertion maintaining sorted order
 2. Track the threshold (count of K-th item)
 3. On each count update:
-   - If item is already in Top K: update its count and re-sort if needed
-   - If item is not in Top K but count > threshold: insert and evict
+ - If item is already in Top K: update its count and re-sort if needed
+ - If item is not in Top K but count > threshold: insert and evict
 
 This amortizes the Top K computation across updates rather than computing from scratch periodically.
 

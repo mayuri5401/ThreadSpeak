@@ -40,11 +40,11 @@ codeSnippet:
     }
 ---
 
-# 🛡️ try-catch Block in Java
+# try-catch Block in Java
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 In Java, **`try`** and **`catch`** are dedicated keywords used together as structured blocks for **exception handling**.
 
@@ -63,13 +63,13 @@ flowchart TD
 
 ---
 
-## 🧱 2. Definitions & Syntax
+## 2. Definitions & Syntax
 
-### 📦 The `try` Block
+### The `try` Block
 - The **`try`** block contains the code that may throw an exception.
 - In simple words: **It contains the risky code that can cause an exception at runtime.**
 
-#### 📝 `try` Syntax:
+#### `try` Syntax:
 ```java
 try
 {
@@ -79,11 +79,11 @@ try
 
 ---
 
-### 🦺 The `catch` Block
+### The `catch` Block
 - The **`catch`** block is used to handle the exception thrown by the `try` block.
 - In simple words: **It contains the handling code that will execute if an exception occurs in the `try` block.**
 
-#### 📝 `catch` Syntax:
+#### `catch` Syntax:
 ```java
 catch(ExceptionClassType ref_variable)
 {
@@ -93,13 +93,13 @@ catch(ExceptionClassType ref_variable)
 
 ---
 
-## 💻 3. Step-by-Step Code Example: Two-Number Division
+## 3. Step-by-Step Code Example: Two-Number Division
 
 Let us take an example where we take two integers (`no1` and `no2`) as input from the user and divide them (`no1 / no2`).
 
 ---
 
-### ❌ Step A: Program WITHOUT using `try-catch` Block
+### Step A: Program WITHOUT using `try-catch` Block
 
 ```java
 import java.util.Scanner;
@@ -125,7 +125,7 @@ public class MainApp1
 }
 ```
 
-#### 🖥️ Output 1 (Normal Input: `no1 = 100`, `no2 = 4`):
+#### Output 1 (Normal Input: `no1 = 100`, `no2 = 4`):
 ```text
 ----- App Started -----
 Enter no 1
@@ -136,7 +136,7 @@ Result : 25
 ----- App Finished Successfully -----
 ```
 
-#### 💥 Output 2 (If user provides `no2 = 0`):
+#### Output 2 (If user provides `no2 = 0`):
 ```text
 ----- App Started -----
 Enter no 1
@@ -154,7 +154,7 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 
 ---
 
-### 🛡️ Step B: Modifying the Program WITH `try-catch` Block
+### Step B: Modifying the Program WITH `try-catch` Block
 
 Now we wrap the risky code inside a `try` block and handle the `ArithmeticException` in the `catch` block.
 
@@ -189,7 +189,7 @@ public class MainApp1
 }
 ```
 
-#### 🖥️ Output 1 (Normal Input: `no1 = 100`, `no2 = 4`):
+#### Output 1 (Normal Input: `no1 = 100`, `no2 = 4`):
 ```text
 ----- App Started -----
 Enter no 1
@@ -200,7 +200,7 @@ Result : 25
 ----- App Finished Successfully -----
 ```
 
-#### 🛡️ Output 2 (If user provides `no2 = 0`):
+#### Output 2 (If user provides `no2 = 0`):
 ```text
 ----- App Started -----
 Enter no 1
@@ -218,7 +218,7 @@ Exception Occured : java.lang.ArithmeticException: / by zero
 
 ---
 
-## 🎬 4. Interactive Animation & How the Animation Works
+## 4. Interactive Animation & How the Animation Works
 
 The interactive visualizer above demonstrates the complete runtime flow of `try-catch` under the hood:
 
@@ -243,31 +243,31 @@ sequenceDiagram
     End->>User: Print "----- App Finished Successfully -----" (Exit Code 0)
 ```
 
-### 🔍 Step-by-Step Animation Breakdown:
+### Step-by-Step Animation Breakdown:
 
 1. **🚀 Thread Start & Input Reading**:
-   - The `main()` thread begins execution and displays `"----- App Started -----"`.
-   - The user inputs numerator `no1 = 100` and denominator `no2 = 0`.
+ - The `main()` thread begins execution and displays `"----- App Started -----"`.
+ - The user inputs numerator `no1 = 100` and denominator `no2 = 0`.
 2. **📦 Entering the `try` Block**:
-   - The thread crosses into the protective `try` block zone.
+ - The thread crosses into the protective `try` block zone.
 3. **⚡ Exception Invariant (Division by Zero)**:
-   - On the line `int res = no1 / no2;`, integer division by zero occurs.
-   - The JVM instantiates a `java.lang.ArithmeticException` object on the Heap.
-   - **Crucial Rule**: The remaining line in the `try` block (`System.out.println("Result : " + res);`) is **immediately skipped**!
+ - On the line `int res = no1 / no2;`, integer division by zero occurs.
+ - The JVM instantiates a `java.lang.ArithmeticException` object on the Heap.
+ - **Crucial Rule**: The remaining line in the `try` block (`System.out.println("Result : " + res);`) is **immediately skipped**!
 4. **🦺 Jump to `catch` Block**:
-   - The JVM intercepts the exception object and binds it to the reference variable `ae` in `catch(ArithmeticException ae)`.
-   - The catch block executes its handler statement: `"Exception Occured : java.lang.ArithmeticException: / by zero"`.
+ - The JVM intercepts the exception object and binds it to the reference variable `ae` in `catch(ArithmeticException ae)`.
+ - The catch block executes its handler statement: `"Exception Occured : java.lang.ArithmeticException: / by zero"`.
 5. **🏁 Normal Post-Catch Continuation**:
-   - Once the catch block finishes, normal sequential execution resumes.
-   - The final statement `"----- App Finished Successfully -----"` is printed, and the program exits safely with **Exit Code 0**.
+ - Once the catch block finishes, normal sequential execution resumes.
+ - The final statement `"----- App Finished Successfully -----"` is printed, and the program exits safely with **Exit Code 0**.
 
 ---
 
-## 📌 5. Points to Remember for `try-catch` Block
+## 5. Points to Remember for `try-catch` Block
 
 1. **`try` cannot be used alone**:
-   - A `try` block **must** be followed by at least one `catch` block or a `finally` block.
-   - Valid syntax structures:
+ - A `try` block **must** be followed by at least one `catch` block or a `finally` block.
+ - Valid syntax structures:
      ```java
      // 1. try-catch
      try {
@@ -296,19 +296,19 @@ sequenceDiagram
      ```
 
 2. **The Exception Object Anatomy**:
-   - The reference variable in the catch block (e.g., `ae` or `e`) holds a reference to the exception object instantiated on the Heap.
-   - This object contains three key pieces of information:
-     - 🏷️ **Exception Class Name** (e.g., `java.lang.ArithmeticException`)
-     - 💬 **Error Message / Description** (e.g., `/ by zero`)
-     - 📍 **Stack Trace** (class name, method name, line number where the exception occurred)
+ - The reference variable in the catch block (e.g., `ae` or `e`) holds a reference to the exception object instantiated on the Heap.
+ - This object contains three key pieces of information:
+ - **Exception Class Name** (e.g., `java.lang.ArithmeticException`)
+ - **Error Message / Description** (e.g., `/ by zero`)
+ - **Stack Trace** (class name, method name, line number where the exception occurred)
 
 3. **Execution Condition**:
-   - If an exception occurs in the `try` block, **only then** does the program jump to the `catch` block.
-   - If **no exception** occurs in the `try` block, the `catch` block is **completely skipped and never executed**.
+ - If an exception occurs in the `try` block, **only then** does the program jump to the `catch` block.
+ - If **no exception** occurs in the `try` block, the `catch` block is **completely skipped and never executed**.
 
 ---
 
-## 🔍 6. Different Ways to Print the Exception Object
+## 6. Different Ways to Print the Exception Object
 
 When handling an exception, Java provides three primary methods to inspect the exception object:
 
@@ -327,7 +327,7 @@ classDiagram
 
 ---
 
-### 1️⃣ Using `getMessage()`
+### 1⃣ Using `getMessage()`
 Prints **only** the description / error message without the exception class name or stack hierarchy.
 
 ```java
@@ -336,14 +336,14 @@ catch (Exception e)
     System.out.println(e.getMessage());
 }
 ```
-#### 🖥️ Output:
+#### Output:
 ```text
 / by zero
 ```
 
 ---
 
-### 2️⃣ Using `toString()`
+### 2⃣ Using `toString()`
 Prints the **fully qualified exception class name** along with the error description message.
 
 ```java
@@ -353,14 +353,14 @@ catch (Exception e)
     // Note: System.out.println(e); also internally calls e.toString()
 }
 ```
-#### 🖥️ Output:
+#### Output:
 ```text
 java.lang.ArithmeticException: / by zero
 ```
 
 ---
 
-### 3️⃣ Using `printStackTrace()`
+### 3⃣ Using `printStackTrace()`
 Prints the **full stack trace**, including the exception class name, error message, and the exact method call hierarchy with **file names and line numbers**.
 
 ```java
@@ -369,7 +369,7 @@ catch (Exception e)
     e.printStackTrace();
 }
 ```
-#### 🖥️ Output:
+#### Output:
 ```text
 java.lang.ArithmeticException: / by zero
 	at MainApp1.main(MainApp1.java:17)
@@ -377,7 +377,7 @@ java.lang.ArithmeticException: / by zero
 
 ---
 
-### 💡 Pro-Tip: When to use which method?
+### Pro-Tip: When to use which method?
 
 | Method | Output Detail | Recommended Use Case |
 | :--- | :--- | :--- |
@@ -387,7 +387,7 @@ java.lang.ArithmeticException: / by zero
 
 ---
 
-## 🏢 7. Enterprise Real-World Example: E-Commerce Payment Gateway
+## 7. Enterprise Real-World Example: E-Commerce Payment Gateway
 
 In modern e-commerce architectures (like Amazon or Shopify), when a customer places an order, the system contacts external third-party payment gateways (like Stripe, Razorpay, or PayPal). Network blips, invalid card details, or insufficient funds can cause runtime exceptions. Without `try-catch`, the entire checkout server would crash!
 
@@ -401,7 +401,7 @@ flowchart TD
     Fallback --> Graceful["🛡️ Server Remains Healthy (Exit Code 0)"]
 ```
 
-### 💻 Production-Grade Java Implementation:
+### Production-Grade Java Implementation:
 
 ```java
 import java.util.Scanner;
@@ -454,7 +454,7 @@ public class PaymentGatewayService
 }
 ```
 
-#### 🖥️ Console Output:
+#### Console Output:
 ```text
 ==================================================
   🛍️ THREADSPEAK E-COMMERCE CHECKOUT SUBSYSTEM    
@@ -481,7 +481,7 @@ public class PaymentGatewayService
 
 ---
 
-## ⚙️ 8. Deep-Dive JVM Mechanics: The Bytecode Exception Table
+## 8. Deep-Dive JVM Mechanics: The Bytecode Exception Table
 
 Under the hood, how does the JVM know where the `catch` block begins when an instruction throws an exception?
 
@@ -505,7 +505,7 @@ When an exception occurs at instruction `18`, the JVM looks up the Exception Tab
 
 ---
 
-## 📊 9. Summary Comparison
+## 9. Summary Comparison
 
 | Aspect | Without `try-catch` | With `try-catch` |
 | :--- | :--- | :--- |

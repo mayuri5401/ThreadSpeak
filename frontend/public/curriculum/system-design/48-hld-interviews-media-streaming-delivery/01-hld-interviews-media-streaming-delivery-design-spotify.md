@@ -1754,14 +1754,14 @@ sequenceDiagram
 
 1. **User initiates download:** User marks a playlist for offline access
 2. **Entitlement check:** Download Service verifies:
-   - User has an active premium subscription
-   - Song is available for download in user's region
-   - User has not exceeded device limit (typically 5 devices)
-   - User has not exceeded download limit (typically 10,000 songs)
+ - User has an active premium subscription
+ - Song is available for download in user's region
+ - User has not exceeded device limit (typically 5 devices)
+ - User has not exceeded download limit (typically 10,000 songs)
 3. **License generation:** For each song, we generate an encrypted license tied to:
-   - The user's account
-   - The specific device
-   - An expiration time (30 days)
+ - The user's account
+ - The specific device
+ - An expiration time (30 days)
 4. **Download:** Client downloads encrypted audio files from CDN
 5. **Local storage:** Audio and licenses are stored in encrypted local storage
 
@@ -1811,9 +1811,9 @@ Downloaded content does not last forever. Licenses expire after 30 days of offli
 The client is responsible for managing downloaded content:
 
 - **Quality selection:** Users choose download quality (affects storage)
-   - Very High (320 kbps): ~10 MB per song
-   - High (160 kbps): ~5 MB per song
-   - Normal (96 kbps): ~3 MB per song
+ - Very High (320 kbps): ~10 MB per song
+ - High (160 kbps): ~5 MB per song
+ - Normal (96 kbps): ~3 MB per song
 - **Storage tracking:** Show users how much storage is used
 - **Smart cleanup:** Automatically remove songs that have not been played offline in 60+ days, oldest downloads first when storage is low
 
@@ -1871,17 +1871,17 @@ flowchart TB
 ### Event Flow in Detail
 
 1. **Client emits events:** The app sends events for key playback moments:
-   - `play_start`: User pressed play
-   - `play_pause`: User paused
-   - `play_seek`: User jumped to different position
-   - `play_complete`: Song finished naturally
-   - `play_skip`: User skipped before completion
+ - `play_start`: User pressed play
+ - `play_pause`: User paused
+ - `play_seek`: User jumped to different position
+ - `play_complete`: Song finished naturally
+ - `play_skip`: User skipped before completion
 2. **Event collection:** Events are batched and sent to our Event Collector API. We use batching to reduce network overhead and handle intermittent connectivity.
 3. **Kafka for durability:** Events flow into Kafka, providing durability and buffering. If downstream systems are slow, Kafka absorbs the backlog without losing data.
 4. **Stream processing:** A Flink or Spark Streaming job processes events in near-real-time:
-   - Reconstructs complete play sessions from individual events
-   - Determines which plays qualify as streams (30+ seconds)
-   - Enriches with user and song metadata
+ - Reconstructs complete play sessions from individual events
+ - Determines which plays qualify as streams (30+ seconds)
+ - Enriches with user and song metadata
 5. **Fraud detection:** ML models flag suspicious patterns before counting streams
 6. **Analytics and royalties:** Valid streams are written to analytics databases and fed into the royalty calculation pipeline
 

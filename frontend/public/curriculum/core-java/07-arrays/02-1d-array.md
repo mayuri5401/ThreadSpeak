@@ -39,18 +39,18 @@ codeSnippet:
     }
 ---
 
-# 📏 One-Dimensional (1D) Arrays in Java
+# One-Dimensional (1D) Arrays in Java
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 A **one-dimensional (1D) array** is the simplest and most fundamental form of an array in Java.
 - It stores a collection of elements of the **same data type** in a **linear sequence**.
 - Each element in the array is accessed using a **single integer index**.
 - It is commonly used to represent linear lists, such as student marks, product prices, employee IDs, or names.
 
-### 📝 Example:
+### Example:
 ```java
 int[] marks = {88, 74, 91, 82, 68, 94};
 ```
@@ -65,7 +65,7 @@ flowchart LR
 
 ---
 
-## 🛠️ 2. The 4 Essential Steps of Working with 1D Arrays
+## 2. The 4 Essential Steps of Working with 1D Arrays
 
 To master 1D arrays in Java, you must understand the **4 lifecycle steps**:
 
@@ -81,13 +81,13 @@ flowchart TD
 
 ---
 
-## 📝 Step 1: Declare an Array
+## Step 1: Declare an Array
 
 Array declaration is the process of **defining a reference variable** that will point to an array of a specific data type (`int`, `float`, `String`, etc.).
 
 > ⚠️ **Key JVM Rule:** At the declaration stage, **no memory is allocated on the Heap**. Only a reference variable is created on the Stack with a value of `null` (or uninitialized if local).
 
-### 🏷️ Recommended Standard Syntax:
+### Recommended Standard Syntax:
 ```java
 dataType[] arrayName;
 ```
@@ -98,7 +98,7 @@ String[] names;
 double[] salaries;
 ```
 
-### 🔄 Alternate Valid Syntaxes in Java:
+### Alternate Valid Syntaxes in Java:
 Java also permits C/C++ style bracket placements:
 ```java
 dataType arrayName[];   // e.g., int marks[];
@@ -108,7 +108,7 @@ dataType []arrayName;   // e.g., int []marks;
 
 ---
 
-## 📦 Step 2: Create an Array
+## Step 2: Create an Array
 
 Array creation is the process of **allocating memory on the Heap** using the **`new` keyword**.
 
@@ -116,7 +116,7 @@ Array creation is the process of **allocating memory on the Heap** using the **`
 - The **size of the array must be specified** during creation and cannot be changed later.
 - All allocated slots are automatically initialized to their **default zero-values** (`0` for `int`, `0.0` for `double`, `false` for `boolean`, `null` for objects).
 
-### 🏷️ Creation Syntax:
+### Creation Syntax:
 ```java
 arrayName = new dataType[size];
 ```
@@ -126,7 +126,7 @@ marks = new int[6];      // Reserves 6 integer slots (24 bytes) on Heap
 names = new String[6];   // Reserves 6 reference slots on Heap
 ```
 
-### ⚡ Combining Declaration & Creation in a Single Line:
+### Combining Declaration & Creation in a Single Line:
 ```java
 dataType[] arrayName = new dataType[size];
 
@@ -148,11 +148,11 @@ flowchart LR
 
 ---
 
-## ✏️ Step 3: Initialize an Array
+## Step 3: Initialize an Array
 
 Array initialization is the process of **assigning actual data values** to the elements of an array.
 
-### 🏷️ Manual Initialization by Index:
+### Manual Initialization by Index:
 ```java
 arrayName[index] = value;
 ```
@@ -168,7 +168,7 @@ marks[5] = 94;
 
 ---
 
-### 💡 Combining Declaration, Creation & Initialization (Shorthand Literal)
+### Combining Declaration, Creation & Initialization (Shorthand Literal)
 
 We can combine all 3 steps into a single concise line using the **array literal syntax**:
 
@@ -187,20 +187,20 @@ int[] marks = {88, 74, 91, 82, 68, 94};
 
 ---
 
-## 🔍 Step 4: Retrieve Elements of an Array
+## Step 4: Retrieve Elements of an Array
 
 Retrieving array elements means **reading the values stored in memory** using zero-based indexing (`0` to `length - 1`).
 
 Java provides **4 primary ways** to retrieve elements:
 
-### 1️⃣ Using Single Direct Index
+### 1⃣ Using Single Direct Index
 ```java
 System.out.println(marks[0]);  // Output: 88 (First element)
 System.out.println(marks[3]);  // Output: 82 (Fourth element)
 System.out.println(marks[marks.length - 1]); // Output: 94 (Last element)
 ```
 
-### 2️⃣ Using Traditional `for` Loop
+### 2⃣ Using Traditional `for` Loop
 Best when you need the numerical index position:
 ```java
 for (int i = 0; i < marks.length; i++) {
@@ -208,7 +208,7 @@ for (int i = 0; i < marks.length; i++) {
 }
 ```
 
-### 3️⃣ Using Enhanced `for-each` Loop (Recommended & Preferred)
+### 3⃣ Using Enhanced `for-each` Loop (Recommended & Preferred)
 The cleanest, most readable way to iterate over all elements:
 ```java
 for (int num : marks) {
@@ -216,7 +216,7 @@ for (int num : marks) {
 }
 ```
 
-### 4️⃣ Using `Arrays.toString()` Utility
+### 4⃣ Using `Arrays.toString()` Utility
 Displays the entire array contents formatted as a string `[e1, e2, ...]`:
 ```java
 import java.util.Arrays;
@@ -227,9 +227,9 @@ System.out.println(Arrays.toString(marks));
 
 ---
 
-## 💻 3. Complete Code Programs & Walkthrough
+## 3. Complete Code Programs & Walkthrough
 
-### 📜 Program 1: Step-by-Step Declaration, Allocation & Retrieval
+### Program 1: Step-by-Step Declaration, Allocation & Retrieval
 ```java
 public class MainApp1 {
     public static void main(String[] args) {
@@ -261,20 +261,20 @@ public class MainApp1 {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Way 1: 88 74 91 82 68 94 
 Way 2: 88 74 91 82 68 94 
 ```
 
-#### 📌 Points to Note:
+#### Points to Note:
 1. We accessed the array elements in 2 ways: normal `for` loop and `for-each` loop.
 2. The `for-each` loop is preferred for read-only traversals because it eliminates loop counters, boundary conditions, and indexing errors.
 3. Declaring and initializing slot-by-slot is lengthy; shorthand literal notation is much more concise!
 
 ---
 
-### 📜 Program 2: Shorthand Inline Initialization
+### Program 2: Shorthand Inline Initialization
 ```java
 public class MainApp2 {
     public static void main(String[] args) {
@@ -293,16 +293,16 @@ public class MainApp2 {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Marks are: 88 74 91 82 68 94
 ```
 
 ---
 
-## 🧠 4. Advanced Concepts & Best Practices
+## 4. Advanced Concepts & Best Practices
 
-### 1️⃣ Anonymous 1D Arrays
+### 1⃣ Anonymous 1D Arrays
 You can pass an array directly into a method without assigning it to a reference variable:
 ```java
 public class AnonymousArrayDemo {
@@ -319,7 +319,7 @@ public class AnonymousArrayDemo {
 }
 ```
 
-### 2️⃣ Dynamic User Input with `Scanner`
+### 2⃣ Dynamic User Input with `Scanner`
 ```java
 import java.util.Scanner;
 
@@ -345,22 +345,22 @@ public class DynamicArrayInput {
 
 ---
 
-## 🎬 5. Interactive Visualizer Animation Walkthrough
+## 5. Interactive Visualizer Animation Walkthrough
 
 To see 1D Arrays in action, open the **Architecture Tab**:
 
 1. **Step-by-Step Lifecycle Simulator**:
-   - Watch the 4 phases live: **Step 1 (Declaration)** ➔ **Step 2 (Memory Allocation on Heap with 0s)** ➔ **Step 3 (Slot Initialization)** ➔ **Step 4 (Loop Traversal & Retrieval)**.
+ - Watch the 4 phases live: **Step 1 (Declaration)** **Step 2 (Memory Allocation on Heap with 0s)** **Step 3 (Slot Initialization)** **Step 4 (Loop Traversal & Retrieval)**.
 2. **Loop Pointer Tracer**:
-   - Watch the active loop pointer `i` or `no` move along the contiguous memory slots in real time.
+ - Watch the active loop pointer `i` or `no` move along the contiguous memory slots in real time.
 3. **Retrieval Method Comparator**:
-   - Switch between **Index Access**, **Normal For Loop**, **For-Each Loop**, and **`Arrays.toString()`**.
+ - Switch between **Index Access**, **Normal For Loop**, **For-Each Loop**, and **`Arrays.toString()`**.
 4. **Interactive Knowledge Assessment Quiz**:
-   - Test your understanding of 1D array mechanics with instant grading.
+ - Test your understanding of 1D array mechanics with instant grading.
 
 ---
 
-## ❓ 6. Frequently Asked Interview Questions
+## 6. Frequently Asked Interview Questions
 
 <details>
 <summary><b>Q1: Can we change the size of an array after creation in Java?</b></summary>

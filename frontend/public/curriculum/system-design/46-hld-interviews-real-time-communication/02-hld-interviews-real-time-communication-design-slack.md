@@ -1053,10 +1053,10 @@ flowchart LR
 3. Processor extracts mentions (@user, @channel, @here) from content
 4. Processor matches against user-configured keywords
 5. For each notification target:
-   - Check user's notification preferences (DND, muted channels)
-   - Check if user is online
-   - If online: notification delivered via WebSocket
-   - If offline: push notification sent via APNs/FCM
+ - Check user's notification preferences (DND, muted channels)
+ - Check if user is online
+ - If online: notification delivered via WebSocket
+ - If offline: push notification sent via APNs/FCM
 
 ### Mention Extraction
 
@@ -1203,9 +1203,9 @@ flowchart LR
 
 1. **Client activity:** Client sends periodic heartbeats (every 30 seconds)
 2. **Presence calculation:**
-   - Recent heartbeat + recent interaction = Active
-   - Recent heartbeat + no recent interaction = Away
-   - No recent heartbeat = Offline
+ - Recent heartbeat + recent interaction = Active
+ - Recent heartbeat + no recent interaction = Away
+ - No recent heartbeat = Offline
 3. **Storage:** Presence stored in Redis with TTL (expires if no heartbeat)
 4. **Fanout:** Presence changes published to interested users
 

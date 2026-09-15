@@ -240,7 +240,7 @@ We'll work bottom-up: simple types first, then data containers, then the classes
 
 Enums define fixed sets of values that provide type safety and make code self-documenting. Using enums prevents invalid states at compile time rather than runtime.
 
-#### `MeetingStatus` 
+#### `MeetingStatus`
 
 It represents where a meeting is in its lifecycle.
 
@@ -356,7 +356,7 @@ classDiagram
 
 The User class is **immutable**. All fields are read-only, set once at construction. In this design, users are simple identity holders. Authentication, roles, and preferences are out of scope.
 
-#### `Room` 
+#### `Room`
 
 Represents a bookable meeting space.
 
@@ -424,7 +424,7 @@ The `overlaps()` method is the algorithmic core of this design. Two time slots o
 >
 > We encapsulate the overlap logic inside TimeSlot rather than in the MeetingScheduler. This follows the "Information Expert" principle: the class with the data (start and end times) should own the behavior that operates on that data. It also makes overlap detection independently testable.
 
-#### `Meeting` 
+#### `Meeting`
 
 Represents a scheduled meeting.
 
@@ -494,7 +494,7 @@ The Meeting class is mostly immutable. Only `status` can change, and only throug
 
 Interfaces define contracts for interchangeable behavior. They enable the Strategy and Observer patterns.
 
-#### `RoomSelectionStrategy` 
+#### `RoomSelectionStrategy`
 
 Defines how a room is chosen from a list of available rooms.
 
@@ -509,7 +509,7 @@ classDiagram
 
 The strategy takes a list of rooms that are available for the requested time slot and the number of attendees. It returns the best room according to its policy. Different implementations can optimize for different goals: minimize wasted capacity, maximize convenience, or simply pick the first option.
 
-#### `MeetingObserver` 
+#### `MeetingObserver`
 
 Defines a listener for meeting lifecycle events.
 
@@ -571,7 +571,7 @@ This strategy minimizes wasted capacity. Since rooms are already filtered by cap
 
 ### Observer Implementations
 
-#### `EmailNotificationObserver` 
+#### `EmailNotificationObserver`
 
 Sends email notifications when meetings are scheduled or cancelled.
 
@@ -593,7 +593,7 @@ classDiagram
 
 In a real system, this would integrate with an email service (SMTP, SendGrid, etc.). For this design, it prints notification messages. The key point is that the observer doesn't need to know anything about how meetings are scheduled. It just reacts to events.
 
-#### `CalendarNotificationObserver` 
+#### `CalendarNotificationObserver`
 
 Syncs meeting events to an external calendar system.
 
@@ -976,7 +976,7 @@ This section presents the complete implementation, built bottom-up. We start wit
 
 ## Enums
 
-#### `MeetingStatus` 
+#### `MeetingStatus`
 
 Tracks where a meeting is in its lifecycle. Three states cover all possible outcomes. A meeting starts as `SCHEDULED` and transitions to exactly one terminal state.
 
@@ -1004,7 +1004,7 @@ enum RoomType {
 
 ## Custom Exception
 
-#### `MeetingSchedulerException` 
+#### `MeetingSchedulerException`
 
 It provides a domain-specific exception for all scheduling failures. This gives callers a single exception type to catch for booking conflicts, invalid operations, and missing resources.
 
@@ -1022,7 +1022,7 @@ We extend `RuntimeException` (unchecked) rather than `Exception` (checked) becau
 
 Next, the data classes. These hold information with minimal behavior.
 
-#### `User` 
+#### `User`
 
 It is a simple immutable identity holder. All three fields are `final`, and there are no setters.
 
@@ -1079,7 +1079,7 @@ class Room {
 }
 ```
 
-#### `TimeSlot` 
+#### `TimeSlot`
 
 Represents a time interval. This is where the overlap detection algorithm lives.
 
@@ -1119,7 +1119,7 @@ The constructor validates that end time comes after start time. This is the vali
 
 The `overlaps()` method implements the standard interval overlap check. Consider two intervals [A, B) and [C, D). They overlap if A < D and C < B. If A >= D, the first interval starts after the second ends. If C >= B, the second starts after the first ends. Both conditions must hold for overlap.
 
-#### `Meeting` 
+#### `Meeting`
 
 Meeting class ties everything together. It's the central data object.
 
@@ -1135,7 +1135,7 @@ The `cancel()` and `complete()` methods enforce the state machine. You can only 
 
 Now the interfaces that define extensibility points.
 
-#### `RoomSelectionStrategy` 
+#### `RoomSelectionStrategy`
 
 Defines the contract for room selection algorithms.
 
@@ -1162,7 +1162,7 @@ Two methods, one for each event type. This is more explicit than a single `onEve
 
 ## Strategy Implementations
 
-#### `FirstAvailableStrategy` 
+#### `FirstAvailableStrategy`
 
 Picks the first room that meets the capacity requirement.
 
@@ -1177,7 +1177,7 @@ class FirstAvailableStrategy implements RoomSelectionStrategy {
 
 Simple and fast. Since `getAvailableRooms()` already filters by capacity and conflicts, the strategy just returns the first room from the pre-filtered list. The order depends on how rooms are stored in the scheduler's map, so the "first" room is somewhat arbitrary. This strategy optimizes for speed over utilization.
 
-#### `BestFitStrategy` 
+#### `BestFitStrategy`
 
 Picks the smallest room that still meets the capacity requirement.
 
@@ -1196,7 +1196,7 @@ This strategy minimizes wasted capacity. Since rooms are already pre-filtered by
 
 ## Observer Implementations
 
-#### `EmailNotificationObserver` 
+#### `EmailNotificationObserver`
 
 Prints email-style notifications. In a real system, this would call an email service API.
 
@@ -1205,21 +1205,21 @@ class EmailNotificationObserver implements MeetingObserver {
     @Override
     public void onMeetingScheduled(Meeting meeting) {
         System.out.println("[Email] Meeting scheduled: \""
-            + meeting.getSubject() + "\" in " + meeting.getRoom().getName()
-            + " (" + meeting.getTimeSlot() + ") organized by "
-            + meeting.getOrganizer());
+ + meeting.getSubject() + "\" in " + meeting.getRoom().getName()
+ + " (" + meeting.getTimeSlot() + ") organized by "
+ + meeting.getOrganizer());
     }
 
     @Override
     public void onMeetingCancelled(Meeting meeting) {
         System.out.println("[Email] Meeting cancelled: \""
-            + meeting.getSubject() + "\" in " + meeting.getRoom().getName()
-            + " was cancelled by " + meeting.getOrganizer());
+ + meeting.getSubject() + "\" in " + meeting.getRoom().getName()
+ + " was cancelled by " + meeting.getOrganizer());
     }
 }
 ```
 
-#### `CalendarNotificationObserver` 
+#### `CalendarNotificationObserver`
 
 Prints calendar sync notifications. In a real system, this would integrate with Google Calendar or Outlook.
 
@@ -1228,14 +1228,14 @@ class CalendarNotificationObserver implements MeetingObserver {
     @Override
     public void onMeetingScheduled(Meeting meeting) {
         System.out.println("[Calendar] Meeting added to calendar: \""
-            + meeting.getSubject() + "\" in " + meeting.getRoom().getName()
-            + " (" + meeting.getTimeSlot() + ")");
+ + meeting.getSubject() + "\" in " + meeting.getRoom().getName()
+ + " (" + meeting.getTimeSlot() + ")");
     }
 
     @Override
     public void onMeetingCancelled(Meeting meeting) {
         System.out.println("[Calendar] Meeting removed from calendar: \""
-            + meeting.getSubject() + "\" in " + meeting.getRoom().getName());
+ + meeting.getSubject() + "\" in " + meeting.getRoom().getName());
     }
 }
 ```
@@ -1244,7 +1244,7 @@ Both observers follow the same pattern: extract information from the meeting and
 
 ## Core Class
 
-#### `MeetingScheduler` 
+#### `MeetingScheduler`
 
 This is the heart of the system. It coordinates rooms, meetings, conflict detection, and notifications.
 

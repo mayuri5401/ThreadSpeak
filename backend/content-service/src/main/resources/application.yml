@@ -51,6 +51,14 @@ spring:
       time-to-live: 3600000 # 1 Hour TTL
       cache-null-values: false
 
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        max.block.ms: 1000
+
 eureka:
   client:
     service-url:

@@ -532,8 +532,8 @@ Instead, a **fan-out-on-read (pull model)** is used.
 #### **How It Works**
 
 1. When a user requests their newsfeed, the Feed Service dynamically retrieves:
-   - Normal users’ posts from Redis (precomputed feeds).
-   - Celebrity posts from a hot cache (Redis) or a persistent store (PostgreSQL).
+ - Normal users’ posts from Redis (precomputed feeds).
+ - Celebrity posts from a hot cache (Redis) or a persistent store (PostgreSQL).
 2. The system merges both types of posts in real-time before serving the feed.
 
 **Benefits**:

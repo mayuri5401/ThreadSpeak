@@ -38,11 +38,11 @@ codeSnippet:
     }
 ---
 
-# 📐 Multi-Dimensional Array (2D) in Java
+# Multi-Dimensional Array (2D) in Java
 
 ---
 
-## 📖 1. Introduction to 2D Arrays
+## 1. Introduction to 2D Arrays
 
 A **two-dimensional (2D) array** is the most common form of a **multi-dimensional array** in Java.
 - In Java, a 2D array is fundamentally an **"array of arrays"**.
@@ -50,7 +50,7 @@ A **two-dimensional (2D) array** is the most common form of a **multi-dimensiona
 - Elements are accessed using **two indices**: `[rowIndex][columnIndex]`.
 - 2D arrays are widely used to represent mathematical matrices, chessboard grids, image pixels, student marks across multiple subjects, and cinema seating charts.
 
-### 📝 Example:
+### Example:
 ```java
 int[][] numbers = {
     {10, 20, 30},
@@ -74,7 +74,7 @@ flowchart TD
 
 ---
 
-## 🧠 2. The JVM "Array of Arrays" Memory Architecture
+## 2. The JVM "Array of Arrays" Memory Architecture
 
 In languages like C or C++, a 2D array is stored as a single contiguous block in row-major order.
 
@@ -108,16 +108,16 @@ flowchart LR
 
 ---
 
-## 🛠️ 3. The 4 Essential Steps of Working with 2D Arrays
+## 3. The 4 Essential Steps of Working with 2D Arrays
 
 ---
 
-### 📝 Step 1: Declare a 2D Array
+### Step 1: Declare a 2D Array
 Array declaration defines a reference variable that will point to a 2D array of a specific data type.
 
 > ⚠️ **Key Rule:** At declaration, **no memory is allocated on the Heap**. The Stack reference is simply `null`.
 
-#### 🏷️ Recommended Standard Syntax:
+#### Recommended Standard Syntax:
 ```java
 dataType[][] arrayName;
 
@@ -126,7 +126,7 @@ int[][] numbers;
 String[][] seatingChart;
 ```
 
-#### 🔄 Alternate Valid Syntaxes:
+#### Alternate Valid Syntaxes:
 ```java
 dataType arrayName[][]; // e.g. int numbers[][];
 dataType [][]arrayName; // e.g. int [][]numbers;
@@ -135,13 +135,13 @@ dataType [][]arrayName; // e.g. int [][]numbers;
 
 ---
 
-### 📦 Step 2: Create a 2D Array
+### Step 2: Create a 2D Array
 Array creation allocates memory on the Heap using the **`new` keyword**.
 
 - A fixed block of memory is reserved for the specified number of rows and columns.
 - All elements are automatically initialized to their default values (`0` for `int`, `null` for objects).
 
-#### 🏷️ Creation Syntax:
+#### Creation Syntax:
 ```java
 arrayName = new dataType[rows][columns];
 
@@ -149,7 +149,7 @@ arrayName = new dataType[rows][columns];
 numbers = new int[2][3]; // 2 rows, 3 columns (6 total slots)
 ```
 
-#### ⚡ Combining Declaration & Creation in a Single Line:
+#### Combining Declaration & Creation in a Single Line:
 ```java
 dataType[][] arrayName = new dataType[rows][columns];
 
@@ -159,10 +159,10 @@ int[][] numbers = new int[2][3];
 
 ---
 
-### ✏️ Step 3: Initialize a 2D Array
+### Step 3: Initialize a 2D Array
 Array initialization assigns actual values to individual matrix cells.
 
-#### 🏷️ Manual Element-by-Element Assignment:
+#### Manual Element-by-Element Assignment:
 ```java
 int[][] numbers = new int[2][3];
 
@@ -177,7 +177,7 @@ numbers[1][1] = 50;
 numbers[1][2] = 60;
 ```
 
-#### 💡 Shorthand Array Literal Syntax (All 3 Steps in One Line):
+#### Shorthand Array Literal Syntax (All 3 Steps in One Line):
 ```java
 dataType[][] arrayName = {
     {value1, value2, value3, ...},
@@ -197,12 +197,12 @@ int[][] numbers = {
 
 ---
 
-### 🔍 Step 4: Retrieve Elements of a 2D Array
+### Step 4: Retrieve Elements of a 2D Array
 Elements are accessed using **zero-based row and column indices**:
 - First element: `[0][0]`
 - Last element: `[rows - 1][columns - 1]`
 
-#### 1️⃣ Using Row and Column Index Directly:
+#### 1⃣ Using Row and Column Index Directly:
 ```java
 int[][] numbers = {
     {10, 20, 30},
@@ -213,7 +213,7 @@ System.out.println(numbers[0][1]); // Output: 20 (Row 0, Col 1)
 System.out.println(numbers[1][2]); // Output: 60 (Row 1, Col 2)
 ```
 
-#### 2️⃣ Using Nested Traditional `for` Loops:
+#### 2⃣ Using Nested Traditional `for` Loops:
 ```java
 for (int i = 0; i < numbers.length; i++) {
     for (int j = 0; j < numbers[i].length; j++) {
@@ -223,7 +223,7 @@ for (int i = 0; i < numbers.length; i++) {
 }
 ```
 
-#### 3️⃣ Using Nested Enhanced `for-each` Loops (Preferred & Recommended):
+#### 3⃣ Using Nested Enhanced `for-each` Loops (Preferred & Recommended):
 ```java
 for (int[] row : numbers) {
     for (int num : row) {
@@ -233,7 +233,7 @@ for (int[] row : numbers) {
 }
 ```
 
-#### 4️⃣ Using `Arrays.deepToString()` Utility:
+#### 4⃣ Using `Arrays.deepToString()` Utility:
 ```java
 import java.util.Arrays;
 
@@ -243,9 +243,9 @@ System.out.println(Arrays.deepToString(numbers));
 
 ---
 
-## 💻 4. Complete Code Programs & Walkthrough
+## 4. Complete Code Programs & Walkthrough
 
-### 📜 Program 1: Step-by-Step Explicit 2D Array Creation (MainApp1)
+### Program 1: Step-by-Step Explicit 2D Array Creation (MainApp1)
 ```java
 public class MainApp1 {
     public static void main(String[] args) {
@@ -281,7 +281,7 @@ public class MainApp1 {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Way 1:
 10 20 30 
@@ -291,14 +291,14 @@ Way 2:
 40 50 60 
 ```
 
-#### 📌 Points to Note:
+#### Points to Note:
 1. `numbers.length` gives the **total number of rows** (2).
 2. `numbers[i].length` gives the **number of columns in row $i$** (3).
 3. The nested `for-each` loop is cleaner and eliminates index tracking errors.
 
 ---
 
-### 📜 Program 2: Shorthand Array Literal Initialization (MainApp2)
+### Program 2: Shorthand Array Literal Initialization (MainApp2)
 ```java
 public class MainApp2 {
     public static void main(String[] args) {
@@ -320,7 +320,7 @@ public class MainApp2 {
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Numbers are:
 10 20 30 
@@ -329,7 +329,7 @@ Numbers are:
 
 ---
 
-## 📊 5. Important Dimensions & Calculations in 2D Arrays
+## 5. Important Dimensions & Calculations in 2D Arrays
 
 | Property / Operation | Code | Description / Value |
 | :--- | :--- | :--- |
@@ -340,22 +340,22 @@ Numbers are:
 
 ---
 
-## 🎬 6. Interactive Visualizer Animation Walkthrough
+## 6. Interactive Visualizer Animation Walkthrough
 
 Open the **Architecture Tab** to explore the **Interactive 2D Array Visualizer**:
 
 1. **Array of Arrays Heap Pointer Simulator**:
-   - Inspect the **Stack reference pointer** connecting to the **Master Row array**, which in turn points to the **Child Row objects**.
+ - Inspect the **Stack reference pointer** connecting to the **Master Row array**, which in turn points to the **Child Row objects**.
 2. **4-Step 2D Lifecycle Animator**:
-   - Step through **Declaration ➔ Heap Allocation ($2 \times 3$ grid with 0s) ➔ Value Initialization ➔ Grid Retrieval**.
+ - Step through **Declaration Heap Allocation ($2 \times 3$ grid with 0s) Value Initialization Grid Retrieval**.
 3. **Nested Loop Cell-by-Cell Pointer Tracer**:
-   - Watch the outer loop pointer `i` (row) and inner loop pointer `j` (column) visit each cell in real time with live terminal output!
+ - Watch the outer loop pointer `i` (row) and inner loop pointer `j` (column) visit each cell in real time with live terminal output!
 4. **Interactive 2D Array Quiz**:
-   - Test your understanding of row lengths, indices, and nested loops.
+ - Test your understanding of row lengths, indices, and nested loops.
 
 ---
 
-## ❓ 7. Top Interview FAQs
+## 7. Top Interview FAQs
 
 <details>
 <summary><b>Q1: What is the difference between <code>arr.length</code> and <code>arr[0].length</code> in a 2D array?</b></summary>

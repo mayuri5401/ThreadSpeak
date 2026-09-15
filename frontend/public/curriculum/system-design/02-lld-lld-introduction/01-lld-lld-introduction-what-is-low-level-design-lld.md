@@ -122,11 +122,11 @@ Classes don't exist in isolation. LLD defines these relationships clearly and pr
 You also define **cardinality** to specify **the number of instances** involved in a relationship.
 
 - **One-to-One: **One instance of A is linked to one instance of B.
-   - **Example: **Each `User` has one `Profile`.
+ - **Example: **Each `User` has one `Profile`.
 - **One-to-Many: **One instance of A is linked to multiple instances of B.
-   - **Example: **A `Customer` can have multiple `Orders`.
+ - **Example: **A `Customer` can have multiple `Orders`.
 - **Many-to-Many: **Multiple instances of A relate to multiple instances of B.
-   - **Example: **A `Student` can enroll in multiple `Courses`, and each `Course` can have multiple `Students`.
+ - **Example: **A `Student` can enroll in multiple `Courses`, and each `Course` can have multiple `Students`.
 
 ### 4. Method Signatures
 
@@ -182,11 +182,11 @@ A good LLD bridges the gap between idea and execution. It turns broad architectu
 
 A well-designed system is easy to read, debug, and extend. When components have clear responsibilities and clean interfaces, you can make changes without fear of breaking unrelated parts of the system.
 
-#### **Scalability & Performance** 
+#### **Scalability & Performance**
 
 While **High-Level Design (HLD)** focuses on infrastructure-level scalability (like horizontal scaling or database sharding), LLD ensures that **individual components can scale gracefully**—e.g., a sorting module that works efficiently whether it handles 100 or 10,000 records.
 
-#### **Testability** 
+#### **Testability**
 
 Clean LLD naturally leads to **loosely coupled components**, making unit testing straightforward. When each class does one thing well and depends only on abstractions, testing becomes faster, easier, and more reliable.
 

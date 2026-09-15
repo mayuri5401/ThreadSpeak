@@ -1535,11 +1535,11 @@ flowchart LR
 1. **Connection Distribution:** A load balancer distributes incoming WebSocket connections across all signaling servers. Participants in the same meeting might end up on different servers.
 2. **Meeting Channels:** Each active meeting has a channel in Redis Pub/Sub. When a meeting starts, all signaling servers that have participants in that meeting subscribe to its channel.
 3. **Message Flow:**
-   - Alice sends a chat message to her signaling server (Server 1)
-   - Server 1 publishes the message to the meeting's Redis channel
-   - Redis delivers the message to all subscribed servers (Server 1 and Server 2)
-   - Each server forwards the message to their local clients in that meeting
-   - Bob receives the message from Server 2
+ - Alice sends a chat message to her signaling server (Server 1)
+ - Server 1 publishes the message to the meeting's Redis channel
+ - Redis delivers the message to all subscribed servers (Server 1 and Server 2)
+ - Each server forwards the message to their local clients in that meeting
+ - Bob receives the message from Server 2
 4. **Local State:** Each signaling server tracks which of its connected clients belong to which meetings. This allows efficient local fanout without querying external systems.
 
 ### Sticky Sessions
@@ -1607,10 +1607,10 @@ The flow works like this:
 3. **Capture Streams:** The bot receives all audio and video streams. It writes raw media data to fast local storage (SSD).
 4. **Stop Recording:** When the host stops recording, the bot disconnects and uploads the raw recordings to a processing queue.
 5. **Post-Processing:** A separate service processes the raw recordings:
-   - Combines multiple audio tracks into a single mixed track
-   - Creates video layouts (active speaker view, gallery view, or both)
-   - Transcodes to standard formats (MP4 with H.264, common quality settings)
-   - Generates thumbnails for preview
+ - Combines multiple audio tracks into a single mixed track
+ - Creates video layouts (active speaker view, gallery view, or both)
+ - Transcodes to standard formats (MP4 with H.264, common quality settings)
+ - Generates thumbnails for preview
 6. **Delivery:** Final recording is stored in S3. Host receives a notification with download link.
 
 ### Storage and Processing Pipeline

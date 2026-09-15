@@ -170,9 +170,9 @@ flowchart TD
 1. **Shared prefixes:** "car", "cat", "cart", and "canada" all share the "ca" prefix. Instead of storing each word separately, they share the c→a path.
 2. **End-of-word markers:** Green nodes have `end=true`, indicating a complete word ends there. The frequency shows how many times that word was inserted.
 3. **Prefix search:** To find words starting with "ca":
-   - Traverse root → c → a
-   - From the 'a' node, DFS collects all descendants with `end=true`
-   - Returns: car (freq=3), cat (freq=1), cart (freq=1), canada (freq=4)
+ - Traverse root → c → a
+ - From the 'a' node, DFS collects all descendants with `end=true`
+ - Returns: car (freq=3), cat (freq=1), cart (freq=1), canada (freq=4)
 4. **Frequency-based ranking:** After collection, sorting by frequency gives: canada, car, cart, cat
 
 This structure gives O(m) lookup time where m is the prefix length, regardless of dictionary size.

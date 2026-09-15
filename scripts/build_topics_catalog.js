@@ -58,8 +58,7 @@ function parseMarkdownFrontmatter(raw, fallbackId, relPath) {
     mentalModel: get('mentalModel') || '',
     animationType: get('animationType') || 'generic-flow',
     tags,
-    filePath: '/curriculum/' + relPath.replace(/\\/g, '/'),
-    deepDive: body || ''
+    filePath: '/curriculum/' + relPath.replace(/\\/g, '/')
   };
 }
 

@@ -71,8 +71,8 @@ Elasticsearch separates responsibilities inside the cluster:
 
 - **Master nodes (M1–M3)** form a quorum and manage the **cluster state**: index metadata, shard placement, node membership, and allocation decisions. They do not serve the bulk of query/index traffic. Their job is to keep the cluster organized and consistent from a control-plane perspective.
 - **Data nodes (D1–D3)** store the actual index shards. Each index is split into **primary shards (P0, P1, P2)** and **replica shards (R0, R1, R2)** distributed across nodes for both scale and availability.
-   - For **writes**, documents are indexed into the relevant **primary shard**, which then replicates the change to its **replicas**.
-   - For **reads**, the coordinating node can query either primaries or replicas, enabling parallelism and higher throughput.
+ - For **writes**, documents are indexed into the relevant **primary shard**, which then replicates the change to its **replicas**.
+ - For **reads**, the coordinating node can query either primaries or replicas, enabling parallelism and higher throughput.
 
 The dotted “Cluster State” link indicates that data nodes rely on the masters for the latest routing/allocation information. 
 

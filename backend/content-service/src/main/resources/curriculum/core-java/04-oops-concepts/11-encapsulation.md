@@ -67,22 +67,22 @@ codeSnippet:
     }
 ---
 
-# 💊 Encapsulation in Java
+# Encapsulation in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 **Encapsulation** is the mechanism of **binding data (variables) and actions (methods) into a single unit, called a class**.
 - Technically, **every class in Java is an example of encapsulation**.
 
-### 💡 Real World Examples:
+### Real World Examples:
 1. **Capsule**: A capsule in which the main medicine powders are encapsulated within a soluble shell.
 2. **Car**: A car in which the engine, wheels, fuel tank, and other mechanical parts are encapsulated inside a protective chassis.
 
 ---
 
-## 📝 Java Program Example (Simple Encapsulation Without Data Hiding)
+## Java Program Example (Simple Encapsulation Without Data Hiding)
 
 ```java
 class Car
@@ -119,29 +119,29 @@ public class Main
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Brand : Tata
 Speed : 100
 ```
 
-### 🔍 Explanation & Note:
+### Explanation & Note:
 - The `Car` class contains both data (`brand`, `speed`) and methods (`printDetails()`). Everything is inside one unit (class) — this is the essence of encapsulation.
-- **📌 NOTE**: The above example is a simple encapsulated class, **but it does NOT provide any data hiding**. Outside classes can still alter `c.speed = -500;` directly!
+- ** NOTE**: The above example is a simple encapsulated class, **but it does NOT provide any data hiding**. Outside classes can still alter `c.speed = -500;` directly!
 - Therefore, to create **proper encapsulation**, we must follow the rules below.
 
 ---
 
-## 📜 Rules for Proper Encapsulation
+## Rules for Proper Encapsulation
 
 1. **Private Variables**:
-   - Declare variables as **`private`** so that they **cannot be accessed directly from outside the class**.
+ - Declare variables as **`private`** so that they **cannot be accessed directly from outside the class**.
 2. **Public Getter & Setter Methods**:
-   - Provide **`public` getter and setter methods** to access and modify the private variables with validation.
+ - Provide **`public` getter and setter methods** to access and modify the private variables with validation.
 
 ---
 
-## ✅ Actual / Proper Encapsulated Java Program Example
+## Actual / Proper Encapsulated Java Program Example
 
 ```java
 class Car
@@ -202,7 +202,7 @@ public class MainApp
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Brand : Tata
 Speed : 100
@@ -210,7 +210,7 @@ Speed : 100
 
 ---
 
-## 🎯 Use of Encapsulation
+## Use of Encapsulation
 
 Encapsulation provides **6 critical benefits**:
 1. **Protects data**: Hides data from direct external access using private variables.
@@ -222,7 +222,7 @@ Encapsulation provides **6 critical benefits**:
 
 ---
 
-## 💻 Program Elaborating the Uses of Encapsulation: Bank Account
+## Program Elaborating the Uses of Encapsulation: Bank Account
 
 ```java
 // Class demonstrating proper encapsulation
@@ -306,7 +306,7 @@ public class BankApp
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 You have deposited 10000.0 Rs.
 New balance is: 10000.0 Rs.
@@ -318,7 +318,7 @@ Invalid or Insufficient balance for withdrawal
 
 ---
 
-## 🎯 Interview Questions & Answers
+## Interview Questions & Answers
 
 ### 1. What is Encapsulation & its use ?
 **Answer**: Encapsulation is the process of wrapping variables and methods together in a single class while keeping variables `private`. Its primary uses are **Data Hiding**, **Controlled Access via Getters/Setters**, **Input Validation**, and **Code Maintainability**.

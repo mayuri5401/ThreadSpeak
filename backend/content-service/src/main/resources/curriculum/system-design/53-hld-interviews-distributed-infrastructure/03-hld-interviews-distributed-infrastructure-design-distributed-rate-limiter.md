@@ -281,10 +281,10 @@ sequenceDiagram
 1. Client sends an API request to the **API Gateway**.
 2. The **API Gateway** calls the **Rate Limiter Service** with the client identifier and resource.
 3. The **Rate Limiter Service**:
-   - Looks up the applicable rate limit rule from its local cache
-   - Queries the **Counter Store** (Redis) for the client's current request count
-   - Increments the counter atomically
-   - Compares the count against the limit
+ - Looks up the applicable rate limit rule from its local cache
+ - Queries the **Counter Store** (Redis) for the client's current request count
+ - Increments the counter atomically
+ - Compares the count against the limit
 4. The service returns an allow/deny decision with metadata (remaining requests, reset time).
 5. If allowed, the Gateway forwards the request to the backend. If blocked, it returns HTTP 429.
 
@@ -707,13 +707,13 @@ Configuration: 100 requests per minute
 
 ```shell
 Window 12:00-12:59:
-  - 90 requests at 12:30 → All allowed, counter = 90
-  - 10 requests at 12:58 → All allowed, counter = 100
-  - 5 requests at 12:59 → All rejected
+ - 90 requests at 12:30 → All allowed, counter = 90
+ - 10 requests at 12:58 → All allowed, counter = 100
+ - 5 requests at 12:59 → All rejected
 
 Window 13:00-13:59:
-  - Counter resets to 0
-  - 50 requests at 13:01 → All allowed, counter = 50
+ - Counter resets to 0
+ - 50 requests at 13:01 → All allowed, counter = 50
 ```
 
 #### Implementation (Redis)

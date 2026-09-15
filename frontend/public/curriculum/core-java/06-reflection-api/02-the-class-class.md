@@ -55,11 +55,11 @@ codeSnippet:
     }
 ---
 
-# 🏛️ Class class in Reflection API
+# Class class in Reflection API
 
 ---
 
-## 🌟 Real-World Analogy: The "Passport & Master Blueprint"
+## Real-World Analogy: The "Passport & Master Blueprint"
 
 To understand what the `Class` class is, imagine these three real-world concepts:
 
@@ -86,11 +86,11 @@ flowchart LR
 1. **The Blueprint (`class Employee`)**: The design written by the architect (you) in `.java` source code.
 2. **The Objects (`new Employee()`)**: The actual physical houses built from that blueprint. You can build 1,000 houses from 1 blueprint.
 3. **The `Class` Object (`java.lang.Class`)**: The **City Hall Master Registry Document**.
-   - If someone asks: *"How many doors does this house design have?", "Does it have a secret room?", "Who is the parent model?"*, they don't inspect concrete bricks—they look up the **Master Registry Document (`Class` object)**!
+ - If someone asks: *"How many doors does this house design have?", "Does it have a secret room?", "Who is the parent model?"*, they don't inspect concrete bricks—they look up the **Master Registry Document (`Class` object)**!
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 - **Class class** in Java is part of the **Reflection API** and is used to represent the **runtime metadata** of a class or interface.
 - It is present in the **`java.lang`** package and is denoted as **`java.lang.Class<T>`**.
@@ -122,14 +122,14 @@ flowchart LR
 
 ---
 
-## 🔑 Different Ways to get the Class object
+## Different Ways to get the Class object
 
 There are mainly **three ways** to get the `Class` object:
 1. **Using `Class.forName("fully.qualified.ClassName")`** *(Dynamic String Lookup)*
 2. **Using `object.getClass()`** *(Active Runtime Object Reference)*
 3. **Using `ClassName.class`** *(Direct Compile-Time Class Literal)*
 
-### 🔍 Real-World "When to Use Which?"
+### Real-World "When to Use Which?"
 
 | Approach | Real-World Scenario | Simple Explanation |
 | :--- | :--- | :--- |
@@ -139,7 +139,7 @@ There are mainly **three ways** to get the `Class` object:
 
 ---
 
-### 🟢 1. Program Using `Class.forName("fully.qualified.ClassName")`
+### 1. Program Using `Class.forName("fully.qualified.ClassName")`
 
 ```java
 public class MainApp
@@ -156,7 +156,7 @@ public class MainApp
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Class Name : java.lang.String
 Is Interface : false
@@ -165,7 +165,7 @@ Superclass : class java.lang.Object
 
 ---
 
-### 🟣 & 🔵 2. & 3. Program Using `object.getClass()` and `ClassName.class`
+### & 2. & 3. Program Using `object.getClass()` and `ClassName.class`
 
 ```java
 public class MainApp
@@ -184,7 +184,7 @@ public class MainApp
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Class from getClass(): java.lang.String
 Class from .class: java.lang.String
@@ -192,7 +192,7 @@ Class from .class: java.lang.String
 
 ---
 
-## 🛠️ Important Methods of Class class
+## Important Methods of Class class
 
 Some important methods of `Class` class are as follows:
 
@@ -214,7 +214,7 @@ Some important methods of `Class` class are as follows:
 
 ---
 
-## 💻 Comprehensive Demonstration Program
+## Comprehensive Demonstration Program
 
 ```java
 import java.lang.reflect.*;
@@ -285,7 +285,7 @@ public class MainApp3
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Class Name: Employee
 Simple Name: Employee
@@ -308,47 +308,47 @@ public Employee(java.lang.String,int)
 
 ---
 
-## 🎬 How the Interactive Animation Visualizer Works
+## How the Interactive Animation Visualizer Works
 
 Our interactive visualizer at the top of this lesson gives you a live sandbox to experiment with `java.lang.Class`:
 
-### 🚀 Tab 1: 3 Ways to Obtain Class Token
+### Tab 1: 3 Ways to Obtain Class Token
 - **Live Metaspace Resolution**: Click on `Class.forName()`, `obj.getClass()`, or `Employee.class` to trigger real-time bytecode resolution.
 - **Singleton Token Proof**: Demonstrates that all 3 reference variables point to the exact same Metaspace memory token (`0x7F4A8801C200`), verifying `c1 == c2 == c3 === true`.
 
-### 🔬 Tab 2: Employee.class Runtime Metaspace X-Ray
+### Tab 2: Employee.class Runtime Metaspace X-Ray
 - **Interactive Member Audit**: Filter reflected members of `Employee.class` in real time:
-  - **Declared Fields (2)**: `public String name`, `private int salary`.
-  - **Declared Methods (2)**: `public void work()`, `private void secret()`.
-  - **Declared Constructors (2)**: `public Employee()`, `public Employee(String, int)`.
+ - **Declared Fields (2)**: `public String name`, `private int salary`.
+ - **Declared Methods (2)**: `public void work()`, `private void secret()`.
+ - **Declared Constructors (2)**: `public Employee()`, `public Employee(String, int)`.
 
-### 📊 Tab 3: 13 Essential Methods Interactive Bench
+### Tab 3: 13 Essential Methods Interactive Bench
 - **Interactive Explorer**: Click through each of the 13 foundational methods (`getName()`, `getModifiers()`, `getDeclaredFields()`, etc.) to view its live return type, formal specification, and real-world usage examples.
 
-### 🧠 Tab 4: Interactive Reflection Quiz
+### Tab 4: Interactive Reflection Quiz
 - **Self-Assessment**: Test your knowledge on primitive type tokens (`int.class`), visibility rules (`getFields()` vs `getDeclaredFields()`), and Metaspace memory management with instant score feedback.
 
 ---
 
-## 🏢 How Modern Frameworks Use `Class` in Real Life
+## How Modern Frameworks Use `Class` in Real Life
 
 Have you ever wondered how **Spring Boot**, **Hibernate**, or **JUnit** work? They are built 100% on the `Class` class:
 
 1. **Spring Boot `@Autowired` (Dependency Injection)**:
-   - Spring takes your class (`UserService.class`), scans its declared fields via `clazz.getDeclaredFields()`, finds `@Autowired`, and injects the dependency into the private field dynamically!
+ - Spring takes your class (`UserService.class`), scans its declared fields via `clazz.getDeclaredFields()`, finds `@Autowired`, and injects the dependency into the private field dynamically!
 2. **Hibernate / JPA (`@Entity` & `@Table`)**:
-   - Hibernate reads `User.class.getDeclaredAnnotations()` to see which database table (`@Table(name="users")`) matches your class variables without you writing SQL queries by hand.
+ - Hibernate reads `User.class.getDeclaredAnnotations()` to see which database table (`@Table(name="users")`) matches your class variables without you writing SQL queries by hand.
 3. **JUnit Testing Framework (`@Test`)**:
-   - JUnit inspects `MyTestClass.class.getDeclaredMethods()`, finds every method with `@Test`, and executes them dynamically using `method.invoke()`.
+ - JUnit inspects `MyTestClass.class.getDeclaredMethods()`, finds every method with `@Test`, and executes them dynamically using `method.invoke()`.
 
 ---
 
-## 🧠 Key Rules to Remember
+## Key Rules to Remember
 
 1. **`int.class` vs `Integer.class`**:
-   - `int.class` represents the primitive type `int` (`int.class.isPrimitive() == true`).
-   - `Integer.class` represents the wrapper class `java.lang.Integer`.
-   - `Integer.TYPE` is an alias for `int.class`.
+ - `int.class` represents the primitive type `int` (`int.class.isPrimitive() == true`).
+ - `Integer.class` represents the wrapper class `java.lang.Integer`.
+ - `Integer.TYPE` is an alias for `int.class`.
 2. **`getFields()` vs `getDeclaredFields()`**:
-   - `getFields()` returns only **public** fields (including inherited ones).
-   - `getDeclaredFields()` returns **all fields** (public, private, protected) declared directly in that class, **excluding inherited fields**.
+ - `getFields()` returns only **public** fields (including inherited ones).
+ - `getDeclaredFields()` returns **all fields** (public, private, protected) declared directly in that class, **excluding inherited fields**.

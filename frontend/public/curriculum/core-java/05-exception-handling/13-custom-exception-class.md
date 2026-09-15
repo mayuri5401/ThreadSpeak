@@ -78,17 +78,17 @@ codeSnippet:
     }
 ---
 
-# 🛠️ User-Defined Custom Exceptions in Java
+# User-Defined Custom Exceptions in Java
 
 ---
 
-## 📖 1. Introduction
+## 1. Introduction
 
 Till now we have seen built-in exceptions in Java like `IOException`, `NullPointerException`, `ArithmeticException`, etc., and how to handle them using `try`, `catch`, `finally`, `throw`, and `throws`.
 
 However, in real-world applications, we frequently encounter business situations where built-in exceptions are not sufficient to describe specific error conditions.
 
-### 🏦 The Banking Example:
+### The Banking Example:
 Consider a banking application:
 - You want to throw an exception when a customer tries to withdraw more money than their available account balance.
 - Java does **not** provide a built-in `InsufficientBalanceException`.
@@ -105,15 +105,15 @@ flowchart TD
 
 ---
 
-## 🎯 2. Definition & Uses
+## 2. Definition & Uses
 
-### 📌 Definition:
+### Definition:
 > A **user-defined exception** in Java is an exception class created by the programmer to represent a specific domain error scenario not covered by Java’s built-in exceptions.
 > - It extends the **`Exception`** class (for **Checked Exceptions**).
 > - It extends the **`RuntimeException`** class (for **Unchecked Exceptions**).
 > - It can include custom error messages, constructors, and typed domain metadata.
 
-### 💡 Core Uses:
+### Core Uses:
 1. **Represent Domain-Specific Errors**: Clearly distinguishes business rule failures (e.g. `InsufficientBalanceException`, `InvalidCouponException`) from low-level technical bugs (`NullPointerException`).
 2. **Enhance Code Readability & Maintainability**: Makes caller `catch` blocks explicit, readable, and self-documenting.
 3. **Enforce Business Invariants**: Enforces core domain constraints (e.g., minimum age requirements, account overdraft limits, inventory thresholds).
@@ -121,7 +121,7 @@ flowchart TD
 
 ---
 
-## 🪜 3. Steps to Create a User-Defined Exception
+## 3. Steps to Create a User-Defined Exception
 
 Creating a user-defined custom exception follows a simple **4-step lifecycle**:
 
@@ -139,7 +139,7 @@ flowchart LR
 
 ---
 
-## 💻 4. Complete Code Example: Banking System
+## 4. Complete Code Example: Banking System
 
 ```java
 // Step 1: Create a user-defined exception
@@ -208,13 +208,13 @@ public class MainApp
 }
 ```
 
-### 🖥️ Output:
+### Output:
 ```text
 Exception caught: Withdrawal failed: Insufficient balance!
 Withdrawal successful. Remaining balance: 2000.0
 ```
 
-### 🔍 Detailed Explanation:
+### Detailed Explanation:
 1. **Custom Exception Class**: `InsufficientBalanceException` is our user-defined exception. It extends `Exception`, making it a **Checked Exception**.
 2. **Passing the Message**: `super(message)` passes the string description to `java.lang.Throwable`, allowing `e.getMessage()` and `e.printStackTrace()` to work automatically.
 3. **Triggering Condition**: In `withdraw()`, if `amount > balance` ($6,000 > $5,000), `throw new InsufficientBalanceException(...)` is executed. The account balance remains unchanged at $5,000.
@@ -223,7 +223,7 @@ Withdrawal successful. Remaining balance: 2000.0
 
 ---
 
-## 🎬 5. Interactive Animation & Visualizer Breakdown
+## 5. Interactive Animation & Visualizer Breakdown
 
 The accompanying **[JavaCustomExceptionVisualizer.jsx](file:///d:/ThreadSpeak/frontend/src/components/visualizers/JavaCustomExceptionVisualizer.jsx)** allows you to explore custom exception mechanics interactively:
 
@@ -246,7 +246,7 @@ sequenceDiagram
     Account-->>Caller: Withdrawal successful. Remaining balance: 2000.0
 ```
 
-### 🕹️ What the Animation Demonstrates:
+### What the Animation Demonstrates:
 1. **Live Bank Account State**: Watch the account balance persist safely when an exception occurs ($5,000) and update only upon a successful withdrawal ($2,000).
 2. **Heap Memory Object Inspector**: Inspect the live custom exception object, including its inheritance chain (`Object` $\rightarrow$ `Throwable` $\rightarrow$ `Exception` $\rightarrow$ `InsufficientBalanceException`), message string, and metadata.
 3. **Custom Exception Code Generator Sandbox**: Build custom exceptions with typed fields (`errorCode`, `shortfall`, `timestamp`) and export clean, production-ready Java code.
@@ -254,7 +254,7 @@ sequenceDiagram
 
 ---
 
-## 🏗️ 6. The Industry-Standard 4-Constructor Pattern
+## 6. The Industry-Standard 4-Constructor Pattern
 
 In production enterprise systems, custom exception classes should implement the standard **4 constructors** to support constructor chaining, logging, and root-cause wrapping:
 
@@ -295,7 +295,7 @@ public class InsufficientFundsException extends RuntimeException
 
 ---
 
-## ⚖️ 7. Checked vs Unchecked Custom Exceptions
+## 7. Checked vs Unchecked Custom Exceptions
 
 | Criteria | Checked Custom Exception (`extends Exception`) | Unchecked Custom Exception (`extends RuntimeException`) |
 | :--- | :--- | :--- |
@@ -306,7 +306,7 @@ public class InsufficientFundsException extends RuntimeException
 
 ---
 
-## 📦 8. Attaching Rich Domain Metadata Payloads
+## 8. Attaching Rich Domain Metadata Payloads
 
 Instead of formatting complex string messages, professional custom exceptions store **strongly-typed fields**:
 
@@ -331,7 +331,7 @@ public class InsufficientBalanceException extends RuntimeException
 }
 ```
 
-### 💡 Benefit in Catch Blocks:
+### Benefit in Catch Blocks:
 ```java
 try {
     account.withdraw(800);
@@ -343,7 +343,7 @@ try {
 
 ---
 
-## 🎯 9. Best Practices Checklist
+## 9. Best Practices Checklist
 
 1. ✅ **Suffix Class Name with `Exception`**: Always name classes `InsufficientFundsException` or `ResourceNotFoundException` (never `FundsError`).
 2. ✅ **Default to `RuntimeException` for Business Logic**: Prevents checked exception pollution across interface layers.
@@ -353,7 +353,7 @@ try {
 
 ---
 
-## ❓ 10. Frequently Asked FAANG Interview Questions
+## 10. Frequently Asked FAANG Interview Questions
 
 <details>
 <summary><b>Q1: Can a custom exception extend Throwable directly?</b></summary>

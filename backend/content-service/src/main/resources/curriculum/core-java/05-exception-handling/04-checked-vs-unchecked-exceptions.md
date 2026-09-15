@@ -44,36 +44,36 @@ codeSnippet:
 
 ---
 
-## 📖 Introduction
+## Introduction
 
-### 📌 Definition:
+### Definition:
 
-#### 1️⃣ Checked Exception:
+#### 1⃣ Checked Exception:
 - Exceptions that are **checked at compile-time by the compiler** are known as **Checked Exception**.
 - If checked exceptions are not handled (using `try-catch` or `throws`), the **code will not compile**.
 
-#### 2️⃣ Unchecked Exception:
+#### 2⃣ Unchecked Exception:
 - Exceptions that are **ignored by compiler and not checked at compile-time but occur at runtime** are known as **Unchecked Exception**.
 - Compiler **does not force to handle the unchecked exceptions**, but the **program may crash if not handled**.
 
 ---
 
-## 🌟 Real-World Analogy:
+## Real-World Analogy:
 
-#### 🚄 Checked Exception:
+#### Checked Exception:
 - **For Example :** A scheduled train delay notice $\rightarrow$ we are informed in advance, and we must plan accordingly.
 
-#### 🚗 Unchecked Exception:
+#### Unchecked Exception:
 - **For Example :** A sudden tire burst while driving $\rightarrow$ happens unexpectedly, no prior warning.
 
 ---
 
-## 🌲 Hierarchy:
+## Hierarchy:
 
-#### 1️⃣ Checked Exception:
+#### 1⃣ Checked Exception:
 - **Checked Exceptions are subclasses of `Exception` class excluding `RuntimeException`.**
 
-#### 2️⃣ Unchecked Exception:
+#### 2⃣ Unchecked Exception:
 - **Unchecked Exceptions are subclasses of `RuntimeException` and all `Error` classes.**
 
 ```mermaid
@@ -89,7 +89,7 @@ flowchart TD
 
 ---
 
-## 📊 Checked and Unchecked Exception in Java
+## Checked and Unchecked Exception in Java
 
 Below are some differences between Error and Exception:
 
@@ -107,9 +107,9 @@ Below are some differences between Error and Exception:
 
 ---
 
-## 💻 Java Program Demonstration
+## Java Program Demonstration
 
-### 1️⃣ Checked Exception Example (Compile-Time Enforcement):
+### 1⃣ Checked Exception Example (Compile-Time Enforcement):
 
 ```java
 import java.io.FileReader;
@@ -128,14 +128,14 @@ public class CheckedDemo {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 ⚠️ Checked Exception caught: File cannot be read -> myFile.txt (The system cannot find the file specified)
 ```
 
 ---
 
-### 2️⃣ Unchecked Exception Example (Runtime Occurrence):
+### 2⃣ Unchecked Exception Example (Runtime Occurrence):
 
 ```java
 public class UncheckedDemo {
@@ -152,7 +152,7 @@ public class UncheckedDemo {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 ⚠️ Unchecked Exception caught: Invalid array index -> Index 5 out of bounds for length 3
 ```

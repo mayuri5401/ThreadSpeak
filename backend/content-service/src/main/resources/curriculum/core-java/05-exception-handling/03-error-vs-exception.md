@@ -32,27 +32,27 @@ codeSnippet:
     }
 ---
 
-# ⚖️ Difference Between Error and Exception in Java
+# Difference Between Error and Exception in Java
 
 ---
 
-## 📌 Exception vs Error
+## Exception vs Error
 
-### ⚠️ Error:
+### Error:
 An **[Error](https://smartprogramming.in/tutorials/java/error-in-java.php)** in Java is a **serious runtime problem** that usually occurs due to **system-level issues** such as memory shortage or a JVM crash.
 - **[Errors](https://smartprogramming.in/tutorials/java/error-in-java.php)** cannot be handled in our code because they are caused by system failures, not by mistakes in the program’s logic.
-- 👉 **[Click Here](https://smartprogramming.in/tutorials/java/error-in-java.php)** to read about Errors more deeply.
+- **[Click Here](https://smartprogramming.in/tutorials/java/error-in-java.php)** to read about Errors more deeply.
 
 ---
 
-### 🛡️ Exception:
+### Exception:
 An **[Exception](https://smartprogramming.in/tutorials/java/exception-in-java.php)** in Java is an **unwanted event** that occurs during the execution of a program and **disrupts the normal flow of instructions**.
 - **[Exceptions](https://smartprogramming.in/tutorials/java/exception-in-java.php)** usually happen due to problems in the program’s logic or invalid user input, and they **can be handled in our code**.
-- 👉 **[Click Here](https://smartprogramming.in/tutorials/java/exception-in-java.php)** to read about Exception more deeply.
+- **[Click Here](https://smartprogramming.in/tutorials/java/exception-in-java.php)** to read about Exception more deeply.
 
 ---
 
-## 📊 Below are some differences between Error and Exception:
+## Below are some differences between Error and Exception:
 
 | Aspect | ⚠️ Error | 🛡️ Exception |
 | :--- | :--- | :--- |
@@ -66,7 +66,7 @@ An **[Exception](https://smartprogramming.in/tutorials/java/exception-in-java.ph
 
 ---
 
-## 🌲 Visual Throwable Inheritance Tree
+## Visual Throwable Inheritance Tree
 
 Both `Error` and `Exception` inherit directly from **`java.lang.Throwable`**:
 
@@ -95,9 +95,9 @@ flowchart TD
 
 ---
 
-## 💻 Code Demonstration: Exception Recovery vs Error Crash
+## Code Demonstration: Exception Recovery vs Error Crash
 
-### 🟢 1. Handling an Exception (Graceful Recovery):
+### 1. Handling an Exception (Graceful Recovery):
 ```java
 public class ExceptionRecoveryDemo {
     public static void main(String[] args) {
@@ -118,7 +118,7 @@ public class ExceptionRecoveryDemo {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Step 1: Program starts.
 ⚠️ Step 2: Caught Exception safely: Cannot divide by zero!
@@ -127,7 +127,7 @@ Step 3: Program completes successfully without crashing.
 
 ---
 
-### 🔴 2. Unrecoverable Error (Fatal System Failure):
+### 2. Unrecoverable Error (Fatal System Failure):
 ```java
 public class FatalErrorDemo {
     // Infinite recursion causes StackOverflowError
@@ -147,7 +147,7 @@ public class FatalErrorDemo {
 }
 ```
 
-#### 🖥️ Output (JVM Crash):
+#### Output (JVM Crash):
 ```text
 Step 1: Program starts.
 Exception in thread "main" java.lang.StackOverflowError

@@ -34,6 +34,6 @@ codeSnippet:
     }
 ---
 
-# ⚡ Java 8 Features: Functional Programming & Streams API
+# Java 8 Features: Functional Programming & Streams API
 
 Java 8 was the biggest release in Java history, introducing functional programming paradigms with Lambda Expressions, Streams API, and Default Methods in interfaces.

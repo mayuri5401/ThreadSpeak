@@ -302,9 +302,9 @@ flowchart LR
 1. Client sends a `GET /kv/user:123` request.
 2. The **Coordinator** identifies all replica nodes for the key.
 3. Depending on the consistency level:
-   - **ONE:** Return the first response received
-   - **QUORUM:** Wait for majority (N/2 + 1) of replicas to respond
-   - **ALL:** Wait for all replicas to respond
+ - **ONE:** Return the first response received
+ - **QUORUM:** Wait for majority (N/2 + 1) of replicas to respond
+ - **ALL:** Wait for all replicas to respond
 4. If responses differ, the coordinator resolves conflicts (version-based).
 5. Return the value to the client.
 
@@ -709,8 +709,8 @@ sequenceDiagram
 1. Client requests a key with R=QUORUM (read from multiple replicas)
 2. Coordinator compares versions from all responding replicas
 3. If versions differ:
-   - Return the newest version to the client
-   - Asynchronously update stale replicas with the newest value
+ - Return the newest version to the client
+ - Asynchronously update stale replicas with the newest value
 
 ### Active vs. Passive Anti-Entropy
 

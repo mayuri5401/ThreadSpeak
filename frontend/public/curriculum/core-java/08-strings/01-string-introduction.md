@@ -43,11 +43,11 @@ codeSnippet:
     }
 ---
 
-# 🔤 Character Literal, Character Array & String in Java
+# Character Literal, Character Array & String in Java
 
 ---
 
-## 📌 1. Introduction
+## 1. Introduction
 
 Before diving into [Strings](https://smartprogramming.in/tutorials/java/string-class.php) in Java, it is essential to first understand **Character Literals** and **Character Arrays**, because Strings are ultimately constructed from sequences of characters.
 
@@ -59,7 +59,7 @@ flowchart LR
 
 ---
 
-## 🔤 2. Character Literal in Java
+## 2. Character Literal in Java
 
 A **character literal** represents a **single character** enclosed within single quotes `' '`.
 
@@ -71,7 +71,7 @@ char newline = '\n'; // Escape sequence
 char hindiChar = 'अ'; // Unicode Character
 ```
 
-### 📋 Key Points:
+### Key Points:
 1. **Single Character Only**: Only one character is permitted inside single quotes (e.g. `'AB'` is a compile-time error).
 2. **Character Types**: It can be a letter, digit, punctuation symbol, or an escape sequence (`\n`, `\t`, `\'`, `\\`).
 3. **16-bit Unicode Representation**: In Java, the `char` primitive data type occupies **16 bits (2 bytes)** of memory and uses **UTF-16 encoding** (range `\u0000` to `\uFFFF`, decimal `0` to `65,535`).
@@ -79,7 +79,7 @@ char hindiChar = 'अ'; // Unicode Character
 
 ---
 
-## 🧱 3. Character Array in Java (`char[]`)
+## 3. Character Array in Java (`char[]`)
 
 A **character array** is a collection of characters stored together in a **continuous, contiguous memory location** on the JVM Heap.
 
@@ -95,7 +95,7 @@ ch[0] = 'D';
 System.out.println(ch[0]); // Prints 'D'
 ```
 
-### 📋 Key Points:
+### Key Points:
 1. **Stores Multiple Characters**: Group of characters indexed from `0` to `length - 1`.
 2. **Mutable**: Individual characters at any index can be updated in-place directly in memory.
 3. **Low-Level Control**: Preferred when fine-grained, low-level character manipulation or secure wiping (e.g., zeroing passwords in memory `ch[i] = 0`) is required.
@@ -103,7 +103,7 @@ System.out.println(ch[0]); // Prints 'D'
 
 ---
 
-## 🧵 4. String in Java (`java.lang.String`)
+## 4. String in Java (`java.lang.String`)
 
 A **`String`** is a sequence of characters enclosed within double quotes `" "`.
 
@@ -120,12 +120,12 @@ graph TD
     S --> M["Rich Methods: .length(), .substring(), .toUpperCase(), etc."]
 ```
 
-### 📋 Key Points:
+### Key Points:
 1. **Objects, Not Primitives**: In Java, `String` is an instantiated class (`java.lang.String`), not a primitive data type.
 2. **Immutability**: Once a `String` object is created in Heap memory, its content **can never be changed**.
 3. **UTF-16 Unicode Engine**: Java Strings store data as UTF-16 encoded Unicode characters.
-   - For example: `String s = "A";` — `'A'` has ASCII value `65`, but Java stores it as Unicode `U+0041`.
-   - This allows Java to natively process international scripts and emojis:
+ - For example: `String s = "A";` — `'A'` has ASCII value `65`, but Java stores it as Unicode `U+0041`.
+ - This allows Java to natively process international scripts and emojis:
      ```java
      String hindi = "नमस्ते";
      String emoji = "😊";
@@ -133,7 +133,7 @@ graph TD
 
 ---
 
-## 🛠️ 5. Different Classes Used to Handle Strings in Java
+## 5. Different Classes Used to Handle Strings in Java
 
 Java provides three primary classes to process text data:
 
@@ -144,7 +144,7 @@ graph TD
     CS --> SBL["3. StringBuilder Class<br/>(Mutable, Non-Synchronized Fast)"]
 ```
 
-### 1️⃣ `String` Class
+### 1⃣ `String` Class
 - The standard class to handle text in Java.
 - **Immutable**: Content cannot change once created.
 - **Rich Methods**: `.length()`, `.substring()`, `.toUpperCase()`, `.concat()`, `.replace()`, etc.
@@ -155,7 +155,7 @@ System.out.println(s1.toUpperCase()); // "HELLO" (Returns a new String)
 
 ---
 
-### 2️⃣ `StringBuffer` Class
+### 2⃣ `StringBuffer` Class
 - Used to create **mutable strings** (content can be updated in-place without creating new objects).
 - **Thread-Safe**: All mutating methods are `synchronized`, making it safe for multi-threaded environments.
 - Common methods: `.append()`, `.insert()`, `.delete()`, `.reverse()`.
@@ -167,7 +167,7 @@ System.out.println(sb); // "Hello World" (Modified in-place)
 
 ---
 
-### 3️⃣ `StringBuilder` Class
+### 3⃣ `StringBuilder` Class
 - Introduced in **Java 5** to create **mutable strings** with maximum single-threaded performance.
 - **Non-Synchronized**: Omits thread locks, making it **2x to 3x faster** than `StringBuffer`.
 - Provides identical methods to `StringBuffer`: `.append()`, `.insert()`, `.delete()`, `.reverse()`.
@@ -179,7 +179,7 @@ System.out.println(sb); // "Deepak Panwar"
 
 ---
 
-## 📊 6. Difference: Character Literal vs Character Array vs String
+## 6. Difference: Character Literal vs Character Array vs String
 
 | Feature | Character Literal | Character Array (`char[]`) | String (`java.lang.String`) |
 | :--- | :--- | :--- | :--- |
@@ -192,7 +192,7 @@ System.out.println(sb); // "Deepak Panwar"
 
 ---
 
-## 💡 7. Quick Summary Points to Remember
+## 7. Quick Summary Points to Remember
 
 1. **`String`** ➔ Immutable class (content cannot change once created; 100% thread-safe).
 2. **`StringBuffer`** ➔ Mutable & Thread-safe (synchronized methods; slightly slower due to lock overhead).

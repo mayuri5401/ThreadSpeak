@@ -1163,9 +1163,9 @@ console.log(`${loaded.getDescription()} | $${loaded.getCost().toFixed(2)}`);
 - Component interface: `Character` with `getAttackPower()`, `getDefense()`, and `getDescription()`
 - ConcreteComponent: `BasicCharacter` with 10 attack, 5 defense, description "Basic Character"
 - Decorators:
-   - `SwordDecorator`: +10 attack, +0 defense, appends " + Sword"
-   - `ShieldDecorator`: +0 attack, +15 defense, appends " + Shield"
-   - `SpeedBootsDecorator`: +5 attack, +5 defense, appends " + Speed Boots"
+ - `SwordDecorator`: +10 attack, +0 defense, appends " + Sword"
+ - `ShieldDecorator`: +0 attack, +15 defense, appends " + Shield"
+ - `SpeedBootsDecorator`: +5 attack, +5 defense, appends " + Speed Boots"
 
 ```java
 interface Character {
@@ -2455,10 +2455,10 @@ console.log(`${fullGear.getDescription()} | ATK: ${fullGear.getAttackPower()} | 
 - Component interface: `Logger` with `log(String message)`
 - ConcreteComponent: `SimpleLogger` that prints the message as-is
 - Decorators:
-   - `TimestampDecorator`: prepends "[2024-01-15 10:30:00] " to the message
-   - `LogLevelDecorator`: takes a level in the constructor, prepends "[LEVEL] " to the message
-   - `JsonFormatterDecorator`: wraps message into JSON format: `{"message": "[original]"}`
-   - `UpperCaseDecorator`: converts the message to uppercase before delegating
+ - `TimestampDecorator`: prepends "[2024-01-15 10:30:00] " to the message
+ - `LogLevelDecorator`: takes a level in the constructor, prepends "[LEVEL] " to the message
+ - `JsonFormatterDecorator`: wraps message into JSON format: `{"message": "[original]"}`
+ - `UpperCaseDecorator`: converts the message to uppercase before delegating
 - Show that `JsonFormatter(Timestamp(LogLevel(base)))` produces different output than `Timestamp(LogLevel(JsonFormatter(base)))`
 
 ```java

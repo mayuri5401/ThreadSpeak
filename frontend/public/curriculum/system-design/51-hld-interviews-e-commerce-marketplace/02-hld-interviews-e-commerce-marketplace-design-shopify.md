@@ -1661,10 +1661,10 @@ flowchart TB
 
 1. **Before sale:** Pre-warm caches, pre-scale infrastructure, pre-render pages to CDN
 2. **During sale:**
-   - CDN serves all static content (product images, descriptions)
-   - Redis handles real-time inventory checks
-   - Virtual queue manages checkout fairness
-   - Rate limiting protects against overload
+ - CDN serves all static content (product images, descriptions)
+ - Redis handles real-time inventory checks
+ - Virtual queue manages checkout fairness
+ - Rate limiting protects against overload
 3. **Graceful degradation:** Disable non-essential features (reviews, recommendations, wishlists) during peak to focus resources on checkout
 4. **For extreme cases:** Consider a lottery system for very limited items
 
@@ -1753,8 +1753,8 @@ sequenceDiagram
 1. **Authorize:** Verify the card is valid and reserve funds. The customer sees a "pending" charge but is not actually billed.
 2. **Inventory check:** Confirm items are available
 3. **Capture or Void:**
-   - If inventory available: Capture the payment (actually charge)
-   - If inventory unavailable: Void the authorization (release the hold)
+ - If inventory available: Capture the payment (actually charge)
+ - If inventory unavailable: Void the authorization (release the hold)
 
 **Why this matters:**
 

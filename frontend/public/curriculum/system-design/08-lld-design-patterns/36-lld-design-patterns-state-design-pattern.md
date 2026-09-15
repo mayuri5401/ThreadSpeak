@@ -55,7 +55,7 @@ Let’s walk through a real-world example to see how we can apply the State Patt
 
 ---
 
-# 
+#
 
 # 1. The Problem: Managing Vending Machine States
 

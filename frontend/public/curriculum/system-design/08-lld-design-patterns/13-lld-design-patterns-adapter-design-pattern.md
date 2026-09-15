@@ -107,7 +107,7 @@ class CheckoutService {
         paymentProcessor.processPayment(amount, currency);
         if (paymentProcessor.isPaymentSuccessful()) {
             System.out.println("Checkout: Order successful! Txn: "
-                + paymentProcessor.getTransactionId());
+ + paymentProcessor.getTransactionId());
         } else {
             System.out.println("Checkout: Order failed.");
         }

@@ -27,9 +27,9 @@ Build a traffic light system where the light cycles through three states: Red, G
 
 - State interface: `TrafficLightState` with a method `change(context)` that prints the current color and transitions to the next state
 - Concrete states:
-   - `RedState` -- prints "RED light - Stop" and transitions to Green
-   - `GreenState` -- prints "GREEN light - Go" and transitions to Yellow
-   - `YellowState` -- prints "YELLOW light - Slow down" and transitions to Red
+ - `RedState` -- prints "RED light - Stop" and transitions to Green
+ - `GreenState` -- prints "GREEN light - Go" and transitions to Yellow
+ - `YellowState` -- prints "YELLOW light - Slow down" and transitions to Red
 - Context: `TrafficLight` with `setState()` and `change()`
 
 ```java
@@ -685,11 +685,11 @@ Build an order processing system where an order moves through states: Placed, Pa
 
 - State interface: `OrderState` with methods `pay(context)`, `ship(context)`, `deliver(context)`, and `cancel(context)`
 - Concrete states:
-   - `PlacedState` -- can be paid or cancelled
-   - `PaidState` -- can be shipped or cancelled (with refund message)
-   - `ShippedState` -- can be delivered, cannot be cancelled
-   - `DeliveredState` -- terminal state, all operations rejected
-   - `CancelledState` -- terminal state, all operations rejected
+ - `PlacedState` -- can be paid or cancelled
+ - `PaidState` -- can be shipped or cancelled (with refund message)
+ - `ShippedState` -- can be delivered, cannot be cancelled
+ - `DeliveredState` -- terminal state, all operations rejected
+ - `CancelledState` -- terminal state, all operations rejected
 - Context: `Order` with an `orderId` field and methods for each operation
 
 ```java
@@ -2343,11 +2343,11 @@ Build an ATM system with states: Idle, CardInserted, Authenticated, TransactionI
 
 - State interface: `AtmState` with methods `insertCard(context)`, `enterPin(context, pin)`, `withdraw(context, amount)`, `ejectCard(context)`, and `reportError(context)`
 - Concrete states:
-   - `IdleState`: only insertCard is valid
-   - `CardInsertedState`: only enterPin and ejectCard are valid
-   - `AuthenticatedState`: withdraw and ejectCard are valid, enterPin rejected
-   - `TransactionState`: all operations rejected until transaction completes, auto-transitions back to Authenticated
-   - `OutOfServiceState`: all operations rejected, prints "ATM is out of service"
+ - `IdleState`: only insertCard is valid
+ - `CardInsertedState`: only enterPin and ejectCard are valid
+ - `AuthenticatedState`: withdraw and ejectCard are valid, enterPin rejected
+ - `TransactionState`: all operations rejected until transaction completes, auto-transitions back to Authenticated
+ - `OutOfServiceState`: all operations rejected, prints "ATM is out of service"
 - Context: `Atm` with a `balance` field (starts at 10000), a `correctPin` field (set to "1234")
 - Pin validation: `CardInsertedState.enterPin()` checks if pin matches, transitions to Authenticated if correct, ejects card if wrong
 - Withdrawal: checks if amount <= balance, deducts and prints new balance, auto-transitions back to Authenticated

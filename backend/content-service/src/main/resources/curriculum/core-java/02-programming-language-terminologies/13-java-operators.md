@@ -50,9 +50,9 @@ codeSnippet:
     }
 ---
 
-# ⚡ Operators in Java
+# Operators in Java
 
-## 📖 Introduction
+## Introduction
 
 **Operators are special symbols used to perform operations on one or more operands.**
 
@@ -75,7 +75,7 @@ int res = no1 + no2;
 
 ---
 
-## 🗺️ Complete List of Operator Categories in Java
+## Complete List of Operator Categories in Java
 
 Java provides **9 distinct categories of operators**:
 
@@ -96,7 +96,7 @@ Java provides **9 distinct categories of operators**:
 
 ---
 
-## 📊 Comprehensive Master Operator Table
+## Comprehensive Master Operator Table
 
 | Category | Description | Operators | Example Expression | Result |
 |:---|:---|:---|:---|:---:|
@@ -112,9 +112,9 @@ Java provides **9 distinct categories of operators**:
 
 ---
 
-## 🔍 Detailed Breakdown of Operator Categories
+## Detailed Breakdown of Operator Categories
 
-### 🔹 1. Arithmetic Operators
+### 1. Arithmetic Operators
 Used for arithmetic math calculations:
 - **`+` (Addition)**: Adds two operands (`10 + 20 = 30`).
 - **`-` (Subtraction)**: Subtracts right operand from left (`20 - 10 = 10`).
@@ -124,7 +124,7 @@ Used for arithmetic math calculations:
 
 ---
 
-### 🔹 2. Assignment Operators
+### 2. Assignment Operators
 Used to assign and update values stored in variables:
 - **`=`**: Simple assignment (`int x = 10;`).
 - **`+=`**: Addition assignment (`x += 5` is equivalent to `x = x + 5`).
@@ -135,26 +135,26 @@ Used to assign and update values stored in variables:
 
 ---
 
-### 🔹 3. Relational (Comparison) Operators
+### 3. Relational (Comparison) Operators
 Compare two values and always return a **`boolean` (`true` or `false`)**:
-- **`==`**: Equal to (`10 == 10` ➔ `true`).
-- **`!=`**: Not equal to (`10 != 20` ➔ `true`).
-- **`<`**: Less than (`10 < 20` ➔ `true`).
-- **`>`**: Greater than (`10 > 20` ➔ `false`).
-- **`<=`**: Less than or equal to (`10 <= 10` ➔ `true`).
-- **`>=`**: Greater than or equal to (`20 >= 10` ➔ `true`).
+- **`==`**: Equal to (`10 == 10` `true`).
+- **`!=`**: Not equal to (`10 != 20` `true`).
+- **`<`**: Less than (`10 < 20` `true`).
+- **`>`**: Greater than (`10 > 20` `false`).
+- **`<=`**: Less than or equal to (`10 <= 10` `true`).
+- **`>=`**: Greater than or equal to (`20 >= 10` `true`).
 
 ---
 
-### 🔹 4. Logical Operators
+### 4. Logical Operators
 Used to combine multiple relational expressions:
 - **`&&` (Logical AND)**: Returns `true` if **both** conditions are `true`.
 - **`||` (Logical OR)**: Returns `true` if **at least one** condition is `true`.
-- **`!` (Logical NOT)**: Inverts the boolean result (`!true` ➔ `false`).
+- **`!` (Logical NOT)**: Inverts the boolean result (`!true` `false`).
 
 ---
 
-### 🔹 5. Ternary Operator (`?:`)
+### 5. Ternary Operator (`?:`)
 The ternary operator is a compact shorthand replacement for a simple `if-else` statement:
 
 ```java
@@ -165,26 +165,26 @@ If `(no1 > no2)` is `true`, `no1` is returned; otherwise, `no2` is returned.
 
 ---
 
-### 🔹 6. Unary Operators
+### 6. Unary Operators
 Unary operators require only **one operand**:
 - **`++` (Increment)**: Increases value by 1.
-  - **Pre-increment (`++x`)**: Increments value first, then uses it in expression.
-  - **Post-increment (`x++`)**: Uses current value first, then increments it.
+ - **Pre-increment (`++x`)**: Increments value first, then uses it in expression.
+ - **Post-increment (`x++`)**: Uses current value first, then increments it.
 - **`--` (Decrement)**: Decreases value by 1 (Prefix `--x` or Postfix `x--`).
 - **`!` (Logical NOT)**: Inverts boolean flag.
 
 ---
 
-### 🔹 7. Bitwise Operators
+### 7. Bitwise Operators
 Perform bit-level manipulation on binary bits (0 and 1):
 - **`&` (Bitwise AND)**: 1 if both corresponding bits are 1.
 - **`|` (Bitwise OR)**: 1 if either bit is 1.
 - **`^` (Bitwise XOR)**: 1 if bits are different (0 and 1 or 1 and 0).
-- **`~` (Bitwise NOT / Invert)**: Inverts all bits (0 ➔ 1, 1 ➔ 0).
+- **`~` (Bitwise NOT / Invert)**: Inverts all bits (0 1, 1 0).
 
 ---
 
-### 🔹 8. Shift Operators
+### 8. Shift Operators
 Shifts the binary bit positions of an integer:
 - **`<<` (Left Shift)**: Shifts bits left, filling right with zeros. Multiplies by $2^{\text{shift}}$:
   `10 << 1` ➔ $10 \times 2 = 20$.
@@ -194,7 +194,7 @@ Shifts the binary bit positions of an integer:
 
 ---
 
-### 🔹 9. Instanceof Operator
+### 9. Instanceof Operator
 Tests whether an object reference is an instance of a specific Class or Interface:
 
 ```java
@@ -204,7 +204,7 @@ boolean check = name instanceof String; // true
 
 ---
 
-## 💻 Complete Java Program Demonstrating All 9 Operators
+## Complete Java Program Demonstrating All 9 Operators
 
 ```java
 public class OperatorsDemo {
@@ -249,7 +249,7 @@ public class OperatorsDemo {
 }
 ```
 
-#### 🖥️ Program Output:
+#### Program Output:
 ```text
 Addition: 30
 Modulus: 2

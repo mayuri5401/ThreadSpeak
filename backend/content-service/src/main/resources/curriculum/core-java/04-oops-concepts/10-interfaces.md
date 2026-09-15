@@ -51,11 +51,11 @@ codeSnippet:
     }
 ---
 
-# 🔌 Interface in Java
+# Interface in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 An **interface in Java** is a **blueprint of a class**, containing only **method signatures (no implementations)** and **constants**.
 - Interfaces are similar to abstract classes but have **all methods of abstract type**.
@@ -76,7 +76,7 @@ interface InterfaceName
 
 ---
 
-## 🎯 Use of Interfaces
+## Use of Interfaces
 
 Interfaces in Java serve **5 vital purposes**:
 1. **Used to achieve 100% abstraction in Java.**
@@ -87,7 +87,7 @@ Interfaces in Java serve **5 vital purposes**:
 
 ---
 
-### 1️⃣ Used to Achieve 100% Abstraction in Java
+### 1⃣ Used to Achieve 100% Abstraction in Java
 
 Interfaces specify the full operational contract without exposing any internal implementation.
 
@@ -126,7 +126,7 @@ public class Main
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Car is starting...
 Car is stopping...
@@ -134,7 +134,7 @@ Car is stopping...
 
 ---
 
-### 2️⃣ Used to Define a Common Behaviour Across Unrelated Classes
+### 2⃣ Used to Define a Common Behaviour Across Unrelated Classes
 
 Two classes that have completely different inheritance hierarchies (like `Document` and `Image`) can share a unified contract via an interface.
 
@@ -178,7 +178,7 @@ public class Main
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Printing document...
 Printing image...
@@ -186,7 +186,7 @@ Printing image...
 
 ---
 
-### 3️⃣ Used to Achieve Multiple Inheritance in Java
+### 3⃣ Used to Achieve Multiple Inheritance in Java
 
 A Java class can implement multiple interfaces simultaneously with zero ambiguity.
 
@@ -228,7 +228,7 @@ public class Main
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Method m1 from interface I1
 Method m2 from interface I2
@@ -236,7 +236,7 @@ Method m2 from interface I2
 
 ---
 
-### 4️⃣ Used to Achieve Loose Coupling in Our Code
+### 4⃣ Used to Achieve Loose Coupling in Our Code
 
 Loose coupling allows classes to interact without being tightly bound to concrete implementations, making systems modular and easily extensible.
 
@@ -306,7 +306,7 @@ public class MainApp
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 If user enters 1:
 Choose payment method:
@@ -325,22 +325,22 @@ Payment done using Net Banking.
 
 ---
 
-### 5️⃣ Used Extensively in Frameworks, APIs, and Design Patterns
+### 5⃣ Used Extensively in Frameworks, APIs, and Design Patterns
 
 - **Frameworks**:
-  - Spring Framework uses interfaces like `CrudRepository`, `JpaRepository`, and `ApplicationContext` to facilitate dependency injection and clean service layers.
+ - Spring Framework uses interfaces like `CrudRepository`, `JpaRepository`, and `ApplicationContext` to facilitate dependency injection and clean service layers.
 - **Java Standard APIs**:
-  - **Java Collections Framework**: Uses interfaces like `List`, `Set`, `Map`, and `Queue`.
-  - **JDBC (Java Database Connectivity)**: Provides standard interfaces like `Connection`, `Statement`, and `ResultSet` implemented by database vendor drivers (PostgreSQL, MySQL, Oracle).
+ - **Java Collections Framework**: Uses interfaces like `List`, `Set`, `Map`, and `Queue`.
+ - **JDBC (Java Database Connectivity)**: Provides standard interfaces like `Connection`, `Statement`, and `ResultSet` implemented by database vendor drivers (PostgreSQL, MySQL, Oracle).
 - **Design Patterns**:
-  - **DAO Pattern (Data Access Object)**: Interface defines standard CRUD data access methods.
-  - **Service Layer**: Interface declares business logic contracts.
+ - **DAO Pattern (Data Access Object)**: Interface defines standard CRUD data access methods.
+ - **Service Layer**: Interface declares business logic contracts.
 - **Unit Testing & Mocking**:
-  - Interfaces are mocked (e.g. using Mockito) in automated unit tests for modularity and isolation without needing actual databases or network connections.
+ - Interfaces are mocked (e.g. using Mockito) in automated unit tests for modularity and isolation without needing actual databases or network connections.
 
 ---
 
-## 📊 Summary Comparison: Abstract Class vs Interface
+## Summary Comparison: Abstract Class vs Interface
 
 | Feature | Abstract Class | Interface |
 |:---|:---|:---|

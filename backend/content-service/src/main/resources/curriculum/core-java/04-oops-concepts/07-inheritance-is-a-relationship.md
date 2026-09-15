@@ -37,24 +37,24 @@ codeSnippet:
     }
 ---
 
-# 🧬 Inheritance (IS-A Relationship) in Java
+# Inheritance (IS-A Relationship) in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 **Inheritance** in Java means **acquiring the properties and behaviors of a parent class in a child class**.
 - It allows a **subclass (child class)** to inherit fields and methods from a **superclass (parent class)**, promoting **code reuse** and **method overriding**.
 - Inheritance represents an **IS-A relationship**, also known as a **parent-child relationship**. It signifies that a subclass is a type of its superclass.
 
-### 💡 Real-World Examples:
+### Real-World Examples:
 - `A Car IS-A Vehicle.`
 - `A Dog IS-A Animal.`
 - `A Surgeon IS-A Doctor.`
 
 ---
 
-## ⚙️ How to Achieve Inheritance in Java ?
+## How to Achieve Inheritance in Java ?
 
 Inheritance is achieved in Java using:
 1. **`extends` keyword**: For class-to-class inheritance.
@@ -62,7 +62,7 @@ Inheritance is achieved in Java using:
 
 ---
 
-### 📝 Program 1: Using `extends` Keyword (Class Inheritance)
+### Program 1: Using `extends` Keyword (Class Inheritance)
 
 ```java
 class Vehicle {
@@ -86,7 +86,7 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Vehicle starts.
 Car drives.
@@ -94,7 +94,7 @@ Car drives.
 
 ---
 
-### 📝 Program 2: Using `implements` Keyword (Interface Inheritance)
+### Program 2: Using `implements` Keyword (Interface Inheritance)
 
 ```java
 interface Animal {
@@ -118,14 +118,14 @@ public class MainApp {
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Dog eats.
 ```
 
 ---
 
-## 🌟 Advantages of Inheritance
+## Advantages of Inheritance
 
 1. **Code Reusability**: Inheritance allows a child class to reuse the code of its parent class without rewriting it.
 2. **Easy Maintenance**: Changes made in the parent class automatically propagate to child classes, simplifying maintenance.
@@ -134,7 +134,7 @@ Dog eats.
 
 ---
 
-## ⚠️ Disadvantages of Inheritance
+## Disadvantages of Inheritance
 
 1. **Tight Coupling**: Inheritance creates a tight coupling between parent and child classes. Changing the parent class implementation may break subclasses (Fragile Base Class problem).
 2. **Increased Complexity**: Deep inheritance hierarchies make code harder to trace, navigate, and test.
@@ -143,7 +143,7 @@ Dog eats.
 
 ---
 
-## 🏷️ Types of Inheritance in Java
+## Types of Inheritance in Java
 
 There are **5 types of inheritance in Object-Oriented Programming**:
 
@@ -182,7 +182,7 @@ There are **5 types of inheritance in Object-Oriented Programming**:
 
 ---
 
-## 📌 Important Points to Remember
+## Important Points to Remember
 
 - **No Multiple / Hybrid Class Inheritance**: Java does not support multiple and hybrid inheritance with classes to avoid ambiguity, specifically the **Diamond Problem**.
 - **Single Class Extension**: A class can extend only one class at a time (`class B extends A`).

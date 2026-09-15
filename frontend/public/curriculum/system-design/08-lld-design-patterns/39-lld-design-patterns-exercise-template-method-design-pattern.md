@@ -764,8 +764,8 @@ Build an order processing system where physical and digital orders follow the sa
 
 - Abstract base class: `OrderProcessor` with a template method `processOrder()` that calls: `validateOrder()` [common], `calculateTotal()` [abstract], `applyDiscount()` [hook - default: no discount], `processPayment()` [abstract], `sendConfirmation()` [common]
 - Concrete classes:
-   - `PhysicalOrderProcessor` — calculates total with shipping, processes payment via credit card, overrides `applyDiscount()` to apply 10% for orders over $100
-   - `DigitalOrderProcessor` — calculates total without shipping, processes payment via digital wallet, uses default no-discount hook
+ - `PhysicalOrderProcessor` — calculates total with shipping, processes payment via credit card, overrides `applyDiscount()` to apply 10% for orders over $100
+ - `DigitalOrderProcessor` — calculates total without shipping, processes payment via digital wallet, uses default no-discount hook
 
 ```java
 abstract class OrderProcessor {
@@ -1630,8 +1630,8 @@ Build a CI/CD build pipeline where different programming languages follow the sa
 
 - Abstract base class: `BuildPipeline` with a template method `runBuild()` that calls: `fetchSource()` [common], `compileSources()` [abstract], `runTests()` [abstract], `packageArtifact()` [abstract], `deploy()` [hook - default: "Skipping deployment (not configured)."], `notifyTeam()` [common]
 - Concrete classes:
-   - `JavaBuildPipeline` — compiles with `javac`, runs JUnit tests, packages as JAR, overrides `deploy()` to deploy to Nexus
-   - `PythonBuildPipeline` — runs `pylint` (no compilation), runs `pytest` tests, packages as wheel, uses default deploy hook (no deployment)
+ - `JavaBuildPipeline` — compiles with `javac`, runs JUnit tests, packages as JAR, overrides `deploy()` to deploy to Nexus
+ - `PythonBuildPipeline` — runs `pylint` (no compilation), runs `pytest` tests, packages as wheel, uses default deploy hook (no deployment)
 
 ```java
 abstract class BuildPipeline {

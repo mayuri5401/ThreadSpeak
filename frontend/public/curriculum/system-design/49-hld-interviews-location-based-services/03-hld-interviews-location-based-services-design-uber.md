@@ -86,7 +86,7 @@ Before diving into the design, lets outline the functional and non-functional re
 
 - A driver sends a location update **every 3 seconds** while active.
 - Assuming **100,000 active drivers** at peak time:
-   - **Location updates per second**: 100,000 / 3 ≈ 33,333 updates/sec
+ - **Location updates per second**: 100,000 / 3 ≈ 33,333 updates/sec
 
 ### Data Storage Estimation
 
@@ -159,44 +159,44 @@ The system can be divided into three major service groups: **User Management, Ri
 Responsible for managing riders and drivers.
 
 - **Rider Service:**
-   - Manages rider accounts (registration, login, and profile updates).
-   - Stores user preferences (default payment methods, favorite locations).
+ - Manages rider accounts (registration, login, and profile updates).
+ - Stores user preferences (default payment methods, favorite locations).
 - **Driver Service:**
-   - Tracks driver availability (online/offline status).
-   - Maintains vehicle details (make, model, license plate).
+ - Tracks driver availability (online/offline status).
+ - Maintains vehicle details (make, model, license plate).
 
 #### 2. Ride Management
 
 Handles the **end-to-end lifecycle of a ride**, from request to completion.
 
 - **Ride Service:**
-   - Manages ride creation and updates ride status (requested → driver assigned → in-progress → completed).
-   - Coordinates with other services (Matching Service, Routing Service, Payment Service).
+ - Manages ride creation and updates ride status (requested → driver assigned → in-progress → completed).
+ - Coordinates with other services (Matching Service, Routing Service, Payment Service).
 - **Matching Service:**
-   - Finds the nearest available driver(s) for a ride request.
-   - If a driver declines, it searches for the next best match.
-   - Queries the **Location Service** or a **geo-indexed datastore** to fetch nearby drivers.
-   - Updates the **Ride Service** with the assigned driver.
+ - Finds the nearest available driver(s) for a ride request.
+ - If a driver declines, it searches for the next best match.
+ - Queries the **Location Service** or a **geo-indexed datastore** to fetch nearby drivers.
+ - Updates the **Ride Service** with the assigned driver.
 - **Location Service:**
-   - Stores real-time driver locations in an in-memory datastore (e.g., **Redis**, NoSQL with geospatial indexing).
-   - Receives **frequent location updates** from drivers (every **3 seconds**).
-   - Supports **driver tracking** for riders and helps the **Matching Service** find the closest drivers.
+ - Stores real-time driver locations in an in-memory datastore (e.g., **Redis**, NoSQL with geospatial indexing).
+ - Receives **frequent location updates** from drivers (every **3 seconds**).
+ - Supports **driver tracking** for riders and helps the **Matching Service** find the closest drivers.
 - **Routing Service:**
-   - Calculates **optimal routes, estimated time of arrival (ETA), and turn-by-turn directions**.
-   - Uses external **map APIs** (e.g., **Google Maps, Mapbox**) or an **internally hosted geospatial system**.
+ - Calculates **optimal routes, estimated time of arrival (ETA), and turn-by-turn directions**.
+ - Uses external **map APIs** (e.g., **Google Maps, Mapbox**) or an **internally hosted geospatial system**.
 - **Pricing Service:**
-   - Computes ride fares based on **distance, time, and surge pricing**.
-   - Works with the **Ride Service** to provide **real-time fare estimates** and **finalize the trip cost**.
+ - Computes ride fares based on **distance, time, and surge pricing**.
+ - Works with the **Ride Service** to provide **real-time fare estimates** and **finalize the trip cost**.
 
 #### 3. Post-Ride Management
 
 Handles payments and ratings after the ride is completed.
 
 - **Payment Service:**
-   - Processes transactions and **stores ride payment history** in a SQL database.
-   - Integrates with external payment providers (e.g., **Stripe, PayPal**) for **credit card or digital wallet transactions**.
+ - Processes transactions and **stores ride payment history** in a SQL database.
+ - Integrates with external payment providers (e.g., **Stripe, PayPal**) for **credit card or digital wallet transactions**.
 - **Rating Service:**
-   - Allows both riders and drivers to **rate each other** after a ride.
+ - Allows both riders and drivers to **rate each other** after a ride.
 
 ---
 
@@ -496,18 +496,18 @@ Authorization: Bearer <accessToken>
 ### API Considerations
 
 1. **Authentication & Security**
-   - Each API call should require a valid **access token** (e.g., JWT) in the `Authorization: Bearer <token>` header.
+ - Each API call should require a valid **access token** (e.g., JWT) in the `Authorization: Bearer <token>` header.
 2. **Response Codes & Error Handling**
-   - Use standard HTTP status codes (e.g., `200 OK`, `201 Created`, `400 Bad Request`, `401 Unauthorized`, `404 Not Found`, `500 Internal Server Error`).
-   - Include error messages and error codes in JSON responses for clarity.
+ - Use standard HTTP status codes (e.g., `200 OK`, `201 Created`, `400 Bad Request`, `401 Unauthorized`, `404 Not Found`, `500 Internal Server Error`).
+ - Include error messages and error codes in JSON responses for clarity.
 3. **Pagination & Filtering**
-   - For queries like `GET /rides` (to list all rides for a user) or `GET /ratings`, implement pagination (`page`, `limit`) and possible filters (date ranges, rating thresholds).
+ - For queries like `GET /rides` (to list all rides for a user) or `GET /ratings`, implement pagination (`page`, `limit`) and possible filters (date ranges, rating thresholds).
 4. **Internal vs. External Endpoints**
-   - Many endpoints (Matching, Routing, Pricing) are typically internal microservice APIs, not exposed directly to mobile/web clients.
-   - The **API Gateway** ensures that only relevant endpoints (e.g., `POST /rides`, `GET /rides/{id}`, `POST /payments`) are accessible externally.
+ - Many endpoints (Matching, Routing, Pricing) are typically internal microservice APIs, not exposed directly to mobile/web clients.
+ - The **API Gateway** ensures that only relevant endpoints (e.g., `POST /rides`, `GET /rides/{id}`, `POST /payments`) are accessible externally.
 5. **Rate Limiting: **Public APIs are protected with **rate limits** to prevent abuse.
 6. **Event-Driven Triggers**
-   - Certain workflows (e.g., “ride completed” → “send rating request” or “matching succeeded” → “notify ride service”) can be handled asynchronously via a **Message Queue** (Kafka, RabbitMQ, etc.).
+ - Certain workflows (e.g., “ride completed” → “send rating request” or “matching succeeded” → “notify ride service”) can be handled asynchronously via a **Message Queue** (Kafka, RabbitMQ, etc.).
 
 ---
 
@@ -573,8 +573,8 @@ CREATE TABLE drivers (
 ```sql
 SELECT driver_id, latitude, longitude, 
        (6371 * acos(cos(radians(37.7749)) * cos(radians(latitude)) 
-       * cos(radians(longitude) - radians(-122.4194)) 
-       + sin(radians(37.7749)) * sin(radians(latitude)))) AS distance
+ * cos(radians(longitude) - radians(-122.4194))
+ + sin(radians(37.7749)) * sin(radians(latitude)))) AS distance
 FROM drivers
 WHERE status = 'available'
 HAVING distance <= 5
@@ -706,8 +706,8 @@ H3 is an **open-source geospatial indexing system** developed by Uber.
 1. Convert each **driver’s location into an H3 hexagon ID**.
 2. Store **drivers in a distributed key-value store** (e.g., **Cassandra, Redis**).
 3. To find nearby drivers:
-   - Retrieve **drivers in the same hexagon as user**.
-   - Expand search **one hexagon outward** until enough drivers are found.
+ - Retrieve **drivers in the same hexagon as user**.
+ - Expand search **one hexagon outward** until enough drivers are found.
 
 ```python
 import h3
@@ -742,11 +742,11 @@ nearby_hexes = h3.k_ring(hex_id, 1)  # Find drivers in nearby hexes
 There are two ways for the rider’s app to receive real-time updates:
 
 - **Polling (API Calls Every Few Seconds)**
-   - Simple to implement
-   - High network usage, increased server load
+ - Simple to implement
+ - High network usage, increased server load
 - **WebSockets (Push Updates)**
-   - Low latency and efficient
-   - More complex implementation
+ - Low latency and efficient
+ - More complex implementation
 
 **Recommendation:** **Use WebSockets **for real-time tracking while allowing polling as a fallback.
 
@@ -803,15 +803,15 @@ Where:
 #### **Steps for Fare Estimation**
 
 1. **Retrieve distance and time from the Routing Service**
-   - Compute the trip’s estimated **distance** (km) and **time** (minutes).
+ - Compute the trip’s estimated **distance** (km) and **time** (minutes).
 2. **Check for surge pricing**
-   - The Pricing Service checks **real-time demand vs. supply**.
-   - If demand is high (e.g., **rainy weather, peak hours**), a **surge multiplier** (e.g., **1.5x, 2x**) is applied.
+ - The Pricing Service checks **real-time demand vs. supply**.
+ - If demand is high (e.g., **rainy weather, peak hours**), a **surge multiplier** (e.g., **1.5x, 2x**) is applied.
 3. **Apply pricing formula**
-   - Use the **city-specific rate card** for cost-per-km and cost-per-minute values.
-   - Factor in tolls if applicable.
+ - Use the **city-specific rate card** for cost-per-km and cost-per-minute values.
+ - Factor in tolls if applicable.
 4. **Return estimated fare**
-   - Provide a **price range** (e.g., $12 - $15) to account for **traffic fluctuations**.
+ - Provide a **price range** (e.g., $12 - $15) to account for **traffic fluctuations**.
 
 ## 6.6 **Handling Payments Post-Ride**
 

@@ -37,11 +37,11 @@ codeSnippet:
     }
 ---
 
-# ⬆️ "super" Keyword in Java
+# ⬆ "super" Keyword in Java
 
 ---
 
-## 📖 Introduction
+## Introduction
 
 In Java, the **`super` keyword is a reference variable**.
 - It is used to **refer to the immediate parent class object** (i.e., the superclass of the current object).
@@ -49,7 +49,7 @@ In Java, the **`super` keyword is a reference variable**.
 
 ---
 
-## 🎯 Use of `super` Keyword:
+## Use of `super` Keyword:
 
 1. **It is used to refer to the parent class instance variable.**
 2. **It is used to refer to the parent class method.**
@@ -57,11 +57,11 @@ In Java, the **`super` keyword is a reference variable**.
 
 ---
 
-### 1️⃣ 1. It is used to refer to the parent class instance variable
+### 1⃣ 1. It is used to refer to the parent class instance variable
 
 When a child subclass declares a variable with the same name as an instance variable in its parent class (variable shadowing), `super.variableName` is used to explicitly refer to the parent's field.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 class Parent
 {
@@ -89,7 +89,7 @@ public class SuperDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Child num: 200
 Parent num: 100
@@ -97,11 +97,11 @@ Parent num: 100
 
 ---
 
-### 2️⃣ 2. It is used to refer to the parent class method
+### 2⃣ 2. It is used to refer to the parent class method
 
 When a child class overrides a method from its parent superclass, `super.methodName()` allows invoking the parent class implementation.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 class Parent
 {
@@ -131,7 +131,7 @@ public class SuperDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Hello from Parent class showMessage() method
 Inside Child class display() method
@@ -139,11 +139,11 @@ Inside Child class display() method
 
 ---
 
-### 3️⃣ 3. It is used to refer to the parent class constructor (`super()`)
+### 3⃣ 3. It is used to refer to the parent class constructor (`super()`)
 
 Used to invoke the constructor of the immediate parent class.
 
-#### 💻 Java Program Example:
+#### Java Program Example:
 ```java
 class Parent
 {
@@ -171,7 +171,7 @@ public class SuperDemo
 }
 ```
 
-#### 🖥️ Output:
+#### Output:
 ```text
 Parent constructor called
 Child constructor called
@@ -183,7 +183,7 @@ Child constructor called
 
 ---
 
-## 📊 Summary Comparison: `this` vs `super`
+## Summary Comparison: `this` vs `super`
 
 | Feature | `this` Keyword | `super` Keyword |
 |:---|:---|:---|
