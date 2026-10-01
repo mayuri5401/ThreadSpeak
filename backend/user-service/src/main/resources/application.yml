@@ -10,10 +10,10 @@ spring:
     name: user-service
 
   datasource:
-    url: ${DB_URL:jdbc:h2:file:./data/user_db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE}
-    driver-class-name: ${DB_DRIVER:org.h2.Driver}
-    username: ${DB_USERNAME:sa}
-    password: ${DB_PASSWORD:}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/threadspeak_db}
+    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin123}
     hikari:
       maximum-pool-size: 15
       minimum-idle: 5
@@ -22,7 +22,7 @@ spring:
       connection-timeout: 20000
 
   jpa:
-    database-platform: ${DB_PLATFORM:org.hibernate.dialect.H2Dialect}
+    database-platform: ${DB_PLATFORM:org.hibernate.dialect.PostgreSQLDialect}
     hibernate:
       ddl-auto: update
     properties:
@@ -33,11 +33,6 @@ spring:
         order_updates: true
     show-sql: false
     open-in-view: false
-
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
 
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}

@@ -7,8 +7,15 @@ import ContentMicroApp from '../microfrontends/mfe-content/ContentMicroApp';
 import UserProgressMicroApp from '../microfrontends/mfe-user-progress/UserProgressMicroApp';
 import CodeRunnerMicroApp from '../microfrontends/mfe-code-runner/CodeRunnerMicroApp';
 import QuizMicroApp from '../microfrontends/mfe-quiz/QuizMicroApp';
-import StriversA2ZSheetView from '../components/practice/StriversA2ZSheetView';
+import DsaPracticeHubView from '../components/practice/DsaPracticeHubView';
+import A2ZDsaSheetView from '../components/practice/A2ZDsaSheetView';
+import SystemDesignPracticeHubView from '../components/practice/SystemDesignPracticeHubView';
+import ConcurrencyPracticeHubView from '../components/practice/ConcurrencyPracticeHubView';
+import LldPracticeHubView from '../components/practice/LldPracticeHubView';
+import MockInterviewSimulator from '../components/practice/MockInterviewSimulator';
 
+import AuthModal from '../components/auth/AuthModal';
+import { getCurrentUser } from '../shared/services/authService';
 import { fetchTracks, fetchTopics } from '../microfrontends/mfe-content/services/contentApiClient';
 import { 
   completeTopicOnServer, 
@@ -17,10 +24,16 @@ import {
 import { mfeEventBus, MfeEvents } from '../shared/events/MfeEventBus';
 import { parseUrlState, updateBrowserUrl } from '../shared/utils/urlRouter';
 import { triggerConfettiCelebration } from '../shared/utils/confettiCelebration';
-import { CheckCircle2, Sparkles } from 'lucide-react';
+import { CheckCircle2, Sparkles, UserCheck, Shield } from 'lucide-react';
 
 export default function AppShell() {
   const initialUrlState = parseUrlState();
+
+  // Authentication Modal & Session State
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState('login');
+  const [currentUser, setCurrentUser] = useState(() => getCurrentUser());
+  const [authToast, setAuthToast] = useState(null);
 
   const [tracks, setTracks] = useState([]);
   const [currentTrackId, setCurrentTrackId] = useState(initialUrlState.trackId || 'core-java');
@@ -28,7 +41,7 @@ export default function AppShell() {
   const [allTopics, setAllTopics] = useState([]);
   const [selectedTopicId, setSelectedTopicId] = useState(initialUrlState.topicId || 'java-intro-what-is-java');
   const [activeTab, setActiveTab] = useState(initialUrlState.tab || 'notes');
-  const [currentView, setCurrentView] = useState(initialUrlState.view || 'topics'); // 'topics' | 'progress' | 'playground' | 'profile' | 'quiz' | 'strivers-sheet'
+  const [currentView, setCurrentView] = useState(initialUrlState.view || 'topics'); // 'topics' | 'progress' | 'playground' | 'profile' | 'quiz' | 'a2z-sheet' | 'dsa-practice'
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [playgroundCode, setPlaygroundCode] = useState(null);
   const [activeProblem, setActiveProblem] = useState(null);
@@ -172,6 +185,12 @@ export default function AppShell() {
   // Handle Track Selection
   const handleSelectTrack = (trackId) => {
     setCurrentTrackId(trackId);
+    if (allTopics && allTopics.length > 0) {
+      const match = allTopics.find(t => t.trackId === trackId && !t.id?.includes('join-the-community'));
+      if (match) {
+        setSelectedTopicId(match.id);
+      }
+    }
     if (currentView !== 'topics' && currentView !== 'quiz') {
       setCurrentView('topics');
     }
@@ -200,6 +219,31 @@ export default function AppShell() {
     setSystemDesignSubSection(subId);
     if (currentTrackId !== 'system-design') {
       setCurrentTrackId('system-design');
+    }
+    if (allTopics && allTopics.length > 0) {
+      if (subId === 'lld') {
+        const match = allTopics.find(t => t.trackId === 'system-design' && t.category && (
+          t.category.toLowerCase().includes('low') || 
+          t.category.toLowerCase().includes('lld') || 
+          t.category.toLowerCase().includes('solid') || 
+          t.category.toLowerCase().includes('pattern')
+        ));
+        if (match) setSelectedTopicId(match.id);
+      } else if (subId === 'hld') {
+        const match = allTopics.find(t => t.trackId === 'system-design' && t.category && (
+          t.category.toLowerCase().includes('high') || 
+          t.category.toLowerCase().includes('hld') || 
+          t.category.toLowerCase().includes('distributed') || 
+          t.category.toLowerCase().includes('scaling')
+        ));
+        if (match) setSelectedTopicId(match.id);
+      } else {
+        const match = allTopics.find(t => t.trackId === 'system-design' && !t.id?.includes('join-the-community'));
+        if (match) setSelectedTopicId(match.id);
+      }
+    }
+    if (currentView !== 'topics' && currentView !== 'quiz') {
+      setCurrentView('topics');
     }
   };
 
@@ -269,6 +313,39 @@ export default function AppShell() {
     setCurrentView('topics');
   };
 
+  // Authentication Event Bus Listeners
+  useEffect(() => {
+    const unsubLogin = mfeEventBus.on(MfeEvents.AUTH_LOGIN, ({ user }) => {
+      setCurrentUser(user);
+      setAuthToast({
+        type: 'success',
+        title: `Welcome, ${user.name}!`,
+        desc: `Logged in as ${user.role || 'Engineer'}`
+      });
+      setTimeout(() => setAuthToast(null), 3500);
+    });
+
+    const unsubLogout = mfeEventBus.on(MfeEvents.AUTH_LOGOUT, () => {
+      setCurrentUser(null);
+      setAuthToast({
+        type: 'info',
+        title: 'Signed Out',
+        desc: 'You have been logged out of ThreadSpeak.'
+      });
+      setTimeout(() => setAuthToast(null), 3500);
+    });
+
+    const unsubUpdate = mfeEventBus.on(MfeEvents.AUTH_USER_UPDATED, ({ user }) => {
+      setCurrentUser(user);
+    });
+
+    return () => {
+      unsubLogin();
+      unsubLogout();
+      unsubUpdate();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-app)] text-[var(--text-main)] font-sans selection:bg-cyan-500/30 selection:text-cyan-400 transition-colors duration-300">
       {/* Shell Navbar */}
@@ -283,6 +360,10 @@ export default function AppShell() {
         currentSubSection={systemDesignSubSection}
         onSelectSubSection={handleSelectSubSection}
         onOpenPlayground={handleOpenPlaygroundWithCode}
+        onOpenAuth={(mode = 'login') => {
+          setAuthModalMode(mode);
+          setIsAuthModalOpen(true);
+        }}
       />
       {/* Main Shell Viewport / Microfrontend Stage */}
       <div className="flex-1 w-full">
@@ -336,11 +417,52 @@ export default function AppShell() {
           </div>
         )}
 
-        {/* Striver's A2Z DSA Sheet View */}
-        {currentView === 'strivers-sheet' && (
+        {/* Unified DSA Practice & Problem Sheets View (Blind 75 & Complete A-to-Z DSA Roadmap) */}
+        {(currentView === 'dsa-practice' || currentView === 'a2z-sheet' || currentView === 'strivers-sheet') && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <StriversA2ZSheetView onOpenProblemInPlayground={handleOpenProblemInPlayground} />
+            <DsaPracticeHubView 
+              defaultSheet={(currentView === 'a2z-sheet' || currentView === 'strivers-sheet') ? 'a2z-sheet' : 'blind-75'}
+              onOpenProblemInPlayground={handleOpenProblemInPlayground} 
+            />
           </div>
+        )}
+
+        {/* System Design Practice (150 Real-World Engineering Scenarios) */}
+        {currentView === 'system-design-practice' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <SystemDesignPracticeHubView 
+              onOpenProblemInPlayground={handleOpenProblemInPlayground} 
+            />
+          </div>
+        )}
+
+        {/* Concurrency Practice (50 Multi-Threaded Coding Challenges) */}
+        {currentView === 'concurrency-practice' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <ConcurrencyPracticeHubView 
+              onOpenProblemInPlayground={handleOpenProblemInPlayground} 
+            />
+          </div>
+        )}
+
+        {/* Low-Level Design (LLD) Practice (107 OOP & Pattern Scenarios) */}
+        {currentView === 'lld-practice' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <LldPracticeHubView 
+              onOpenProblemInPlayground={handleOpenProblemInPlayground} 
+            />
+          </div>
+        )}
+
+        {/* AI FAANG Mock Interview Simulator */}
+        {currentView === 'mock-interview' && (
+          <MockInterviewSimulator 
+            onOpenPricing={() => {
+              // Trigger navbar pricing modal event
+              mfeEventBus.emit('OPEN_PRICING_MODAL');
+            }}
+            onSelectView={setCurrentView}
+          />
         )}
 
         {/* MFE: Java Code Runner & Execution Sandbox */}
@@ -349,7 +471,28 @@ export default function AppShell() {
             <CodeRunnerMicroApp 
               initialCode={playgroundCode}
               activeProblem={activeProblem}
-              onBackToSheet={() => setCurrentView('strivers-sheet')}
+              onBackToTopics={() => setCurrentView('topics')}
+              onBackToSheet={() => {
+                const cat = activeProblem?.category || '';
+                const lldCats = [
+                  'oop-fundamentals', 'class-relationships', 'design-principles',
+                  'solid-principles', 'creational-patterns', 'structural-patterns', 'behavioral-patterns'
+                ];
+                const concurrencyCats = [
+                  'synchronization-primitives', 'locking-strategies', 'lock-free-programming',
+                  'concurrency-challenges', 'concurrency-patterns', 'classic-problems',
+                  'thread-safe-data-structures', 'multithreading-algorithms', 'concurrency-design-questions'
+                ];
+                if (lldCats.includes(cat)) {
+                  setCurrentView('lld-practice');
+                } else if (concurrencyCats.includes(cat)) {
+                  setCurrentView('concurrency-practice');
+                } else if (activeProblem?.categoryTitle || cat.includes('system-design') || cat === 'core-concepts' || cat === 'networking' || cat === 'load-balancing') {
+                  setCurrentView('system-design-practice');
+                } else {
+                  setCurrentView('dsa-practice');
+                }
+              }}
             />
           </div>
         )}
@@ -391,6 +534,35 @@ export default function AppShell() {
           </div>
         </div>
       )}
+
+      {/* Authentication Floating Toast Notification */}
+      {authToast && (
+        <div className="fixed bottom-6 right-6 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-none">
+          <div className="p-4 rounded-2xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-xl flex items-center gap-3.5 ring-1 ring-emerald-500/30">
+            <div className="p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 shadow-md">
+              <UserCheck className="w-5 h-5 text-emerald-400" />
+            </div>
+            <div>
+              <h5 className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
+                {authToast.title}
+              </h5>
+              <p className="text-xs text-slate-300 mt-0.5 font-medium">
+                {authToast.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Authentication Modal (Sign In & Registration) */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        initialMode={authModalMode}
+        onSuccess={(user) => {
+          setCurrentUser(user);
+        }}
+      />
     </div>
   );
 }

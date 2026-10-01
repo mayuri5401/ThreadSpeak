@@ -19,6 +19,8 @@ import CourseRoadmapViewer from './CourseRoadmapViewer';
 import AiVoiceReader from './AiVoiceReader';
 import TopicAiTutorBar from './TopicAiTutorBar';
 import ActiveRecallQuiz from './ActiveRecallQuiz';
+import SeniorJvmDeepDiveCard from './SeniorJvmDeepDiveCard';
+import StudentQuickQuizCard from './StudentQuickQuizCard';
 import { mfeEventBus, MfeEvents } from '../../shared/events/MfeEventBus';
 
 // Lazy-Loaded Micro-Visualizers (Loaded on-demand when topic is opened)
@@ -118,6 +120,22 @@ export default function TopicViewer({
     onSelectTab?.(tab);
   };
 
+  // Dual-Persona Mode: 'student' (Fundamentals & Step-by-Step) vs 'senior' (JVM Internals & Low-Level)
+  const [personaMode, setPersonaMode] = useState(() => {
+    try {
+      return localStorage.getItem('threadspeak_persona_mode') || 'student';
+    } catch {
+      return 'student';
+    }
+  });
+
+  const handleTogglePersona = (mode) => {
+    setPersonaMode(mode);
+    try {
+      localStorage.setItem('threadspeak_persona_mode', mode);
+    } catch {}
+  };
+
   // Speech Synthesis Status for Active Text Karaoke Highlight
   const [spokenStatus, setSpokenStatus] = useState({ text: '', index: 0, isPlaying: false });
 
@@ -132,7 +150,7 @@ export default function TopicViewer({
 
   const updateTopicTabBubble = () => {
     if (!topicTabContainerRef.current) return;
-    const tabsList = ['notes', 'architecture', 'code'];
+    const tabsList = ['notes', 'architecture', 'jvm-internals', 'code'];
     const currentTabId = activeTab || 'notes';
     const activeIndex = tabsList.indexOf(currentTabId);
     const buttons = topicTabContainerRef.current.querySelectorAll('.topic-tab-btn');
@@ -1017,41 +1035,76 @@ public class TicTacToeDemo {
   return (
     <div className="space-y-0">
       {/* ── AlgoMaster-Style Page Header ── */}
-      <div className="pb-5 pt-1">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-3">
-          {topic.title}
-        </h1>
-        <div className="flex items-center flex-wrap gap-2">
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-400 text-xs font-medium">
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            {topic.estimatedMinutes || 6} min read
-          </span>
-
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-700/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold font-mono">
-            <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-            FAANG Tested
-          </span>
-
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-700/40 text-cyan-700 dark:text-cyan-300 text-xs font-bold font-mono">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            AI Super-Tutor
-          </span>
-
-          {topic.difficulty && (
-            <span className={`px-3 py-1 rounded-full border text-xs font-semibold ${
-              topic.difficulty === 'Beginner'     ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-700/40 text-emerald-700 dark:text-emerald-400' :
-              topic.difficulty === 'Intermediate' ? 'bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-700/40 text-amber-800 dark:text-amber-400' :
-                                                    'bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-700/40 text-rose-700 dark:text-rose-400'
-            }`}>
-              {topic.difficulty}
+      {/* ── AlgoMaster-Style Page Header with Persona Lens Switcher ── */}
+      <div className="pb-5 pt-1 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-3">
+            {topic.title}
+          </h1>
+          <div className="flex items-center flex-wrap gap-2">
+            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-400 text-xs font-medium">
+              <Clock className="w-3.5 h-3.5 text-slate-500" />
+              {topic.estimatedMinutes || 6} min read
             </span>
-          )}
+
+            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-700/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold font-mono">
+              <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+              FAANG Tested
+            </span>
+
+            <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-700/40 text-cyan-700 dark:text-cyan-300 text-xs font-bold font-mono">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+              AI Super-Tutor
+            </span>
+
+            {topic.difficulty && (
+              <span className={`px-3 py-1 rounded-full border text-xs font-semibold ${
+                topic.difficulty === 'Beginner'     ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-700/40 text-emerald-700 dark:text-emerald-400' :
+                topic.difficulty === 'Intermediate' ? 'bg-amber-50 dark:bg-amber-950/50 border-amber-200 dark:border-amber-700/40 text-amber-800 dark:text-amber-400' :
+                                                      'bg-rose-50 dark:bg-rose-950/50 border-rose-200 dark:border-rose-700/40 text-rose-700 dark:text-rose-400'
+              }`}>
+                {topic.difficulty}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Persona Mode Switcher: Student vs Senior Developer Lens */}
+        <div className="flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-[#090E1D] border border-slate-200 dark:border-slate-800 shrink-0 shadow-inner">
+          <button
+            onClick={() => handleTogglePersona('student')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              personaMode === 'student'
+                ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/30 font-extrabold'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+            title="Switch to Student / Fundamentals mode (Analogies, step-by-step guides, visual models)"
+          >
+            <span>🎓</span>
+            <span>Student Lens</span>
+          </button>
+
+          <button
+            onClick={() => {
+              handleTogglePersona('senior');
+              setActiveTab('jvm-internals');
+            }}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              personaMode === 'senior'
+                ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30 font-extrabold'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+            title="Switch to Senior / Staff Engineer mode (Bytecode, JVM Internals, Memory Footprint, GC)"
+          >
+            <span>⚡</span>
+            <span>Senior / Staff Lens</span>
+          </button>
         </div>
       </div>
 
       <div className="h-px bg-slate-200 dark:bg-white/[0.06] mb-4" />
 
-      {/* Clean 3 Tabs Navigation with Animated Sliding Bubble Indicator */}
+      {/* Clean 4 Tabs Navigation with Animated Sliding Bubble Indicator */}
       <div
         ref={topicTabContainerRef}
         className="flex items-center justify-between gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-[#090E1D] border border-slate-200 dark:border-slate-800/90 relative shadow-inner overflow-x-auto"
@@ -1070,6 +1123,7 @@ public class TicTacToeDemo {
           {[
             { id: 'notes', label: 'Notes', icon: BookOpen },
             { id: 'architecture', label: 'Architecture', icon: Layers },
+            { id: 'jvm-internals', label: '⚡ Senior & JVM Deep Dive', icon: Cpu },
             { id: 'code', label: 'Code Playground', icon: Code },
           ].map(tab => {
             const Icon = tab.icon;
@@ -1078,7 +1132,7 @@ public class TicTacToeDemo {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`topic-tab-btn relative z-10 flex items-center gap-2 px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-colors duration-200 whitespace-nowrap ${
+                className={`topic-tab-btn relative z-10 flex items-center gap-2 px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-colors duration-200 whitespace-nowrap ${
                   isCurrent
                     ? 'text-white'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
@@ -1143,6 +1197,12 @@ public class TicTacToeDemo {
                 </div>
               )
             )}
+
+            {/* Interactive Student 2-Question Self-Test Quiz */}
+            <StudentQuickQuizCard 
+              topicTitle={topic.title} 
+              onMarkComplete={onToggleComplete} 
+            />
 
             {/* Active Recall & Spaced Repetition Flashcards at End of Chapter */}
             <ActiveRecallQuiz
@@ -1323,7 +1383,15 @@ public class TicTacToeDemo {
         </div>
       )}
 
-      {/* Tab 3: Code Playground */}
+      {/* Tab 3: Senior JVM Internals */}
+      {activeTab === 'jvm-internals' && (
+        <SeniorJvmDeepDiveCard
+          topic={topic}
+          onOpenPlayground={onOpenPlayground}
+        />
+      )}
+
+      {/* Tab 4: Code Playground */}
       {activeTab === 'code' && (
         <div className="space-y-6 animate-in fade-in duration-300">
           {isCourseIntro ? (

@@ -2,7 +2,18 @@ import React from 'react';
 import UniversalCodePlayground from '../../components/playground/UniversalCodePlayground';
 import { ArrowLeft, Sparkles, Terminal, Flame } from 'lucide-react';
 
-export default function CodeRunnerMicroApp({ initialCode, activeProblem, onBackToSheet }) {
+export default function CodeRunnerMicroApp({ initialCode, activeProblem, onBackToSheet, onBackToTopics }) {
+  const isLld = activeProblem && [
+    'oop-fundamentals', 'class-relationships', 'design-principles',
+    'solid-principles', 'creational-patterns', 'structural-patterns', 'behavioral-patterns'
+  ].includes(activeProblem.category);
+
+  const isConcurrency = activeProblem && [
+    'synchronization-primitives', 'locking-strategies', 'lock-free-programming',
+    'concurrency-challenges', 'concurrency-patterns', 'classic-problems',
+    'thread-safe-data-structures', 'multithreading-algorithms', 'concurrency-design-questions'
+  ].includes(activeProblem.category);
+
   return (
     <div className="space-y-6">
       {/* Header Banner */}
@@ -28,23 +39,44 @@ export default function CodeRunnerMicroApp({ initialCode, activeProblem, onBackT
             </div>
             <p className="text-xs text-slate-400">
               {activeProblem 
-                ? `Striver's A2Z Sheet • Step ${activeProblem.stepNumber} • ${activeProblem.subTopic || 'DSA'}`
+                ? (isLld
+                    ? `Low-Level Design Practice • ${activeProblem.categoryTitle} • #${activeProblem.number}`
+                    : (isConcurrency
+                        ? `Concurrency Practice • ${activeProblem.categoryTitle} • #${activeProblem.number}`
+                        : (activeProblem.categoryTitle
+                            ? `System Design Practice • ${activeProblem.categoryTitle} • #${activeProblem.number}`
+                            : (activeProblem.category 
+                                ? `Blind 75 • ${activeProblem.category} • #${activeProblem.leetcodeNumber || ''}`
+                                : `DSA Roadmap • Step ${activeProblem.stepNumber || 1} • ${activeProblem.subTopic || 'DSA'}`))))
                 : "Sandboxed container with Virtual Threads & Concurrent runtime analysis"
               }
             </p>
           </div>
         </div>
 
-        {onBackToSheet && (
-          <button
-            type="button"
-            onClick={onBackToSheet}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-bold transition border border-slate-700 shadow-sm cursor-pointer"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Striver's Sheet</span>
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {onBackToTopics && (
+            <button
+              type="button"
+              onClick={onBackToTopics}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 hover:text-white text-xs font-bold transition border border-emerald-700/60 shadow-sm cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Learning Topic</span>
+            </button>
+          )}
+
+          {onBackToSheet && (
+            <button
+              type="button"
+              onClick={onBackToSheet}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-bold transition border border-slate-700 shadow-sm cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>{isLld ? "Back to LLD Practice" : isConcurrency ? "Back to Concurrency" : activeProblem?.categoryTitle ? "Back to System Design" : "Back to DSA Practice"}</span>
+            </button>
+          )}
+        </div>
       </div>
 
       <UniversalCodePlayground

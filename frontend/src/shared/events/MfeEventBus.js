@@ -20,6 +20,11 @@ export const MfeEvents = {
   TOPIC_BOOKMARKED: 'MFE_TOPIC_BOOKMARKED',    // payload: { topicId: string }
   QUIZ_COMPLETED: 'MFE_QUIZ_COMPLETED',        // payload: { topicOrTrackId: string, score: number, xp: number }
   XP_EARNED: 'MFE_XP_EARNED',                  // payload: { xp: number, reason: string }
+  
+  // Authentication Events
+  AUTH_LOGIN: 'MFE_AUTH_LOGIN',                // payload: { user: object }
+  AUTH_LOGOUT: 'MFE_AUTH_LOGOUT',              // payload: {}
+  AUTH_USER_UPDATED: 'MFE_AUTH_USER_UPDATED',  // payload: { user: object }
 };
 
 class EventBus {

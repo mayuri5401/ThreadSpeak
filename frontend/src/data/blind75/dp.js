@@ -1,0 +1,245 @@
+export default [
+  {
+    "id": "climbing-stairs",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Climbing Stairs",
+    "leetcodeNumber": 70,
+    "difficulty": "Easy",
+    "companies": ["Amazon", "Google", "Apple"],
+    "leetcodeUrl": "https://leetcode.com/problems/climbing-stairs/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/dynamic-programming-climbing-stairs/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=mLfjzJsN8us",
+    "description": "You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+    "examples": [{ "input": "n = 3", "output": "3", "explanation": "1+1+1, 1+2, 2+1." }],
+    "constraints": ["1 <= n <= 45"],
+    "starterCode": {
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        if (n <= 2) return n;\n        int a = 1, b = 2;\n        for (int i = 3; i <= n; i++) { int c = a + b; a = b; b = c; }\n        return b;\n    }\n    public static void main(String[] args) {\n        System.out.println(climbStairs(3));\n    }\n}",
+      "cpp": "int climbStairs(int n) {\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) { int c = a + b; a = b; b = c; }\n    return b;\n}",
+      "python": "def climbStairs(n: int) -> int:\n    if n <= 2: return n\n    a, b = 1, 2\n    for _ in range(3, n + 1): a, b = b, a + b\n    return b",
+      "javascript": "function climbStairs(n) {\n    if (n <= 2) return n;\n    let a = 1, b = 2;\n    for (let i = 3; i <= n; i++) { const c = a + b; a = b; b = c; }\n    return b;\n}"
+    },
+    "testCases": [{ "input": "n = 3", "expectedOutput": "3" }]
+  },
+  {
+    "id": "coin-change",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Coin Change",
+    "leetcodeNumber": 322,
+    "difficulty": "Medium",
+    "companies": ["Amazon", "Microsoft", "Meta"],
+    "leetcodeUrl": "https://leetcode.com/problems/coin-change/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/coin-change-2-dp-22/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=HgyouUi11zk",
+    "description": "Given coins of different denominations and total amount, compute the fewest coins needed to make up that amount, or -1.",
+    "examples": [{ "input": "coins = [1,2,5], amount = 11", "output": "3", "explanation": "11 = 5 + 5 + 1" }],
+    "constraints": ["1 <= coins.length <= 12", "0 <= amount <= 10^4"],
+    "starterCode": {
+      "java": "import java.util.Arrays;\npublic class Solution {\n    public static int coinChange(int[] coins, int amount) {\n        int[] dp = new int[amount + 1];\n        Arrays.fill(dp, amount + 1);\n        dp[0] = 0;\n        for (int i = 1; i <= amount; i++) {\n            for (int c : coins) if (i - c >= 0) dp[i] = Math.min(dp[i], dp[i - c] + 1);\n        }\n        return dp[amount] > amount ? -1 : dp[amount];\n    }\n    public static void main(String[] args) {\n        System.out.println(coinChange(new int[]{1,2,5}, 11));\n    }\n}",
+      "cpp": "int coinChange(vector<int>& coins, int amount) {\n    vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;\n    for (int i = 1; i <= amount; i++) {\n        for (int c : coins) if (i - c >= 0) dp[i] = min(dp[i], dp[i - c] + 1);\n    }\n    return dp[amount] > amount ? -1 : dp[amount];\n}",
+      "python": "def coinChange(coins: list[int], amount: int) -> int:\n    dp = [amount + 1] * (amount + 1)\n    dp[0] = 0\n    for i in range(1, amount + 1):\n        for c in coins: if i - c >= 0: dp[i] = min(dp[i], dp[i - c] + 1)\n    return dp[amount] if dp[amount] <= amount else -1",
+      "javascript": "function coinChange(coins, amount) {\n    const dp = new Array(amount + 1).fill(amount + 1);\n    dp[0] = 0;\n    for (let i = 1; i <= amount; i++) {\n        for (const c of coins) if (i - c >= 0) dp[i] = Math.min(dp[i], dp[i - c] + 1);\n    }\n    return dp[amount] > amount ? -1 : dp[amount];\n}"
+    },
+    "testCases": [{ "input": "coins = [1,2,5], amount = 11", "expectedOutput": "3" }]
+  },
+  {
+    "id": "longest-increasing-subsequence",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Longest Increasing Subsequence (LIS)",
+    "leetcodeNumber": 300,
+    "difficulty": "Medium",
+    "companies": ["Microsoft", "Google", "Amazon"],
+    "leetcodeUrl": "https://leetcode.com/problems/longest-increasing-subsequence/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/longest-increasing-subsequence-binary-search-dp-43/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=on2hvxBXJH4",
+    "description": "Given an integer array `nums`, return the length of the longest strictly increasing subsequence in O(n log n).",
+    "examples": [{ "input": "nums = [10,9,2,5,3,7,101,18]", "output": "4", "explanation": "[2,3,7,101] -> length 4." }],
+    "constraints": ["1 <= nums.length <= 2500", "-10^4 <= nums[i] <= 10^4"],
+    "starterCode": {
+      "java": "import java.util.*;\npublic class Solution {\n    public static int lengthOfLIS(int[] nums) {\n        List<Integer> tails = new ArrayList<>();\n        for (int x : nums) {\n            int i = Collections.binarySearch(tails, x);\n            if (i < 0) i = -(i + 1);\n            if (i == tails.size()) tails.add(x);\n            else tails.set(i, x);\n        }\n        return tails.size();\n    }\n    public static void main(String[] args) {\n        System.out.println(lengthOfLIS(new int[]{10,9,2,5,3,7,101,18}));\n    }\n}",
+      "cpp": "int lengthOfLIS(vector<int>& nums) {\n    vector<int> tails;\n    for (int x : nums) {\n        auto it = lower_bound(tails.begin(), tails.end(), x);\n        if (it == tails.end()) tails.push_back(x);\n        else *it = x;\n    }\n    return tails.size();\n}",
+      "python": "import bisect\ndef lengthOfLIS(nums: list[int]) -> int:\n    tails = []\n    for x in nums:\n        i = bisect.bisect_left(tails, x)\n        if i == len(tails): tails.append(x)\n        else: tails[i] = x\n    return len(tails)",
+      "javascript": "function lengthOfLIS(nums) {\n    const tails = [];\n    for (const x of nums) {\n        let l = 0, r = tails.length;\n        while (l < r) {\n            const m = Math.floor((l + r) / 2);\n            if (tails[m] < x) l = m + 1; else r = m;\n        }\n        if (l === tails.length) tails.push(x);\n        else tails[l] = x;\n    }\n    return tails.length;\n}"
+    },
+    "testCases": [{ "input": "nums = [10,9,2,5,3,7,101,18]", "expectedOutput": "4" }]
+  },
+  {
+    "id": "longest-common-subsequence",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Longest Common Subsequence (LCS)",
+    "leetcodeNumber": 1143,
+    "difficulty": "Medium",
+    "companies": ["Amazon", "Google", "Microsoft"],
+    "leetcodeUrl": "https://leetcode.com/problems/longest-common-subsequence/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/print-longest-common-subsequence-dp-26/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=-zI4mrF2Pb4",
+    "description": "Given two strings `text1` and `text2`, return the length of their longest common subsequence.",
+    "examples": [{ "input": "text1 = 'abcde', text2 = 'ace'", "output": "3", "explanation": "LCS is 'ace'." }],
+    "constraints": ["1 <= text1.length, text2.length <= 1000"],
+    "starterCode": {
+      "java": "public class Solution {\n    public static int longestCommonSubsequence(String text1, String text2) {\n        int m = text1.length(), n = text2.length();\n        int[][] dp = new int[m + 1][n + 1];\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                if (text1.charAt(i - 1) == text2.charAt(j - 1)) dp[i][j] = dp[i - 1][j - 1] + 1;\n                else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);\n            }\n        }\n        return dp[m][n];\n    }\n    public static void main(String[] args) {\n        System.out.println(longestCommonSubsequence(\"abcde\", \"ace\"));\n    }\n}",
+      "cpp": "int longestCommonSubsequence(string text1, string text2) {\n    int m = text1.size(), n = text2.size();\n    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));\n    for (int i = 1; i <= m; i++) {\n        for (int j = 1; j <= n; j++) {\n            if (text1[i - 1] == text2[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;\n            else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);\n        }\n    }\n    return dp[m][n];\n}",
+      "python": "def longestCommonSubsequence(text1: str, text2: str) -> int:\n    m, n = len(text1), len(text2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if text1[i-1] == text2[j-1]: dp[i][j] = dp[i-1][j-1] + 1\n            else: dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n    return dp[m][n]",
+      "javascript": "function longestCommonSubsequence(text1, text2) {\n    const m = text1.length, n = text2.length;\n    const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));\n    for (let i = 1; i <= m; i++) {\n        for (let j = 1; j <= n; j++) {\n            if (text1[i - 1] === text2[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;\n            else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);\n        }\n    }\n    return dp[m][n];\n}"
+    },
+    "testCases": [{ "input": "text1 = 'abcde', text2 = 'ace'", "expectedOutput": "3" }]
+  },
+  {
+    "id": "word-break",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Word Break",
+    "leetcodeNumber": 139,
+    "difficulty": "Medium",
+    "companies": ["Amazon", "Google", "Facebook"],
+    "leetcodeUrl": "https://leetcode.com/problems/word-break/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/word-break/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=Sx9NNgInc3A",
+    "description": "Given a string `s` and a dictionary `wordDict`, return `true` if `s` can be segmented into dictionary words.",
+    "examples": [{ "input": "s = 'leetcode', wordDict = ['leet','code']", "output": "true", "explanation": "'leet code'" }],
+    "constraints": ["1 <= s.length <= 300"],
+    "starterCode": {
+      "java": "import java.util.*;\npublic class Solution {\n    public static boolean wordBreak(String s, List<String> wordDict) {\n        Set<String> set = new HashSet<>(wordDict);\n        boolean[] dp = new boolean[s.length() + 1];\n        dp[0] = true;\n        for (int i = 1; i <= s.length(); i++) {\n            for (int j = 0; j < i; j++) {\n                if (dp[j] && set.contains(s.substring(j, i))) { dp[i] = true; break; }\n            }\n        }\n        return dp[s.length()];\n    }\n    public static void main(String[] args) {\n        System.out.println(wordBreak(\"leetcode\", Arrays.asList(\"leet\", \"code\")));\n    }\n}",
+      "cpp": "bool wordBreak(string s, vector<string>& wordDict) {\n    unordered_set<string> dict(wordDict.begin(), wordDict.end());\n    vector<bool> dp(s.size() + 1, false);\n    dp[0] = true;\n    for (int i = 1; i <= s.size(); i++) {\n        for (int j = 0; j < i; j++) {\n            if (dp[j] && dict.count(s.substr(j, i - j))) { dp[i] = true; break; }\n        }\n    }\n    return dp[s.size()];\n}",
+      "python": "def wordBreak(s: str, wordDict: list[str]) -> bool:\n    words = set(wordDict); dp = [False] * (len(s) + 1); dp[0] = True\n    for i in range(1, len(s) + 1):\n        for j in range(i):\n            if dp[j] and s[j:i] in words: dp[i] = True; break\n    return dp[len(s)]",
+      "javascript": "function wordBreak(s, wordDict) {\n    const words = new Set(wordDict);\n    const dp = new Array(s.length + 1).fill(false);\n    dp[0] = true;\n    for (let i = 1; i <= s.length; i++) {\n        for (let j = 0; j < i; j++) {\n            if (dp[j] && words.has(s.substring(j, i))) { dp[i] = true; break; }\n        }\n    }\n    return dp[s.length];\n}"
+    },
+    "testCases": [{ "input": "s = 'leetcode', wordDict = ['leet', 'code']", "expectedOutput": "true" }]
+  },
+  {
+    "id": "combination-sum",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Combination Sum",
+    "leetcodeNumber": 39,
+    "difficulty": "Medium",
+    "companies": ["Amazon", "Google", "Airbnb"],
+    "leetcodeUrl": "https://leetcode.com/problems/combination-sum/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/combination-sum-1/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=OyZFFqQtu98",
+    "description": "Return all unique combinations of `candidates` that sum to `target`.",
+    "examples": [{ "input": "candidates = [2,3,6,7], target = 7", "output": "[[2,2,3],[7]]", "explanation": "2+2+3=7, 7=7." }],
+    "constraints": ["1 <= candidates.length <= 30", "1 <= target <= 40"],
+    "starterCode": {
+      "java": "import java.util.*;\npublic class Solution {\n    public static List<List<Integer>> combinationSum(int[] candidates, int target) {\n        List<List<Integer>> res = new ArrayList<>();\n        bt(candidates, target, 0, new ArrayList<>(), res);\n        return res;\n    }\n    private static void bt(int[] c, int rem, int s, List<Integer> cur, List<List<Integer>> res) {\n        if (rem == 0) { res.add(new ArrayList<>(cur)); return; }\n        if (rem < 0) return;\n        for (int i = s; i < c.length; i++) {\n            cur.add(c[i]); bt(c, rem - c[i], i, cur, res); cur.remove(cur.size() - 1);\n        }\n    }\n    public static void main(String[] args) {\n        System.out.println(combinationSum(new int[]{2,3,6,7}, 7));\n    }\n}",
+      "cpp": "void bt(vector<int>& c, int rem, int s, vector<int>& cur, vector<vector<int>>& res) {\n    if (rem == 0) { res.push_back(cur); return; }\n    if (rem < 0) return;\n    for (int i = s; i < c.size(); i++) { cur.push_back(c[i]); bt(c, rem - c[i], i, cur, res); cur.pop_back(); }\n}\nvector<vector<int>> combinationSum(vector<int>& candidates, int target) {\n    vector<vector<int>> res; vector<int> cur; bt(candidates, target, 0, cur, res); return res;\n}",
+      "python": "def combinationSum(candidates: list[int], target: int) -> list[list[int]]:\n    res = []\n    def bt(rem, start, cur):\n        if rem == 0: res.append(list(cur)); return\n        if rem < 0: return\n        for i in range(start, len(candidates)):\n            cur.append(candidates[i]); bt(rem - candidates[i], i, cur); cur.pop()\n    bt(target, 0, []); return res",
+      "javascript": "function combinationSum(candidates, target) {\n    const res = [];\n    function bt(rem, start, cur) {\n        if (rem === 0) { res.push([...cur]); return; }\n        if (rem < 0) return;\n        for (let i = start; i < candidates.length; i++) {\n            cur.push(candidates[i]); bt(rem - candidates[i], i, cur); cur.pop();\n        }\n    }\n    bt(target, 0, []); return res;\n}"
+    },
+    "testCases": [{ "input": "candidates = [2,3,6,7], target = 7", "expectedOutput": "[[2, 2, 3], [7]]" }]
+  },
+  {
+    "id": "house-robber",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "House Robber",
+    "leetcodeNumber": 198,
+    "difficulty": "Medium",
+    "companies": ["Amazon", "Google", "Microsoft"],
+    "leetcodeUrl": "https://leetcode.com/problems/house-robber/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/maximum-sum-of-non-adjacent-elements-dp-5/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=GrMBfJNk_NY",
+    "description": "You cannot rob two adjacent houses. Return maximum amount of money you can rob tonight.",
+    "examples": [{ "input": "nums = [1,2,3,1]", "output": "4", "explanation": "Rob house 1 (1) and house 3 (3)." }],
+    "constraints": ["1 <= nums.length <= 100"],
+    "starterCode": {
+      "java": "public class Solution {\n    public static int rob(int[] nums) {\n        int p1 = 0, p2 = 0;\n        for (int n : nums) { int t = Math.max(p1, p2 + n); p2 = p1; p1 = t; }\n        return p1;\n    }\n    public static void main(String[] args) {\n        System.out.println(rob(new int[]{1,2,3,1}));\n    }\n}",
+      "cpp": "int rob(vector<int>& nums) {\n    int p1 = 0, p2 = 0;\n    for (int n : nums) { int t = max(p1, p2 + n); p2 = p1; p1 = t; }\n    return p1;\n}",
+      "python": "def rob(nums: list[int]) -> int:\n    p1, p2 = 0, 0\n    for n in nums: p1, p2 = max(p1, p2 + n), p1\n    return p1",
+      "javascript": "function rob(nums) {\n    let p1 = 0, p2 = 0;\n    for (const n of nums) { const t = Math.max(p1, p2 + n); p2 = p1; p1 = t; }\n    return p1;\n}"
+    },
+    "testCases": [{ "input": "nums = [1,2,3,1]", "expectedOutput": "4" }]
+  },
+  {
+    "id": "house-robber-ii",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "House Robber II",
+    "leetcodeNumber": 213,
+    "difficulty": "Medium",
+    "companies": ["Microsoft", "Google", "Amazon"],
+    "leetcodeUrl": "https://leetcode.com/problems/house-robber-ii/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/dynamic-programming-house-robber-dp-6/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=3WaxQMELSkw",
+    "description": "Houses are in a circle. Return maximum money you can rob.",
+    "examples": [{ "input": "nums = [2,3,2]", "output": "3", "explanation": "Rob house 2 (3)." }],
+    "constraints": ["1 <= nums.length <= 100"],
+    "starterCode": {
+      "java": "public class Solution {\n    public static int rob(int[] nums) {\n        if (nums.length == 1) return nums[0];\n        return Math.max(r(nums, 0, nums.length - 2), r(nums, 1, nums.length - 1));\n    }\n    private static int r(int[] nums, int s, int e) {\n        int p1 = 0, p2 = 0;\n        for (int i = s; i <= e; i++) { int t = Math.max(p1, p2 + nums[i]); p2 = p1; p1 = t; }\n        return p1;\n    }\n    public static void main(String[] args) {\n        System.out.println(rob(new int[]{2,3,2}));\n    }\n}",
+      "cpp": "int r(vector<int>& nums, int s, int e) {\n    int p1 = 0, p2 = 0;\n    for (int i = s; i <= e; i++) { int t = max(p1, p2 + nums[i]); p2 = p1; p1 = t; }\n    return p1;\n}\nint rob(vector<int>& nums) {\n    if (nums.size() == 1) return nums[0];\n    return max(r(nums, 0, nums.size() - 2), r(nums, 1, nums.size() - 1));\n}",
+      "python": "def rob(nums: list[int]) -> int:\n    if len(nums) == 1: return nums[0]\n    def r(s, e):\n        p1, p2 = 0, 0\n        for i in range(s, e + 1): p1, p2 = max(p1, p2 + nums[i]), p1\n        return p1\n    return max(r(0, len(nums) - 2), r(1, len(nums) - 1))",
+      "javascript": "function rob(nums) {\n    if (nums.length === 1) return nums[0];\n    function r(s, e) {\n        let p1 = 0, p2 = 0;\n        for (let i = s; i <= e; i++) { const t = Math.max(p1, p2 + nums[i]); p2 = p1; p1 = t; }\n        return p1;\n    }\n    return Math.max(r(0, nums.length - 2), r(1, nums.length - 1));\n}"
+    },
+    "testCases": [{ "input": "nums = [2,3,2]", "expectedOutput": "3" }]
+  },
+  {
+    "id": "decode-ways",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Decode Ways",
+    "leetcodeNumber": 91,
+    "difficulty": "Medium",
+    "companies": ["Amazon", "Google", "Facebook"],
+    "leetcodeUrl": "https://leetcode.com/problems/decode-ways/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/decode-ways/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=6aEyTjOwlJU",
+    "description": "Given a string `s`, return the number of ways to decode it.",
+    "examples": [{ "input": "s = '12'", "output": "2", "explanation": "'AB' or 'L'." }],
+    "constraints": ["1 <= s.length <= 100"],
+    "starterCode": {
+      "java": "public class Solution {\n    public static int numDecodings(String s) {\n        if (s == null || s.length() == 0 || s.charAt(0) == '0') return 0;\n        int n = s.length(), dp1 = 1, dp2 = 1;\n        for (int i = 1; i < n; i++) {\n            int cur = 0;\n            int one = s.charAt(i) - '0';\n            int two = Integer.parseInt(s.substring(i - 1, i + 1));\n            if (one >= 1) cur += dp1;\n            if (two >= 10 && two <= 26) cur += dp2;\n            dp2 = dp1; dp1 = cur;\n        }\n        return dp1;\n    }\n    public static void main(String[] args) {\n        System.out.println(numDecodings(\"12\"));\n    }\n}",
+      "cpp": "int numDecodings(string s) {\n    if (s.empty() || s[0] == '0') return 0;\n    int dp1 = 1, dp2 = 1;\n    for (int i = 1; i < s.size(); i++) {\n        int cur = 0, one = s[i] - '0', two = stoi(s.substr(i - 1, 2));\n        if (one >= 1) cur += dp1;\n        if (two >= 10 && two <= 26) cur += dp2;\n        dp2 = dp1; dp1 = cur;\n    }\n    return dp1;\n}",
+      "python": "def numDecodings(s: str) -> int:\n    if not s or s[0] == '0': return 0\n    dp1, dp2 = 1, 1\n    for i in range(1, len(s)):\n        cur = 0\n        if int(s[i]) >= 1: cur += dp1\n        if 10 <= int(s[i-1:i+1]) <= 26: cur += dp2\n        dp2, dp1 = dp1, cur\n    return dp1",
+      "javascript": "function numDecodings(s) {\n    if (!s || s[0] === '0') return 0;\n    let dp1 = 1, dp2 = 1;\n    for (let i = 1; i < s.length; i++) {\n        let cur = 0;\n        const one = parseInt(s[i]), two = parseInt(s.substring(i - 1, i + 1));\n        if (one >= 1) cur += dp1;\n        if (two >= 10 && two <= 26) cur += dp2;\n        dp2 = dp1; dp1 = cur;\n    }\n    return dp1;\n}"
+    },
+    "testCases": [{ "input": "s = '12'", "expectedOutput": "2" }]
+  },
+  {
+    "id": "unique-paths",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Unique Paths",
+    "leetcodeNumber": 62,
+    "difficulty": "Medium",
+    "companies": ["Google", "Amazon", "Microsoft"],
+    "leetcodeUrl": "https://leetcode.com/problems/unique-paths/",
+    "takeuforwardUrl": "https://takeuforward.org/data-structure/grid-unique-paths-dp-on-grids-dp8/",
+    "youtubeUrl": "https://www.youtube.com/watch?v=sdE0A2Oxofw",
+    "description": "How many possible unique paths are there for a robot to reach bottom-right corner of an m x n grid?",
+    "examples": [{ "input": "m = 3, n = 7", "output": "28", "explanation": "28 unique paths." }],
+    "constraints": ["1 <= m, n <= 100"],
+    "starterCode": {
+      "java": "public class Solution {\n    public static int uniquePaths(int m, int n) {\n        int[] dp = new int[n];\n        java.util.Arrays.fill(dp, 1);\n        for (int i = 1; i < m; i++) for (int j = 1; j < n; j++) dp[j] += dp[j - 1];\n        return dp[n - 1];\n    }\n    public static void main(String[] args) {\n        System.out.println(uniquePaths(3, 7));\n    }\n}",
+      "cpp": "int uniquePaths(int m, int n) {\n    vector<int> dp(n, 1);\n    for (int i = 1; i < m; i++) for (int j = 1; j < n; j++) dp[j] += dp[j - 1];\n    return dp[n - 1];\n}",
+      "python": "def uniquePaths(m: int, n: int) -> int:\n    dp = [1] * n\n    for _ in range(1, m):\n        for j in range(1, n): dp[j] += dp[j - 1]\n    return dp[-1]",
+      "javascript": "function uniquePaths(m, n) {\n    const dp = new Array(n).fill(1);\n    for (let i = 1; i < m; i++) for (let j = 1; j < n; j++) dp[j] += dp[j - 1];\n    return dp[n - 1];\n}"
+    },
+    "testCases": [{ "input": "m = 3, n = 7", "expectedOutput": "28" }]
+  },
+  {
+    "id": "jump-game",
+    "category": "Dynamic Programming",
+    "categoryId": "dynamic-programming",
+    "title": "Jump Game",
+    "leetcodeNumber": 55,
+    "difficulty": "Medium",
+    "companies": ["Amazon", "Apple", "Microsoft"],
+    "leetcodeUrl": "https://leetcode.com/problems/jump-game/",
+    "takeuforwardUrl": "https://takeuforward.org/Greedy/jump-game-i",
+    "youtubeUrl": "https://www.youtube.com/watch?v=tZAa_jJ3SwQ",
+    "description": "Return true if you can reach the last index from the first index.",
+    "examples": [{ "input": "nums = [2,3,1,1,4]", "output": "true", "explanation": "Jump 1 step from index 0 to 1, then 3 steps." }],
+    "constraints": ["1 <= nums.length <= 10^4"],
+    "starterCode": {
+      "java": "public class Solution {\n    public static boolean canJump(int[] nums) {\n        int maxReach = 0;\n        for (int i = 0; i < nums.length; i++) {\n            if (i > maxReach) return false;\n            maxReach = Math.max(maxReach, i + nums[i]);\n        }\n        return true;\n    }\n    public static void main(String[] args) {\n        System.out.println(canJump(new int[]{2,3,1,1,4}));\n    }\n}",
+      "cpp": "bool canJump(vector<int>& nums) {\n    int maxReach = 0;\n    for (int i = 0; i < nums.size(); i++) {\n        if (i > maxReach) return false;\n        maxReach = max(maxReach, i + nums[i]);\n    }\n    return true;\n}",
+      "python": "def canJump(nums: list[int]) -> bool:\n    max_reach = 0\n    for i, n in enumerate(nums):\n        if i > max_reach: return False\n        max_reach = max(max_reach, i + n)\n    return True",
+      "javascript": "function canJump(nums) {\n    let maxReach = 0;\n    for (let i = 0; i < nums.length; i++) {\n        if (i > maxReach) return false;\n        maxReach = Math.max(maxReach, i + nums[i]);\n    }\n    return true;\n}"
+    },
+    "testCases": [{ "input": "nums = [2,3,1,1,4]", "expectedOutput": "true" }]
+  }
+]
+;

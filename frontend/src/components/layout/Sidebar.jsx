@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { 
   ArrowLeft, Search, Filter, Lock, RotateCcw, 
   FileText, CheckCircle2, Circle, ChevronDown, ChevronRight, 
-  ChevronLeft, Sparkles, GripVertical, Bookmark,
+  ChevronLeft, Sparkles, GripVertical, Bookmark, Coffee, Leaf,
   Check, BookOpen, Layers, Trophy, X, Star, Database, Server, Cpu, HardDrive, Scale, Shield, Zap
 } from 'lucide-react';
 
@@ -11,7 +11,7 @@ import {
  * Authentic AlgoMaster-Style Curriculum Navigation Drawer:
  * - Docked flush to the left viewport edge with border-r
  * - Circular floating collapse button (‹) on the right border
- * - Header: Back to Home, Course Title, Progress % with Certificate badge and count
+ * - Header: Back to Home / Learning Tracks, Course Title with Track Switcher, Progress % with Certificate badge
  * - Search bar with filter funnel
  * - Category accordions with completion status (○ 0/12 ⌵)
  * - Active subtopic highlight with emerald accent and difficulty badge (Beginner, Intermediate, Advanced)
@@ -19,6 +19,10 @@ import {
  */
 export default function Sidebar({ 
   track, 
+  tracks = [],
+  currentTrackId = 'core-java',
+  onSelectTrack,
+  onSelectSubSection,
   topics = [], 
   selectedTopicId, 
   onSelectTopic, 
@@ -32,6 +36,51 @@ export default function Sidebar({
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('all'); // 'all' | 'incomplete' | 'bookmarked' | 'completed'
   const [showFilterMenu, setShowFilterMenu] = useState(false);
+  const [isTrackMenuOpen, setIsTrackMenuOpen] = useState(false);
+
+  // Define 4 Primary Learning Tracks for instant switching
+  const learningTracksList = [
+    { 
+      id: 'core-java', 
+      sub: null, 
+      title: 'Core Java & Fundamentals', 
+      tag: '21 LTS', 
+      desc: 'JVM Internals, OOP, Concurrency & Virtual Threads', 
+      icon: Coffee, 
+      color: 'text-amber-400', 
+      bg: 'bg-amber-500/10 border-amber-500/20' 
+    },
+    { 
+      id: 'spring-boot', 
+      sub: null, 
+      title: 'Spring Boot', 
+      tag: 'Cloud', 
+      desc: 'REST APIs, JPA, Security, Cloud & Microservices', 
+      icon: Leaf, 
+      color: 'text-emerald-400', 
+      bg: 'bg-emerald-500/10 border-emerald-500/20' 
+    },
+    { 
+      id: 'system-design', 
+      sub: 'lld', 
+      title: 'Low-Level Design (LLD)', 
+      tag: '18 Topics', 
+      desc: 'SOLID Principles, UML & 23 GoF Design Patterns', 
+      icon: Cpu, 
+      color: 'text-purple-400', 
+      bg: 'bg-purple-500/10 border-purple-500/20' 
+    },
+    { 
+      id: 'system-design', 
+      sub: 'hld', 
+      title: 'System Design Fundamentals (HLD)', 
+      tag: '20 Topics', 
+      desc: 'Distributed Caching, Sharding, Replication & Scalability', 
+      icon: Server, 
+      color: 'text-indigo-400', 
+      bg: 'bg-indigo-500/10 border-indigo-500/20' 
+    },
+  ];
 
   // Accordion category expand/collapse states
   const [expandedCategories, setExpandedCategories] = useState({});
@@ -74,6 +123,10 @@ export default function Sidebar({
         if (activeFilter === 'completed') return completedTopicIds.has(t.id);
         if (activeFilter === 'incomplete') return !completedTopicIds.has(t.id);
         if (activeFilter === 'bookmarked') return bookmarkedTopicIds.has(t.id);
+        if (activeFilter === 'beginner') return (t.difficulty || '').toLowerCase() === 'beginner';
+        if (activeFilter === 'intermediate') return (t.difficulty || '').toLowerCase() === 'intermediate';
+        if (activeFilter === 'advanced') return (t.difficulty || '').toLowerCase() === 'advanced';
+        if (activeFilter === 'staff') return (t.difficulty || '').toLowerCase() === 'staff';
         return true;
       });
 
@@ -157,33 +210,91 @@ export default function Sidebar({
         
         <div className="flex items-center justify-between">
           <button
-            onClick={() => {
-              setSearchQuery('');
-              setActiveFilter('all');
-            }}
-            className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition font-medium group"
+            onClick={() => setIsTrackMenuOpen(prev => !prev)}
+            className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition font-medium group cursor-pointer"
+            title="Browse all learning tracks"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
-            <span>Back to Home</span>
+            <span>All Learning Tracks</span>
           </button>
 
           {/* Mobile Close Button (✕) */}
           {onClose && (
             <button
               onClick={onClose}
-              className="lg:hidden p-1 rounded-lg bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 transition"
+              className="lg:hidden p-1 rounded-lg bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 transition cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
           )}
         </div>
 
-        {/* Course Track Title */}
+        {/* Course Track Title with Interactive Clickable Switcher */}
         <div>
-          <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
-            {track?.title || 'System Design Fundamentals'}
-          </h2>
+          <button
+            onClick={() => setIsTrackMenuOpen(prev => !prev)}
+            className="flex items-center justify-between w-full text-left group hover:opacity-90 transition cursor-pointer"
+            title="Click to switch learning track"
+          >
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition flex items-center gap-1.5">
+              <span>{track?.title || 'Core & Advanced Java'}</span>
+              <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${isTrackMenuOpen ? 'rotate-180 text-emerald-400' : ''}`} />
+            </h2>
+            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+              Change
+            </span>
+          </button>
         </div>
+
+        {/* Inline Learning Track Switcher Drawer */}
+        {isTrackMenuOpen && (
+          <div className="p-2 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 space-y-1.5 shadow-xl animate-in fade-in duration-200">
+            <div className="px-2 py-1 flex items-center justify-between text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500">
+              <span>Choose Curriculum</span>
+              <span className="text-emerald-500">4 Tracks</span>
+            </div>
+            {learningTracksList.map((item, idx) => {
+              const Icon = item.icon;
+              const isSelected = (item.id === currentTrackId || item.id === track?.id);
+              return (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    onSelectTrack?.(item.id);
+                    if (item.sub && onSelectSubSection) {
+                      onSelectSubSection(item.sub);
+                    }
+                    setIsTrackMenuOpen(false);
+                    setSearchQuery('');
+                    setActiveFilter('all');
+                  }}
+                  className={`w-full text-left p-2.5 rounded-xl border flex items-start gap-2.5 transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-400 shadow-sm'
+                      : 'bg-white dark:bg-slate-950/80 hover:bg-slate-200 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200'
+                  }`}
+                >
+                  <div className={`p-1.5 rounded-lg ${item.bg} ${item.color} border shrink-0 mt-0.5`}>
+                    <Icon className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-xs font-bold truncate">
+                        {item.title}
+                      </span>
+                      <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-700 shrink-0">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <p className="text-[10.5px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate">
+                      {item.desc}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         {/* Progress Numbers Row */}
         <div className="space-y-1.5 pt-1">
@@ -256,6 +367,10 @@ export default function Sidebar({
                 <span className="text-[9.5px] text-slate-500 dark:text-slate-400 font-mono block px-2 py-0.5">Filter Topics</span>
                 {[
                   { id: 'all', label: 'All Chapters' },
+                  { id: 'beginner', label: 'Beginner' },
+                  { id: 'intermediate', label: 'Intermediate' },
+                  { id: 'advanced', label: 'Advanced' },
+                  { id: 'staff', label: 'Staff / Expert' },
                   { id: 'incomplete', label: 'Incomplete' },
                   { id: 'completed', label: 'Completed' },
                   { id: 'bookmarked', label: 'Bookmarked' },
@@ -279,6 +394,30 @@ export default function Sidebar({
               </div>
             )}
           </div>
+        </div>
+
+        {/* Quick Filter Horizontal Scroll Chips */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 scrollbar-none pt-0.5">
+          {[
+            { id: 'all', label: 'All' },
+            { id: 'beginner', label: 'Beginner' },
+            { id: 'intermediate', label: 'Inter' },
+            { id: 'advanced', label: 'Adv' },
+            { id: 'staff', label: 'Staff' },
+            { id: 'bookmarked', label: '★ Starred' },
+          ].map(f => (
+            <button
+              key={f.id}
+              onClick={() => setActiveFilter(f.id)}
+              className={`px-2.5 py-1 rounded-lg text-[10.5px] font-medium whitespace-nowrap transition ${
+                activeFilter === f.id
+                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                  : 'bg-slate-100 dark:bg-slate-900/90 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
         </div>
 
       </div>
@@ -390,6 +529,16 @@ export default function Sidebar({
             );
           })
         )}
+      </div>
+
+      {/* Sidebar Footer Keyboard Hint */}
+      <div className="p-2.5 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-[#050811] text-[10px] text-slate-500 dark:text-slate-400 flex items-center justify-between font-mono shrink-0">
+        <span className="flex items-center gap-1">
+          <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-[9px] font-bold">[</kbd>
+          <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-[9px] font-bold">]</kbd>
+          <span>Prev/Next Topic</span>
+        </span>
+        <span>⚡ Quick Nav</span>
       </div>
 
     </div>

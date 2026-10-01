@@ -24,8 +24,8 @@ export function parseUrlState() {
     }
     if (pathParts.length > 0) {
       const first = pathParts[0].toLowerCase();
-      if (['progress', 'playground', 'profile', 'quiz', 'strivers-sheet'].includes(first)) {
-        view = first;
+      if (['progress', 'playground', 'profile', 'quiz', 'a2z-sheet', 'strivers-sheet', 'dsa-practice', 'system-design-practice', 'concurrency-practice', 'lld-practice'].includes(first)) {
+        view = first === 'strivers-sheet' ? 'a2z-sheet' : first;
         if (first === 'quiz' && pathParts[1]) {
           topicId = pathParts[1];
         }
@@ -47,7 +47,7 @@ export function parseUrlState() {
     const [hashPath, hashQuery] = hashWithoutHash.split('?');
     if (hashQuery) {
       const hashParams = new URLSearchParams(hashQuery);
-      if (hashParams.get('view')) view = hashParams.get('view');
+      if (hashParams.get('view')) view = hashParams.get('view') === 'strivers-sheet' ? 'a2z-sheet' : hashParams.get('view');
       if (hashParams.get('track')) trackId = hashParams.get('track');
       if (hashParams.get('topic')) topicId = hashParams.get('topic');
       if (hashParams.get('sub')) subSection = hashParams.get('sub');
@@ -62,8 +62,8 @@ export function parseUrlState() {
       if (hashParts[0] === 'topic' && hashParts[1]) {
         topicId = hashParts[1];
         view = 'topics';
-      } else if (['progress', 'playground', 'profile', 'quiz', 'strivers-sheet'].includes(hashParts[0])) {
-        view = hashParts[0];
+      } else if (['progress', 'playground', 'profile', 'quiz', 'a2z-sheet', 'strivers-sheet', 'dsa-practice', 'system-design-practice', 'concurrency-practice', 'lld-practice'].includes(hashParts[0])) {
+        view = hashParts[0] === 'strivers-sheet' ? 'a2z-sheet' : hashParts[0];
       }
     }
   }

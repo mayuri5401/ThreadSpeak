@@ -2,7 +2,30 @@ version: '3.8'
 
 services:
   # =========================================================================
-  # 0. Apache Kafka Distributed Event Bus (KRaft Mode)
+  # 0. PostgreSQL Production SQL Database
+  # =========================================================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: threadspeak-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: threadspeak_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d threadspeak_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - threadspeak-net
+
+  # =========================================================================
+  # 0b. Apache Kafka Distributed Event Bus (KRaft Mode)
   # =========================================================================
   kafka:
     image: confluentinc/cp-kafka:7.5.0
@@ -170,3 +193,6 @@ services:
 networks:
   threadspeak-net:
     driver: bridge
+
+volumes:
+  postgres-data:

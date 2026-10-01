@@ -12,6 +12,12 @@ import {
   processAndCompressImage, 
   CURATED_AVATARS 
 } from '../../shared/services/avatarService';
+import { 
+  getCurrentUser, 
+  logout, 
+  updateCurrentUser 
+} from '../../shared/services/authService';
+import { mfeEventBus, MfeEvents } from '../../shared/events/MfeEventBus';
 
 const AVATAR_OPTIONS = [
   { id: 'avatar-1', label: 'Tech Lead', bg: 'from-cyan-500 to-blue-600', emoji: '👨‍💻' },
@@ -33,9 +39,11 @@ export default function UserProfileView({
 }) {
   const fileInputRef = useRef(null);
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [authUser, setAuthUser] = useState(() => getCurrentUser());
 
   // User profile state stored in localStorage
   const [profile, setProfile] = useState(() => {
+    const auth = getCurrentUser();
     const native = getUserProfile();
     try {
       const saved = localStorage.getItem('threadspeak_user_profile');
@@ -43,24 +51,46 @@ export default function UserProfileView({
         const parsed = JSON.parse(saved);
         return {
           ...parsed,
-          name: native.userName || parsed.name || 'Mayuri',
-          title: native.role || parsed.title || 'Senior Software Engineer / System Architect',
-          avatarUrl: native.avatarUrl || parsed.avatarUrl || ''
+          name: auth?.name || native.userName || parsed.name || 'Mayuri',
+          email: auth?.email || parsed.email || 'mayuri@threadspeak.dev',
+          title: auth?.role || native.role || parsed.title || 'Senior Software Engineer / System Architect',
+          avatarUrl: auth?.avatarUrl || native.avatarUrl || parsed.avatarUrl || ''
         };
       }
     } catch (_) {}
     return {
-      name: native.userName || 'Mayuri',
-      email: 'mayuri@threadspeak.dev',
-      title: native.role || 'Senior Software Engineer / System Architect',
-      targetCompany: 'FAANG / Tier-1 Enterprise',
-      bio: 'Mastering Java 21, Spring Boot 3, and Distributed System Design for Staff Level Engineering.',
-      avatarUrl: native.avatarUrl || '',
+      name: auth?.name || native.userName || 'Mayuri',
+      email: auth?.email || 'mayuri@threadspeak.dev',
+      title: auth?.role || native.role || 'Senior Software Engineer / System Architect',
+      targetCompany: auth?.targetCompany || 'FAANG / Tier-1 Enterprise',
+      bio: auth?.bio || 'Mastering Java 21, Spring Boot 3, and Distributed System Design for Staff Level Engineering.',
+      avatarUrl: auth?.avatarUrl || native.avatarUrl || '',
       avatarId: 'avatar-1',
-      joinedDate: 'August 2026',
-      streakDays: 7
+      joinedDate: auth?.joinedDate || 'August 2026',
+      streakDays: auth?.streak || 7
     };
   });
+
+  useEffect(() => {
+    const unsubLogin = mfeEventBus.on(MfeEvents.AUTH_LOGIN, ({ user }) => {
+      setAuthUser(user);
+      setProfile(prev => ({
+        ...prev,
+        name: user.name,
+        email: user.email,
+        title: user.role,
+        avatarUrl: user.avatarUrl,
+        joinedDate: user.joinedDate || prev.joinedDate
+      }));
+    });
+    const unsubLogout = mfeEventBus.on(MfeEvents.AUTH_LOGOUT, () => {
+      setAuthUser(null);
+    });
+    return () => {
+      unsubLogin();
+      unsubLogout();
+    };
+  }, []);
 
   // Saved playground solutions from localStorage
   const [savedSolutions, setSavedSolutions] = useState(() => {
@@ -142,7 +172,7 @@ public class VirtualThreadsDemo {
   const [activeTab, setActiveTab] = useState('solutions'); // 'solutions', 'progress', 'bookmarks'
   const [solutionFilter, setSolutionFilter] = useState('all');
 
-  // Save profile to localStorage
+  // Save profile to localStorage and authService
   const handleSaveProfile = (e) => {
     e.preventDefault();
     setProfile(editForm);
@@ -150,6 +180,13 @@ public class VirtualThreadsDemo {
     saveUserProfile({
       userName: editForm.name,
       role: editForm.title,
+      avatarUrl: editForm.avatarUrl
+    });
+    updateCurrentUser({
+      name: editForm.name,
+      email: editForm.email,
+      role: editForm.title,
+      targetCompany: editForm.targetCompany,
       avatarUrl: editForm.avatarUrl
     });
     setIsEditModalOpen(false);
@@ -336,14 +373,37 @@ public class VirtualThreadsDemo {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2.5 shrink-0">
             <button
-              onClick={() => setIsEditModalOpen(true)}
+              onClick={() => {
+                setEditForm({ ...profile });
+                setIsEditModalOpen(true);
+              }}
               className="px-4 py-2.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-200 hover:text-white font-bold text-xs flex items-center gap-2 shadow-lg hover:scale-105 transition"
             >
               <Edit3 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Edit Profile / Login</span>
+              <span>Edit Profile</span>
             </button>
+            {authUser ? (
+              <button
+                onClick={() => logout()}
+                className="px-3.5 py-2.5 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 hover:text-white font-bold text-xs flex items-center gap-1.5 transition"
+                title="Sign out"
+              >
+                <span>Sign Out</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setEditForm({ ...profile });
+                  setIsEditModalOpen(true);
+                }}
+                className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-cyan-500/20 hover:scale-105 transition"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Sign In / Register</span>
+              </button>
+            )}
           </div>
         </div>
 

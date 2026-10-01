@@ -17,16 +17,8 @@ let tracksCache = null;
 
 export async function fetchTracks() {
   if (tracksCache) return tracksCache;
-  try {
-    const data = await gatewayFetch('/tracks');
-    if (data && data.length > 0) {
-      tracksCache = data;
-      return data;
-    }
-  } catch (err) {
-    console.warn('[MFE-Content] Fallback tracks used:', err.message);
-  }
-  return getLocalTracksFallback();
+  tracksCache = tracksCatalog;
+  return tracksCatalog;
 }
 
 export async function fetchTopics(trackId = null, query = null) {
@@ -34,28 +26,17 @@ export async function fetchTopics(trackId = null, query = null) {
   if (!query && topicsCache.has(cacheKey)) {
     return topicsCache.get(cacheKey);
   }
-  try {
-    const params = new URLSearchParams();
-    if (trackId) params.append('trackId', trackId);
-    if (query) params.append('q', query);
-    const data = await gatewayFetch(`/topics?${params.toString()}`);
-    if (data && data.length > 0) {
-      if (!query) {
-        topicsCache.set(cacheKey, data);
-        (data || []).forEach(t => {
-          if (t && t.id) topicDetailCache.set(t.id, t);
-        });
-      }
-      return data;
-    }
-  } catch (err) {
-    console.warn('[MFE-Content] Fallback topics used:', err.message);
-  }
-  const fallbackList = getLocalTopicsFallback(trackId, query);
+  
+  const list = getLocalTopicsFallback(trackId, query);
   if (!query) {
-    topicsCache.set(cacheKey, fallbackList);
+    topicsCache.set(cacheKey, list);
+    list.forEach(t => {
+      if (t && t.id && !topicDetailCache.has(t.id)) {
+        topicDetailCache.set(t.id, t);
+      }
+    });
   }
-  return fallbackList;
+  return list;
 }
 
 // Parse YAML frontmatter + body from a raw markdown string

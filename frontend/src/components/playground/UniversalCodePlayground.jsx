@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { 
   Play, RotateCcw, Copy, Check, Terminal, Sparkles, CheckCircle2, 
   AlertTriangle, Code2, Folder, FolderOpen, FileCode, ChevronRight, 
-  ChevronDown, Maximize2, Minimize2, Clock, Trash2, Layers, Cpu,
+  ChevronDown, ChevronUp, Maximize2, Minimize2, Clock, Trash2, Layers, Cpu,
   CheckCircle, XCircle, Info, ExternalLink, Bookmark, Palette,
   Keyboard, Edit3, AlignLeft, ZoomIn, ZoomOut, Zap, ShieldCheck,
-  CheckCheck, Sun, Moon, FileText, Send, BookOpen, Video, Award, Lightbulb
+  CheckCheck, Sun, Moon, FileText, Send, BookOpen, Video, Award, Lightbulb,
+  MessageSquare, Tag, FileEdit, CheckSquare
 } from 'lucide-react';
 import { runCodeApi, fetchCodeScenarios } from '../../microfrontends/mfe-code-runner/services/codeRunnerApiClient';
 
@@ -35,9 +36,20 @@ export default function UniversalCodePlayground({
 }) {
   // Problem-solving state (if problem is provided)
   const [selectedLanguage, setSelectedLanguage] = useState('java');
-  const [activeProblemTab, setActiveProblemTab] = useState('description'); // 'description' | 'testcases' | 'submissions' | 'editorial'
+  const [activeProblemTab, setActiveProblemTab] = useState('description'); // 'description' | 'editorial' | 'submissions' | 'notes' | 'discussion'
   const [submissionResult, setSubmissionResult] = useState(null);
   const [selectedTestCaseIndex, setSelectedTestCaseIndex] = useState(0);
+  const [isTopicsVisible, setIsTopicsVisible] = useState(false);
+  const [expandedHints, setExpandedHints] = useState({});
+  const [bottomProblemTab, setBottomProblemTab] = useState('testcases'); // 'testcases' | 'output' | 'feedback'
+  const [userNotes, setUserNotes] = useState(() => {
+    if (!problem?.id) return '';
+    try {
+      return localStorage.getItem(`threadspeak_notes_${problem.id}`) || '';
+    } catch {
+      return '';
+    }
+  });
 
   // Scenario state (if showScenarioPicker is enabled)
   const [scenarios, setScenarios] = useState({});
@@ -141,7 +153,7 @@ export default function UniversalCodePlayground({
         id: `sol-${Date.now()}`,
         title: solTitle,
         scenarioId: problem?.id || selectedScenarioKey || scenarioId || 'custom',
-        category: problem ? `Striver's A2Z (Step ${problem.stepNumber})` : currentScenario?.category || (isMultiFile ? 'System Design LLD' : 'Java 21'),
+        category: problem ? (problem.category ? `Blind 75 • ${problem.category}` : `DSA Roadmap (Step ${problem.stepNumber})`) : currentScenario?.category || (isMultiFile ? 'System Design LLD' : 'Java 21'),
         code: fileContents[activeFileName] || Object.values(fileContents)[0] || initialCode,
         output: output || 'Program compiled and verified.',
         status: status === 'error' ? 'Draft' : 'Solved ✓',
@@ -376,12 +388,13 @@ export default function UniversalCodePlayground({
           totalTests: problem?.testCases?.length || 3
         });
 
-        // Persist to Striver's solved problems
+        // Persist to Complete A-to-Z DSA solved problems
         if (problem?.id) {
           try {
-            const saved = localStorage.getItem('threadspeak_strivers_solved');
+            const saved = localStorage.getItem('threadspeak_a2z_solved') || localStorage.getItem('threadspeak_strivers_solved');
             const set = saved ? new Set(JSON.parse(saved)) : new Set();
             set.add(problem.id);
+            localStorage.setItem('threadspeak_a2z_solved', JSON.stringify(Array.from(set)));
             localStorage.setItem('threadspeak_strivers_solved', JSON.stringify(Array.from(set)));
           } catch (e) {
             console.warn(e);
@@ -489,7 +502,7 @@ export default function UniversalCodePlayground({
             {problem ? (
               <div className="flex items-center gap-2 font-mono text-xs flex-wrap">
                 <span className={isLightMode ? 'text-slate-400 hidden sm:inline' : 'text-slate-500 hidden sm:inline'}>
-                  Striver's A2Z &gt; Step {problem.stepNumber} &gt;
+                  {problem.category ? `Blind 75 > ${problem.category} >` : `DSA Sheet > Step ${problem.stepNumber} >`}
                 </span>
                 <span className={`font-bold tracking-tight ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>
                   {problem.title}
@@ -697,21 +710,22 @@ export default function UniversalCodePlayground({
       <div className={`grid grid-cols-1 ${problem ? 'lg:grid-cols-12' : 'lg:grid-cols-12'} ${isFullscreen ? 'flex-1 min-h-0' : ''}`}>
         
         {/* ========================================================================= */}
-        {/* LEETCODE PROBLEM DETAILS PANEL (If problem prop is passed, 5 cols)       */}
+        {/* ALGORITHMIC & SYSTEM DESIGN PROBLEM DETAILS PANEL (If problem is passed)  */}
         {/* ========================================================================= */}
         {problem && (
           <div className={`lg:col-span-5 border-b lg:border-b-0 lg:border-r flex flex-col transition-colors duration-200 ${
             isLightMode ? 'border-slate-200 bg-[#FAFAFA]' : 'border-slate-800 bg-[#070B14]'
           }`}>
-            {/* Problem Navigation Tabs */}
-            <div className={`flex items-center gap-1 px-3 pt-2 border-b overflow-x-auto select-none custom-scrollbar ${
+            {/* Top Navigation Tabs: Problem | Solution | Submissions | Notes | Discussion */}
+            <div className={`flex items-center gap-3 px-4 pt-2.5 border-b select-none overflow-x-auto custom-scrollbar ${
               isLightMode ? 'bg-[#F1F5F9] border-slate-200' : 'bg-[#080D18] border-slate-800'
             }`}>
               {[
-                { id: 'description', label: 'Description', icon: FileText },
-                { id: 'testcases', label: `Testcases (${problem.testCases?.length || 3})`, icon: CheckCircle2 },
+                { id: 'description', label: 'Problem', icon: FileText },
+                { id: 'editorial', label: 'Solution', icon: Lightbulb },
                 { id: 'submissions', label: 'Submissions', icon: Award },
-                { id: 'editorial', label: 'Editorial & Video', icon: Video },
+                { id: 'notes', label: 'Notes', icon: FileEdit },
+                { id: 'discussion', label: 'Discussion', icon: MessageSquare },
               ].map(tab => {
                 const Icon = tab.icon;
                 const isActive = activeProblemTab === tab.id;
@@ -719,17 +733,17 @@ export default function UniversalCodePlayground({
                   <button
                     key={tab.id}
                     onClick={() => setActiveProblemTab(tab.id)}
-                    className={`px-3 py-1.5 rounded-t-xl text-xs font-semibold flex items-center gap-1.5 transition border-t border-x cursor-pointer ${
+                    className={`pb-2.5 px-1 text-xs font-bold flex items-center gap-1.5 transition border-b-2 cursor-pointer ${
                       isActive
                         ? isLightMode 
-                          ? 'bg-[#FAFAFA] text-blue-600 border-slate-300 font-bold shadow-sm' 
-                          : 'bg-[#070B14] text-cyan-300 border-slate-700/80 font-bold shadow-sm'
+                          ? 'border-emerald-600 text-emerald-700 font-extrabold' 
+                          : 'border-emerald-400 text-white font-extrabold'
                         : isLightMode 
-                          ? 'bg-slate-200/70 text-slate-600 hover:bg-slate-200' 
-                          : 'bg-slate-900/60 text-slate-400 border-transparent hover:bg-slate-800/80 hover:text-slate-200'
+                          ? 'border-transparent text-slate-500 hover:text-slate-800' 
+                          : 'border-transparent text-slate-400 hover:text-slate-200'
                     }`}
                   >
-                    <Icon className="w-3.5 h-3.5" />
+                    <Icon className={`w-3.5 h-3.5 ${isActive ? (isLightMode ? 'text-emerald-600' : 'text-emerald-400') : 'text-slate-400'}`} />
                     <span>{tab.label}</span>
                   </button>
                 );
@@ -737,15 +751,20 @@ export default function UniversalCodePlayground({
             </div>
 
             {/* Problem Tab Content Area */}
-            <div className={`p-4 overflow-y-auto flex-1 space-y-4 ${defaultHeight} custom-scrollbar`}>
+            <div className={`p-4 sm:p-5 overflow-y-auto flex-1 space-y-4 ${defaultHeight} custom-scrollbar`}>
               
-              {/* TAB 1: DESCRIPTION */}
+              {/* TAB 1: PROBLEM (DESCRIPTION, EXAMPLES, CONSTRAINTS, HINTS) */}
               {activeProblemTab === 'description' && (
                 <div className="space-y-4 text-xs sm:text-sm">
                   {/* Title & Metadata */}
-                  <div>
-                    <div className="flex items-center gap-2 flex-wrap mb-2">
-                      <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full ${
+                  <div className="space-y-2">
+                    <h2 className={`text-lg sm:text-xl font-black tracking-tight ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
+                      {problem.title}
+                    </h2>
+
+                    {/* Badges: Difficulty + Clickable Topics Button */}
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full ${
                         problem.difficulty === 'Easy'
                           ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
                           : problem.difficulty === 'Medium'
@@ -754,97 +773,98 @@ export default function UniversalCodePlayground({
                       }`}>
                         {problem.difficulty}
                       </span>
-                      <span className="text-[10px] font-mono text-slate-400 px-2 py-0.5 rounded-full bg-slate-800/70 border border-slate-700">
-                        Step {problem.stepNumber}: {problem.subTopic || 'DSA'}
-                      </span>
-                    </div>
-                    <h3 className={`text-base sm:text-lg font-black ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
-                      {problem.title}
-                    </h3>
-                  </div>
 
-                  {/* Companies Tags */}
-                  {problem.companies && problem.companies.length > 0 && (
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="text-[11px] font-mono text-slate-400">Companies:</span>
-                      {problem.companies.map((c, i) => (
-                        <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-800/60 text-slate-300 border border-slate-700">
-                          {c}
-                        </span>
-                      ))}
+                      {problem.topics && problem.topics.length > 0 && (
+                        <button
+                          onClick={() => setIsTopicsVisible(!isTopicsVisible)}
+                          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 text-[11px] font-mono font-medium border border-slate-700 transition"
+                        >
+                          <Tag className="w-3 h-3 text-cyan-400" />
+                          <span>Topics</span>
+                          <ChevronDown className={`w-3 h-3 transition-transform ${isTopicsVisible ? 'rotate-180' : ''}`} />
+                        </button>
+                      )}
                     </div>
-                  )}
 
-                  {/* External Resource Links */}
-                  <div className="flex items-center gap-2 flex-wrap pt-1">
-                    {problem.takeuforwardUrl && (
-                      <a
-                        href={problem.takeuforwardUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-rose-950/60 hover:bg-rose-900/80 text-rose-300 text-[11px] font-bold border border-rose-800/80 transition"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        <span>TakeUForward</span>
-                      </a>
-                    )}
-                    {problem.leetcodeUrl && (
-                      <a
-                        href={problem.leetcodeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-950/60 hover:bg-amber-900/80 text-amber-300 text-[11px] font-bold border border-amber-800/80 transition"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        <span>LeetCode</span>
-                      </a>
-                    )}
-                    {problem.youtubeUrl && (
-                      <a
-                        href={problem.youtubeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-950/60 hover:bg-red-900/80 text-red-300 text-[11px] font-bold border border-red-800/80 transition"
-                      >
-                        <Video className="w-3 h-3" />
-                        <span>YouTube Video</span>
-                      </a>
+                    {/* Collapsible Topics Badges */}
+                    {isTopicsVisible && problem.topics && (
+                      <div className="flex flex-wrap items-center gap-1.5 pt-1 animate-in fade-in duration-200">
+                        {problem.topics.map((t, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-800/60 text-slate-300 border border-slate-700"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     )}
                   </div>
 
-                  {/* Problem Description Body */}
-                  <div className={`leading-relaxed ${isLightMode ? 'text-slate-700' : 'text-slate-300'}`}>
-                    <p className="whitespace-pre-line">{problem.description}</p>
+                  {/* Problem Description Body with rich formatting */}
+                  <div className={`leading-relaxed space-y-3 ${isLightMode ? 'text-slate-700' : 'text-slate-300'}`}>
+                    {problem.narrative && (
+                      <p className="whitespace-pre-line leading-relaxed">{problem.narrative}</p>
+                    )}
+
+                    {problem.className && problem.methods && (
+                      <div className="space-y-2 pt-1">
+                        <div className="font-bold text-white">
+                          Implement the <code className="px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-mono text-xs">{problem.className}</code> class:
+                        </div>
+                        <ul className="space-y-1.5 list-disc list-inside">
+                          <li>
+                            <code className="px-1.5 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 font-mono text-xs">{problem.constructorSig || `${problem.className}()`}</code> creates an initialized instance.
+                          </li>
+                          {problem.methods.map((m, mIdx) => (
+                            <li key={mIdx}>
+                              <code className="px-1.5 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800/80 font-mono text-xs">{m.sig}</code> {m.desc}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {problem.rules && problem.rules.length > 0 && (
+                      <div className="space-y-1 pt-1">
+                        <ul className="space-y-1 list-disc list-inside text-xs">
+                          {problem.rules.map((r, rIdx) => (
+                            <li key={rIdx}>{r}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {!problem.narrative && problem.description && (
+                      <div className="whitespace-pre-line leading-relaxed">{problem.description}</div>
+                    )}
                   </div>
 
                   {/* Formatted Examples Cards */}
                   {problem.examples && problem.examples.length > 0 && (
                     <div className="space-y-3 pt-2">
-                      <h4 className={`text-xs font-mono font-bold uppercase tracking-wider ${isLightMode ? 'text-slate-700' : 'text-slate-400'}`}>
-                        Examples:
-                      </h4>
                       {problem.examples.map((ex, idx) => (
                         <div 
                           key={idx} 
-                          className={`p-3 rounded-2xl border ${
+                          className={`p-3.5 rounded-2xl border ${
                             isLightMode ? 'bg-white border-slate-200' : 'bg-slate-900/70 border-slate-800'
-                          } space-y-1.5`}
+                          } space-y-2`}
                         >
-                          <div className="text-[11px] font-mono font-bold text-cyan-400">
+                          <div className="text-xs font-mono font-bold text-cyan-400">
                             Example {idx + 1}:
                           </div>
-                          <div className="text-xs font-mono space-y-1">
+                          <div className="text-xs font-mono space-y-1.5">
                             <div>
-                              <span className={isLightMode ? 'text-slate-500' : 'text-slate-400'}>Input: </span>
-                              <span className={`font-semibold ${isLightMode ? 'text-slate-800' : 'text-slate-200'}`}>{ex.input}</span>
+                              <span className={isLightMode ? 'text-slate-500 block text-[11px]' : 'text-slate-400 block text-[11px]'}>Input:</span>
+                              <pre className={`p-2 rounded-lg ${isLightMode ? 'bg-slate-100 text-slate-800' : 'bg-slate-950 text-slate-200'} overflow-x-auto`}>{ex.input}</pre>
                             </div>
                             <div>
-                              <span className={isLightMode ? 'text-slate-500' : 'text-slate-400'}>Output: </span>
-                              <span className={`font-semibold ${isLightMode ? 'text-emerald-600' : 'text-emerald-400'}`}>{ex.output}</span>
+                              <span className={isLightMode ? 'text-slate-500 block text-[11px]' : 'text-slate-400 block text-[11px]'}>Output:</span>
+                              <pre className={`p-2 rounded-lg ${isLightMode ? 'bg-slate-100 text-emerald-700' : 'bg-slate-950 text-emerald-400 font-bold'} overflow-x-auto`}>{ex.output}</pre>
                             </div>
                             {ex.explanation && (
-                              <div>
-                                <span className={isLightMode ? 'text-slate-500' : 'text-slate-400'}>Explanation: </span>
+                              <div className="pt-1">
+                                <span className={isLightMode ? 'text-slate-500 font-bold' : 'text-slate-400 font-bold'}>Explanation: </span>
                                 <span className={isLightMode ? 'text-slate-700' : 'text-slate-300'}>{ex.explanation}</span>
                               </div>
                             )}
@@ -858,75 +878,119 @@ export default function UniversalCodePlayground({
                   {problem.constraints && problem.constraints.length > 0 && (
                     <div className="space-y-2 pt-2">
                       <h4 className={`text-xs font-mono font-bold uppercase tracking-wider ${isLightMode ? 'text-slate-700' : 'text-slate-400'}`}>
-                        Constraints:
+                        Constraints
                       </h4>
                       <ul className={`list-disc list-inside font-mono text-xs space-y-1 ${isLightMode ? 'text-slate-700' : 'text-slate-300'}`}>
                         {problem.constraints.map((c, i) => (
-                          <li key={i}>{c}</li>
+                          <li key={i} className="leading-relaxed">
+                            <span className="font-mono text-[11.5px]">{c}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
                   )}
+
+                  {/* How the Design is Graded (LLD AI Review Card) */}
+                  {problem.rubric && (
+                    <div className="space-y-2.5 pt-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h4 className={`text-xs font-mono font-bold uppercase tracking-wider ${isLightMode ? 'text-slate-700' : 'text-slate-300'}`}>
+                          How the design is graded
+                        </h4>
+                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                          needs {problem.rubric.passingScore || '7/10'} to pass
+                        </span>
+                      </div>
+
+                      <div className={`p-3.5 rounded-2xl border space-y-2 text-xs leading-relaxed ${
+                        isLightMode ? 'bg-slate-100/80 border-slate-300 text-slate-700' : 'bg-slate-900/80 border-slate-800 text-slate-300'
+                      }`}>
+                        {problem.rubric.fields && (
+                          <div>
+                            <span className="font-bold text-white block pb-0.5">Fields and constructor</span>
+                            <span className="text-[11.5px] opacity-90">{problem.rubric.fields}</span>
+                          </div>
+                        )}
+                        {problem.rubric.stateMutation && (
+                          <div className="pt-1 border-t border-slate-800/60">
+                            <span className="font-bold text-white block pb-0.5">Methods change the object's own state</span>
+                            <span className="text-[11.5px] opacity-90">{problem.rubric.stateMutation}</span>
+                          </div>
+                        )}
+                        {problem.rubric.structure && (
+                          <div className="pt-1 border-t border-slate-800/60">
+                            <span className="font-bold text-white block pb-0.5">Structure and naming</span>
+                            <span className="text-[11.5px] opacity-90">{problem.rubric.structure}</span>
+                          </div>
+                        )}
+                        <p className="text-[10.5px] text-slate-400 italic pt-1">
+                          Passing every test is not enough on its own. A submission is accepted only when the design also clears the bar.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 💡 Expandable Hints Section */}
+                  {problem.hints && problem.hints.length > 0 && (
+                    <div className="space-y-2 pt-3 border-t border-slate-800/80">
+                      <div className="flex items-center gap-2 text-xs font-mono font-bold text-slate-300">
+                        <Lightbulb className="w-4 h-4 text-amber-400" />
+                        <span>Hints</span>
+                      </div>
+                      <div className="space-y-1.5">
+                        {problem.hints.map((hint, hIdx) => {
+                          const isOpen = !!expandedHints[hIdx];
+                          return (
+                            <div key={hIdx} className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden">
+                              <button
+                                onClick={() => setExpandedHints(prev => ({ ...prev, [hIdx]: !prev[hIdx] }))}
+                                className="w-full px-3.5 py-2.5 flex items-center justify-between text-left text-xs font-medium text-slate-200 hover:bg-slate-800/50 transition cursor-pointer"
+                              >
+                                <div className="flex items-center gap-2.5">
+                                  <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-bold flex items-center justify-center">
+                                    {hIdx + 1}
+                                  </span>
+                                  <span className="font-semibold">Hint {hIdx + 1}</span>
+                                </div>
+                                <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-amber-400' : ''}`} />
+                              </button>
+                              {isOpen && (
+                                <div className="px-4 pb-3 pt-1 text-xs text-slate-300 border-t border-slate-800/60 bg-slate-950/40 leading-relaxed">
+                                  {hint}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               )}
 
-              {/* TAB 2: TEST CASES */}
-              {activeProblemTab === 'testcases' && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    {problem.testCases?.map((tc, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setSelectedTestCaseIndex(idx)}
-                        className={`px-3 py-1 rounded-xl text-xs font-mono font-bold transition ${
-                          selectedTestCaseIndex === idx
-                            ? 'bg-cyan-600 text-white shadow-sm'
-                            : isLightMode
-                            ? 'bg-slate-200 text-slate-700 hover:bg-slate-300'
-                            : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-                        }`}
-                      >
-                        Case {idx + 1}
-                      </button>
-                    ))}
-                  </div>
-
-                  {problem.testCases && problem.testCases[selectedTestCaseIndex] && (
-                    <div className="space-y-3">
-                      <div>
-                        <span className={`text-xs font-mono font-bold block mb-1 ${isLightMode ? 'text-slate-600' : 'text-slate-400'}`}>
-                          Input:
-                        </span>
-                        <pre className={`p-3 rounded-xl font-mono text-xs border ${
-                          isLightMode ? 'bg-white border-slate-200 text-slate-800' : 'bg-slate-900 border-slate-800 text-slate-200'
-                        }`}>
-                          {problem.testCases[selectedTestCaseIndex].input}
-                        </pre>
+              {/* TAB 2: SOLUTION & EDITORIAL */}
+              {activeProblemTab === 'editorial' && (
+                <div className="space-y-4 text-xs">
+                  <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
+                    <h4 className="font-bold text-sm text-white flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-amber-400" />
+                      <span>Architecture Analysis &amp; Complexity</span>
+                    </h4>
+                    <p className="text-slate-300 leading-relaxed whitespace-pre-line">
+                      {problem.editorial || "Analyze the problem constraints to choose optimal data structures and concurrency primitives. Aim for linearizability, bounded memory usage, and minimal contention."}
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 pt-1 font-mono text-[11px]">
+                      <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800">
+                        <span className="text-slate-500 block text-[10px] uppercase">Time Complexity</span>
+                        <span className="text-emerald-400 font-bold">O(1) / O(log N)</span>
                       </div>
-
-                      <div>
-                        <span className={`text-xs font-mono font-bold block mb-1 ${isLightMode ? 'text-slate-600' : 'text-slate-400'}`}>
-                          Expected Output:
-                        </span>
-                        <pre className={`p-3 rounded-xl font-mono text-xs border ${
-                          isLightMode ? 'bg-white border-slate-200 text-emerald-700' : 'bg-slate-900 border-slate-800 text-emerald-300'
-                        }`}>
-                          {problem.testCases[selectedTestCaseIndex].expectedOutput}
-                        </pre>
+                      <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800">
+                        <span className="text-slate-500 block text-[10px] uppercase">Space Complexity</span>
+                        <span className="text-cyan-400 font-bold">O(1) / O(K)</span>
                       </div>
-
-                      <button
-                        onClick={() => {
-                          setStdin(problem.testCases[selectedTestCaseIndex].input);
-                          handleRun();
-                        }}
-                        className="w-full py-2 rounded-xl bg-cyan-700 hover:bg-cyan-600 text-white font-bold text-xs flex items-center justify-center gap-2 transition cursor-pointer"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>Run Test Case {selectedTestCaseIndex + 1}</span>
-                      </button>
                     </div>
-                  )}
+                  </div>
                 </div>
               )}
 
@@ -983,7 +1047,7 @@ export default function UniversalCodePlayground({
                     <div className="text-center py-10 space-y-3">
                       <Award className="w-10 h-10 text-slate-600 mx-auto" />
                       <p className="text-xs text-slate-400">
-                        No submissions yet for this problem.
+                        No submissions yet for this scenario.
                       </p>
                       <button
                         onClick={handleSubmit}
@@ -996,50 +1060,39 @@ export default function UniversalCodePlayground({
                 </div>
               )}
 
-              {/* TAB 4: EDITORIAL & VIDEO */}
-              {activeProblemTab === 'editorial' && (
-                <div className="space-y-4 text-xs">
-                  <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
-                    <h4 className="font-bold text-sm text-white flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-amber-400" />
-                      <span>TakeUForward Official Editorial</span>
-                    </h4>
-                    <p className="text-slate-400 leading-relaxed">
-                      Detailed step-by-step intuition, brute force, better, and optimal time/space complexity breakdown.
-                    </p>
-                    {problem.takeuforwardUrl && (
-                      <a
-                        href={problem.takeuforwardUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs transition"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span>Read Full Editorial on TakeUForward</span>
-                      </a>
-                    )}
+              {/* TAB 4: NOTES */}
+              {activeProblemTab === 'notes' && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs text-slate-400">
+                    <span className="font-mono">Personal Notepad (Saved locally)</span>
+                    <span className="text-[10px] text-emerald-400">Auto-saved</span>
                   </div>
+                  <textarea
+                    value={userNotes}
+                    onChange={(e) => {
+                      setUserNotes(e.target.value);
+                      try {
+                        localStorage.setItem(`threadspeak_notes_${problem.id}`, e.target.value);
+                      } catch {}
+                    }}
+                    placeholder="Jot down your thoughts, edge cases, formulas, or system design insights here..."
+                    className="w-full p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 focus:border-cyan-500/60 text-slate-200 font-mono text-xs outline-none min-h-[200px] resize-none"
+                  />
+                </div>
+              )}
 
-                  {problem.youtubeUrl && (
-                    <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
-                      <h4 className="font-bold text-sm text-white flex items-center gap-2">
-                        <Video className="w-4 h-4 text-red-400" />
-                        <span>Video Explanation</span>
-                      </h4>
-                      <p className="text-slate-400 leading-relaxed">
-                        Watch Striver explain this problem with whiteboard intuition and complete code walkthrough.
-                      </p>
-                      <a
-                        href={problem.youtubeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition"
-                      >
-                        <Video className="w-3.5 h-3.5" />
-                        <span>Watch on YouTube</span>
-                      </a>
+              {/* TAB 5: DISCUSSION */}
+              {activeProblemTab === 'discussion' && (
+                <div className="space-y-3 text-xs text-slate-300">
+                  <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-2">
+                    <div className="font-bold text-sm text-cyan-400 flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4" />
+                      <span>FAANG Interview Tips &amp; Trade-offs</span>
                     </div>
-                  )}
+                    <p className="text-slate-400 leading-relaxed">
+                      In production systems, this problem is commonly tested to evaluate your understanding of distributed consensus, latency bounds, and thread safety. When presenting your solution, discuss trade-offs between memory footprint and CPU overhead.
+                    </p>
+                  </div>
                 </div>
               )}
 
@@ -1179,62 +1232,134 @@ export default function UniversalCodePlayground({
             </div>
           </div>
 
-          {/* Bottom Console Panel (When in problem solver mode) */}
+          {/* Bottom Test cases / Console Panel (When in problem solver mode) */}
           {problem && (
             <div className={`border-t flex flex-col transition-colors duration-200 ${
               isLightMode ? 'bg-[#F8FAFC] border-slate-200' : 'bg-[#080D18] border-slate-800'
             }`}>
+              {/* Bottom Tab Bar with Case Selectors & Action Buttons */}
               <div className={`px-4 py-2 border-b flex items-center justify-between gap-2 select-none overflow-x-auto custom-scrollbar ${
                 isLightMode ? 'bg-[#F1F5F9] border-slate-200' : 'bg-[#0A101E] border-slate-800'
               }`}>
-                <div className="flex items-center gap-2">
-                  <Terminal className={`w-3.5 h-3.5 ${isLightMode ? 'text-blue-600' : 'text-cyan-400'}`} />
-                  <div className="flex items-center gap-1 text-xs font-mono font-bold">
-                    <button
-                      onClick={() => setActiveConsoleTab('output')}
-                      className={`px-2.5 py-1 rounded-lg transition ${
-                        activeConsoleTab === 'output'
-                          ? isLightMode ? 'bg-white text-slate-900 font-bold shadow-sm border border-slate-200' : 'bg-slate-800 text-white font-bold'
-                          : 'text-slate-400 hover:text-slate-200'
-                      }`}
-                    >
-                      Output Console
-                    </button>
-                    <button
-                      onClick={() => setActiveConsoleTab('stdin')}
-                      className={`px-2.5 py-1 rounded-lg transition flex items-center gap-1 ${
-                        activeConsoleTab === 'stdin'
-                          ? isLightMode ? 'bg-purple-100 text-purple-900 border border-purple-300 font-bold' : 'bg-purple-900/90 text-purple-200 border border-purple-700 font-bold'
-                          : 'text-slate-400 hover:text-slate-200'
-                      }`}
-                    >
-                      <Keyboard className="w-3 h-3" />
-                      <span>Custom Input</span>
-                    </button>
-                  </div>
+                {/* Left Tabs: Test cases | Output | Feedback */}
+                <div className="flex items-center gap-1.5 text-xs font-mono font-bold">
+                  {[
+                    { id: 'testcases', label: 'Test cases', icon: CheckSquare },
+                    { id: 'output', label: 'Output', icon: Terminal },
+                    { id: 'feedback', label: 'Feedback', icon: Sparkles },
+                  ].map(tab => {
+                    const Icon = tab.icon;
+                    const isActive = bottomProblemTab === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => setBottomProblemTab(tab.id)}
+                        className={`px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 ${
+                          isActive
+                            ? 'bg-slate-800 text-white border border-slate-700 shadow-sm'
+                            : 'text-slate-400 hover:text-slate-200'
+                        }`}
+                      >
+                        <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+                        <span>{tab.label}</span>
+                      </button>
+                    );
+                  })}
                 </div>
 
+                {/* Right Action Buttons: Evaluate, Run, Submit */}
                 <div className="flex items-center gap-2">
-                  {executionTime !== null && (
-                    <span className={`flex items-center gap-1 text-[11px] font-mono ${isLightMode ? 'text-slate-600' : 'text-slate-400'}`}>
-                      <Clock className="w-3 h-3 text-cyan-400" /> {executionTime}ms
-                    </span>
-                  )}
-                  {output && (
-                    <button
-                      onClick={handleCopyOutput}
-                      className={`p-1 rounded-lg transition ${isLightMode ? 'text-slate-600 hover:text-slate-900' : 'text-slate-400 hover:text-white'}`}
-                      title="Copy Output"
-                    >
-                      {isOutputCopied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                    </button>
-                  )}
+                  <button
+                    onClick={handleRun}
+                    disabled={isRunning}
+                    className="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer"
+                  >
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Evaluate</span>
+                  </button>
+
+                  <button
+                    onClick={handleRun}
+                    disabled={isRunning}
+                    className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer"
+                  >
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>Run</span>
+                  </button>
+
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isRunning}
+                    className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Submit</span>
+                  </button>
                 </div>
               </div>
 
-              {/* Console Output Area */}
-              <div className="p-3 font-mono text-xs max-h-48 min-h-[120px] overflow-auto select-text">
-                {activeConsoleTab === 'output' && (
+              {/* Bottom Tab Content */}
+              <div className="p-4 font-mono text-xs overflow-auto max-h-56 min-h-[140px] space-y-3">
+                
+                {/* 1. TEST CASES TAB */}
+                {bottomProblemTab === 'testcases' && (
+                  <div className="space-y-3">
+                    {/* Quota & Limit Row */}
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 pb-1">
+                      <span>Today <b>0/50</b> runs • <b>0/30</b> submits • <b>0/30</b> evaluations</span>
+                      <span className="text-emerald-400 font-bold cursor-pointer hover:underline">Unlimited Sandbox Mode</span>
+                    </div>
+
+                    {/* Case Selectors: Case 1, Case 2 */}
+                    <div className="flex items-center gap-2">
+                      {(problem.testCases || [{ name: 'Case 1' }]).map((tc, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setSelectedTestCaseIndex(idx)}
+                          className={`px-3 py-1 rounded-lg text-xs font-mono font-bold transition ${
+                            selectedTestCaseIndex === idx
+                              ? 'bg-slate-800 text-emerald-300 border border-emerald-500/40 shadow-sm'
+                              : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 border border-slate-800'
+                          }`}
+                        >
+                          {tc.name || `Case ${idx + 1}`}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Interactive CALL & RETURNS Table */}
+                    {problem.testCases && problem.testCases[selectedTestCaseIndex]?.calls ? (
+                      <div className="rounded-xl border border-slate-800 bg-slate-950/70 overflow-hidden text-xs">
+                        <div className="grid grid-cols-12 px-4 py-2 bg-slate-900/80 border-b border-slate-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                          <div className="col-span-8">Call</div>
+                          <div className="col-span-4 text-right">Returns</div>
+                        </div>
+                        <div className="divide-y divide-slate-800/60">
+                          {problem.testCases[selectedTestCaseIndex].calls.map((c, cIdx) => (
+                            <div key={cIdx} className="grid grid-cols-12 px-4 py-2.5 items-center hover:bg-slate-900/40 transition">
+                              <div className="col-span-8 text-cyan-300 font-mono font-semibold truncate">{c.call}</div>
+                              <div className="col-span-4 text-right text-emerald-400 font-mono font-bold">{c.returns}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="p-3 rounded-xl border border-slate-800 bg-slate-950 text-slate-300 font-mono text-xs">
+                        {problem.testCases && problem.testCases[selectedTestCaseIndex] ? (
+                          <div>
+                            <div><span className="text-slate-500">Input:</span> {problem.testCases[selectedTestCaseIndex].input}</div>
+                            <div className="text-emerald-400 mt-1"><span className="text-slate-500">Expected:</span> {problem.testCases[selectedTestCaseIndex].expectedOutput}</div>
+                          </div>
+                        ) : (
+                          <div>{problem.examples && problem.examples[0] ? problem.examples[0].input : 'Standard testcase input'}</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* 2. OUTPUT TAB */}
+                {bottomProblemTab === 'output' && (
                   output ? (
                     <pre className={`whitespace-pre-wrap font-mono ${
                       status === 'error' ? 'text-rose-400 font-semibold' : 'text-emerald-300 font-medium'
@@ -1243,24 +1368,21 @@ export default function UniversalCodePlayground({
                     </pre>
                   ) : (
                     <div className="py-6 text-center text-slate-500 text-xs">
-                      Click <span className="text-emerald-400 font-bold">Run</span> or <span className="text-cyan-400 font-bold">Submit Solution</span> to see execution output.
+                      Click <span className="text-emerald-400 font-bold">Run</span> or <span className="text-amber-400 font-bold">Evaluate</span> to execute your solution against test cases.
                     </div>
                   )
                 )}
 
-                {activeConsoleTab === 'stdin' && (
-                  <div className="space-y-2">
-                    <textarea
-                      value={stdin}
-                      onChange={(e) => setStdin(e.target.value)}
-                      className={`w-full p-2.5 rounded-xl border font-mono text-xs focus:outline-none resize-none ${
-                        isLightMode ? 'bg-white border-purple-300 text-purple-900' : 'bg-slate-950 border-purple-900/60 text-purple-200'
-                      }`}
-                      placeholder="Custom test case input..."
-                      rows={3}
-                    />
+                {/* 3. FEEDBACK TAB */}
+                {bottomProblemTab === 'feedback' && (
+                  <div className="space-y-2 text-slate-300 text-xs">
+                    <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+                      <div className="font-bold text-cyan-400">Sandbox Code Runner</div>
+                      <p className="text-slate-400">Zero JVM installation needed. Your code is compiled and executed in real-time.</p>
+                    </div>
                   </div>
                 )}
+
               </div>
             </div>
           )}

@@ -1,11 +1,11 @@
 /**
- * striversA2ZSheetData.js
- * Complete Striver's A2Z DSA Sheet Dataset
+ * a2zDsaSheetData.js
+ * Complete A-to-Z DSA Sheet Dataset
  * Covering Steps 1 to 18 with problem descriptions, examples, constraints,
- * multi-language starter code, testcases, and LeetCode/TakeUForward links.
+ * multi-language starter code, testcases, and LeetCode solution links.
  */
 
-export const STRIVERS_STEPS = [
+export const A2Z_STEPS = [
   {
     stepNumber: 1,
     title: "Learn the Basics",
@@ -152,7 +152,9 @@ export const STRIVERS_STEPS = [
   }
 ];
 
-export const STRIVERS_PROBLEMS = [
+export const STRIVERS_STEPS = A2Z_STEPS;
+
+export const A2Z_PROBLEMS = [
   // =========================================================================
   // STEP 1: LEARN THE BASICS
   // =========================================================================
@@ -1716,3 +1718,5 @@ public class Solution {
     ]
   }
 ];
+
+export const STRIVERS_PROBLEMS = A2Z_PROBLEMS;

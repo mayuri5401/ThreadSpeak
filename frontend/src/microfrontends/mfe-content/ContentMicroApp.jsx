@@ -143,6 +143,10 @@ export default function ContentMicroApp({
         {!isFocusMode && !isSidebarCollapsed && (
           <Sidebar
             track={currentTrack}
+            tracks={tracks}
+            currentTrackId={currentTrackId}
+            onSelectTrack={onSelectTrack}
+            onSelectSubSection={onSelectSubSection}
             topics={topics}
             selectedTopicId={selectedTopicId}
             onSelectTopic={onSelectTopic}

@@ -6,23 +6,23 @@ import {
   RotateCcw, SlidersHorizontal, ListFilter, Compass, Bookmark,
   TrendingUp, Award, Laptop, Hash, ShieldCheck
 } from 'lucide-react';
-import { STRIVERS_STEPS, STRIVERS_PROBLEMS } from '../../data/striversA2ZSheetData';
+import { A2Z_STEPS, A2Z_PROBLEMS } from '../../data/a2zDsaSheetData';
 
 /**
- * StriversA2ZSheetView
- * High-End Interactive Practice Portal for Striver's A2Z DSA Sheet
+ * A2ZDsaSheetView
+ * High-End Interactive Practice Portal for Complete A-to-Z DSA Sheet
  * Features:
  * - 18 Step Roadmap with Subtopic Groupings
  * - Live Solved Tracking & localStorage Persistence
  * - Search & Multi-criteria Filtering (Difficulty, Status, Step)
  * - Direct One-Click Redirection to our LeetCode-Style Playground
- * - TakeUForward, LeetCode, and YouTube Solution links
+ * - LeetCode and Video Solution links
  */
-export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
+export default function A2ZDsaSheetView({ onOpenProblemInPlayground }) {
   // Solved problems state stored in localStorage
   const [solvedProblemIds, setSolvedProblemIds] = useState(() => {
     try {
-      const saved = localStorage.getItem('threadspeak_strivers_solved');
+      const saved = localStorage.getItem('threadspeak_a2z_solved') || localStorage.getItem('threadspeak_strivers_solved');
       return saved ? new Set(JSON.parse(saved)) : new Set(['count-digits', 'two-sum']);
     } catch {
       return new Set(['count-digits', 'two-sum']);
@@ -32,7 +32,7 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
   // Bookmarked problems
   const [bookmarkedProblemIds, setBookmarkedProblemIds] = useState(() => {
     try {
-      const saved = localStorage.getItem('threadspeak_strivers_bookmarked');
+      const saved = localStorage.getItem('threadspeak_a2z_bookmarked') || localStorage.getItem('threadspeak_strivers_bookmarked');
       return saved ? new Set(JSON.parse(saved)) : new Set();
     } catch {
       return new Set();
@@ -48,7 +48,7 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
   // Expanded accordion steps
   const [expandedSteps, setExpandedSteps] = useState(() => {
     const initial = {};
-    STRIVERS_STEPS.forEach(s => {
+    A2Z_STEPS.forEach(s => {
       initial[s.stepNumber] = true; // all expanded by default
     });
     return initial;
@@ -70,7 +70,7 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
       } else {
         next.add(problemId);
       }
-      localStorage.setItem('threadspeak_strivers_solved', JSON.stringify(Array.from(next)));
+      localStorage.setItem('threadspeak_a2z_solved', JSON.stringify(Array.from(next)));
       return next;
     });
   };
@@ -84,14 +84,14 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
       } else {
         next.add(problemId);
       }
-      localStorage.setItem('threadspeak_strivers_bookmarked', JSON.stringify(Array.from(next)));
+      localStorage.setItem('threadspeak_a2z_bookmarked', JSON.stringify(Array.from(next)));
       return next;
     });
   };
 
   // Filtered problems computation
   const filteredProblems = useMemo(() => {
-    return STRIVERS_PROBLEMS.filter(p => {
+    return A2Z_PROBLEMS.filter(p => {
       // 1. Search Query
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
@@ -122,7 +122,7 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
   // Group filtered problems by Step
   const problemsByStep = useMemo(() => {
     const grouped = {};
-    STRIVERS_STEPS.forEach(s => {
+    A2Z_STEPS.forEach(s => {
       grouped[s.stepNumber] = [];
     });
     filteredProblems.forEach(p => {
@@ -134,18 +134,18 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
   }, [filteredProblems]);
 
   // Statistics calculation
-  const totalCount = STRIVERS_PROBLEMS.length;
-  const solvedCount = STRIVERS_PROBLEMS.filter(p => solvedProblemIds.has(p.id)).length;
+  const totalCount = A2Z_PROBLEMS.length;
+  const solvedCount = A2Z_PROBLEMS.filter(p => solvedProblemIds.has(p.id)).length;
   const progressPercent = totalCount > 0 ? Math.round((solvedCount / totalCount) * 100) : 0;
 
-  const easyTotal = STRIVERS_PROBLEMS.filter(p => p.difficulty === 'Easy').length;
-  const easySolved = STRIVERS_PROBLEMS.filter(p => p.difficulty === 'Easy' && solvedProblemIds.has(p.id)).length;
+  const easyTotal = A2Z_PROBLEMS.filter(p => p.difficulty === 'Easy').length;
+  const easySolved = A2Z_PROBLEMS.filter(p => p.difficulty === 'Easy' && solvedProblemIds.has(p.id)).length;
 
-  const medTotal = STRIVERS_PROBLEMS.filter(p => p.difficulty === 'Medium').length;
-  const medSolved = STRIVERS_PROBLEMS.filter(p => p.difficulty === 'Medium' && solvedProblemIds.has(p.id)).length;
+  const medTotal = A2Z_PROBLEMS.filter(p => p.difficulty === 'Medium').length;
+  const medSolved = A2Z_PROBLEMS.filter(p => p.difficulty === 'Medium' && solvedProblemIds.has(p.id)).length;
 
-  const hardTotal = STRIVERS_PROBLEMS.filter(p => p.difficulty === 'Hard').length;
-  const hardSolved = STRIVERS_PROBLEMS.filter(p => p.difficulty === 'Hard' && solvedProblemIds.has(p.id)).length;
+  const hardTotal = A2Z_PROBLEMS.filter(p => p.difficulty === 'Hard').length;
+  const hardSolved = A2Z_PROBLEMS.filter(p => p.difficulty === 'Hard' && solvedProblemIds.has(p.id)).length;
 
   return (
     <div className="space-y-8 animate-in fade-in duration-300 pb-20">
@@ -164,14 +164,14 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-950 text-rose-300 border border-rose-800">
-                    TakeUForward Official
+                    Comprehensive DSA Sheet
                   </span>
                   <span className="text-[10px] font-mono text-slate-400">
                     A-to-Z DSA Roadmap
                   </span>
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                  Striver's A2Z DSA Sheet
+                  Complete DSA Sheet (A-to-Z)
                 </h1>
               </div>
             </div>
@@ -244,26 +244,9 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
         {/* Action Bar / Quick Links */}
         <div className="pt-4 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
-            <span className="text-slate-400">External resources:</span>
-            <a
-              href="https://takeuforward.org/dsa/strivers-a2z-sheet-learn-dsa-a-to-z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-rose-400 hover:text-rose-300 hover:underline font-bold"
-            >
-              <span>TakeUForward Website</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <span className="text-slate-600">•</span>
-            <a
-              href="https://www.youtube.com/@takeUforward"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-red-400 hover:text-red-300 hover:underline font-bold"
-            >
-              <span>Striver's YouTube Channel</span>
-              <Youtube className="w-3 h-3" />
-            </a>
+            <span className="px-3 py-1 rounded-xl bg-slate-800/80 text-emerald-400 font-mono text-[11px] font-bold border border-slate-700">
+              Interactive Multi-Language Compilation Sandbox
+            </span>
           </div>
 
           <div className="flex items-center gap-2 font-mono text-[11px] text-slate-400">
@@ -345,7 +328,7 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
             className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 text-xs font-bold focus:border-rose-500 focus:outline-none"
           >
             <option value="ALL">All 18 Steps</option>
-            {STRIVERS_STEPS.map(s => (
+            {A2Z_STEPS.map(s => (
               <option key={s.stepNumber} value={s.stepNumber}>
                 Step {s.stepNumber}: {s.title}
               </option>
@@ -372,7 +355,7 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
 
       {/* ── 18 STEP ACCORDIONS ── */}
       <div className="space-y-6">
-        {STRIVERS_STEPS.map(step => {
+        {A2Z_STEPS.map(step => {
           const stepProblems = problemsByStep[step.stepNumber] || [];
           if (stepProblems.length === 0 && (searchQuery || selectedDifficulty !== 'ALL' || selectedStatus !== 'ALL' || selectedStepFilter !== 'ALL')) {
             // Hide step if filtered out
@@ -380,8 +363,8 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
           }
 
           const isExpanded = expandedSteps[step.stepNumber];
-          const totalInStep = STRIVERS_PROBLEMS.filter(p => p.stepNumber === step.stepNumber).length;
-          const solvedInStep = STRIVERS_PROBLEMS.filter(p => p.stepNumber === step.stepNumber && solvedProblemIds.has(p.id)).length;
+          const totalInStep = A2Z_PROBLEMS.filter(p => p.stepNumber === step.stepNumber).length;
+          const solvedInStep = A2Z_PROBLEMS.filter(p => p.stepNumber === step.stepNumber && solvedProblemIds.has(p.id)).length;
           const stepPercent = totalInStep > 0 ? Math.round((solvedInStep / totalInStep) * 100) : 0;
 
           // Group by subtopics inside step
@@ -532,20 +515,8 @@ export default function StriversA2ZSheetView({ onOpenProblemInPlayground }) {
                                 </div>
                               </div>
 
-                              {/* Right: Actions (Playground CTA, LeetCode link, YouTube link) */}
+                              {/* Right: Actions (Playground CTA, LeetCode link) */}
                               <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
-                                {/* YouTube Solution */}
-                                {p.youtubeUrl && (
-                                  <a
-                                    href={p.youtubeUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2 rounded-xl bg-slate-800/80 hover:bg-red-950/80 text-slate-400 hover:text-red-400 border border-slate-700 transition"
-                                    title="Watch Striver's Video Solution"
-                                  >
-                                    <Youtube className="w-4 h-4" />
-                                  </a>
-                                )}
 
                                 {/* LeetCode Problem Link */}
                                 {p.leetcodeUrl && (

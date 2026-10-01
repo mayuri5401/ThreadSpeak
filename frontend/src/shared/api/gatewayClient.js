@@ -21,6 +21,7 @@ const SERVICE_FALLBACK_MAP = IS_LOCAL_DEV
       '/system-design': 'http://localhost:8081/api/topics',
       '/progress': 'http://localhost:8082/api/progress',
       '/users': 'http://localhost:8082/api/users',
+      '/auth': 'http://localhost:8082/api/auth',
       '/quizzes': 'http://localhost:8083/api/quizzes',
       '/code': 'http://localhost:8084/api/code',
     }
